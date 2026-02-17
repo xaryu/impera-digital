@@ -1,4 +1,5 @@
 import heroBg from "@/assets/hero-bg.jpg";
+import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   return (
@@ -39,18 +40,18 @@ const HeroSection = () => {
           className="flex flex-col sm:flex-row gap-4 justify-center opacity-0 animate-fade-up"
           style={{ animationDelay: "0.8s" }}
         >
-          <a
-            href="#portfolio"
+          <Link
+            to="/portfolio"
             className="px-10 py-4 bg-gold text-navy-dark font-body text-sm font-semibold tracking-wider uppercase hover:bg-gold-light transition-colors duration-300"
           >
             View Our Work
-          </a>
-          <a
-            href="#contact"
+          </Link>
+          <Link
+            to="/contact"
             className="px-10 py-4 border border-gold/40 text-cream font-body text-sm tracking-wider uppercase hover:bg-gold/10 transition-all duration-300"
           >
             Start a Project
-          </a>
+          </Link>
         </div>
       </div>
 
