@@ -11,7 +11,7 @@ const HeroSection = () => {
           alt="Premium workspace collaboration"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-navy-dark/50" />
+        <div className="absolute inset-0 bg-navy-dark/75" />
       </div>
 
       {/* Content */}
