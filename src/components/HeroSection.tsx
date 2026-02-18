@@ -1,17 +1,25 @@
-import heroBg from "@/assets/hero-bg.jpg";
 import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0">
-        <img
-          src={heroBg}
-          alt="Impera hero background"
-          className="w-full h-full object-cover"
+      {/* Background - dark navy gradient with geometric pattern */}
+      <div className="absolute inset-0 bg-navy-gradient">
+        <div
+          className="absolute inset-0 opacity-[0.07]"
+          style={{
+            backgroundImage: `
+              linear-gradient(30deg, hsl(var(--gold)) 12%, transparent 12.5%, transparent 87%, hsl(var(--gold)) 87.5%, hsl(var(--gold))),
+              linear-gradient(150deg, hsl(var(--gold)) 12%, transparent 12.5%, transparent 87%, hsl(var(--gold)) 87.5%, hsl(var(--gold))),
+              linear-gradient(30deg, hsl(var(--gold)) 12%, transparent 12.5%, transparent 87%, hsl(var(--gold)) 87.5%, hsl(var(--gold))),
+              linear-gradient(150deg, hsl(var(--gold)) 12%, transparent 12.5%, transparent 87%, hsl(var(--gold)) 87.5%, hsl(var(--gold))),
+              linear-gradient(60deg, hsl(var(--gold) / 0.5) 25%, transparent 25.5%, transparent 75%, hsl(var(--gold) / 0.5) 75%, hsl(var(--gold) / 0.5)),
+              linear-gradient(60deg, hsl(var(--gold) / 0.5) 25%, transparent 25.5%, transparent 75%, hsl(var(--gold) / 0.5) 75%, hsl(var(--gold) / 0.5))
+            `,
+            backgroundSize: '80px 140px',
+            backgroundPosition: '0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px',
+          }}
         />
-        <div className="absolute inset-0 bg-navy-dark/40" />
       </div>
 
       {/* Content */}
