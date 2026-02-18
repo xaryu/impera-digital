@@ -103,13 +103,21 @@ const Services = () => {
                   <p className="font-body text-muted-foreground leading-relaxed mb-8">
                     {service.description}
                   </p>
-                  <Link
-                    to="/contact"
-                    className="inline-flex items-center gap-2 px-8 py-3 bg-gold text-navy-dark font-body text-sm font-semibold tracking-wider uppercase hover:bg-gold-light transition-colors duration-300"
-                  >
-                    Discuss This Service
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <Link
+                      to="/contact"
+                      className="inline-flex items-center gap-2 px-8 py-3 bg-gold text-navy-dark font-body text-sm font-semibold tracking-wider uppercase hover:bg-gold-light transition-colors duration-300"
+                    >
+                      Book Free 15 Min Call
+                      <ArrowRight className="w-4 h-4" />
+                    </Link>
+                    <Link
+                      to="/contact"
+                      className="inline-flex items-center gap-2 px-8 py-3 border border-gold/40 text-navy font-body text-sm font-semibold tracking-wider uppercase hover:bg-gold/10 transition-all duration-300"
+                    >
+                      Request Custom Quote
+                    </Link>
+                  </div>
                 </div>
 
                 <div className={`p-10 border border-border bg-background ${i % 2 === 1 ? "lg:order-1" : ""}`}>
