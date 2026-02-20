@@ -1,7 +1,12 @@
-import { Award, Users, Target, Shield } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Award, Users, Target, Shield, Settings, LogOut } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import LeadershipSection from "@/components/LeadershipSection";
+import AdminAuth from "@/components/AdminAuth";
 import { Link } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 const stats = [
   { value: "50+", label: "Projects Delivered" },
@@ -33,14 +38,25 @@ const values = [
   },
 ];
 
-const team = [
-  { name: "Alessandro Voss", role: "Founder & Creative Director" },
-  { name: "Camille Laurent", role: "Head of Strategy" },
-  { name: "Marcus Chen", role: "Lead Developer" },
-  { name: "Isabella Torres", role: "Brand Director" },
-];
-
 const About = () => {
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [showAuthModal, setShowAuthModal] = useState(false);
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data }) => {
+      setIsAdmin(!!data.session);
+    });
+    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+      setIsAdmin(!!session);
+    });
+    return () => listener.subscription.unsubscribe();
+  }, []);
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    toast.success("Logged out");
+  };
+
   return (
     <div className="min-h-screen">
       <Navbar />
@@ -128,42 +144,10 @@ const About = () => {
         </div>
       </section>
 
-      {/* Team */}
-      <section className="py-24 bg-cream">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <p className="font-body text-sm tracking-[0.3em] text-gold uppercase mb-4">
-              The People
-            </p>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-navy">
-              Leadership
-            </h2>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {team.map((member) => (
-              <div
-                key={member.name}
-                className="group text-center p-8 border border-border hover:border-gold/30 hover:gold-glow transition-all duration-500 bg-background"
-              >
-                <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-navy flex items-center justify-center">
-                  <span className="font-display text-xl font-bold text-gold">
-                    {member.name.split(" ").map((n) => n[0]).join("")}
-                  </span>
-                </div>
-                <h3 className="font-display text-lg font-semibold text-navy mb-1">
-                  {member.name}
-                </h3>
-                <p className="font-body text-xs tracking-wider text-muted-foreground uppercase">
-                  {member.role}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <LeadershipSection isAdmin={isAdmin} />
 
       {/* CTA */}
-      <section className="py-24 bg-navy-gradient text-center">
+      <section className="py-24 bg-navy-gradient text-center relative">
         <div className="container mx-auto px-6">
           <h2 className="font-display text-4xl md:text-5xl font-bold text-cream mb-6">
             Let's Build Something Remarkable
@@ -178,7 +162,34 @@ const About = () => {
             Get in Touch
           </Link>
         </div>
+        {/* Admin toggle — subtle, bottom-right corner */}
+        <div className="absolute bottom-4 right-6">
+          {isAdmin ? (
+            <button
+              onClick={handleLogout}
+              className="flex items-center gap-2 font-body text-xs text-gold/40 hover:text-gold/80 transition-colors"
+            >
+              <LogOut className="w-3 h-3" />
+              Exit Admin
+            </button>
+          ) : (
+            <button
+              onClick={() => setShowAuthModal(true)}
+              className="flex items-center gap-2 font-body text-xs text-gold/20 hover:text-gold/60 transition-colors"
+            >
+              <Settings className="w-3 h-3" />
+              Admin
+            </button>
+          )}
+        </div>
       </section>
+
+      {showAuthModal && (
+        <AdminAuth
+          onClose={() => setShowAuthModal(false)}
+          onLoggedIn={() => setIsAdmin(true)}
+        />
+      )}
 
       <Footer />
     </div>
