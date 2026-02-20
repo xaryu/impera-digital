@@ -41,13 +41,13 @@ const HeroSection = () => {
           style={{ animationDelay: "0.8s" }}>
 
           <Link
-            to="/portfolio"
+            to="/contact"
             className="px-10 py-4 bg-gold text-navy-dark font-body text-sm font-semibold tracking-wider uppercase hover:bg-gold-light transition-colors duration-300">
 
             start a project  
           </Link>
           <Link
-            to="/contact"
+            to="/portfolio"
             className="px-10 py-4 border border-gold/40 text-cream font-body text-sm tracking-wider uppercase hover:bg-gold/10 transition-all duration-300">
 
             ​see our work     
