@@ -1,8 +1,8 @@
 const stats = [
-  { value: "150+", label: "Projects Delivered" },
-  { value: "12", label: "Years of Excellence" },
+  { value: "50+", label: "Projects Delivered" },
+  { value: "10+", label: "Years of Excellence" },
   { value: "98%", label: "Client Retention" },
-  { value: "40+", label: "Industry Awards" },
+  { value: "5", label: "Industry Awards" },
 ];
 
 const AboutSection = () => {
