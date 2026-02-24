@@ -56,6 +56,92 @@ export type Database = {
         }
         Relationships: []
       }
+      job_applications: {
+        Row: {
+          created_at: string
+          cv_url: string | null
+          email: string
+          full_name: string
+          id: string
+          job_opening_id: string
+          motivation_letter: string
+        }
+        Insert: {
+          created_at?: string
+          cv_url?: string | null
+          email: string
+          full_name: string
+          id?: string
+          job_opening_id: string
+          motivation_letter?: string
+        }
+        Update: {
+          created_at?: string
+          cv_url?: string | null
+          email?: string
+          full_name?: string
+          id?: string
+          job_opening_id?: string
+          motivation_letter?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "job_applications_job_opening_id_fkey"
+            columns: ["job_opening_id"]
+            isOneToOne: false
+            referencedRelation: "job_openings"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      job_openings: {
+        Row: {
+          benefits: string
+          created_at: string
+          department: string
+          full_description: string
+          id: string
+          location: string
+          published: boolean
+          requirements: string
+          short_description: string
+          slug: string
+          title: string
+          type: string
+          updated_at: string
+        }
+        Insert: {
+          benefits?: string
+          created_at?: string
+          department?: string
+          full_description?: string
+          id?: string
+          location?: string
+          published?: boolean
+          requirements?: string
+          short_description?: string
+          slug: string
+          title: string
+          type?: string
+          updated_at?: string
+        }
+        Update: {
+          benefits?: string
+          created_at?: string
+          department?: string
+          full_description?: string
+          id?: string
+          location?: string
+          published?: boolean
+          requirements?: string
+          short_description?: string
+          slug?: string
+          title?: string
+          type?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       team_members: {
         Row: {
           created_at: string
