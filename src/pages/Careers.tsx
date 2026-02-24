@@ -1,6 +1,13 @@
+import { useState, useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
+import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Link } from "react-router-dom";
+import AdminAuth from "@/components/AdminAuth";
+import JobEditor from "@/components/JobEditor";
+import { Settings, LogOut } from "lucide-react";
+import { toast } from "sonner";
 
 const values = [
   {
@@ -21,48 +28,74 @@ const values = [
   },
 ];
 
-const openings = [
-  {
-    title: "Senior Brand Strategist",
-    department: "Strategy",
-    type: "Full-time",
-    location: "London / Remote",
-    description: "Lead brand strategy for high-profile clients, crafting positioning frameworks that command market authority.",
-  },
-  {
-    title: "Lead UI/UX Designer",
-    department: "Design",
-    type: "Full-time",
-    location: "London",
-    description: "Shape premium digital experiences from concept to pixel-perfect execution for luxury and enterprise brands.",
-  },
-  {
-    title: "Full-Stack Developer",
-    department: "Engineering",
-    type: "Full-time",
-    location: "London / Remote",
-    description: "Build performant, elegant web applications that set the standard for digital craftsmanship.",
-  },
-  {
-    title: "Performance Marketing Manager",
-    department: "Marketing",
-    type: "Full-time",
-    location: "Remote",
-    description: "Drive measurable growth for premium brands through sophisticated paid media strategies.",
-  },
-  {
-    title: "Content Strategist",
-    department: "Content",
-    type: "Full-time",
-    location: "London / Remote",
-    description: "Develop compelling narratives and content ecosystems that position our clients as industry authorities.",
-  },
-];
-
 const Careers = () => {
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [showAuth, setShowAuth] = useState(false);
+  const [showEditor, setShowEditor] = useState(false);
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data }) => setIsAdmin(!!data.session));
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setIsAdmin(!!session);
+    });
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const { data: jobs = [] } = useQuery({
+    queryKey: ["job-openings"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("job_openings")
+        .select("*")
+        .order("created_at", { ascending: false });
+      if (error) throw error;
+      return data;
+    },
+  });
+
+  const visibleJobs = isAdmin ? jobs : jobs.filter((j) => j.published);
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    setIsAdmin(false);
+    toast.success("Logged out");
+  };
+
   return (
     <div className="min-h-screen bg-navy-dark">
       <Navbar />
+
+      {/* Admin bar */}
+      <div className="fixed bottom-6 right-6 z-40 flex gap-2">
+        {isAdmin ? (
+          <>
+            <button
+              onClick={() => setShowEditor(true)}
+              className="flex items-center gap-2 px-4 py-2 bg-gold text-navy-dark font-body text-xs font-semibold tracking-wider uppercase hover:bg-gold-light transition-colors"
+            >
+              <Settings className="w-4 h-4" /> Manage Jobs
+            </button>
+            <button
+              onClick={handleLogout}
+              className="p-2 bg-navy border border-gold/20 text-gold hover:bg-gold/10 transition-colors"
+            >
+              <LogOut className="w-4 h-4" />
+            </button>
+          </>
+        ) : (
+          <button
+            onClick={() => setShowAuth(true)}
+            className="px-4 py-2 border border-gold/20 text-gold font-body text-xs tracking-wider uppercase hover:bg-gold/10 transition-colors opacity-30 hover:opacity-100"
+          >
+            Admin
+          </button>
+        )}
+      </div>
+
+      {showAuth && (
+        <AdminAuth onClose={() => setShowAuth(false)} onLoggedIn={() => setIsAdmin(true)} />
+      )}
+      {showEditor && <JobEditor onClose={() => setShowEditor(false)} />}
 
       {/* Hero */}
       <section className="pt-32 pb-20 px-6">
@@ -140,18 +173,29 @@ const Careers = () => {
             Current Openings
           </h2>
           <div className="space-y-4">
-            {openings.map((role, i) => (
-              <div
-                key={i}
-                className="border border-gold/10 p-8 hover:border-gold/30 transition-all duration-500 bg-navy/30 group cursor-pointer"
+            {visibleJobs.length === 0 && (
+              <p className="text-center font-body text-gold-muted">No open positions at the moment.</p>
+            )}
+            {visibleJobs.map((role) => (
+              <Link
+                key={role.id}
+                to={`/careers/${role.slug}`}
+                className="block border border-gold/10 p-8 hover:border-gold/30 transition-all duration-500 bg-navy/30 group"
               >
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                   <div className="flex-1">
-                    <h3 className="font-display text-xl font-bold text-cream group-hover:text-gold transition-colors mb-2">
-                      {role.title}
-                    </h3>
+                    <div className="flex items-center gap-3">
+                      <h3 className="font-display text-xl font-bold text-cream group-hover:text-gold transition-colors mb-2">
+                        {role.title}
+                      </h3>
+                      {!role.published && (
+                        <span className="text-xs border border-gold/20 text-gold-muted px-2 py-0.5 uppercase tracking-wider">
+                          Draft
+                        </span>
+                      )}
+                    </div>
                     <p className="font-body text-sm text-gold-muted leading-relaxed">
-                      {role.description}
+                      {role.short_description}
                     </p>
                   </div>
                   <div className="flex items-center gap-4 flex-shrink-0">
@@ -167,7 +211,7 @@ const Careers = () => {
                     </span>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
 
