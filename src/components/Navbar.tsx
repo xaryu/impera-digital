@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
-import imperaLogo from "@/assets/impera-logo.png";
+import imperaLogo from "@/assets/impera-logo-white.png";
 const navLinks = [
   { label: "Services", href: "/services" },
   { label: "Portfolio", href: "/portfolio" },
@@ -18,7 +18,7 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-navy-dark/80 backdrop-blur-md border-b border-gold/10">
       <div className="container mx-auto flex items-center justify-between py-5 px-6">
         <Link to="/" className="flex items-center">
-          <img src={imperaLogo} alt="Impera" className="h-10 brightness-0 invert" />
+          <img src={imperaLogo} alt="Impera" className="h-10" />
         </Link>
 
         {/* Desktop */}
