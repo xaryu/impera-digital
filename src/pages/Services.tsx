@@ -4,63 +4,63 @@ import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
 
 const services = [
-  {
-    icon: Palette,
-    title: "Brand Identity",
-    tagline: "Crafting visual identities that command attention.",
-    description:
-      "Your brand is more than a logo — it's the feeling people carry long after they encounter you. We build complete brand systems that communicate prestige, consistency, and authority at every touchpoint.",
-    deliverables: [
-      "Logo & Visual Identity System",
-      "Brand Guidelines & Style Guides",
-      "Typography & Color Palette",
-      "Stationery & Collateral Design",
-      "Brand Voice & Messaging Framework",
-    ],
-  },
-  {
-    icon: Globe,
-    title: "Web Design & Development",
-    tagline: "Bespoke digital experiences engineered for impact.",
-    description:
-      "We design and develop websites that don't just look exceptional — they perform. Every interaction is crafted to convert visitors into believers, using cutting-edge technology and timeless design principles.",
-    deliverables: [
-      "Custom Website Design & Development",
-      "Responsive & Mobile-First Architecture",
-      "Performance Optimization & SEO",
-      "CMS Integration & Training",
-      "Ongoing Maintenance & Support",
-    ],
-  },
-  {
-    icon: Megaphone,
-    title: "Digital Marketing",
-    tagline: "Strategic campaigns that position you before the right audience.",
-    description:
-      "Visibility without strategy is noise. We create targeted campaigns across paid media, organic search, and social channels that put your brand in front of decision-makers who matter.",
-    deliverables: [
-      "Paid Media Strategy (Google, Meta, LinkedIn)",
-      "Search Engine Optimization",
-      "Content Strategy & Creation",
-      "Social Media Management",
-      "Analytics & Performance Reporting",
-    ],
-  },
-  {
-    icon: TrendingUp,
-    title: "Growth Strategy",
-    tagline: "Data-driven frameworks for measurable dominance.",
-    description:
-      "Growth isn't accidental — it's engineered. We combine market research, competitive analysis, and data science to build roadmaps that transform your market presence into sustained leadership.",
-    deliverables: [
-      "Market Research & Competitor Analysis",
-      "Customer Journey Mapping",
-      "Conversion Rate Optimization",
-      "Revenue Growth Frameworks",
-      "Quarterly Strategy Reviews",
-    ],
-  },
-];
+{
+  icon: Palette,
+  title: "Brand Identity",
+  tagline: "Crafting visual identities that command attention.",
+  description:
+  "Your brand is more than a logo — it's the feeling people carry long after they encounter you. We build complete brand systems that communicate prestige, consistency, and authority at every touchpoint.",
+  deliverables: [
+  "Logo & Visual Identity System",
+  "Brand Guidelines & Style Guides",
+  "Typography & Color Palette",
+  "Stationery & Collateral Design",
+  "Brand Voice & Messaging Framework"]
+
+},
+{
+  icon: Globe,
+  title: "Web Design & Development",
+  tagline: "Bespoke digital experiences engineered for impact.",
+  description:
+  "We design and develop websites that don't just look exceptional — they perform. Every interaction is crafted to convert visitors into believers, using cutting-edge technology and timeless design principles.",
+  deliverables: [
+  "Custom Website Design & Development",
+  "Responsive & Mobile-First Architecture",
+  "Performance Optimization & SEO",
+  "CMS Integration & Training",
+  "Ongoing Maintenance & Support"]
+
+},
+{
+  icon: Megaphone,
+  title: "Digital Marketing",
+  tagline: "Strategic campaigns that position you before the right audience.",
+  description:
+  "Visibility without strategy is noise. We create targeted campaigns across paid media, organic search, and social channels that put your brand in front of decision-makers who matter.",
+  deliverables: [
+  "Paid Media Strategy (Google, Meta, LinkedIn)",
+  "Search Engine Optimization",
+  "Content Strategy & Creation",
+  "Social Media Management",
+  "Analytics & Performance Reporting"]
+
+},
+{
+  icon: TrendingUp,
+  title: "Growth Strategy",
+  tagline: "Data-driven frameworks for measurable dominance.",
+  description:
+  "Growth isn't accidental — it's engineered. We combine market research, competitive analysis, and data science to build roadmaps that transform your market presence into sustained leadership.",
+  deliverables: [
+  "Market Research & Competitor Analysis",
+  "Customer Journey Mapping",
+  "Conversion Rate Optimization",
+  "Revenue Growth Frameworks",
+  "Quarterly Strategy Reviews"]
+
+}];
+
 
 const Services = () => {
   return (
@@ -86,11 +86,11 @@ const Services = () => {
       <section className="py-24 bg-cream">
         <div className="container mx-auto px-6">
           <div className="space-y-24">
-            {services.map((service, i) => (
-              <div
-                key={service.title}
-                className={`grid lg:grid-cols-2 gap-16 items-start ${i % 2 === 1 ? "lg:direction-rtl" : ""}`}
-              >
+            {services.map((service, i) =>
+            <div
+              key={service.title}
+              className={`grid lg:grid-cols-2 gap-16 items-start ${i % 2 === 1 ? "lg:direction-rtl" : ""}`}>
+
                 <div className={i % 2 === 1 ? "lg:order-2" : ""}>
                   <div className="flex items-center gap-4 mb-6">
                     <service.icon className="w-8 h-8 text-gold" />
@@ -105,16 +105,16 @@ const Services = () => {
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4">
                     <Link
-                      to="/contact"
-                      className="inline-flex items-center gap-2 px-8 py-3 bg-gold text-navy-dark font-body text-sm font-semibold tracking-wider uppercase hover:bg-gold-light transition-colors duration-300"
-                    >
-                      Book Free 15 Min Call
-                      <ArrowRight className="w-4 h-4" />
+                    to="/contact"
+                    className="inline-flex items-center gap-2 px-8 py-3 bg-gold text-navy-dark font-body text-sm font-semibold tracking-wider uppercase hover:bg-gold-light transition-colors duration-300">BOOK FREE CALL
+
+
+                    <ArrowRight className="w-4 h-4" />
                     </Link>
                     <Link
-                      to="/contact"
-                      className="inline-flex items-center gap-2 px-8 py-3 border border-gold/40 text-navy font-body text-sm font-semibold tracking-wider uppercase hover:bg-gold/10 transition-all duration-300"
-                    >
+                    to="/contact"
+                    className="inline-flex items-center gap-2 px-8 py-3 border border-gold/40 text-navy font-body text-sm font-semibold tracking-wider uppercase hover:bg-gold/10 transition-all duration-300">
+
                       Request Custom Quote
                     </Link>
                   </div>
@@ -125,16 +125,16 @@ const Services = () => {
                     What You'll Receive
                   </h3>
                   <ul className="space-y-4">
-                    {service.deliverables.map((item) => (
-                      <li key={item} className="flex items-start gap-3">
+                    {service.deliverables.map((item) =>
+                  <li key={item} className="flex items-start gap-3">
                         <CheckCircle className="w-5 h-5 text-gold mt-0.5 shrink-0" />
                         <span className="font-body text-sm text-muted-foreground">{item}</span>
                       </li>
-                    ))}
+                  )}
                   </ul>
                 </div>
               </div>
-            ))}
+            )}
           </div>
         </div>
       </section>
@@ -150,16 +150,16 @@ const Services = () => {
           </p>
           <Link
             to="/contact"
-            className="inline-block px-12 py-5 bg-gold text-navy-dark font-body text-sm font-semibold tracking-wider uppercase hover:bg-gold-light transition-colors duration-300"
-          >
+            className="inline-block px-12 py-5 bg-gold text-navy-dark font-body text-sm font-semibold tracking-wider uppercase hover:bg-gold-light transition-colors duration-300">
+
             Start a Conversation
           </Link>
         </div>
       </section>
 
       <Footer />
-    </div>
-  );
+    </div>);
+
 };
 
 export default Services;
