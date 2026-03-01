@@ -168,10 +168,10 @@ const Contact = () => {
                       Phone
                     </p>
                     <a
-                      href="tel:+12125551234"
+                      href="tel:+32492202377"
                       className="font-body text-navy hover:text-gold transition-colors"
                     >
-                      +1 (212) 555-1234
+                      +32 492 20 23 77
                     </a>
                   </div>
                 </div>
