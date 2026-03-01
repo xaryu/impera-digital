@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Mail, MapPin, Clock, Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
-import imperaLogo from "@/assets/impera-logo-white.png";
+import ImperaLogo from "@/components/ImperaLogo";
 
 const serviceLinks = [
   { label: "Brand Strategy", href: "/services" },
@@ -26,7 +26,7 @@ const Footer = () => {
           {/* Column 1: Brand */}
           <div className="space-y-5">
             <Link to="/">
-              <img src={imperaLogo} alt="Impera" className="h-20 rounded-sm bg-navy-dark" />
+              <ImperaLogo className="h-16" />
             </Link>
             <p className="font-display text-sm italic text-gold-muted">
               Command Your Digital Presence
