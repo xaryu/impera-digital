@@ -100,14 +100,14 @@ const Footer = () => {
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <Mail size={16} className="text-gold mt-0.5 shrink-0" />
-                <a href="mailto:hello@impera.agency" className="font-body text-sm text-cream/60 hover:text-gold transition-colors">
-                  hello@impera.agency
+                <a href="mailto:contact@impera-group.com" className="font-body text-sm text-cream/60 hover:text-gold transition-colors">
+                  contact@impera-group.com
                 </a>
               </li>
               <li className="flex items-start gap-3">
                 <MapPin size={16} className="text-gold mt-0.5 shrink-0" />
                 <span className="font-body text-sm text-cream/60">
-                  Leuven, Belgium
+                  Justus Lipsiusstraat 16, 3000, Leuven
                 </span>
               </li>
               <li className="flex items-start gap-3">

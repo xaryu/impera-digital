@@ -2,6 +2,7 @@ import { Megaphone, Palette, TrendingUp, Globe, ArrowRight, CheckCircle } from "
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
+import CalendlyDialog from "@/components/CalendlyDialog";
 
 const services = [
 {
@@ -104,13 +105,12 @@ const Services = () => {
                     {service.description}
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4">
-                    <Link
-                    to="/contact"
-                    className="inline-flex items-center gap-2 px-8 py-3 bg-gold text-navy-dark font-body text-sm font-semibold tracking-wider uppercase hover:bg-gold-light transition-colors duration-300">BOOK FREE CALL
-
-
-                    <ArrowRight className="w-4 h-4" />
-                    </Link>
+                    <CalendlyDialog>
+                      <button className="inline-flex items-center gap-2 px-8 py-3 bg-gold text-navy-dark font-body text-sm font-semibold tracking-wider uppercase hover:bg-gold-light transition-colors duration-300">
+                        BOOK FREE CALL
+                        <ArrowRight className="w-4 h-4" />
+                      </button>
+                    </CalendlyDialog>
                     <Link
                     to="/contact"
                     className="inline-flex items-center gap-2 px-8 py-3 border border-gold/40 text-navy font-body text-sm font-semibold tracking-wider uppercase hover:bg-gold/10 transition-all duration-300">

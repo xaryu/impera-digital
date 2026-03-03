@@ -18,7 +18,7 @@ const CTASection = () => {
           Every empire begins with a single decision. Let's discuss how Impera can elevate your brand to its rightful position.
         </p>
         <a
-          href="mailto:hello@impera.agency"
+          href="mailto:contact@impera-group.com"
           className="inline-block px-12 py-5 bg-gold text-navy-dark font-body text-sm font-semibold tracking-wider uppercase hover:bg-gold-light transition-colors duration-300"
         >
           Begin Your Ascent

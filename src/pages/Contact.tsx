@@ -153,10 +153,10 @@ const Contact = () => {
                       Email
                     </p>
                     <a
-                      href="mailto:hello@impera.agency"
+                      href="mailto:contact@impera-group.com"
                       className="font-body text-navy hover:text-gold transition-colors"
                     >
-                      hello@impera.agency
+                      contact@impera-group.com
                     </a>
                   </div>
                 </div>
@@ -183,9 +183,9 @@ const Contact = () => {
                       Office
                     </p>
                     <p className="font-body text-navy">
-                      450 Park Avenue, Suite 3200
+                      Justus Lipsiusstraat 16
                       <br />
-                      New York, NY 10022
+                      3000, Leuven
                     </p>
                   </div>
                 </div>
