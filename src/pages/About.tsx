@@ -9,32 +9,32 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
 const stats = [
-  { value: "50+", label: "Projects Delivered" },
-  { value: "10+", label: "Years of Excellence" },
-  { value: "98%", label: "Client Retention" },
-  { value: "5", label: "Industry Awards" },
+  { value: "10+", label: "Years Collective Experience" },
+  { value: "6", label: "Specialists United" },
+  { value: "100+", label: "Clients Served" },
+  { value: "2025", label: "Year of Formation" },
 ];
 
 const values = [
   {
     icon: Shield,
     title: "Authority",
-    description: "We don't follow trends — we set the standard. Every decision is made with the conviction that your brand deserves to lead.",
+    description: "True authority is earned through mastery — a decade of independent expertise, now amplified by the precision of modern technology. We don't follow the market. We command it.",
   },
   {
     icon: Target,
     title: "Precision",
-    description: "Details matter. From kerning to conversion funnels, we obsess over the details that separate good from extraordinary.",
+    description: "Every pixel, every data point, every campaign is engineered with intent. We pair battle-tested intuition with AI-driven analytics to eliminate guesswork and deliver certainty.",
   },
   {
     icon: Award,
     title: "Excellence",
-    description: "Mediocrity is not in our vocabulary. We hold ourselves to the highest standards because your brand demands nothing less.",
+    description: "Mediocrity is the refuge of those who lack ambition. We hold every deliverable to the standard our own reputations were built on — nothing leaves our hands until it commands respect.",
   },
   {
     icon: Users,
     title: "Partnership",
-    description: "We don't work for clients — we work with them. True collaboration is the foundation of every empire we help build.",
+    description: "Empires are not built alone. We stand beside the brands we serve — not as vendors, but as allies invested in their ascent. Your victories are ours.",
   },
 ];
 
@@ -68,10 +68,10 @@ const About = () => {
             Our Story
           </p>
           <h1 className="font-display text-5xl md:text-7xl font-bold text-cream leading-tight mb-8">
-            Where Vision Meets <span className="text-gold-gradient">Authority</span>
+            Forged by Experience. <span className="text-gold-gradient">Built for What's Next.</span>
           </h1>
           <p className="font-body text-lg text-gold-muted max-w-2xl mx-auto">
-            From the Latin <em className="text-gold">imperare</em> — to command. We exist to help brands claim their rightful place at the top.
+            From the Latin <em className="text-gold">imperare</em> — to command. Impera was founded in 2025 by veterans of the digital industry who spent a decade mastering their craft before uniting under one banner.
           </p>
         </div>
       </section>
@@ -85,13 +85,16 @@ const About = () => {
                 Our Philosophy
               </p>
               <h2 className="font-display text-3xl md:text-4xl font-bold text-navy mb-8 leading-tight">
-                Digital excellence is not about aesthetics — it's about commanding presence.
+                Where Vision Meets Authority
               </h2>
               <p className="font-body text-muted-foreground leading-relaxed mb-6">
-                At Impera, every pixel, every interaction, every strategy is designed to establish your brand as the undeniable leader in its space. We believe that true luxury in the digital realm comes from precision, restraint, and an unwavering commitment to quality.
+                For over a decade, the specialists behind Impera operated independently — building brands, engineering platforms, and driving growth for clients across Europe. Startups, scale-ups, and established enterprises alike trusted them to deliver what others couldn't: results that commanded attention.
+              </p>
+              <p className="font-body text-muted-foreground leading-relaxed mb-6">
+                But working in isolation had its limits. The most ambitious projects demanded more than individual brilliance — they required the combined force of strategy, design, development, and performance working as one. That conviction became Impera: a modern agency built on 10+ years of collective mastery, enhanced by the tools and methodologies that define the next generation of digital excellence.
               </p>
               <p className="font-body text-muted-foreground leading-relaxed">
-                Founded in 2014, we've spent over a decade refining our craft, working exclusively with brands that share our ambition for excellence. We don't take on every project — we take on the right ones.
+                We are not a startup finding its way. We are seasoned specialists who chose to evolve — leveraging AI-powered insights, agile execution, and data-driven precision to set a new modern standard for what a digital agency can achieve.
               </p>
             </div>
 
@@ -122,7 +125,7 @@ const About = () => {
               What Drives Us
             </p>
             <h2 className="font-display text-3xl md:text-4xl font-bold text-cream">
-              Our Values
+              The Principles Behind the Empire
             </h2>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -150,19 +153,19 @@ const About = () => {
       <section className="py-24 bg-navy-gradient text-center relative">
         <div className="container mx-auto px-6">
           <h2 className="font-display text-4xl md:text-5xl font-bold text-cream mb-6">
-            Let's Build Something Remarkable
+            Built for Brands That Refuse to Settle
           </h2>
           <p className="font-body text-lg text-gold-muted max-w-xl mx-auto mb-10">
-            We're selective about the brands we partner with. If you share our ambition, we'd love to hear from you.
+            We partner with ambitious businesses ready to claim digital authority. If average was never an option for you, we should talk.
           </p>
           <Link
             to="/contact"
             className="inline-block px-12 py-5 bg-gold text-navy-dark font-body text-sm font-semibold tracking-wider uppercase hover:bg-gold-light transition-colors duration-300"
           >
-            Get in Touch
+            Start the Conversation
           </Link>
         </div>
-        {/* Admin toggle — subtle, bottom-right corner */}
+        {/* Admin toggle */}
         <div className="absolute bottom-4 right-6">
           {isAdmin ? (
             <button
