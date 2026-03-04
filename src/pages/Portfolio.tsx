@@ -257,7 +257,7 @@ const Portfolio = () => {
           <Link to="/contact"
           className="inline-flex items-center gap-2 px-12 py-5 bg-gold text-navy-dark font-body text-sm font-semibold tracking-wider uppercase hover:bg-gold-light transition-colors duration-300">
 
-            Start a Conversation
+            Get in Touch
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
