@@ -7,77 +7,66 @@ const ImperaLogo = ({ className = "h-16" }: { className?: string }) => {
         xmlns="http://www.w3.org/2000/svg"
         className="h-full w-auto"
       >
-        {/* Laurel Wreath */}
-        <g transform="translate(120, 52)">
-          {/* Left branch stem */}
+        {/* Laurel Wreath - curved branches arching upward */}
+        <g fill="#D4AF37">
+          {/* Left branch - curved arc */}
           <path
-            d="M0 8 C-2 4, -8 -4, -16 -12 C-22 -18, -28 -26, -30 -34 C-31 -38, -30 -42, -27 -44"
+            d="M120 60 C115 50, 105 38, 92 30 C80 22, 70 20, 65 16 C60 12, 60 6, 65 2"
             stroke="#D4AF37"
-            strokeWidth="1.2"
-            fill="none"
-            strokeLinecap="round"
-          />
-          {/* Right branch stem */}
-          <path
-            d="M0 8 C2 4, 8 -4, 16 -12 C22 -18, 28 -26, 30 -34 C31 -38, 30 -42, 27 -44"
-            stroke="#D4AF37"
-            strokeWidth="1.2"
+            strokeWidth="1.3"
             fill="none"
             strokeLinecap="round"
           />
 
-          {/* Left outer leaves */}
-          <g fill="#D4AF37">
-            <ellipse cx="-6" cy="2" rx="5" ry="2.2" transform="rotate(-55 -6 2)" opacity="0.95" />
-            <ellipse cx="-11" cy="-4" rx="5.2" ry="2.3" transform="rotate(-50 -11 -4)" opacity="0.95" />
-            <ellipse cx="-15" cy="-10" rx="5.4" ry="2.4" transform="rotate(-45 -15 -10)" opacity="0.95" />
-            <ellipse cx="-19" cy="-16" rx="5.4" ry="2.4" transform="rotate(-40 -19 -16)" opacity="0.95" />
-            <ellipse cx="-22" cy="-22" rx="5.2" ry="2.3" transform="rotate(-30 -22 -22)" opacity="0.95" />
-            <ellipse cx="-25" cy="-28" rx="5" ry="2.2" transform="rotate(-20 -25 -28)" opacity="0.95" />
-            <ellipse cx="-27" cy="-34" rx="4.8" ry="2.1" transform="rotate(-10 -27 -34)" opacity="0.95" />
-            <ellipse cx="-28" cy="-40" rx="4.5" ry="2" transform="rotate(0 -28 -40)" opacity="0.9" />
-          </g>
+          {/* Left outer leaves - following the curve */}
+          <path d="M116 52 C112 56, 107 55, 106 51 C105 47, 108 45, 111 46 C114 47, 116 51, 116 52Z" />
+          <path d="M110 45 C106 48, 100 47, 99 43 C98 39, 101 37, 104 38 C107 39, 110 43, 110 45Z" />
+          <path d="M103 38 C99 40, 94 39, 93 35 C92 31, 95 29, 98 30 C101 31, 103 35, 103 38Z" />
+          <path d="M96 32 C92 33, 87 31, 87 27 C87 23, 90 21, 93 22 C96 23, 96 29, 96 32Z" />
+          <path d="M89 26 C86 27, 81 25, 81 21 C81 17, 84 16, 86 17 C89 18, 89 23, 89 26Z" />
+          <path d="M82 20 C79 20, 75 18, 75 14 C76 10, 79 9, 81 11 C83 13, 82 17, 82 20Z" />
+          <path d="M76 14 C73 14, 70 11, 71 8 C72 5, 75 4, 76 6 C77 8, 76 12, 76 14Z" />
+          <path d="M70 9 C68 9, 65 6, 66 3 C67 1, 69 0, 70 2 C71 4, 70 7, 70 9Z" />
 
           {/* Left inner leaves */}
-          <g fill="#D4AF37" opacity="0.8">
-            <ellipse cx="-3" cy="0" rx="4.2" ry="1.8" transform="rotate(125 -3 0)" />
-            <ellipse cx="-7" cy="-6" rx="4.4" ry="1.9" transform="rotate(130 -7 -6)" />
-            <ellipse cx="-11" cy="-12" rx="4.6" ry="2" transform="rotate(135 -11 -12)" />
-            <ellipse cx="-14" cy="-18" rx="4.6" ry="2" transform="rotate(140 -14 -18)" />
-            <ellipse cx="-17" cy="-24" rx="4.4" ry="1.9" transform="rotate(150 -17 -24)" />
-            <ellipse cx="-20" cy="-30" rx="4.2" ry="1.8" transform="rotate(160 -20 -30)" />
-            <ellipse cx="-22" cy="-36" rx="4" ry="1.7" transform="rotate(170 -22 -36)" />
-          </g>
+          <path d="M117 49 C118 44, 116 39, 112 38 C108 37, 107 40, 109 43 C110 46, 115 48, 117 49Z" />
+          <path d="M111 42 C111 37, 108 33, 105 32 C101 31, 101 34, 102 37 C104 40, 108 42, 111 42Z" />
+          <path d="M104 35 C104 31, 101 27, 98 26 C95 26, 94 28, 96 31 C97 34, 102 35, 104 35Z" />
+          <path d="M97 29 C96 25, 94 22, 91 21 C88 21, 88 23, 89 26 C90 28, 95 29, 97 29Z" />
+          <path d="M90 23 C89 20, 87 17, 85 16 C83 16, 82 18, 84 20 C85 22, 88 23, 90 23Z" />
+          <path d="M83 17 C82 14, 80 12, 78 11 C76 11, 76 13, 77 15 C78 17, 81 17, 83 17Z" />
+          <path d="M76 11 C76 9, 74 7, 73 6 C71 6, 71 8, 72 9 C73 10, 75 11, 76 11Z" />
+
+          {/* Right branch - curved arc (mirrored) */}
+          <path
+            d="M120 60 C125 50, 135 38, 148 30 C160 22, 170 20, 175 16 C180 12, 180 6, 175 2"
+            stroke="#D4AF37"
+            strokeWidth="1.3"
+            fill="none"
+            strokeLinecap="round"
+          />
 
           {/* Right outer leaves */}
-          <g fill="#D4AF37">
-            <ellipse cx="6" cy="2" rx="5" ry="2.2" transform="rotate(55 6 2)" opacity="0.95" />
-            <ellipse cx="11" cy="-4" rx="5.2" ry="2.3" transform="rotate(50 11 -4)" opacity="0.95" />
-            <ellipse cx="15" cy="-10" rx="5.4" ry="2.4" transform="rotate(45 15 -10)" opacity="0.95" />
-            <ellipse cx="19" cy="-16" rx="5.4" ry="2.4" transform="rotate(40 19 -16)" opacity="0.95" />
-            <ellipse cx="22" cy="-22" rx="5.2" ry="2.3" transform="rotate(30 22 -22)" opacity="0.95" />
-            <ellipse cx="25" cy="-28" rx="5" ry="2.2" transform="rotate(20 25 -28)" opacity="0.95" />
-            <ellipse cx="27" cy="-34" rx="4.8" ry="2.1" transform="rotate(10 27 -34)" opacity="0.95" />
-            <ellipse cx="28" cy="-40" rx="4.5" ry="2" transform="rotate(0 28 -40)" opacity="0.9" />
-          </g>
+          <path d="M124 52 C128 56, 133 55, 134 51 C135 47, 132 45, 129 46 C126 47, 124 51, 124 52Z" />
+          <path d="M130 45 C134 48, 140 47, 141 43 C142 39, 139 37, 136 38 C133 39, 130 43, 130 45Z" />
+          <path d="M137 38 C141 40, 146 39, 147 35 C148 31, 145 29, 142 30 C139 31, 137 35, 137 38Z" />
+          <path d="M144 32 C148 33, 153 31, 153 27 C153 23, 150 21, 147 22 C144 23, 144 29, 144 32Z" />
+          <path d="M151 26 C154 27, 159 25, 159 21 C159 17, 156 16, 154 17 C151 18, 151 23, 151 26Z" />
+          <path d="M158 20 C161 20, 165 18, 165 14 C164 10, 161 9, 159 11 C157 13, 158 17, 158 20Z" />
+          <path d="M164 14 C167 14, 170 11, 169 8 C168 5, 165 4, 164 6 C163 8, 164 12, 164 14Z" />
+          <path d="M170 9 C172 9, 175 6, 174 3 C173 1, 171 0, 170 2 C169 4, 170 7, 170 9Z" />
 
           {/* Right inner leaves */}
-          <g fill="#D4AF37" opacity="0.8">
-            <ellipse cx="3" cy="0" rx="4.2" ry="1.8" transform="rotate(-125 3 0)" />
-            <ellipse cx="7" cy="-6" rx="4.4" ry="1.9" transform="rotate(-130 7 -6)" />
-            <ellipse cx="11" cy="-12" rx="4.6" ry="2" transform="rotate(-135 11 -12)" />
-            <ellipse cx="14" cy="-18" rx="4.6" ry="2" transform="rotate(-140 14 -18)" />
-            <ellipse cx="17" cy="-24" rx="4.4" ry="1.9" transform="rotate(-150 17 -24)" />
-            <ellipse cx="20" cy="-30" rx="4.2" ry="1.8" transform="rotate(-160 20 -30)" />
-            <ellipse cx="22" cy="-36" rx="4" ry="1.7" transform="rotate(-170 22 -36)" />
-          </g>
+          <path d="M123 49 C122 44, 124 39, 128 38 C132 37, 133 40, 131 43 C130 46, 125 48, 123 49Z" />
+          <path d="M129 42 C129 37, 132 33, 135 32 C139 31, 139 34, 138 37 C136 40, 132 42, 129 42Z" />
+          <path d="M136 35 C136 31, 139 27, 142 26 C145 26, 146 28, 144 31 C143 34, 138 35, 136 35Z" />
+          <path d="M143 29 C144 25, 146 22, 149 21 C152 21, 152 23, 151 26 C150 28, 145 29, 143 29Z" />
+          <path d="M150 23 C151 20, 153 17, 155 16 C157 16, 158 18, 156 20 C155 22, 152 23, 150 23Z" />
+          <path d="M157 17 C158 14, 160 12, 162 11 C164 11, 164 13, 163 15 C162 17, 159 17, 157 17Z" />
+          <path d="M164 11 C164 9, 166 7, 167 6 C169 6, 169 8, 168 9 C167 10, 165 11, 164 11Z" />
 
-          {/* Bottom crossing ribbons */}
-          <path
-            d="M-2 8 C-1 10, 0 12, 1 10 C2 8, 1 10, 0 12 C-1 10, -2 8, -2 8Z"
-            fill="#D4AF37"
-            opacity="0.7"
-          />
+          {/* Bottom crossing */}
+          <path d="M118 58 C119 61, 120 63, 120 60 C120 63, 121 61, 122 58 C121 59, 120 62, 120 62 C120 62, 119 59, 118 58Z" />
         </g>
 
         {/* IMPERA text */}
