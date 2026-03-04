@@ -48,7 +48,7 @@ const Contact = () => {
             {/* Form */}
             <div className="lg:col-span-3">
               <h2 className="font-display text-3xl font-bold text-navy mb-8">
-                Start a Conversation
+                Get in Touch
               </h2>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">

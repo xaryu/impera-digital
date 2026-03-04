@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Mail, MapPin, Clock, Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
+import { Mail, MapPin, Clock, Instagram, Linkedin } from "lucide-react";
 import ImperaLogo from "@/components/ImperaLogo";
 
 const serviceLinks = [
@@ -38,8 +38,6 @@ const Footer = () => {
               {[
                 { icon: Linkedin, href: "#" },
                 { icon: Instagram, href: "#" },
-                { icon: Twitter, href: "#" },
-                { icon: Facebook, href: "#" },
               ].map(({ icon: Icon, href }, i) => (
                 <a
                   key={i}
