@@ -36,6 +36,7 @@ const MemberCard = ({
   const [editing, setEditing] = useState(false);
   const [name, setName] = useState(member.name);
   const [role, setRole] = useState(member.role);
+  const [bio, setBio] = useState(member.bio || "");
   const [photoUrl, setPhotoUrl] = useState(member.photo_url);
   const [uploading, setUploading] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
