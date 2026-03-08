@@ -21,7 +21,7 @@ const GuaranteeSection = () => {
           <FadeInSection>
             <div className="flex justify-center mb-8">
               <div className="inline-flex items-center gap-2.5 px-5 py-2 border border-gold/30 bg-navy-dark/50">
-                <ShieldCheck className="w-4 h-4 text-gold" />
+                <ShieldCheck className="w-4 h-4 text-gold" aria-hidden="true" />
                 <span className="font-body text-xs tracking-[0.3em] text-gold uppercase">{t("guarantee.badge")}</span>
               </div>
             </div>
