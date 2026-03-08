@@ -24,7 +24,7 @@ const Footer = () => {
       <div className="container mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           {/* Column 1: Brand */}
-          <div className="space-y-5">
+          <div className="flex flex-col items-center md:items-start space-y-5">
             <Link to="/" className="inline-block">
               <ImperaLogo className="h-[65px]" />
             </Link>
