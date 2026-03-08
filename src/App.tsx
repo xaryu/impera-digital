@@ -41,6 +41,11 @@ const AppRoutes = () => (
   </>
 );
 
+const TrackingLoader = () => {
+  useTrackingConsent();
+  return null;
+};
+
 const App = () => (
   <HelmetProvider>
     <QueryClientProvider client={queryClient}>
@@ -48,6 +53,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <TrackingLoader />
           <ScrollProgress />
           <PageLoader>
             <Routes>
@@ -62,6 +68,7 @@ const App = () => (
               <Route path="*" element={<NotFound />} />
             </Routes>
           </PageLoader>
+          <CookieConsent />
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
