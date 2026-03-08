@@ -118,6 +118,11 @@ const CareerPost = () => {
 
   return (
     <div className="min-h-screen bg-navy-dark">
+      <SEO
+        title={`${job.title} — Careers at Impera`}
+        description={job.short_description}
+        path={`/careers/${job.slug}`}
+      />
       <Navbar />
 
       <section className="pt-32 pb-12 px-6">

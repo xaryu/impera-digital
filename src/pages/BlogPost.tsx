@@ -124,6 +124,13 @@ const BlogPost = () => {
 
   return (
     <div className="min-h-screen bg-navy-dark">
+      <SEO
+        title={`${post.title} — Impera Journal`}
+        description={post.excerpt}
+        path={`/blog/${post.slug}`}
+        ogImage={post.image_url || undefined}
+        ogType="article"
+      />
       <Navbar />
 
       <article className="pt-32 pb-24 px-6">
