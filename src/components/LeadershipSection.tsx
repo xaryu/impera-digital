@@ -67,13 +67,14 @@ const MemberCard = ({
   };
 
   const handleSave = () => {
-    onSave(member.id, name, role, photoUrl);
+    onSave(member.id, name, role, bio, photoUrl);
     setEditing(false);
   };
 
   const handleCancel = () => {
     setName(member.name);
     setRole(member.role);
+    setBio(member.bio || "");
     setPhotoUrl(member.photo_url);
     setEditing(false);
   };
