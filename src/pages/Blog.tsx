@@ -135,7 +135,7 @@ const Blog = () => {
               <div className="container mx-auto">
                 <div className="grid md:grid-cols-2 gap-0 border border-gold/20 overflow-hidden relative group rounded-lg">
                   <LocalizedLink to={`/blog/${featured.slug}`} className="h-72 md:h-auto overflow-hidden block">
-                    <img src={featured.image_url || ""} alt={featured.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                    <img src={featured.image_url || ""} alt={featured.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async" />
                   </LocalizedLink>
                   <div className="p-10 md:p-14 flex flex-col justify-center bg-navy/50">
                     <div className="flex flex-wrap items-center gap-2 mb-4">
@@ -153,7 +153,7 @@ const Blog = () => {
                         {featured.author && (
                           <div className="flex items-center gap-2">
                             {featured.author.photo_url ? (
-                              <img src={featured.author.photo_url} alt={featured.author.name} className="w-7 h-7 rounded-full object-cover border border-gold/30" />
+                              <img src={featured.author.photo_url} alt={featured.author.name} className="w-7 h-7 rounded-full object-cover border border-gold/30" loading="lazy" decoding="async" />
                             ) : (
                               <div className="w-7 h-7 rounded-full bg-navy-dark flex items-center justify-center border border-gold/30">
                                 <span className="font-display text-gold text-xs font-bold">{featured.author.name[0]}</span>
