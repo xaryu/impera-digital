@@ -56,7 +56,9 @@ const LanguageSwitcher = () => {
             <button
               key={lang}
               onClick={() => switchLanguage(lang)}
-              className={`w-full flex items-center gap-3 px-4 py-2.5 font-body text-sm transition-colors ${
+              role="menuitem"
+              aria-current={lang === currentLang ? "true" : undefined}
+              className={`w-full flex items-center gap-3 px-4 py-2.5 font-body text-sm transition-colors min-h-[44px] ${
                 lang === currentLang
                   ? "text-gold bg-navy-dark/50"
                   : "text-cream/70 hover:text-gold hover:bg-navy-dark/30"

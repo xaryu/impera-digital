@@ -24,7 +24,7 @@ const ServicesSection = () => {
           {services.map((service, i) => (
             <FadeInSection key={i} delay={i * 100}>
               <div className="group p-8 bg-background border border-border hover:border-gold/30 transition-all duration-500 hover:gold-glow hover:scale-[1.02] hover:shadow-lg">
-                <service.icon className="w-8 h-8 text-gold mb-6 group-hover:scale-110 transition-transform duration-300" />
+                <service.icon className="w-8 h-8 text-gold mb-6 group-hover:scale-110 transition-transform duration-300" aria-hidden="true" />
                 <h3 className="font-display text-xl font-semibold text-navy mb-3">{service.title}</h3>
                 <p className="font-body text-sm text-muted-foreground leading-relaxed">{service.description}</p>
               </div>

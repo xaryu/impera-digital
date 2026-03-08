@@ -65,30 +65,31 @@ const ExitIntentPopup = () => {
   if (!visible) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm animate-fade-in" onClick={dismiss} />
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="exit-popup-title">
+      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm animate-fade-in" onClick={dismiss} aria-hidden="true" />
       <div className="relative w-full max-w-md bg-navy rounded-2xl border border-navy-light/40 shadow-2xl animate-scale-in overflow-hidden">
-        <div className="h-1 w-full bg-gradient-to-r from-gold/40 via-gold to-gold/40" />
-        <button onClick={dismiss} className="absolute top-4 right-4 text-gold-muted/60 hover:text-cream transition-colors" aria-label="Close popup">
+        <div className="h-1 w-full bg-gradient-to-r from-gold/40 via-gold to-gold/40" aria-hidden="true" />
+        <button onClick={dismiss} className="absolute top-4 right-4 text-gold-muted/60 hover:text-cream transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center" aria-label="Close popup">
           <X className="w-5 h-5" />
         </button>
         <div className="px-8 pt-8 pb-6 text-center">
           <p className="font-body text-xs tracking-[0.35em] text-gold uppercase mb-3">{t("exitPopup.eyebrow")}</p>
-          <h2 className="font-display text-2xl md:text-3xl font-bold text-cream leading-tight mb-3">{t("exitPopup.title")}</h2>
+          <h2 id="exit-popup-title" className="font-display text-2xl md:text-3xl font-bold text-cream leading-tight mb-3">{t("exitPopup.title")}</h2>
           <p className="font-body text-sm text-gold-muted leading-relaxed mb-6 max-w-xs mx-auto">
             {t("exitPopup.description")}{" "}
             <span className="text-cream font-medium">{t("exitPopup.guideName")}</span>
           </p>
           <form onSubmit={handleSubmit} className="space-y-3">
             <div>
-              <input type="email" value={email} onChange={(e) => { setEmail(e.target.value); setError(""); }} placeholder={t("exitPopup.placeholder")} className="w-full px-4 py-3 rounded-lg bg-navy-dark border border-navy-light/50 text-cream placeholder:text-gold-muted/50 font-body text-sm focus:outline-none focus:border-gold/60 transition-colors" maxLength={255} autoComplete="email" />
-              {error && <p className="text-red-400 text-xs font-body mt-1.5 text-left">{error}</p>}
+              <label htmlFor="exit-email" className="sr-only">{t("exitPopup.placeholder")}</label>
+              <input id="exit-email" type="email" value={email} onChange={(e) => { setEmail(e.target.value); setError(""); }} placeholder={t("exitPopup.placeholder")} className="w-full px-4 py-3 rounded-lg bg-navy-dark border border-navy-light/50 text-cream placeholder:text-gold-muted/50 font-body text-sm focus:outline-none focus:border-gold/60 transition-colors" maxLength={255} autoComplete="email" aria-invalid={!!error} aria-describedby={error ? "exit-email-error" : undefined} />
+              {error && <p id="exit-email-error" className="text-red-400 text-xs font-body mt-1.5 text-left" role="alert">{error}</p>}
             </div>
-            <button type="submit" disabled={submitting} className="w-full py-3 rounded-lg bg-gold text-navy-dark font-display font-bold text-sm tracking-wider uppercase hover:bg-gold-light transition-colors disabled:opacity-60">
+            <button type="submit" disabled={submitting} className="w-full py-3 rounded-lg bg-gold text-navy-dark font-display font-bold text-sm tracking-wider uppercase hover:bg-gold-light transition-colors disabled:opacity-60 min-h-[44px]">
               {submitting ? t("exitPopup.sending") : t("exitPopup.submit")}
             </button>
           </form>
-          <button onClick={dismiss} className="mt-4 font-body text-xs text-gold-muted/50 hover:text-gold-muted transition-colors">{t("exitPopup.noThanks")}</button>
+          <button onClick={dismiss} className="mt-4 font-body text-xs text-gold-muted/50 hover:text-gold-muted transition-colors min-h-[44px] px-4">{t("exitPopup.noThanks")}</button>
         </div>
       </div>
     </div>

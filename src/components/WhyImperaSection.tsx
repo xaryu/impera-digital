@@ -52,7 +52,7 @@ const WhyImperaSection = () => {
                 <ul className="space-y-4">
                   {item.points.map((point, j) => (
                     <li key={j} className="flex gap-3">
-                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-gold shrink-0" />
+                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-gold shrink-0" aria-hidden="true" />
                       <span className="font-body text-sm text-gold-muted leading-relaxed">{point}</span>
                     </li>
                   ))}
