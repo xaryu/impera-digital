@@ -7,8 +7,10 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AdminAuth from "@/components/AdminAuth";
 import BlogEditor from "@/components/BlogEditor";
-import { Plus, Pencil, Settings, LogOut } from "lucide-react";
+import { Plus, Pencil, Settings, LogOut, Clock, ChevronLeft, ChevronRight } from "lucide-react";
 import { toast } from "sonner";
+
+const POSTS_PER_PAGE = 6;
 
 type BlogPost = {
   id: string;
@@ -20,12 +22,19 @@ type BlogPost = {
   image_url: string | null;
   published: boolean;
   published_at: string | null;
+  author_id: string | null;
+  author: { name: string; photo_url: string | null } | null;
+};
+
+const estimateReadTime = (text: string) => {
+  const words = text.trim().split(/\s+/).length;
+  return Math.max(1, Math.round(words / 200));
 };
 
 const fetchPosts = async (isAdmin: boolean): Promise<BlogPost[]> => {
   let query = supabase
     .from("blog_posts")
-    .select("*")
+    .select("*, author:team_members!blog_posts_author_id_fkey(name, photo_url)")
     .order("published_at", { ascending: false });
 
   if (!isAdmin) {
@@ -34,14 +43,14 @@ const fetchPosts = async (isAdmin: boolean): Promise<BlogPost[]> => {
 
   const { data, error } = await query;
   if (error) throw error;
-  return data;
+  return data as unknown as BlogPost[];
 };
 
 const Blog = () => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [editingPost, setEditingPost] = useState<BlogPost | null | undefined>(undefined);
-  // undefined = closed, null = new post, BlogPost = editing
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => setIsAdmin(!!data.session));
@@ -72,6 +81,8 @@ const Blog = () => {
 
   const featured = posts[0];
   const rest = posts.slice(1);
+  const totalPages = Math.ceil(rest.length / POSTS_PER_PAGE);
+  const paginatedRest = rest.slice((page - 1) * POSTS_PER_PAGE, page * POSTS_PER_PAGE);
 
   return (
     <div className="min-h-screen bg-navy-dark">
@@ -105,10 +116,10 @@ const Blog = () => {
       {isLoading ? (
         <section className="px-6 pb-24">
           <div className="container mx-auto">
-            <div className="h-72 bg-gold/5 animate-pulse mb-8" />
+            <div className="h-72 bg-gold/5 animate-pulse mb-8 rounded-lg" />
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[...Array(3)].map((_, i) => (
-                <div key={i} className="h-80 bg-gold/5 animate-pulse" />
+                <div key={i} className="h-80 bg-gold/5 animate-pulse rounded-lg" />
               ))}
             </div>
           </div>
@@ -119,7 +130,7 @@ const Blog = () => {
           {featured && (
             <section className="px-6 pb-16">
               <div className="container mx-auto">
-                <div className="grid md:grid-cols-2 gap-0 border border-gold/20 overflow-hidden relative group">
+                <div className="grid md:grid-cols-2 gap-0 border border-gold/20 overflow-hidden relative group rounded-lg">
                   <Link to={`/blog/${featured.slug}`} className="h-72 md:h-auto overflow-hidden block">
                     <img
                       src={featured.image_url || ""}
@@ -128,12 +139,14 @@ const Blog = () => {
                     />
                   </Link>
                   <div className="p-10 md:p-14 flex flex-col justify-center bg-navy/50">
-                    <span className="font-body text-xs tracking-[0.3em] text-gold uppercase mb-4">
-                      Featured — {featured.category}
+                    <div className="flex flex-wrap items-center gap-2 mb-4">
+                      <span className="font-body text-xs tracking-[0.3em] text-gold uppercase">
+                        Featured — {featured.category}
+                      </span>
                       {!featured.published && (
-                        <span className="ml-2 text-destructive/80">(Draft)</span>
+                        <span className="text-xs text-destructive/80">(Draft)</span>
                       )}
-                    </span>
+                    </div>
                     <Link to={`/blog/${featured.slug}`}>
                       <h2 className="font-display text-2xl md:text-3xl font-bold text-cream mb-4 leading-tight hover:text-gold transition-colors">
                         {featured.title}
@@ -143,23 +156,35 @@ const Blog = () => {
                       {featured.excerpt}
                     </p>
                     <div className="flex items-center justify-between">
-                      <span className="font-body text-xs text-gold-muted/60">
-                        {formatDate(featured.published_at)}
-                      </span>
+                      <div className="flex items-center gap-4">
+                        {featured.author && (
+                          <div className="flex items-center gap-2">
+                            {featured.author.photo_url ? (
+                              <img src={featured.author.photo_url} alt={featured.author.name} className="w-7 h-7 rounded-full object-cover border border-gold/30" />
+                            ) : (
+                              <div className="w-7 h-7 rounded-full bg-navy-dark flex items-center justify-center border border-gold/30">
+                                <span className="font-display text-gold text-xs font-bold">{featured.author.name[0]}</span>
+                              </div>
+                            )}
+                            <span className="font-body text-xs text-gold-muted">{featured.author.name}</span>
+                          </div>
+                        )}
+                        <span className="font-body text-xs text-gold-muted/60">
+                          {formatDate(featured.published_at)}
+                        </span>
+                        <span className="inline-flex items-center gap-1 font-body text-xs text-gold-muted/60">
+                          <Clock className="w-3 h-3" />
+                          {estimateReadTime(featured.content)} min
+                        </span>
+                      </div>
                       <div className="flex items-center gap-3">
                         {isAdmin && (
-                          <button
-                            onClick={() => setEditingPost(featured)}
-                            className="font-body text-xs text-gold/50 hover:text-gold transition-colors"
-                          >
+                          <button onClick={() => setEditingPost(featured)} className="font-body text-xs text-gold/50 hover:text-gold transition-colors">
                             <Pencil className="w-3.5 h-3.5" />
                           </button>
                         )}
-                        <Link
-                          to={`/blog/${featured.slug}`}
-                          className="font-body text-sm text-gold tracking-wider uppercase hover:text-cream transition-colors"
-                        >
-                          Read Article →
+                        <Link to={`/blog/${featured.slug}`} className="font-body text-sm text-gold tracking-wider uppercase hover:text-cream transition-colors">
+                          Read →
                         </Link>
                       </div>
                     </div>
@@ -170,54 +195,69 @@ const Blog = () => {
           )}
 
           {/* Posts Grid */}
-          {rest.length > 0 && (
-            <section className="px-6 pb-24">
+          {paginatedRest.length > 0 && (
+            <section className="px-6 pb-16">
               <div className="container mx-auto">
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {rest.map((post) => (
+                  {paginatedRest.map((post) => (
                     <article
                       key={post.id}
-                      className="border border-gold/10 bg-navy/30 hover:border-gold/30 transition-all duration-500 group relative"
+                      className="border border-gold/10 bg-navy/30 hover:border-gold/30 transition-all duration-500 group relative rounded-lg overflow-hidden"
                     >
                       <Link to={`/blog/${post.slug}`} className="block h-52 overflow-hidden">
                         <img
                           src={post.image_url || ""}
                           alt={post.title}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                          loading="lazy"
                         />
                       </Link>
-                      <div className="p-8">
-                        <span className="font-body text-xs tracking-[0.3em] text-gold uppercase">
-                          {post.category}
+                      <div className="p-7">
+                        <div className="flex items-center gap-2 mb-3">
+                          <span className="font-body text-[10px] tracking-[0.3em] text-gold uppercase">
+                            {post.category}
+                          </span>
                           {!post.published && (
-                            <span className="ml-2 text-destructive/80">(Draft)</span>
+                            <span className="text-[10px] text-destructive/80">(Draft)</span>
                           )}
-                        </span>
+                        </div>
                         <Link to={`/blog/${post.slug}`}>
-                          <h3 className="font-display text-xl font-bold text-cream mt-3 mb-3 leading-tight hover:text-gold transition-colors">
+                          <h3 className="font-display text-xl font-bold text-cream mb-3 leading-tight hover:text-gold transition-colors">
                             {post.title}
                           </h3>
                         </Link>
-                        <p className="font-body text-sm text-gold-muted leading-relaxed mb-6">
+                        <p className="font-body text-sm text-gold-muted leading-relaxed mb-5 line-clamp-2">
                           {post.excerpt}
                         </p>
                         <div className="flex items-center justify-between">
-                          <span className="font-body text-xs text-gold-muted/60">
-                            {formatDate(post.published_at)}
-                          </span>
+                          <div className="flex items-center gap-3">
+                            {post.author && (
+                              <div className="flex items-center gap-1.5">
+                                {post.author.photo_url ? (
+                                  <img src={post.author.photo_url} alt={post.author.name} className="w-5 h-5 rounded-full object-cover border border-gold/20" />
+                                ) : (
+                                  <div className="w-5 h-5 rounded-full bg-navy-dark flex items-center justify-center border border-gold/20">
+                                    <span className="font-display text-gold text-[8px] font-bold">{post.author.name[0]}</span>
+                                  </div>
+                                )}
+                                <span className="font-body text-[10px] text-gold-muted">{post.author.name}</span>
+                              </div>
+                            )}
+                            <span className="font-body text-[10px] text-gold-muted/50">
+                              {formatDate(post.published_at)}
+                            </span>
+                            <span className="inline-flex items-center gap-0.5 font-body text-[10px] text-gold-muted/50">
+                              <Clock className="w-2.5 h-2.5" />
+                              {estimateReadTime(post.content)}m
+                            </span>
+                          </div>
                           <div className="flex items-center gap-3">
                             {isAdmin && (
-                              <button
-                                onClick={() => setEditingPost(post)}
-                                className="text-gold/40 hover:text-gold transition-colors"
-                              >
+                              <button onClick={() => setEditingPost(post)} className="text-gold/40 hover:text-gold transition-colors">
                                 <Pencil className="w-3 h-3" />
                               </button>
                             )}
-                            <Link
-                              to={`/blog/${post.slug}`}
-                              className="font-body text-xs text-gold tracking-wider uppercase hover:text-cream transition-colors"
-                            >
+                            <Link to={`/blog/${post.slug}`} className="font-body text-xs text-gold tracking-wider uppercase hover:text-cream transition-colors">
                               Read →
                             </Link>
                           </div>
@@ -226,6 +266,41 @@ const Blog = () => {
                     </article>
                   ))}
                 </div>
+              </div>
+            </section>
+          )}
+
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <section className="px-6 pb-24">
+              <div className="container mx-auto flex items-center justify-center gap-2">
+                <button
+                  onClick={() => setPage((p) => Math.max(1, p - 1))}
+                  disabled={page === 1}
+                  className="w-10 h-10 rounded-full border border-gold/20 flex items-center justify-center text-gold-muted hover:text-gold hover:border-gold/50 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                </button>
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
+                  <button
+                    key={p}
+                    onClick={() => setPage(p)}
+                    className={`w-10 h-10 rounded-full font-body text-sm transition-colors ${
+                      p === page
+                        ? "bg-gold text-navy-dark font-bold"
+                        : "border border-gold/20 text-gold-muted hover:text-gold hover:border-gold/50"
+                    }`}
+                  >
+                    {p}
+                  </button>
+                ))}
+                <button
+                  onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+                  disabled={page === totalPages}
+                  className="w-10 h-10 rounded-full border border-gold/20 flex items-center justify-center text-gold-muted hover:text-gold hover:border-gold/50 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                >
+                  <ChevronRight className="w-4 h-4" />
+                </button>
               </div>
             </section>
           )}
