@@ -20,7 +20,7 @@ const companyLinks = [
 
 const Footer = () => {
   return (
-    <footer className="bg-navy-dark border-t border-gold/10">
+    <footer className="bg-navy-dark border-t border-navy-light/30">
       <div className="container mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           {/* Column 1: Brand */}
@@ -44,7 +44,7 @@ const Footer = () => {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-full border border-gold/20 flex items-center justify-center text-gold-muted hover:text-gold hover:border-gold/50 transition-colors"
+                  className="w-9 h-9 rounded-full border border-navy-light flex items-center justify-center text-gold-muted hover:text-gold hover:border-gold/50 transition-colors"
                 >
                   <Icon size={16} />
                 </a>
@@ -126,7 +126,7 @@ const Footer = () => {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-gold/10">
+      <div className="border-t border-navy-light/30">
         <div className="container mx-auto px-6 py-5 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="font-body text-xs text-cream/40">
             © 2026 Impera. All rights reserved.
