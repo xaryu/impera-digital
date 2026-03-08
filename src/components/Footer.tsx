@@ -44,7 +44,7 @@ const Footer = () => {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-full border border-gold/20 flex items-center justify-center text-gold-muted hover:text-gold hover:border-gold/50 transition-colors"
+                  className="w-9 h-9 rounded-full border border-navy-light flex items-center justify-center text-gold-muted hover:text-gold hover:border-gold/50 transition-colors"
                 >
                   <Icon size={16} />
                 </a>
