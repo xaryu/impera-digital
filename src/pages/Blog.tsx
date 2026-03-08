@@ -153,7 +153,7 @@ const Blog = () => {
                         {featured.author && (
                           <div className="flex items-center gap-2">
                             {featured.author.photo_url ? (
-                              <img src={featured.author.photo_url} alt={featured.author.name} className="w-7 h-7 rounded-full object-cover border border-gold/30" />
+                              <img src={featured.author.photo_url} alt={featured.author.name} className="w-7 h-7 rounded-full object-cover border border-gold/30" loading="lazy" decoding="async" />
                             ) : (
                               <div className="w-7 h-7 rounded-full bg-navy-dark flex items-center justify-center border border-gold/30">
                                 <span className="font-display text-gold text-xs font-bold">{featured.author.name[0]}</span>

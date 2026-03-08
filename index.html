@@ -13,9 +13,13 @@
     <meta name="description" content="Impera is a premium digital media agency crafting luxury brand experiences that command authority and distinction.">
     <meta name="author" content="Impera" />
 
+    <!-- Font preconnects -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Preload critical Cinzel font (display heading) -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500;600;700&display=swap"></noscript>
+
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Impera" />
     <meta property="og:image" content="https://impera-digital.lovable.app/og-image.png" />

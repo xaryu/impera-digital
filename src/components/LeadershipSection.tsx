@@ -87,6 +87,8 @@ const MemberCard = ({
           <img
             src={photoUrl}
             alt={name}
+            loading="lazy"
+            decoding="async"
             className="w-20 h-20 rounded-full object-cover"
           />
         ) : (

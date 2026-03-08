@@ -8,7 +8,7 @@ const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0">
-        <img src={heroBg} alt="Premium workspace collaboration" className="w-full h-full object-cover" />
+        <img src={heroBg} alt="Premium workspace collaboration" className="w-full h-full object-cover" fetchPriority="high" decoding="async" />
         <div className="absolute inset-0 bg-navy-dark/75" />
       </div>
 

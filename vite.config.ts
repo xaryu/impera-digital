@@ -18,4 +18,23 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    // CSS & JS are minified by default in Vite production builds (esbuild)
+    cssMinify: true,
+    minify: "esbuild",
+    // Code splitting for better caching
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ["react", "react-dom", "react-router-dom"],
+          query: ["@tanstack/react-query"],
+          ui: ["sonner", "lucide-react"],
+        },
+      },
+    },
+    // Inline small assets to reduce requests
+    assetsInlineLimit: 4096,
+    // Target modern browsers for smaller output
+    target: "es2020",
+  },
 }));
