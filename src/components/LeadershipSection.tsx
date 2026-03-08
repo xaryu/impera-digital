@@ -8,6 +8,7 @@ type TeamMember = {
   id: string;
   name: string;
   role: string;
+  bio: string;
   photo_url: string | null;
   display_order: number;
 };
