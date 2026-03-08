@@ -35,7 +35,7 @@ const Contact = () => {
           <p className="font-body text-sm tracking-[0.4em] text-gold uppercase mb-6">
             {t("contactPage.eyebrow")}
           </p>
-          <h1 className="font-display text-5xl md:text-7xl font-bold text-cream leading-tight mb-8">
+          <h1 className="font-display text-3xl sm:text-5xl md:text-7xl font-bold text-cream leading-tight mb-8">
             {t("contactPage.title")} <span className="text-gold-gradient">{t("contactPage.titleHighlight")}</span>
           </h1>
           <p className="font-body text-lg text-gold-muted max-w-2xl mx-auto">
