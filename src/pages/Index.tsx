@@ -22,6 +22,7 @@ const Index = () => {
       
       <CTASection />
       <Footer />
+      <ExitIntentPopup />
     </div>
   );
 };
