@@ -43,6 +43,7 @@ const App = () => (
             <Route path="/terms" element={<Terms />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
+          </PageLoader>
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
