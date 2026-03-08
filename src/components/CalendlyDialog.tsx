@@ -9,9 +9,14 @@ const CalendlyDialog = ({ children }: CalendlyDialogProps) => {
   return (
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="max-w-3xl h-[700px] p-0 overflow-hidden">
+      <DialogContent className="max-w-3xl h-[80vh] max-h-[700px] p-0 overflow-hidden bg-navy border border-gold/20 rounded-lg">
         <DialogHeader className="p-6 pb-0">
-          <DialogTitle className="font-display text-xl">Book a Free 30-Minute Call</DialogTitle>
+          <DialogTitle className="font-display text-xl text-cream">
+            Book a Free 30-Minute Call
+          </DialogTitle>
+          <p className="font-body text-sm text-gold-muted">
+            Choose a time that works for you — we'll discuss your goals and how Impera can help.
+          </p>
         </DialogHeader>
         <div className="flex-1 px-6 pb-6 h-full">
           <iframe
