@@ -5,7 +5,7 @@ const ImperaLogo = ({ className = "h-16" }: { className?: string }) => {
     <div className={`flex flex-col items-center gap-0 ${className}`}>
       <img
         src={wreathImg}
-        alt=""
+        alt="Impera logo wreath"
         className="h-[97.5%] w-auto object-contain"
         loading="eager"
         draggable={false}

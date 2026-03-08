@@ -33,7 +33,7 @@ const Footer = () => {
             <p className="font-body text-sm text-cream/70 leading-relaxed text-center md:text-left">{t("footer.description")}</p>
             <div className="flex items-center gap-4 pt-2 justify-center md:justify-start">
               {[{ icon: Linkedin, href: "#" }, { icon: Instagram, href: "#" }].map(({ icon: Icon, href }, i) => (
-                <a key={i} href={href} target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full border border-navy-light flex items-center justify-center text-gold-muted hover:text-gold hover:border-gold/50 transition-colors">
+                <a key={i} href={href} target="_blank" rel="noopener noreferrer" aria-label={Icon === Linkedin ? "LinkedIn" : "Instagram"} className="w-9 h-9 rounded-full border border-navy-light flex items-center justify-center text-gold-muted hover:text-gold hover:border-gold/50 transition-colors">
                   <Icon size={16} />
                 </a>
               ))}
