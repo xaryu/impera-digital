@@ -250,8 +250,8 @@ const LeadershipSection = ({ isAdmin }: { isAdmin: boolean }) => {
         </div>
 
         {isLoading ? (
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[...Array(4)].map((_, i) => (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[...Array(3)].map((_, i) => (
               <div key={i} className="h-48 bg-border/30 animate-pulse" />
             ))}
           </div>
