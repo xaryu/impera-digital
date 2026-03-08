@@ -163,6 +163,11 @@ export default {
 				'100%': {
 					backgroundPosition: '200% center'
 				}
+			},
+			'shimmer': {
+				'0%': { transform: 'scaleX(0)' },
+				'50%': { transform: 'scaleX(1)' },
+				'100%': { transform: 'scaleX(0)' }
 			}
 		},
 		animation: {

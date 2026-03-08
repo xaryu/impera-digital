@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Services from "./pages/Services";
 import ScrollProgress from "./components/ScrollProgress";
+import PageLoader from "./components/PageLoader";
 
 import About from "./pages/About";
 import Contact from "./pages/Contact";
@@ -28,6 +29,7 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <ScrollProgress />
+          <PageLoader>
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/services" element={<Services />} />
@@ -41,6 +43,7 @@ const App = () => (
             <Route path="/terms" element={<Terms />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
+          </PageLoader>
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>

@@ -1,3 +1,5 @@
+import FadeInSection from "./FadeInSection";
+
 const stats = [
   { value: "10+", label: "Years Combined Freelance Experience" },
   { value: "3", label: "Specialists United Under One Vision" },
@@ -10,7 +12,7 @@ const AboutSection = () => {
     <section id="about" className="py-32 bg-navy-gradient">
       <div className="container mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <div>
+          <FadeInSection>
             <p className="font-body text-sm tracking-[0.3em] text-gold uppercase mb-4">
               Our Philosophy
             </p>
@@ -25,23 +27,24 @@ const AboutSection = () => {
             <p className="font-body text-gold-muted leading-relaxed">
               Our name, derived from the Latin <em className="text-gold">imperare</em> — to command — reflects our commitment to creating digital experiences that don't just compete, but reign.
             </p>
-          </div>
+          </FadeInSection>
 
-          <div className="grid grid-cols-2 gap-6">
-            {stats.map((stat) => (
-              <div
-                key={stat.label}
-                className="p-8 border border-gold/15 text-center hover:border-gold/30 transition-colors duration-500"
-              >
-                <p className="font-display text-4xl font-bold text-gold mb-2">
-                  {stat.value}
-                </p>
-                <p className="font-body text-xs tracking-wider text-gold-muted uppercase">
-                  {stat.label}
-                </p>
-              </div>
-            ))}
-          </div>
+          <FadeInSection delay={150}>
+            <div className="grid grid-cols-2 gap-6">
+              {stats.map((stat, i) => (
+                <FadeInSection key={stat.label} delay={200 + i * 80}>
+                  <div className="p-8 border border-gold/15 text-center hover:border-gold/30 hover:scale-[1.03] transition-all duration-500">
+                    <p className="font-display text-4xl font-bold text-gold mb-2">
+                      {stat.value}
+                    </p>
+                    <p className="font-body text-xs tracking-wider text-gold-muted uppercase">
+                      {stat.label}
+                    </p>
+                  </div>
+                </FadeInSection>
+              ))}
+            </div>
+          </FadeInSection>
         </div>
       </div>
     </section>

@@ -42,13 +42,12 @@ const HeroSection = () => {
 
           <Link
             to="/contact"
-            className="px-10 py-4 bg-gold text-navy-dark font-body text-sm font-semibold tracking-wider uppercase hover:bg-gold-light transition-colors duration-300">
-
+            className="px-10 py-4 bg-gold text-navy-dark font-body text-sm font-semibold tracking-wider uppercase btn-hover hover:bg-gold-light">
             start a project  
           </Link>
           <Link
             to="/about"
-            className="px-10 py-4 border border-gold/40 text-cream font-body text-sm tracking-wider uppercase hover:bg-gold/10 transition-all duration-300">
+            className="px-10 py-4 border border-gold/40 text-cream font-body text-sm tracking-wider uppercase btn-hover hover:bg-gold/10">
             Our Philosophy
           </Link>
         </div>
