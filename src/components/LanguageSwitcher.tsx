@@ -51,7 +51,7 @@ const LanguageSwitcher = () => {
       </button>
 
       {open && (
-        <div className="absolute right-0 top-full mt-2 bg-navy border border-navy-light/50 backdrop-blur-md shadow-lg min-w-[140px] z-50 animate-fade-in">
+        <div className="absolute right-0 top-full mt-2 bg-navy border border-navy-light/50 backdrop-blur-md shadow-lg min-w-[140px] z-50 animate-fade-in" role="menu" aria-label="Language options">
           {supportedLanguages.map((lang) => (
             <button
               key={lang}
