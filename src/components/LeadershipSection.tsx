@@ -139,9 +139,14 @@ const MemberCard = ({
           <h3 className="font-display text-lg font-semibold text-navy mb-1">
             {member.name}
           </h3>
-          <p className="font-body text-xs tracking-wider text-muted-foreground uppercase">
+          <p className="font-body text-xs tracking-wider text-gold uppercase mb-3">
             {member.role}
           </p>
+          {member.bio && (
+            <p className="font-body text-sm text-muted-foreground leading-relaxed">
+              {member.bio}
+            </p>
+          )}
         </>
       )}
 
