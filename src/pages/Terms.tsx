@@ -5,6 +5,7 @@ import SEO from "@/components/SEO";
 const Terms = () => {
   return (
     <div className="min-h-screen bg-navy-dark">
+      <SEO title="Terms of Service — Impera" description="Review Impera's terms of service and conditions of use." path="/terms" />
       <Navbar />
 
       <section className="pt-32 pb-20 px-6">

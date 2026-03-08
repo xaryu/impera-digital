@@ -60,6 +60,7 @@ const About = () => {
 
   return (
     <div className="min-h-screen">
+      <SEO title="About Impera — Our Story & Team" description="Founded in 2025 by digital veterans with over a decade of expertise. Learn about the team behind Impera and our mission to elevate ambitious brands." path="/about" />
       <Navbar />
 
       {/* Hero */}

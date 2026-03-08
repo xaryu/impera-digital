@@ -25,6 +25,7 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen">
+      <SEO title="Contact Impera — Begin Your Ascent" description="Ready to elevate your brand? Get in touch with Impera to discuss your vision and start your journey to digital distinction." path="/contact" />
       <Navbar />
 
       {/* Hero */}

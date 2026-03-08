@@ -5,6 +5,7 @@ import SEO from "@/components/SEO";
 const Privacy = () => {
   return (
     <div className="min-h-screen bg-navy-dark">
+      <SEO title="Privacy Policy — Impera" description="Read Impera's privacy policy to understand how we handle your data." path="/privacy" />
       <Navbar />
 
       <section className="pt-32 pb-20 px-6">

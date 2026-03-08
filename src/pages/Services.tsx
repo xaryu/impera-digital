@@ -67,6 +67,7 @@ const services = [
 const Services = () => {
   return (
     <div className="min-h-screen">
+      <SEO title="Services — Impera Digital Agency" description="Brand identity, digital marketing, growth strategy, and web development. Premium services crafted for brands that command distinction." path="/services" />
       <Navbar />
 
       {/* Hero */}
