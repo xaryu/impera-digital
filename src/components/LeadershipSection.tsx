@@ -251,11 +251,11 @@ const LeadershipSection = ({ isAdmin }: { isAdmin: boolean }) => {
             The People
           </p>
           <h2 className="font-display text-3xl md:text-4xl font-bold text-navy">
-            Leadership
+            Our Team
           </h2>
           {isAdmin && (
             <p className="font-body text-xs text-muted-foreground mt-3">
-              Hover over a card to edit name, role, or photo.
+              Hover over a card to edit name, role, bio, or photo.
             </p>
           )}
         </div>
