@@ -30,7 +30,7 @@ const MemberCard = ({
 }: {
   member: TeamMember;
   isAdmin: boolean;
-  onSave: (id: string, name: string, role: string, photo_url: string | null) => void;
+  onSave: (id: string, name: string, role: string, bio: string, photo_url: string | null) => void;
   onDelete: (id: string) => void;
 }) => {
   const [editing, setEditing] = useState(false);
