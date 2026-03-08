@@ -16,7 +16,7 @@
     --popover-foreground: 220 30% 10%;
 
     --primary: 221 54% 23%;
-    --primary-foreground: 45 60% 70%;
+    --primary-foreground: 43 50% 70%;
 
     --secondary: 220 20% 96%;
     --secondary-foreground: 222 47% 14%;
@@ -24,7 +24,7 @@
     --muted: 220 15% 95%;
     --muted-foreground: 220 10% 45%;
 
-    --accent: 45 80% 55%;
+    --accent: 43 62% 56%;
     --accent-foreground: 222 47% 14%;
 
     --destructive: 0 84% 60%;
@@ -32,7 +32,7 @@
 
     --border: 220 15% 90%;
     --input: 220 15% 90%;
-    --ring: 45 80% 55%;
+    --ring: 43 62% 56%;
 
     --radius: 0.25rem;
 
@@ -40,9 +40,9 @@
     --navy: 222 47% 14%;
     --navy-light: 222 35% 22%;
     --navy-dark: 222 55% 8%;
-    --gold: 45 80% 55%;
-    --gold-light: 45 70% 72%;
-    --gold-muted: 45 30% 70%;
+    --gold: 43 62% 56%;
+    --gold-light: 43 50% 72%;
+    --gold-muted: 43 25% 65%;
     --cream: 40 30% 97%;
 
     --font-display: 'Playfair Display', serif;
@@ -65,19 +65,19 @@
     --card-foreground: 40 30% 97%;
     --popover: 222 47% 14%;
     --popover-foreground: 40 30% 97%;
-    --primary: 45 80% 55%;
+    --primary: 43 62% 56%;
     --primary-foreground: 222 47% 14%;
     --secondary: 222 35% 22%;
     --secondary-foreground: 40 30% 97%;
     --muted: 222 35% 22%;
     --muted-foreground: 220 15% 60%;
-    --accent: 45 80% 55%;
+    --accent: 43 62% 56%;
     --accent-foreground: 222 47% 14%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 100%;
     --border: 222 35% 22%;
     --input: 222 35% 22%;
-    --ring: 45 80% 55%;
+    --ring: 43 62% 56%;
   }
 }
 
@@ -99,7 +99,7 @@
 
 @layer utilities {
   .text-gold-gradient {
-    background: linear-gradient(135deg, hsl(45 80% 55%), hsl(45 70% 72%));
+    background: linear-gradient(135deg, hsl(43 62% 56%), hsl(43 50% 72%));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -110,10 +110,10 @@
   }
 
   .border-gold {
-    border-color: hsl(45 80% 55% / 0.3);
+    border-color: hsl(43 62% 56% / 0.3);
   }
 
   .gold-glow {
-    box-shadow: 0 0 30px hsl(45 80% 55% / 0.15);
+    box-shadow: 0 0 30px hsl(43 62% 56% / 0.15);
   }
 }
