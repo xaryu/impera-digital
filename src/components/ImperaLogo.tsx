@@ -1,13 +1,21 @@
-import logoImg from "@/assets/impera-logo-clean.png";
+import laurelImg from "@/assets/laurel-crown.png";
 
 const ImperaLogo = ({ className = "h-16" }: { className?: string }) => {
   return (
-    <img
-      src={logoImg}
-      alt="Impera"
-      className={`w-auto object-contain ${className}`}
-      loading="eager"
-    />
+    <div className={`flex flex-col items-center ${className}`}>
+      <img
+        src={laurelImg}
+        alt=""
+        className="h-[60%] w-auto object-contain"
+        loading="eager"
+      />
+      <span
+        className="font-display text-cream tracking-[0.25em] font-bold leading-none"
+        style={{ fontSize: '35%' }}
+      >
+        IMPERA
+      </span>
+    </div>
   );
 };
 
