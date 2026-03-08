@@ -1,0 +1,3 @@
+
+ALTER TABLE public.blog_posts ADD COLUMN IF NOT EXISTS language TEXT NOT NULL DEFAULT 'en';
+ALTER TABLE public.job_openings ADD COLUMN IF NOT EXISTS language TEXT NOT NULL DEFAULT 'en';
