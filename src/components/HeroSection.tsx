@@ -16,7 +16,7 @@ const HeroSection = () => {
         <p className="font-body text-sm tracking-[0.4em] text-gold uppercase mb-6 opacity-0 animate-fade-up" style={{ animationDelay: "0.2s" }}>
           {t("hero.eyebrow")}
         </p>
-        <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold text-cream leading-tight mb-8 opacity-0 animate-fade-up" style={{ animationDelay: "0.4s" }}>
+        <h1 className="font-display text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-cream leading-tight mb-6 sm:mb-8 opacity-0 animate-fade-up" style={{ animationDelay: "0.4s" }}>
           {t("hero.title1")}
           <br />
           <span className="text-gold-gradient">{t("hero.title2")}</span>

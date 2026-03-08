@@ -40,8 +40,8 @@ const CookieConsent = () => {
       <div className="absolute inset-0 bg-black/40 pointer-events-auto" />
 
       {/* Banner */}
-      <div className="relative w-full max-w-3xl mx-4 mb-6 pointer-events-auto animate-in slide-in-from-bottom-4 duration-500">
-        <div className="bg-[hsl(var(--navy))] border border-gold/20 p-6 md:p-8 shadow-2xl">
+      <div className="relative w-full max-w-3xl mx-3 sm:mx-4 mb-4 sm:mb-6 pointer-events-auto animate-in slide-in-from-bottom-4 duration-500 max-h-[85vh] overflow-y-auto">
+        <div className="bg-[hsl(var(--navy))] border border-gold/20 p-5 sm:p-6 md:p-8 shadow-2xl">
           {/* Header */}
           <div className="flex items-start gap-3 mb-4">
             <Cookie className="w-6 h-6 text-gold flex-shrink-0 mt-0.5" />
