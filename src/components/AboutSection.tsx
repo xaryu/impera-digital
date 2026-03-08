@@ -4,7 +4,7 @@ const stats = [
   { value: "10+", label: "Years Combined Freelance Experience" },
   { value: "3", label: "Specialists United Under One Vision" },
   { value: "2025", label: "Founded — Modern Agency, Veteran Execution" },
-  { value: "7", label: "European Languages Served" },
+  { value: "8", label: "European Languages Served" },
 ];
 
 const AboutSection = () => {
