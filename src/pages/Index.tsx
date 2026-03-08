@@ -5,6 +5,7 @@ import AboutSection from "@/components/AboutSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
+import ExitIntentPopup from "@/components/ExitIntentPopup";
 
 const Index = () => {
   return (
@@ -21,6 +22,7 @@ const Index = () => {
       
       <CTASection />
       <Footer />
+      <ExitIntentPopup />
     </div>
   );
 };
