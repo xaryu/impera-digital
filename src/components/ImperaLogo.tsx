@@ -1,4 +1,4 @@
-import logoImg from "@/assets/impera-logo-new.png";
+import logoImg from "@/assets/impera-logo-new.svg";
 
 const ImperaLogo = ({ className = "h-16" }: { className?: string }) => {
   return (
