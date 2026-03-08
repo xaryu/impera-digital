@@ -8,6 +8,7 @@ type TeamMember = {
   id: string;
   name: string;
   role: string;
+  bio: string;
   photo_url: string | null;
   display_order: number;
 };
@@ -138,9 +139,14 @@ const MemberCard = ({
           <h3 className="font-display text-lg font-semibold text-navy mb-1">
             {member.name}
           </h3>
-          <p className="font-body text-xs tracking-wider text-muted-foreground uppercase">
+          <p className="font-body text-xs tracking-wider text-gold uppercase mb-3">
             {member.role}
           </p>
+          {member.bio && (
+            <p className="font-body text-sm text-muted-foreground leading-relaxed">
+              {member.bio}
+            </p>
+          )}
         </>
       )}
 
@@ -244,13 +250,13 @@ const LeadershipSection = ({ isAdmin }: { isAdmin: boolean }) => {
         </div>
 
         {isLoading ? (
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[...Array(4)].map((_, i) => (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[...Array(3)].map((_, i) => (
               <div key={i} className="h-48 bg-border/30 animate-pulse" />
             ))}
           </div>
         ) : (
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {team.map((member) => (
               <MemberCard
                 key={member.id}

@@ -77,8 +77,11 @@ const Services = () => {
           <h1 className="font-display text-5xl md:text-7xl font-bold text-cream leading-tight mb-8">
             Services of <span className="text-gold-gradient">Distinction</span>
           </h1>
-          <p className="font-body text-lg text-gold-muted max-w-2xl mx-auto">
+          <p className="font-body text-lg text-gold-muted max-w-2xl mx-auto mb-8">
             Every service we offer is designed with one purpose: to position your brand as the undeniable leader in its space.
+          </p>
+          <p className="font-body text-base text-gold-muted/80 max-w-3xl mx-auto border-t border-gold/15 pt-8">
+            <span className="text-gold font-semibold">What sets us apart:</span> We leverage AI-powered tools for campaign optimization, automated reporting, and predictive analytics — delivering results traditional agencies can't match, with transparency they don't offer.
           </p>
         </div>
       </section>
