@@ -11,8 +11,8 @@ const ImperaLogo = ({ className = "h-16" }: { className?: string }) => {
         draggable={false}
       />
       <span
-        className="font-display text-cream tracking-[0.3em] font-bold leading-none uppercase"
-        style={{ fontSize: '112%' }}
+        className="text-cream tracking-[0.3em] font-bold leading-none uppercase"
+        style={{ fontSize: '112%', fontFamily: "'Cinzel', serif" }}
       >
         IMPERA
       </span>
