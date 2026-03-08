@@ -30,12 +30,13 @@ const MemberCard = ({
 }: {
   member: TeamMember;
   isAdmin: boolean;
-  onSave: (id: string, name: string, role: string, photo_url: string | null) => void;
+  onSave: (id: string, name: string, role: string, bio: string, photo_url: string | null) => void;
   onDelete: (id: string) => void;
 }) => {
   const [editing, setEditing] = useState(false);
   const [name, setName] = useState(member.name);
   const [role, setRole] = useState(member.role);
+  const [bio, setBio] = useState(member.bio || "");
   const [photoUrl, setPhotoUrl] = useState(member.photo_url);
   const [uploading, setUploading] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
@@ -66,13 +67,14 @@ const MemberCard = ({
   };
 
   const handleSave = () => {
-    onSave(member.id, name, role, photoUrl);
+    onSave(member.id, name, role, bio, photoUrl);
     setEditing(false);
   };
 
   const handleCancel = () => {
     setName(member.name);
     setRole(member.role);
+    setBio(member.bio || "");
     setPhotoUrl(member.photo_url);
     setEditing(false);
   };
@@ -124,6 +126,13 @@ const MemberCard = ({
             value={role}
             onChange={(e) => setRole(e.target.value)}
             className="w-full text-center bg-transparent border-b border-gold/30 focus:border-gold/60 text-muted-foreground font-body text-xs tracking-wider uppercase outline-none pb-1"
+          />
+          <textarea
+            value={bio}
+            onChange={(e) => setBio(e.target.value)}
+            placeholder="Bio / description..."
+            rows={3}
+            className="w-full mt-2 bg-transparent border border-gold/20 focus:border-gold/50 text-muted-foreground font-body text-sm outline-none p-2 rounded resize-none"
           />
           <div className="flex justify-center gap-3 pt-2">
             <button onClick={handleSave} className="p-1 text-gold hover:text-gold-light">
@@ -184,16 +193,18 @@ const LeadershipSection = ({ isAdmin }: { isAdmin: boolean }) => {
       id,
       name,
       role,
+      bio,
       photo_url,
     }: {
       id: string;
       name: string;
       role: string;
+      bio: string;
       photo_url: string | null;
     }) => {
       const { error } = await supabase
         .from("team_members")
-        .update({ name, role, photo_url })
+        .update({ name, role, bio, photo_url })
         .eq("id", id);
       if (error) throw error;
     },
@@ -240,11 +251,11 @@ const LeadershipSection = ({ isAdmin }: { isAdmin: boolean }) => {
             The People
           </p>
           <h2 className="font-display text-3xl md:text-4xl font-bold text-navy">
-            Leadership
+            Our Team
           </h2>
           {isAdmin && (
             <p className="font-body text-xs text-muted-foreground mt-3">
-              Hover over a card to edit name, role, or photo.
+              Hover over a card to edit name, role, bio, or photo.
             </p>
           )}
         </div>
@@ -262,8 +273,8 @@ const LeadershipSection = ({ isAdmin }: { isAdmin: boolean }) => {
                 key={member.id}
                 member={member}
                 isAdmin={isAdmin}
-                onSave={(id, name, role, photo_url) =>
-                  updateMutation.mutate({ id, name, role, photo_url })
+                onSave={(id, name, role, bio, photo_url) =>
+                  updateMutation.mutate({ id, name, role, bio, photo_url })
                 }
                 onDelete={(id) => deleteMutation.mutate(id)}
               />
