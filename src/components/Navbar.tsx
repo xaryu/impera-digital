@@ -55,7 +55,7 @@ const Navbar = () => {
 
       {/* Mobile menu */}
       {isOpen && (
-        <div className="md:hidden bg-navy-dark/95 backdrop-blur-md border-t border-gold/10 px-6 py-8 animate-fade-in">
+        <div className="md:hidden bg-navy/95 backdrop-blur-md border-t border-navy-light/50 px-6 py-8 animate-fade-in">
           <div className="flex flex-col gap-6">
             {navLinks.map((link) => (
               <Link
