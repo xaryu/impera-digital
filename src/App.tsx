@@ -7,6 +7,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ScrollProgress from "./components/ScrollProgress";
 import PageLoader from "./components/PageLoader";
 import LanguageLayout from "./components/LanguageLayout";
+import CookieConsent from "./components/CookieConsent";
+import { useTrackingConsent } from "./hooks/use-tracking-consent";
 
 import Index from "./pages/Index";
 import Services from "./pages/Services";
