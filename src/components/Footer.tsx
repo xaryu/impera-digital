@@ -24,17 +24,17 @@ const Footer = () => {
       <div className="container mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           {/* Column 1: Brand */}
-          <div className="space-y-5">
-            <Link to="/">
+          <div className="flex flex-col items-center md:items-start space-y-5">
+            <Link to="/" className="inline-block">
               <ImperaLogo className="h-[65px]" />
             </Link>
-            <p className="font-display text-sm italic text-gold-muted">
+            <p className="font-display text-sm italic text-gold-muted text-center md:text-left">
               Command Your Digital Presence
             </p>
-            <p className="font-body text-sm text-cream/70 leading-relaxed">
+            <p className="font-body text-sm text-cream/70 leading-relaxed text-center md:text-left">
               Impera is a premium digital media agency crafting authoritative brand experiences. We partner with ambitious businesses to dominate their markets.
             </p>
-            <div className="flex items-center gap-4 pt-2">
+            <div className="flex items-center gap-4 pt-2 justify-center md:justify-start">
               {[
                 { icon: Linkedin, href: "#" },
                 { icon: Instagram, href: "#" },
