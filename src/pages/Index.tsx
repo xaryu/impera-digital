@@ -3,6 +3,7 @@ import HeroSection from "@/components/HeroSection";
 import ServicesSection from "@/components/ServicesSection";
 import AboutSection from "@/components/AboutSection";
 import WhyImperaSection from "@/components/WhyImperaSection";
+import GuaranteeSection from "@/components/GuaranteeSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
@@ -21,7 +22,7 @@ const Index = () => {
       <ServicesSection />
       <WhyImperaSection />
       <AboutSection />
-      
+      <GuaranteeSection />
       <CTASection />
       <Footer />
       <ExitIntentPopup />
