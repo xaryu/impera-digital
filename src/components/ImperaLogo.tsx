@@ -12,7 +12,7 @@ const ImperaLogo = ({ className = "h-16" }: { className?: string }) => {
       />
       <span
         className="font-display text-cream tracking-[0.3em] font-bold leading-none uppercase"
-        style={{ fontSize: '56%' }}
+        style={{ fontSize: '112%' }}
       >
         IMPERA
       </span>
