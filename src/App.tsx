@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Services from "./pages/Services";
 import ScrollProgress from "./components/ScrollProgress";
+import PageLoader from "./components/PageLoader";
 
 import About from "./pages/About";
 import Contact from "./pages/Contact";
