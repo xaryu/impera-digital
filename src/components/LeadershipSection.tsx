@@ -193,16 +193,18 @@ const LeadershipSection = ({ isAdmin }: { isAdmin: boolean }) => {
       id,
       name,
       role,
+      bio,
       photo_url,
     }: {
       id: string;
       name: string;
       role: string;
+      bio: string;
       photo_url: string | null;
     }) => {
       const { error } = await supabase
         .from("team_members")
-        .update({ name, role, photo_url })
+        .update({ name, role, bio, photo_url })
         .eq("id", id);
       if (error) throw error;
     },
