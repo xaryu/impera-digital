@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { X } from "lucide-react";
 import { z } from "zod";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 
 const emailSchema = z
   .string()
@@ -56,9 +57,16 @@ const ExitIntentPopup = () => {
     }
 
     setSubmitting(true);
-    // Simulate submission — replace with real endpoint when ready
-    await new Promise((r) => setTimeout(r, 800));
+    const { error: dbError } = await supabase
+      .from("leads")
+      .insert({ email: result.data, source: "exit_intent" });
     setSubmitting(false);
+
+    if (dbError) {
+      toast.error("Something went wrong. Please try again.");
+      return;
+    }
+
     toast.success("Your guide is on its way! Check your inbox.");
     dismiss();
   };
