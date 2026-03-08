@@ -26,7 +26,7 @@ const Footer = () => {
           {/* Column 1: Brand */}
           <div className="space-y-5">
             <Link to="/">
-              <ImperaLogo className="h-16" />
+              <ImperaLogo className="h-[65px]" />
             </Link>
             <p className="font-display text-sm italic text-gold-muted">
               Command Your Digital Presence
