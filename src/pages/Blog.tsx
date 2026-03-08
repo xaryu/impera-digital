@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import SEO from "@/components/SEO";
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -74,6 +75,7 @@ const Blog = () => {
 
   return (
     <div className="min-h-screen bg-navy-dark">
+      <SEO title="Blog — Impera Insights" description="Expert insights on branding, digital marketing, and growth strategy from the Impera team." path="/blog" />
       <Navbar />
 
       {/* Hero */}

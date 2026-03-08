@@ -1,4 +1,5 @@
 import { Mail, MapPin, Phone } from "lucide-react";
+import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useState } from "react";
@@ -24,6 +25,7 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen">
+      <SEO title="Contact Impera — Begin Your Ascent" description="Ready to elevate your brand? Get in touch with Impera to discuss your vision and start your journey to digital distinction." path="/contact" />
       <Navbar />
 
       {/* Hero */}

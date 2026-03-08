@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 import { ArrowLeft } from "lucide-react";
 
 const fetchPost = async (slug: string) => {
@@ -123,6 +124,13 @@ const BlogPost = () => {
 
   return (
     <div className="min-h-screen bg-navy-dark">
+      <SEO
+        title={`${post.title} — Impera Journal`}
+        description={post.excerpt}
+        path={`/blog/${post.slug}`}
+        ogImage={post.image_url || undefined}
+        ogType="article"
+      />
       <Navbar />
 
       <article className="pt-32 pb-24 px-6">

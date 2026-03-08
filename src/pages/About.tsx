@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import SEO from "@/components/SEO";
 import { Award, Users, Target, Shield, Settings, LogOut } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -59,6 +60,7 @@ const About = () => {
 
   return (
     <div className="min-h-screen">
+      <SEO title="About Impera — Our Story & Team" description="Founded in 2025 by digital veterans with over a decade of expertise. Learn about the team behind Impera and our mission to elevate ambitious brands." path="/about" />
       <Navbar />
 
       {/* Hero */}

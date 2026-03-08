@@ -3,6 +3,7 @@ import { useQuery, useMutation } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 import { ArrowLeft, Upload, Loader2 } from "lucide-react";
 import { useState, useRef } from "react";
 import { toast } from "sonner";
@@ -117,6 +118,11 @@ const CareerPost = () => {
 
   return (
     <div className="min-h-screen bg-navy-dark">
+      <SEO
+        title={`${job.title} — Careers at Impera`}
+        description={job.short_description}
+        path={`/careers/${job.slug}`}
+      />
       <Navbar />
 
       <section className="pt-32 pb-12 px-6">

@@ -1,4 +1,5 @@
 import { Megaphone, Palette, TrendingUp, Globe, ArrowRight, CheckCircle } from "lucide-react";
+import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
@@ -66,6 +67,7 @@ const services = [
 const Services = () => {
   return (
     <div className="min-h-screen">
+      <SEO title="Services — Impera Digital Agency" description="Brand identity, digital marketing, growth strategy, and web development. Premium services crafted for brands that command distinction." path="/services" />
       <Navbar />
 
       {/* Hero */}

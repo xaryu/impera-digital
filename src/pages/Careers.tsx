@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import SEO from "@/components/SEO";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Link } from "react-router-dom";
@@ -63,6 +64,7 @@ const Careers = () => {
 
   return (
     <div className="min-h-screen bg-navy-dark">
+      <SEO title="Careers at Impera — Join Our Team" description="Join a team of digital specialists united by a passion for excellence. Explore open positions at Impera." path="/careers" />
       <Navbar />
 
       {/* Admin bar */}
