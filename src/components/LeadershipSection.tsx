@@ -273,8 +273,8 @@ const LeadershipSection = ({ isAdmin }: { isAdmin: boolean }) => {
                 key={member.id}
                 member={member}
                 isAdmin={isAdmin}
-                onSave={(id, name, role, photo_url) =>
-                  updateMutation.mutate({ id, name, role, photo_url })
+                onSave={(id, name, role, bio, photo_url) =>
+                  updateMutation.mutate({ id, name, role, bio, photo_url })
                 }
                 onDelete={(id) => deleteMutation.mutate(id)}
               />
