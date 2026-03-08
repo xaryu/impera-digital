@@ -7,7 +7,7 @@ const differentiators = [
     title: "Multilingual by Default",
     headline: "Launch Across Europe — Simultaneously",
     points: [
-      "7 native European languages in-house — Romanian, English, Dutch, French, Italian, Spanish, Portuguese",
+      "8 native European languages in-house — Romanian, English, Dutch, French, Italian, Spanish, Portuguese, Ukrainian",
       "Culturally adapted campaigns, not machine translations",
       "Enter new markets in weeks instead of months",
     ],
