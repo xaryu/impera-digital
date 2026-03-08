@@ -114,7 +114,7 @@ const CookieConsent = () => {
             ) : (
               <button
                 onClick={() => setShowSettings(true)}
-                className="flex items-center justify-center gap-2 px-6 py-3 border border-gold/30 text-gold font-body text-sm font-semibold tracking-wider uppercase hover:border-gold/60 hover:text-gold-light transition-colors"
+                className="flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] border border-gold/30 text-gold font-body text-sm font-semibold tracking-wider uppercase hover:border-gold/60 hover:text-gold-light transition-colors"
               >
                 <Settings2 className="w-4 h-4" />
                 Cookie Settings
