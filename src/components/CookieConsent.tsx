@@ -106,7 +106,7 @@ const CookieConsent = () => {
             {showSettings ? (
               <button
                 onClick={handleSaveSettings}
-                className="flex items-center justify-center gap-2 px-6 py-3 bg-gold text-navy-dark font-body text-sm font-semibold tracking-wider uppercase hover:bg-gold-light transition-colors"
+                className="flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] bg-gold text-navy-dark font-body text-sm font-semibold tracking-wider uppercase hover:bg-gold-light transition-colors"
               >
                 <Check className="w-4 h-4" />
                 Save Preferences
