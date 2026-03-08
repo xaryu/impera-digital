@@ -6,7 +6,7 @@ const ImperaLogo = ({ className = "h-16" }: { className?: string }) => {
       <img
         src={wreathImg}
         alt=""
-        className="h-[65%] w-auto object-contain"
+        className="h-[97.5%] w-auto object-contain"
         loading="eager"
         draggable={false}
       />
