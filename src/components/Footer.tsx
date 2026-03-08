@@ -1,143 +1,96 @@
-import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Mail, MapPin, Clock, Instagram, Linkedin } from "lucide-react";
 import ImperaLogo from "@/components/ImperaLogo";
-
-const serviceLinks = [
-  { label: "Brand Strategy", href: "/services" },
-  { label: "Digital Marketing", href: "/services" },
-  { label: "Web Development", href: "/services" },
-  { label: "Content Creation", href: "/services" },
-  { label: "Performance Marketing", href: "/services" },
-];
-
-const companyLinks = [
-  { label: "About Us", href: "/about" },
-  
-  { label: "Blog", href: "/blog" },
-  { label: "Careers", href: "/careers" },
-  { label: "Contact", href: "/contact" },
-];
+import LocalizedLink from "@/components/LocalizedLink";
 
 const Footer = () => {
+  const { t } = useTranslation();
+
+  const serviceLinks = [
+    { label: t("footer.brandStrategy"), href: "/services" },
+    { label: t("footer.digitalMarketing"), href: "/services" },
+    { label: t("footer.webDevelopment"), href: "/services" },
+    { label: t("footer.contentCreation"), href: "/services" },
+    { label: t("footer.performanceMarketing"), href: "/services" },
+  ];
+
+  const companyLinks = [
+    { label: t("footer.aboutUs"), href: "/about" },
+    { label: t("footer.blog"), href: "/blog" },
+    { label: t("footer.careers"), href: "/careers" },
+    { label: t("footer.contact"), href: "/contact" },
+  ];
+
   return (
     <footer className="bg-navy-dark border-t border-navy-light/30">
       <div className="container mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
-          {/* Column 1: Brand */}
           <div className="flex flex-col items-center md:items-start space-y-5">
-            <Link to="/" className="inline-block">
+            <LocalizedLink to="/" className="inline-block">
               <ImperaLogo className="h-[65px]" />
-            </Link>
-            <p className="font-display text-sm italic text-gold-muted text-center md:text-left">
-              Command Your Digital Presence
-            </p>
-            <p className="font-body text-sm text-cream/70 leading-relaxed text-center md:text-left">
-              Impera is a premium digital media agency crafting authoritative brand experiences. We partner with ambitious businesses to dominate their markets.
-            </p>
+            </LocalizedLink>
+            <p className="font-display text-sm italic text-gold-muted text-center md:text-left">{t("footer.tagline")}</p>
+            <p className="font-body text-sm text-cream/70 leading-relaxed text-center md:text-left">{t("footer.description")}</p>
             <div className="flex items-center gap-4 pt-2 justify-center md:justify-start">
-              {[
-                { icon: Linkedin, href: "#" },
-                { icon: Instagram, href: "#" },
-              ].map(({ icon: Icon, href }, i) => (
-                <a
-                  key={i}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-full border border-navy-light flex items-center justify-center text-gold-muted hover:text-gold hover:border-gold/50 transition-colors"
-                >
+              {[{ icon: Linkedin, href: "#" }, { icon: Instagram, href: "#" }].map(({ icon: Icon, href }, i) => (
+                <a key={i} href={href} target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full border border-navy-light flex items-center justify-center text-gold-muted hover:text-gold hover:border-gold/50 transition-colors">
                   <Icon size={16} />
                 </a>
               ))}
             </div>
           </div>
 
-          {/* Column 2: Services */}
           <div>
-            <h4 className="font-display text-sm font-semibold tracking-widest text-cream uppercase mb-6">
-              Services
-            </h4>
+            <h4 className="font-display text-sm font-semibold tracking-widest text-cream uppercase mb-6">{t("footer.servicesTitle")}</h4>
             <ul className="space-y-3">
               {serviceLinks.map((link) => (
                 <li key={link.label}>
-                  <Link
-                    to={link.href}
-                    className="font-body text-sm text-cream/60 hover:text-gold transition-colors"
-                  >
-                    {link.label}
-                  </Link>
+                  <LocalizedLink to={link.href} className="font-body text-sm text-cream/60 hover:text-gold transition-colors">{link.label}</LocalizedLink>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Column 3: Company */}
           <div>
-            <h4 className="font-display text-sm font-semibold tracking-widest text-cream uppercase mb-6">
-              Company
-            </h4>
+            <h4 className="font-display text-sm font-semibold tracking-widest text-cream uppercase mb-6">{t("footer.companyTitle")}</h4>
             <ul className="space-y-3">
               {companyLinks.map((link) => (
                 <li key={link.label}>
-                  <Link
-                    to={link.href}
-                    className="font-body text-sm text-cream/60 hover:text-gold transition-colors"
-                  >
-                    {link.label}
-                  </Link>
+                  <LocalizedLink to={link.href} className="font-body text-sm text-cream/60 hover:text-gold transition-colors">{link.label}</LocalizedLink>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Column 4: Contact */}
           <div>
-            <h4 className="font-display text-sm font-semibold tracking-widest text-cream uppercase mb-6">
-              Contact
-            </h4>
+            <h4 className="font-display text-sm font-semibold tracking-widest text-cream uppercase mb-6">{t("footer.contactTitle")}</h4>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <Mail size={16} className="text-gold mt-0.5 shrink-0" />
-                <a href="mailto:contact@impera-group.com" className="font-body text-sm text-cream/60 hover:text-gold transition-colors">
-                  contact@impera-group.com
-                </a>
+                <a href="mailto:contact@impera-group.com" className="font-body text-sm text-cream/60 hover:text-gold transition-colors">contact@impera-group.com</a>
               </li>
               <li className="flex items-start gap-3">
                 <MapPin size={16} className="text-gold mt-0.5 shrink-0" />
-                <span className="font-body text-sm text-cream/60">
-                  Justus Lipsiusstraat 16, 3000, Leuven
-                </span>
+                <span className="font-body text-sm text-cream/60">Justus Lipsiusstraat 16, 3000, Leuven</span>
               </li>
               <li className="flex items-start gap-3">
                 <Clock size={16} className="text-gold mt-0.5 shrink-0" />
-                <span className="font-body text-sm text-cream/60">
-                  Mon – Fri: 9:00 – 18:00
-                </span>
+                <span className="font-body text-sm text-cream/60">{t("footer.monFri")}</span>
               </li>
             </ul>
-            <Link
-              to="/contact"
-              className="mt-8 inline-block px-6 py-3 bg-accent text-accent-foreground font-body text-sm font-semibold tracking-wider uppercase hover:bg-accent/90 transition-colors"
-            >
-              Start Your Project
-            </Link>
+            <LocalizedLink to="/contact" className="mt-8 inline-block px-6 py-3 bg-accent text-accent-foreground font-body text-sm font-semibold tracking-wider uppercase hover:bg-accent/90 transition-colors">
+              {t("footer.startYourProject")}
+            </LocalizedLink>
           </div>
         </div>
       </div>
 
-      {/* Bottom bar */}
       <div className="border-t border-navy-light/30">
         <div className="container mx-auto px-6 py-5 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="font-body text-xs text-cream/40">
-            © 2026 Impera. All rights reserved.
-          </p>
+          <p className="font-body text-xs text-cream/40">{t("footer.rights")}</p>
           <div className="flex items-center gap-6">
-            <Link to="/privacy" className="font-body text-xs text-cream/40 hover:text-gold transition-colors">
-              Privacy Policy
-            </Link>
-            <Link to="/terms" className="font-body text-xs text-cream/40 hover:text-gold transition-colors">
-              Terms of Service
-            </Link>
+            <LocalizedLink to="/privacy" className="font-body text-xs text-cream/40 hover:text-gold transition-colors">{t("footer.privacyPolicy")}</LocalizedLink>
+            <LocalizedLink to="/terms" className="font-body text-xs text-cream/40 hover:text-gold transition-colors">{t("footer.termsOfService")}</LocalizedLink>
           </div>
         </div>
       </div>
