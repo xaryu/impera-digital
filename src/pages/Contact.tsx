@@ -35,7 +35,7 @@ const Contact = () => {
           <p className="font-body text-sm tracking-[0.4em] text-gold uppercase mb-6">
             {t("contactPage.eyebrow")}
           </p>
-          <h1 className="font-display text-5xl md:text-7xl font-bold text-cream leading-tight mb-8">
+          <h1 className="font-display text-3xl sm:text-5xl md:text-7xl font-bold text-cream leading-tight mb-8">
             {t("contactPage.title")} <span className="text-gold-gradient">{t("contactPage.titleHighlight")}</span>
           </h1>
           <p className="font-body text-lg text-gold-muted max-w-2xl mx-auto">
@@ -98,7 +98,7 @@ const Contact = () => {
                   <textarea name="message" value={formData.message} onChange={handleChange} required rows={6} className="w-full px-4 py-3 bg-background border border-border font-body text-sm text-foreground focus:border-gold focus:outline-none transition-colors resize-none" placeholder={t("contactPage.messagePlaceholder")} />
                 </div>
 
-                <button type="submit" className="px-12 py-4 bg-gold text-navy-dark font-body text-sm font-semibold tracking-wider uppercase hover:bg-gold-light transition-colors duration-300">
+                <button type="submit" className="w-full sm:w-auto px-12 py-4 bg-gold text-navy-dark font-body text-sm font-semibold tracking-wider uppercase hover:bg-gold-light transition-colors duration-300 min-h-[48px]">
                   {t("contactPage.submit")}
                 </button>
               </form>

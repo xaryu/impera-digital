@@ -40,8 +40,8 @@ const CookieConsent = () => {
       <div className="absolute inset-0 bg-black/40 pointer-events-auto" />
 
       {/* Banner */}
-      <div className="relative w-full max-w-3xl mx-4 mb-6 pointer-events-auto animate-in slide-in-from-bottom-4 duration-500">
-        <div className="bg-[hsl(var(--navy))] border border-gold/20 p-6 md:p-8 shadow-2xl">
+      <div className="relative w-full max-w-3xl mx-3 sm:mx-4 mb-4 sm:mb-6 pointer-events-auto animate-in slide-in-from-bottom-4 duration-500 max-h-[85vh] overflow-y-auto">
+        <div className="bg-[hsl(var(--navy))] border border-gold/20 p-5 sm:p-6 md:p-8 shadow-2xl">
           {/* Header */}
           <div className="flex items-start gap-3 mb-4">
             <Cookie className="w-6 h-6 text-gold flex-shrink-0 mt-0.5" />
@@ -106,7 +106,7 @@ const CookieConsent = () => {
             {showSettings ? (
               <button
                 onClick={handleSaveSettings}
-                className="flex items-center justify-center gap-2 px-6 py-3 bg-gold text-navy-dark font-body text-sm font-semibold tracking-wider uppercase hover:bg-gold-light transition-colors"
+                className="flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] bg-gold text-navy-dark font-body text-sm font-semibold tracking-wider uppercase hover:bg-gold-light transition-colors"
               >
                 <Check className="w-4 h-4" />
                 Save Preferences
@@ -114,7 +114,7 @@ const CookieConsent = () => {
             ) : (
               <button
                 onClick={() => setShowSettings(true)}
-                className="flex items-center justify-center gap-2 px-6 py-3 border border-gold/30 text-gold font-body text-sm font-semibold tracking-wider uppercase hover:border-gold/60 hover:text-gold-light transition-colors"
+                className="flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] border border-gold/30 text-gold font-body text-sm font-semibold tracking-wider uppercase hover:border-gold/60 hover:text-gold-light transition-colors"
               >
                 <Settings2 className="w-4 h-4" />
                 Cookie Settings
@@ -122,13 +122,13 @@ const CookieConsent = () => {
             )}
             <button
               onClick={handleAcceptAll}
-              className="flex items-center justify-center gap-2 px-6 py-3 bg-gold text-navy-dark font-body text-sm font-semibold tracking-wider uppercase hover:bg-gold-light transition-colors"
+              className="flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] bg-gold text-navy-dark font-body text-sm font-semibold tracking-wider uppercase hover:bg-gold-light transition-colors"
             >
               Accept All
             </button>
             <button
               onClick={handleRejectAll}
-              className="flex items-center justify-center gap-2 px-6 py-3 border border-gold/10 text-cream/60 font-body text-sm tracking-wider uppercase hover:text-cream hover:border-gold/30 transition-colors"
+              className="flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] border border-gold/10 text-cream/60 font-body text-sm tracking-wider uppercase hover:text-cream hover:border-gold/30 transition-colors"
             >
               Reject All
             </button>
