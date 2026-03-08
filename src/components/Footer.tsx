@@ -126,7 +126,7 @@ const Footer = () => {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-gold/10">
+      <div className="border-t border-navy-light/30">
         <div className="container mx-auto px-6 py-5 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="font-body text-xs text-cream/40">
             © 2026 Impera. All rights reserved.
