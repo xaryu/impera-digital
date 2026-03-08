@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { X } from "lucide-react";
 import { z } from "zod";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 
 const emailSchema = z
   .string()
