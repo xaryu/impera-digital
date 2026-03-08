@@ -13,6 +13,8 @@ import BlogPost from "./pages/BlogPost";
 import Careers from "./pages/Careers";
 import CareerPost from "./pages/CareerPost";
 import NotFound from "./pages/NotFound";
+import Privacy from "./pages/Privacy";
+import Terms from "./pages/Terms";
 
 const queryClient = new QueryClient();
 
