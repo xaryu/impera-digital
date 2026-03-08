@@ -47,10 +47,9 @@ const HeroSection = () => {
             start a project  
           </Link>
           <Link
-            to="/portfolio"
+            to="/about"
             className="px-10 py-4 border border-gold/40 text-cream font-body text-sm tracking-wider uppercase hover:bg-gold/10 transition-all duration-300">
-
-            ​see our work     
+            Our Philosophy
           </Link>
         </div>
       </div>

@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import ImperaLogo from "@/components/ImperaLogo";
 const navLinks = [
   { label: "Services", href: "/services" },
-  { label: "Portfolio", href: "/portfolio" },
+  
   { label: "Blog", href: "/blog" },
   { label: "About", href: "/about" },
   { label: "Careers", href: "/careers" },
