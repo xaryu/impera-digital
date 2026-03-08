@@ -22,7 +22,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-navy-dark border-t border-navy-light/30">
+    <footer className="bg-navy-dark border-t border-navy-light/30" role="contentinfo">
       <div className="container mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           <div className="flex flex-col items-center md:items-start space-y-5">
