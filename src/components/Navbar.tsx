@@ -1,47 +1,60 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import ImperaLogo from "@/components/ImperaLogo";
-const navLinks = [
-  { label: "Services", href: "/services" },
-  { label: "How We Work", href: "/methodology" },
-  { label: "Blog", href: "/blog" },
-  { label: "About", href: "/about" },
-  { label: "Careers", href: "/careers" },
-];
+import LocalizedLink from "@/components/LocalizedLink";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const { t } = useTranslation();
+
+  const navLinks = [
+    { label: t("nav.services"), href: "/services" },
+    { label: t("nav.howWeWork"), href: "/methodology" },
+    { label: t("nav.blog"), href: "/blog" },
+    { label: t("nav.about"), href: "/about" },
+    { label: t("nav.careers"), href: "/careers" },
+  ];
+
+  // Check if path matches (strip language prefix)
+  const isActive = (href: string) => {
+    const parts = location.pathname.split("/").filter(Boolean);
+    const cleanPath = ["en", "fr", "nl"].includes(parts[0]) ? "/" + parts.slice(1).join("/") : location.pathname;
+    return cleanPath === href;
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-navy-dark/90 backdrop-blur-md border-b border-navy-light/50">
       <div className="container mx-auto flex items-center justify-between py-5 px-6">
-        <Link to="/" className="flex items-center">
+        <LocalizedLink to="/" className="flex items-center">
           <ImperaLogo className="h-[45px] md:h-[50px] max-[480px]:h-[38px]" />
-        </Link>
+        </LocalizedLink>
 
         {/* Desktop */}
         <div className="hidden md:flex items-center gap-10">
           {navLinks.map((link) => (
-            <Link
-              key={link.label}
+            <LocalizedLink
+              key={link.href}
               to={link.href}
               className={`font-body text-sm tracking-wider uppercase transition-colors duration-300 ${
-                location.pathname === link.href
+                isActive(link.href)
                   ? "text-gold"
                   : "text-gold-muted hover:text-gold"
               }`}
             >
               {link.label}
-            </Link>
+            </LocalizedLink>
           ))}
-          <Link
+          <LanguageSwitcher />
+          <LocalizedLink
             to="/contact"
             className="ml-4 px-6 py-2.5 border border-gold/40 text-gold text-sm tracking-wider uppercase hover:bg-gold/10 transition-all duration-300"
           >
-            Get in Touch
-          </Link>
+            {t("nav.getInTouch")}
+          </LocalizedLink>
         </div>
 
         {/* Mobile toggle */}
@@ -58,26 +71,29 @@ const Navbar = () => {
         <div className="md:hidden bg-navy/95 backdrop-blur-md border-t border-navy-light/50 px-6 py-8 animate-fade-in">
           <div className="flex flex-col gap-6">
             {navLinks.map((link) => (
-              <Link
-                key={link.label}
+              <LocalizedLink
+                key={link.href}
                 to={link.href}
                 onClick={() => setIsOpen(false)}
                 className={`font-body text-sm tracking-wider uppercase transition-colors ${
-                  location.pathname === link.href
+                  isActive(link.href)
                     ? "text-gold"
                     : "text-gold-muted hover:text-gold"
                 }`}
               >
                 {link.label}
-              </Link>
+              </LocalizedLink>
             ))}
-            <Link
+            <div className="py-2">
+              <LanguageSwitcher />
+            </div>
+            <LocalizedLink
               to="/contact"
               onClick={() => setIsOpen(false)}
               className="mt-2 px-6 py-2.5 border border-gold/40 text-gold text-sm tracking-wider uppercase text-center hover:bg-gold/10 transition-all"
             >
-              Get in Touch
-            </Link>
+              {t("nav.getInTouch")}
+            </LocalizedLink>
           </div>
         </div>
       )}
