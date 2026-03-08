@@ -28,13 +28,13 @@ const HeroSection = () => {
 
           Command Your
           <br />
-          <span className="text-gold-gradient">Digital Empire</span>
+          <span className="text-gold-gradient">Digital Presence</span>
         </h1>
         <p
           className="font-body text-lg md:text-xl text-gold-muted max-w-2xl mx-auto mb-12 opacity-0 animate-fade-up"
           style={{ animationDelay: "0.6s" }}>
 
-          We craft premium digital experiences that elevate brands to positions of authority and distinction.
+          A modern agency born from 10+ years of independent expertise. We combine strategic mastery with AI-powered execution to position ambitious brands as category leaders.
         </p>
         <div
           className="flex flex-col sm:flex-row gap-4 justify-center opacity-0 animate-fade-up"
