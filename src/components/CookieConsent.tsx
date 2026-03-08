@@ -122,7 +122,7 @@ const CookieConsent = () => {
             )}
             <button
               onClick={handleAcceptAll}
-              className="flex items-center justify-center gap-2 px-6 py-3 bg-gold text-navy-dark font-body text-sm font-semibold tracking-wider uppercase hover:bg-gold-light transition-colors"
+              className="flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] bg-gold text-navy-dark font-body text-sm font-semibold tracking-wider uppercase hover:bg-gold-light transition-colors"
             >
               Accept All
             </button>
