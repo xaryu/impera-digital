@@ -3,8 +3,10 @@ import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const Contact = () => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -19,26 +21,25 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Form submission logic
     console.log("Form submitted:", formData);
   };
 
   return (
     <div className="min-h-screen">
-      <SEO title="Contact Impera — Begin Your Ascent" description="Ready to elevate your brand? Get in touch with Impera to discuss your vision and start your journey to digital distinction." path="/contact" />
+      <SEO title={`${t("contactPage.title")} ${t("contactPage.titleHighlight")} — Impera`} description={t("contactPage.subtitle")} path="/contact" />
       <Navbar />
 
       {/* Hero */}
       <section className="pt-32 pb-20 bg-navy-gradient">
         <div className="container mx-auto px-6 text-center">
           <p className="font-body text-sm tracking-[0.4em] text-gold uppercase mb-6">
-            Let's Connect
+            {t("contactPage.eyebrow")}
           </p>
           <h1 className="font-display text-5xl md:text-7xl font-bold text-cream leading-tight mb-8">
-            Begin Your <span className="text-gold-gradient">Ascent</span>
+            {t("contactPage.title")} <span className="text-gold-gradient">{t("contactPage.titleHighlight")}</span>
           </h1>
           <p className="font-body text-lg text-gold-muted max-w-2xl mx-auto">
-            Every empire begins with a single decision. Tell us about your vision, and let's discuss how Impera can bring it to life.
+            {t("contactPage.subtitle")}
           </p>
         </div>
       </section>
@@ -50,94 +51,55 @@ const Contact = () => {
             {/* Form */}
             <div className="lg:col-span-3">
               <h2 className="font-display text-3xl font-bold text-navy mb-8">
-                Get in Touch
+                {t("contactPage.formTitle")}
               </h2>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <label className="block font-body text-xs tracking-wider text-muted-foreground uppercase mb-2">
-                      Your Name
+                      {t("contactPage.nameLabel")}
                     </label>
-                    <input
-                      type="text"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 bg-background border border-border font-body text-sm text-foreground focus:border-gold focus:outline-none transition-colors"
-                      placeholder="John Smith"
-                    />
+                    <input type="text" name="name" value={formData.name} onChange={handleChange} required className="w-full px-4 py-3 bg-background border border-border font-body text-sm text-foreground focus:border-gold focus:outline-none transition-colors" placeholder={t("contactPage.namePlaceholder")} />
                   </div>
                   <div>
                     <label className="block font-body text-xs tracking-wider text-muted-foreground uppercase mb-2">
-                      Email Address
+                      {t("contactPage.emailLabel")}
                     </label>
-                    <input
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 bg-background border border-border font-body text-sm text-foreground focus:border-gold focus:outline-none transition-colors"
-                      placeholder="john@company.com"
-                    />
+                    <input type="email" name="email" value={formData.email} onChange={handleChange} required className="w-full px-4 py-3 bg-background border border-border font-body text-sm text-foreground focus:border-gold focus:outline-none transition-colors" placeholder={t("contactPage.emailPlaceholder")} />
                   </div>
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <label className="block font-body text-xs tracking-wider text-muted-foreground uppercase mb-2">
-                      Company
+                      {t("contactPage.companyLabel")}
                     </label>
-                    <input
-                      type="text"
-                      name="company"
-                      value={formData.company}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 bg-background border border-border font-body text-sm text-foreground focus:border-gold focus:outline-none transition-colors"
-                      placeholder="Your Company"
-                    />
+                    <input type="text" name="company" value={formData.company} onChange={handleChange} className="w-full px-4 py-3 bg-background border border-border font-body text-sm text-foreground focus:border-gold focus:outline-none transition-colors" placeholder={t("contactPage.companyPlaceholder")} />
                   </div>
                   <div>
                     <label className="block font-body text-xs tracking-wider text-muted-foreground uppercase mb-2">
-                      Service of Interest
+                      {t("contactPage.serviceLabel")}
                     </label>
-                    <select
-                      name="service"
-                      value={formData.service}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 bg-background border border-border font-body text-sm text-foreground focus:border-gold focus:outline-none transition-colors appearance-none"
-                    >
-                      <option value="">Select a service</option>
-                      <option value="brand">Brand Identity</option>
-                      <option value="web">Web Design & Development</option>
-                      <option value="marketing">Digital Marketing</option>
-                      <option value="strategy">Growth Strategy</option>
-                      <option value="multiple">Multiple Services</option>
+                    <select name="service" value={formData.service} onChange={handleChange} className="w-full px-4 py-3 bg-background border border-border font-body text-sm text-foreground focus:border-gold focus:outline-none transition-colors appearance-none">
+                      <option value="">{t("contactPage.serviceDefault")}</option>
+                      <option value="brand">{t("contactPage.serviceBrand")}</option>
+                      <option value="web">{t("contactPage.serviceWeb")}</option>
+                      <option value="marketing">{t("contactPage.serviceMarketing")}</option>
+                      <option value="strategy">{t("contactPage.serviceStrategy")}</option>
+                      <option value="multiple">{t("contactPage.serviceMultiple")}</option>
                     </select>
                   </div>
                 </div>
 
                 <div>
                   <label className="block font-body text-xs tracking-wider text-muted-foreground uppercase mb-2">
-                    Tell Us About Your Project
+                    {t("contactPage.messageLabel")}
                   </label>
-                  <textarea
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    rows={6}
-                    className="w-full px-4 py-3 bg-background border border-border font-body text-sm text-foreground focus:border-gold focus:outline-none transition-colors resize-none"
-                    placeholder="Describe your vision, goals, and timeline..."
-                  />
+                  <textarea name="message" value={formData.message} onChange={handleChange} required rows={6} className="w-full px-4 py-3 bg-background border border-border font-body text-sm text-foreground focus:border-gold focus:outline-none transition-colors resize-none" placeholder={t("contactPage.messagePlaceholder")} />
                 </div>
 
-                <button
-                  type="submit"
-                  className="px-12 py-4 bg-gold text-navy-dark font-body text-sm font-semibold tracking-wider uppercase hover:bg-gold-light transition-colors duration-300"
-                >
-                  Send Inquiry
+                <button type="submit" className="px-12 py-4 bg-gold text-navy-dark font-body text-sm font-semibold tracking-wider uppercase hover:bg-gold-light transition-colors duration-300">
+                  {t("contactPage.submit")}
                 </button>
               </form>
             </div>
@@ -145,71 +107,47 @@ const Contact = () => {
             {/* Contact Info */}
             <div className="lg:col-span-2">
               <h2 className="font-display text-3xl font-bold text-navy mb-8">
-                Contact Details
+                {t("contactPage.detailsTitle")}
               </h2>
               <div className="space-y-8">
                 <div className="flex items-start gap-4">
                   <Mail className="w-5 h-5 text-gold mt-1 shrink-0" />
                   <div>
-                    <p className="font-body text-xs tracking-wider text-muted-foreground uppercase mb-1">
-                      Email
-                    </p>
-                    <a
-                      href="mailto:contact@impera-group.com"
-                      className="font-body text-navy hover:text-gold transition-colors"
-                    >
-                      contact@impera-group.com
-                    </a>
+                    <p className="font-body text-xs tracking-wider text-muted-foreground uppercase mb-1">{t("contactPage.email")}</p>
+                    <a href="mailto:contact@impera-group.com" className="font-body text-navy hover:text-gold transition-colors">contact@impera-group.com</a>
                   </div>
                 </div>
-
                 <div className="flex items-start gap-4">
                   <Phone className="w-5 h-5 text-gold mt-1 shrink-0" />
                   <div>
-                    <p className="font-body text-xs tracking-wider text-muted-foreground uppercase mb-1">
-                      Phone
-                    </p>
-                    <a
-                      href="tel:+32492202377"
-                      className="font-body text-navy hover:text-gold transition-colors"
-                    >
-                      +32 492 20 23 77
-                    </a>
+                    <p className="font-body text-xs tracking-wider text-muted-foreground uppercase mb-1">{t("contactPage.phone")}</p>
+                    <a href="tel:+32492202377" className="font-body text-navy hover:text-gold transition-colors">+32 492 20 23 77</a>
                   </div>
                 </div>
-
                 <div className="flex items-start gap-4">
                   <MapPin className="w-5 h-5 text-gold mt-1 shrink-0" />
                   <div>
-                    <p className="font-body text-xs tracking-wider text-muted-foreground uppercase mb-1">
-                      Office
-                    </p>
-                    <p className="font-body text-navy">
-                      Justus Lipsiusstraat 16
-                      <br />
-                      3000, Leuven
-                    </p>
+                    <p className="font-body text-xs tracking-wider text-muted-foreground uppercase mb-1">{t("contactPage.office")}</p>
+                    <p className="font-body text-navy">Justus Lipsiusstraat 16<br />3000, Leuven</p>
                   </div>
                 </div>
               </div>
 
               {/* Hours */}
               <div className="mt-12 p-8 border border-border bg-background">
-                <h3 className="font-display text-lg font-semibold text-navy mb-4">
-                  Office Hours
-                </h3>
+                <h3 className="font-display text-lg font-semibold text-navy mb-4">{t("contactPage.hoursTitle")}</h3>
                 <div className="space-y-2">
                   <div className="flex justify-between font-body text-sm">
-                    <span className="text-muted-foreground">Monday – Friday</span>
-                    <span className="text-navy">9:00 – 18:00</span>
+                    <span className="text-muted-foreground">{t("contactPage.monFri")}</span>
+                    <span className="text-navy">{t("contactPage.monFriHours")}</span>
                   </div>
                   <div className="flex justify-between font-body text-sm">
-                    <span className="text-muted-foreground">Saturday</span>
-                    <span className="text-navy">By Appointment</span>
+                    <span className="text-muted-foreground">{t("contactPage.saturday")}</span>
+                    <span className="text-navy">{t("contactPage.saturdayHours")}</span>
                   </div>
                   <div className="flex justify-between font-body text-sm">
-                    <span className="text-muted-foreground">Sunday</span>
-                    <span className="text-navy">Closed</span>
+                    <span className="text-muted-foreground">{t("contactPage.sunday")}</span>
+                    <span className="text-navy">{t("contactPage.sundayHours")}</span>
                   </div>
                 </div>
               </div>

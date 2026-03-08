@@ -337,6 +337,21 @@
     "title": "Réserver un Appel Gratuit de 30 Minutes",
     "subtitle": "Choisissez un créneau qui vous convient — nous discuterons de vos objectifs et de comment Impera peut vous aider."
   },
+  "notFound": {
+    "title": "404",
+    "subtitle": "Oups ! Page non trouvée",
+    "backHome": "Retour à l'Accueil"
+  },
+  "privacy": {
+    "legal": "Juridique",
+    "title": "Politique de Confidentialité",
+    "lastUpdated": "Dernière mise à jour : 8 mars 2025"
+  },
+  "terms": {
+    "legal": "Juridique",
+    "title": "Conditions d'Utilisation",
+    "lastUpdated": "Dernière mise à jour : 8 mars 2025"
+  },
   "languageSwitcher": {
     "en": "English",
     "fr": "Français",

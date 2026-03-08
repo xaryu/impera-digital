@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+import { useTranslation } from "react-i18next";
 
 const SITE_URL = "https://impera-digital.lovable.app";
 const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.png`;
@@ -19,8 +20,7 @@ const organizationSchema = {
   name: "Impera",
   url: SITE_URL,
   logo: `${SITE_URL}/og-image.png`,
-  description:
-    "Premium digital media agency crafting luxury brand experiences that command authority and distinction.",
+  description: "Premium digital media agency crafting luxury brand experiences that command authority and distinction.",
   email: "contact@impera-group.com",
   telephone: "+32 492 20 23 77",
   address: {
@@ -31,54 +31,15 @@ const organizationSchema = {
     addressCountry: "BE",
   },
   foundingDate: "2025",
-  knowsAbout: [
-    "Brand Identity",
-    "Digital Marketing",
-    "Growth Strategy",
-    "Web Development",
-    "SEO",
-    "Social Media Marketing",
-  ],
+  knowsAbout: ["Brand Identity", "Digital Marketing", "Growth Strategy", "Web Development", "SEO", "Social Media Marketing"],
   hasOfferCatalog: {
     "@type": "OfferCatalog",
     name: "Digital Marketing Services",
     itemListElement: [
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "Brand Identity",
-          description:
-            "Complete brand systems that communicate prestige, consistency, and authority.",
-        },
-      },
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "Digital Marketing",
-          description:
-            "Multi-channel campaigns that elevate visibility and drive measurable growth.",
-        },
-      },
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "Growth Strategy",
-          description:
-            "Data-driven strategies that transform brands into market leaders.",
-        },
-      },
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "Web Development",
-          description:
-            "High-performance digital platforms that convert visitors into loyal clients.",
-        },
-      },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Brand Identity", description: "Complete brand systems that communicate prestige, consistency, and authority." } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Digital Marketing", description: "Multi-channel campaigns that elevate visibility and drive measurable growth." } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Growth Strategy", description: "Data-driven strategies that transform brands into market leaders." } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Web Development", description: "High-performance digital platforms that convert visitors into loyal clients." } },
     ],
   },
 };
@@ -117,8 +78,7 @@ const teamPersonSchemas = [
     worksFor: { "@type": "Organization", name: "Impera" },
     knowsAbout: ["Growth Strategy", "Finance", "Artificial Intelligence"],
     knowsLanguage: 7,
-    description:
-      "Multilingual founder with expertise in finance and AI, leading Impera's growth strategy.",
+    description: "Multilingual founder with expertise in finance and AI, leading Impera's growth strategy.",
   },
   {
     "@context": "https://schema.org",
@@ -127,8 +87,7 @@ const teamPersonSchemas = [
     jobTitle: "Senior Marketing Strategist",
     worksFor: { "@type": "Organization", name: "Impera" },
     knowsAbout: ["Digital Marketing", "Marketing Strategy"],
-    description:
-      "Senior Marketing Strategist with Silicon Valley experience driving Impera's marketing vision.",
+    description: "Senior Marketing Strategist with Silicon Valley experience driving Impera's marketing vision.",
   },
   {
     "@context": "https://schema.org",
@@ -137,16 +96,11 @@ const teamPersonSchemas = [
     jobTitle: "SEO & Technical Specialist",
     worksFor: { "@type": "Organization", name: "Impera" },
     knowsAbout: ["SEO", "Technical SEO", "Organic Growth"],
-    description:
-      "SEO & Technical Specialist focused on organic growth and search engine optimization.",
+    description: "SEO & Technical Specialist focused on organic growth and search engine optimization.",
   },
 ];
 
-export const defaultJsonLd = [
-  organizationSchema,
-  localBusinessSchema,
-  ...teamPersonSchemas,
-];
+export const defaultJsonLd = [organizationSchema, localBusinessSchema, ...teamPersonSchemas];
 
 const SEO = ({
   title = "Impera — Command Your Digital Presence",
@@ -156,14 +110,34 @@ const SEO = ({
   ogType = "website",
   jsonLd,
 }: SEOProps) => {
-  const url = `${SITE_URL}${path}`;
+  const { i18n } = useTranslation();
+  const currentLang = i18n.language?.slice(0, 2) || "en";
+  
+  // Build canonical URL based on current language
+  const langPrefix = currentLang === "en" ? "" : `/${currentLang}`;
+  const url = `${SITE_URL}${langPrefix}${path}`;
+  
   const schemas = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : defaultJsonLd;
+
+  // Generate hreflang URLs
+  const hreflangs = [
+    { lang: "en", href: `${SITE_URL}${path}` },
+    { lang: "fr", href: `${SITE_URL}/fr${path}` },
+    { lang: "nl", href: `${SITE_URL}/nl${path}` },
+    { lang: "x-default", href: `${SITE_URL}${path}` },
+  ];
 
   return (
     <Helmet>
       <title>{title}</title>
       <meta name="description" content={description} />
       <link rel="canonical" href={url} />
+      <html lang={currentLang} />
+
+      {/* Hreflang alternate links */}
+      {hreflangs.map(({ lang, href }) => (
+        <link key={lang} rel="alternate" hrefLang={lang} href={href} />
+      ))}
 
       {/* Open Graph */}
       <meta property="og:type" content={ogType} />
@@ -174,6 +148,7 @@ const SEO = ({
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       <meta property="og:site_name" content={SITE_NAME} />
+      <meta property="og:locale" content={currentLang === "fr" ? "fr_FR" : currentLang === "nl" ? "nl_NL" : "en_US"} />
 
       {/* Twitter / WhatsApp */}
       <meta name="twitter:card" content="summary_large_image" />

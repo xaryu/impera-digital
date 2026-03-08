@@ -337,6 +337,21 @@
     "title": "Book a Free 30-Minute Call",
     "subtitle": "Choose a time that works for you — we'll discuss your goals and how Impera can help."
   },
+  "notFound": {
+    "title": "404",
+    "subtitle": "Oops! Page not found",
+    "backHome": "Return to Home"
+  },
+  "privacy": {
+    "legal": "Legal",
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated: March 8, 2025"
+  },
+  "terms": {
+    "legal": "Legal",
+    "title": "Terms of Service",
+    "lastUpdated": "Last updated: March 8, 2025"
+  },
   "languageSwitcher": {
     "en": "English",
     "fr": "Français",
