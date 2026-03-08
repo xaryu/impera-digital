@@ -16,6 +16,7 @@ export type Database = {
     Tables: {
       blog_posts: {
         Row: {
+          author_id: string | null
           category: string
           content: string
           created_at: string
@@ -29,6 +30,7 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          author_id?: string | null
           category?: string
           content?: string
           created_at?: string
@@ -42,6 +44,7 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          author_id?: string | null
           category?: string
           content?: string
           created_at?: string
@@ -54,7 +57,15 @@ export type Database = {
           title?: string
           updated_at?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "blog_posts_author_id_fkey"
+            columns: ["author_id"]
+            isOneToOne: false
+            referencedRelation: "team_members"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       job_applications: {
         Row: {
