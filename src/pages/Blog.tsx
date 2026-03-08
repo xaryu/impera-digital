@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import SEO from "@/components/SEO";
-import { Link } from "react-router-dom";
+import LocalizedLink from "@/components/LocalizedLink";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import Navbar from "@/components/Navbar";
@@ -9,6 +9,7 @@ import AdminAuth from "@/components/AdminAuth";
 import BlogEditor from "@/components/BlogEditor";
 import { Plus, Pencil, Settings, LogOut, Clock, ChevronLeft, ChevronRight } from "lucide-react";
 import { toast } from "sonner";
+import { useTranslation } from "react-i18next";
 
 const POSTS_PER_PAGE = 6;
 
@@ -47,6 +48,7 @@ const fetchPosts = async (isAdmin: boolean): Promise<BlogPost[]> => {
 };
 
 const Blog = () => {
+  const { t, i18n } = useTranslation();
   const [isAdmin, setIsAdmin] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [editingPost, setEditingPost] = useState<BlogPost | null | undefined>(undefined);
@@ -71,8 +73,9 @@ const Blog = () => {
   };
 
   const formatDate = (dateStr: string | null) => {
-    if (!dateStr) return "Draft";
-    return new Date(dateStr).toLocaleDateString("en-US", {
+    if (!dateStr) return t("blogPage.draft");
+    const locale = i18n.language === "fr" ? "fr-FR" : i18n.language === "nl" ? "nl-NL" : "en-US";
+    return new Date(dateStr).toLocaleDateString(locale, {
       year: "numeric",
       month: "long",
       day: "numeric",
@@ -86,20 +89,20 @@ const Blog = () => {
 
   return (
     <div className="min-h-screen bg-navy-dark">
-      <SEO title="Blog — Impera Insights" description="Expert insights on branding, digital marketing, and growth strategy from the Impera team." path="/blog" />
+      <SEO title={`${t("blogPage.title")} — Impera`} description={t("blogPage.subtitle")} path="/blog" />
       <Navbar />
 
       {/* Hero */}
       <section className="pt-32 pb-20 px-6">
         <div className="container mx-auto text-center">
           <p className="font-body text-sm tracking-[0.3em] text-gold uppercase mb-4">
-            Insights & Perspectives
+            {t("blogPage.eyebrow")}
           </p>
           <h1 className="font-display text-4xl md:text-6xl font-bold text-cream leading-tight mb-6">
-            The Impera Journal
+            {t("blogPage.title")}
           </h1>
           <p className="font-body text-gold-muted max-w-2xl mx-auto leading-relaxed">
-            Strategic thinking, design philosophy, and industry insights from the minds behind premium digital experiences.
+            {t("blogPage.subtitle")}
           </p>
           {isAdmin && (
             <button
@@ -107,7 +110,7 @@ const Blog = () => {
               className="mt-8 inline-flex items-center gap-2 px-8 py-3 bg-gold text-navy-dark font-body text-xs font-semibold tracking-wider uppercase hover:bg-gold-light transition-colors"
             >
               <Plus className="w-4 h-4" />
-              New Post
+              {t("blogPage.newPost")}
             </button>
           )}
         </div>
@@ -131,30 +134,20 @@ const Blog = () => {
             <section className="px-6 pb-16">
               <div className="container mx-auto">
                 <div className="grid md:grid-cols-2 gap-0 border border-gold/20 overflow-hidden relative group rounded-lg">
-                  <Link to={`/blog/${featured.slug}`} className="h-72 md:h-auto overflow-hidden block">
-                    <img
-                      src={featured.image_url || ""}
-                      alt={featured.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                    />
-                  </Link>
+                  <LocalizedLink to={`/blog/${featured.slug}`} className="h-72 md:h-auto overflow-hidden block">
+                    <img src={featured.image_url || ""} alt={featured.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                  </LocalizedLink>
                   <div className="p-10 md:p-14 flex flex-col justify-center bg-navy/50">
                     <div className="flex flex-wrap items-center gap-2 mb-4">
                       <span className="font-body text-xs tracking-[0.3em] text-gold uppercase">
-                        Featured — {featured.category}
+                        {t("blogPage.featured")} — {featured.category}
                       </span>
-                      {!featured.published && (
-                        <span className="text-xs text-destructive/80">(Draft)</span>
-                      )}
+                      {!featured.published && <span className="text-xs text-destructive/80">({t("blogPage.draft")})</span>}
                     </div>
-                    <Link to={`/blog/${featured.slug}`}>
-                      <h2 className="font-display text-2xl md:text-3xl font-bold text-cream mb-4 leading-tight hover:text-gold transition-colors">
-                        {featured.title}
-                      </h2>
-                    </Link>
-                    <p className="font-body text-gold-muted leading-relaxed mb-6">
-                      {featured.excerpt}
-                    </p>
+                    <LocalizedLink to={`/blog/${featured.slug}`}>
+                      <h2 className="font-display text-2xl md:text-3xl font-bold text-cream mb-4 leading-tight hover:text-gold transition-colors">{featured.title}</h2>
+                    </LocalizedLink>
+                    <p className="font-body text-gold-muted leading-relaxed mb-6">{featured.excerpt}</p>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-4">
                         {featured.author && (
@@ -169,9 +162,7 @@ const Blog = () => {
                             <span className="font-body text-xs text-gold-muted">{featured.author.name}</span>
                           </div>
                         )}
-                        <span className="font-body text-xs text-gold-muted/60">
-                          {formatDate(featured.published_at)}
-                        </span>
+                        <span className="font-body text-xs text-gold-muted/60">{formatDate(featured.published_at)}</span>
                         <span className="inline-flex items-center gap-1 font-body text-xs text-gold-muted/60">
                           <Clock className="w-3 h-3" />
                           {estimateReadTime(featured.content)} min
@@ -183,9 +174,9 @@ const Blog = () => {
                             <Pencil className="w-3.5 h-3.5" />
                           </button>
                         )}
-                        <Link to={`/blog/${featured.slug}`} className="font-body text-sm text-gold tracking-wider uppercase hover:text-cream transition-colors">
-                          Read →
-                        </Link>
+                        <LocalizedLink to={`/blog/${featured.slug}`} className="font-body text-sm text-gold tracking-wider uppercase hover:text-cream transition-colors">
+                          {t("blogPage.read")}
+                        </LocalizedLink>
                       </div>
                     </div>
                   </div>
@@ -200,35 +191,19 @@ const Blog = () => {
               <div className="container mx-auto">
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {paginatedRest.map((post) => (
-                    <article
-                      key={post.id}
-                      className="border border-gold/10 bg-navy/30 hover:border-gold/30 transition-all duration-500 group relative rounded-lg overflow-hidden"
-                    >
-                      <Link to={`/blog/${post.slug}`} className="block h-52 overflow-hidden">
-                        <img
-                          src={post.image_url || ""}
-                          alt={post.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                          loading="lazy"
-                        />
-                      </Link>
+                    <article key={post.id} className="border border-gold/10 bg-navy/30 hover:border-gold/30 transition-all duration-500 group relative rounded-lg overflow-hidden">
+                      <LocalizedLink to={`/blog/${post.slug}`} className="block h-52 overflow-hidden">
+                        <img src={post.image_url || ""} alt={post.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+                      </LocalizedLink>
                       <div className="p-7">
                         <div className="flex items-center gap-2 mb-3">
-                          <span className="font-body text-[10px] tracking-[0.3em] text-gold uppercase">
-                            {post.category}
-                          </span>
-                          {!post.published && (
-                            <span className="text-[10px] text-destructive/80">(Draft)</span>
-                          )}
+                          <span className="font-body text-[10px] tracking-[0.3em] text-gold uppercase">{post.category}</span>
+                          {!post.published && <span className="text-[10px] text-destructive/80">({t("blogPage.draft")})</span>}
                         </div>
-                        <Link to={`/blog/${post.slug}`}>
-                          <h3 className="font-display text-xl font-bold text-cream mb-3 leading-tight hover:text-gold transition-colors">
-                            {post.title}
-                          </h3>
-                        </Link>
-                        <p className="font-body text-sm text-gold-muted leading-relaxed mb-5 line-clamp-2">
-                          {post.excerpt}
-                        </p>
+                        <LocalizedLink to={`/blog/${post.slug}`}>
+                          <h3 className="font-display text-xl font-bold text-cream mb-3 leading-tight hover:text-gold transition-colors">{post.title}</h3>
+                        </LocalizedLink>
+                        <p className="font-body text-sm text-gold-muted leading-relaxed mb-5 line-clamp-2">{post.excerpt}</p>
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-3">
                             {post.author && (
@@ -243,9 +218,7 @@ const Blog = () => {
                                 <span className="font-body text-[10px] text-gold-muted">{post.author.name}</span>
                               </div>
                             )}
-                            <span className="font-body text-[10px] text-gold-muted/50">
-                              {formatDate(post.published_at)}
-                            </span>
+                            <span className="font-body text-[10px] text-gold-muted/50">{formatDate(post.published_at)}</span>
                             <span className="inline-flex items-center gap-0.5 font-body text-[10px] text-gold-muted/50">
                               <Clock className="w-2.5 h-2.5" />
                               {estimateReadTime(post.content)}m
@@ -257,9 +230,9 @@ const Blog = () => {
                                 <Pencil className="w-3 h-3" />
                               </button>
                             )}
-                            <Link to={`/blog/${post.slug}`} className="font-body text-xs text-gold tracking-wider uppercase hover:text-cream transition-colors">
-                              Read →
-                            </Link>
+                            <LocalizedLink to={`/blog/${post.slug}`} className="font-body text-xs text-gold tracking-wider uppercase hover:text-cream transition-colors">
+                              {t("blogPage.read")}
+                            </LocalizedLink>
                           </div>
                         </div>
                       </div>
@@ -274,31 +247,15 @@ const Blog = () => {
           {totalPages > 1 && (
             <section className="px-6 pb-24">
               <div className="container mx-auto flex items-center justify-center gap-2">
-                <button
-                  onClick={() => setPage((p) => Math.max(1, p - 1))}
-                  disabled={page === 1}
-                  className="w-10 h-10 rounded-full border border-gold/20 flex items-center justify-center text-gold-muted hover:text-gold hover:border-gold/50 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
-                >
+                <button onClick={() => setPage((p) => Math.max(1, p - 1))} disabled={page === 1} className="w-10 h-10 rounded-full border border-gold/20 flex items-center justify-center text-gold-muted hover:text-gold hover:border-gold/50 transition-colors disabled:opacity-30 disabled:cursor-not-allowed">
                   <ChevronLeft className="w-4 h-4" />
                 </button>
                 {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
-                  <button
-                    key={p}
-                    onClick={() => setPage(p)}
-                    className={`w-10 h-10 rounded-full font-body text-sm transition-colors ${
-                      p === page
-                        ? "bg-gold text-navy-dark font-bold"
-                        : "border border-gold/20 text-gold-muted hover:text-gold hover:border-gold/50"
-                    }`}
-                  >
+                  <button key={p} onClick={() => setPage(p)} className={`w-10 h-10 rounded-full font-body text-sm transition-colors ${p === page ? "bg-gold text-navy-dark font-bold" : "border border-gold/20 text-gold-muted hover:text-gold hover:border-gold/50"}`}>
                     {p}
                   </button>
                 ))}
-                <button
-                  onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
-                  disabled={page === totalPages}
-                  className="w-10 h-10 rounded-full border border-gold/20 flex items-center justify-center text-gold-muted hover:text-gold hover:border-gold/50 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
-                >
+                <button onClick={() => setPage((p) => Math.min(totalPages, p + 1))} disabled={page === totalPages} className="w-10 h-10 rounded-full border border-gold/20 flex items-center justify-center text-gold-muted hover:text-gold hover:border-gold/50 transition-colors disabled:opacity-30 disabled:cursor-not-allowed">
                   <ChevronRight className="w-4 h-4" />
                 </button>
               </div>
@@ -311,18 +268,12 @@ const Blog = () => {
       <section className="py-12 bg-navy-dark text-center relative">
         <div className="absolute bottom-4 right-6">
           {isAdmin ? (
-            <button
-              onClick={handleLogout}
-              className="flex items-center gap-2 font-body text-xs text-gold/40 hover:text-gold/80 transition-colors"
-            >
+            <button onClick={handleLogout} className="flex items-center gap-2 font-body text-xs text-gold/40 hover:text-gold/80 transition-colors">
               <LogOut className="w-3 h-3" />
               Exit Admin
             </button>
           ) : (
-            <button
-              onClick={() => setShowAuthModal(true)}
-              className="flex items-center gap-2 font-body text-xs text-gold/20 hover:text-gold/60 transition-colors"
-            >
+            <button onClick={() => setShowAuthModal(true)} className="flex items-center gap-2 font-body text-xs text-gold/20 hover:text-gold/60 transition-colors">
               <Settings className="w-3 h-3" />
               Admin
             </button>
@@ -330,19 +281,8 @@ const Blog = () => {
         </div>
       </section>
 
-      {showAuthModal && (
-        <AdminAuth
-          onClose={() => setShowAuthModal(false)}
-          onLoggedIn={() => setIsAdmin(true)}
-        />
-      )}
-
-      {editingPost !== undefined && (
-        <BlogEditor
-          post={editingPost}
-          onClose={() => setEditingPost(undefined)}
-        />
-      )}
+      {showAuthModal && <AdminAuth onClose={() => setShowAuthModal(false)} onLoggedIn={() => setIsAdmin(true)} />}
+      {editingPost !== undefined && <BlogEditor post={editingPost} onClose={() => setEditingPost(undefined)} />}
 
       <Footer />
     </div>

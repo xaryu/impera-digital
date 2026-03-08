@@ -5,41 +5,16 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import LeadershipSection from "@/components/LeadershipSection";
 import AdminAuth from "@/components/AdminAuth";
-import { Link } from "react-router-dom";
+import LocalizedLink from "@/components/LocalizedLink";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import { useTranslation } from "react-i18next";
 
-const stats = [
-  { value: "10+", label: "Years Collective Experience" },
-  { value: "6", label: "Specialists United" },
-  { value: "100+", label: "Clients Served" },
-  { value: "2025", label: "Year of Formation" },
-];
-
-const values = [
-  {
-    icon: Shield,
-    title: "Authority",
-    description: "True authority is earned through mastery — a decade of independent expertise, now amplified by the precision of modern technology. We don't follow the market. We command it.",
-  },
-  {
-    icon: Target,
-    title: "Precision",
-    description: "Every pixel, every data point, every campaign is engineered with intent. We pair battle-tested intuition with AI-driven analytics to eliminate guesswork and deliver certainty.",
-  },
-  {
-    icon: Award,
-    title: "Excellence",
-    description: "Mediocrity is the refuge of those who lack ambition. We hold every deliverable to the standard our own reputations were built on — nothing leaves our hands until it commands respect.",
-  },
-  {
-    icon: Users,
-    title: "Partnership",
-    description: "Empires are not built alone. We stand beside the brands we serve — not as vendors, but as allies invested in their ascent. Your victories are ours.",
-  },
-];
+const valueIcons = [Shield, Target, Award, Users];
+const valueKeys = ["authority", "precision", "excellence", "partnership"];
 
 const About = () => {
+  const { t } = useTranslation();
   const [isAdmin, setIsAdmin] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
 
@@ -58,22 +33,29 @@ const About = () => {
     toast.success("Logged out");
   };
 
+  const stats = [
+    { value: t("aboutPage.stat1"), label: t("aboutPage.stat1Label") },
+    { value: t("aboutPage.stat2"), label: t("aboutPage.stat2Label") },
+    { value: t("aboutPage.stat3"), label: t("aboutPage.stat3Label") },
+    { value: t("aboutPage.stat4"), label: t("aboutPage.stat4Label") },
+  ];
+
   return (
     <div className="min-h-screen">
-      <SEO title="About Impera — Our Story & Team" description="Founded in 2025 by digital veterans with over a decade of expertise. Learn about the team behind Impera and our mission to elevate ambitious brands." path="/about" />
+      <SEO title={`${t("aboutPage.title")} ${t("aboutPage.titleHighlight")} — Impera`} description={t("aboutPage.intro").slice(0, 155)} path="/about" />
       <Navbar />
 
       {/* Hero */}
       <section className="pt-32 pb-20 bg-navy-gradient">
         <div className="container mx-auto px-6 text-center">
           <p className="font-body text-sm tracking-[0.4em] text-gold uppercase mb-6">
-            Our Story
+            {t("aboutPage.eyebrow")}
           </p>
           <h1 className="font-display text-5xl md:text-7xl font-bold text-cream leading-tight mb-8">
-            Built by Veterans, <span className="text-gold-gradient">Launched for the Future.</span>
+            {t("aboutPage.title")} <span className="text-gold-gradient">{t("aboutPage.titleHighlight")}</span>
           </h1>
           <p className="font-body text-lg text-gold-muted max-w-3xl mx-auto">
-            Impera was founded in 2025 by digital specialists who spent over a decade mastering their crafts as independent professionals. After years of delivering results for ambitious brands across Europe, we recognized businesses needed strategic partners who could combine deep expertise with cutting-edge technology. Rather than continue working in isolation, we united our skills to create Impera — a boutique agency built for brands that refuse to settle.
+            {t("aboutPage.intro")}
           </p>
         </div>
       </section>
@@ -84,19 +66,19 @@ const About = () => {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
               <p className="font-body text-sm tracking-[0.3em] text-gold uppercase mb-4">
-                Our Philosophy
+                {t("aboutPage.philosophyEyebrow")}
               </p>
               <h2 className="font-display text-3xl md:text-4xl font-bold text-navy mb-8 leading-tight">
-                Where Vision Meets Authority
+                {t("aboutPage.philosophyTitle")}
               </h2>
               <p className="font-body text-muted-foreground leading-relaxed mb-6">
-                For over a decade, the specialists behind Impera operated independently — building brands, engineering platforms, and driving growth for clients across Europe. Startups, scale-ups, and established enterprises alike trusted them to deliver what others couldn't: results that commanded attention.
+                {t("aboutPage.philosophyP1")}
               </p>
               <p className="font-body text-muted-foreground leading-relaxed mb-6">
-                But working in isolation had its limits. The most ambitious projects demanded more than individual brilliance — they required the combined force of strategy, design, development, and performance working as one. That conviction became Impera: a modern agency built on 10+ years of collective mastery, enhanced by the tools and methodologies that define the next generation of digital excellence.
+                {t("aboutPage.philosophyP2")}
               </p>
               <p className="font-body text-muted-foreground leading-relaxed">
-                We are not a startup finding its way. We are seasoned specialists who chose to evolve — leveraging AI-powered insights, agile execution, and data-driven precision to set a new modern standard for what a digital agency can achieve.
+                {t("aboutPage.philosophyP3")}
               </p>
             </div>
 
@@ -124,27 +106,30 @@ const About = () => {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <p className="font-body text-sm tracking-[0.3em] text-gold uppercase mb-4">
-              What Drives Us
+              {t("aboutPage.valuesEyebrow")}
             </p>
             <h2 className="font-display text-3xl md:text-4xl font-bold text-cream">
-              The Principles Behind the Empire
+              {t("aboutPage.valuesTitle")}
             </h2>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {values.map((value) => (
-              <div
-                key={value.title}
-                className="p-8 border border-gold/15 hover:border-gold/30 transition-all duration-500"
-              >
-                <value.icon className="w-8 h-8 text-gold mb-6" />
-                <h3 className="font-display text-xl font-semibold text-cream mb-3">
-                  {value.title}
-                </h3>
-                <p className="font-body text-sm text-gold-muted leading-relaxed">
-                  {value.description}
-                </p>
-              </div>
-            ))}
+            {valueKeys.map((key, i) => {
+              const Icon = valueIcons[i];
+              return (
+                <div
+                  key={key}
+                  className="p-8 border border-gold/15 hover:border-gold/30 transition-all duration-500"
+                >
+                  <Icon className="w-8 h-8 text-gold mb-6" />
+                  <h3 className="font-display text-xl font-semibold text-cream mb-3">
+                    {t(`aboutPage.${key}Title`)}
+                  </h3>
+                  <p className="font-body text-sm text-gold-muted leading-relaxed">
+                    {t(`aboutPage.${key}Desc`)}
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -155,17 +140,17 @@ const About = () => {
       <section className="py-24 bg-navy-gradient text-center relative">
         <div className="container mx-auto px-6">
           <h2 className="font-display text-4xl md:text-5xl font-bold text-cream mb-6">
-            Built for Brands That Refuse to Settle
+            {t("aboutPage.ctaTitle")}
           </h2>
           <p className="font-body text-lg text-gold-muted max-w-xl mx-auto mb-10">
-            We partner with ambitious businesses ready to claim digital authority. If average was never an option for you, we should talk.
+            {t("aboutPage.ctaDesc")}
           </p>
-          <Link
+          <LocalizedLink
             to="/contact"
             className="inline-block px-12 py-5 bg-gold text-navy-dark font-body text-sm font-semibold tracking-wider uppercase hover:bg-gold-light transition-colors duration-300"
           >
-            Get in Touch
-          </Link>
+            {t("aboutPage.ctaButton")}
+          </LocalizedLink>
         </div>
         {/* Admin toggle */}
         <div className="absolute bottom-4 right-6">

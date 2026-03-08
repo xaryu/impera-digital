@@ -1,25 +1,29 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
+import { useTranslation } from "react-i18next";
 
 const Privacy = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="min-h-screen bg-navy-dark">
-      <SEO title="Privacy Policy — Impera" description="Read Impera's privacy policy to understand how we handle your data." path="/privacy" />
+      <SEO title={`${t("privacy.title")} — Impera`} description={t("privacy.title")} path="/privacy" />
       <Navbar />
 
       <section className="pt-32 pb-20 px-6">
         <div className="container mx-auto max-w-3xl">
           <p className="font-body text-sm tracking-[0.3em] text-gold uppercase mb-4">
-            Legal
+            {t("privacy.legal")}
           </p>
           <h1 className="font-display text-3xl md:text-5xl font-bold text-cream mb-12">
-            Privacy Policy
+            {t("privacy.title")}
           </h1>
           <p className="font-body text-xs text-gold-muted mb-12">
-            Last updated: March 8, 2025
+            {t("privacy.lastUpdated")}
           </p>
 
+          {/* Privacy content stays in English as legal documents typically do */}
           <div className="space-y-10 font-body text-sm text-cream/80 leading-relaxed">
             <div>
               <h2 className="font-display text-xl font-bold text-cream mb-4">1. Introduction</h2>
