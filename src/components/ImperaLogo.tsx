@@ -1,17 +1,18 @@
-import laurelImg from "@/assets/laurel-crown.png";
+import wreathImg from "@/assets/laurel-wreath.png";
 
 const ImperaLogo = ({ className = "h-16" }: { className?: string }) => {
   return (
-    <div className={`flex flex-col items-center ${className}`}>
+    <div className={`flex flex-col items-center gap-0 ${className}`}>
       <img
-        src={laurelImg}
+        src={wreathImg}
         alt=""
-        className="h-[60%] w-auto object-contain"
+        className="h-[65%] w-auto object-contain"
         loading="eager"
+        draggable={false}
       />
       <span
-        className="font-display text-cream tracking-[0.25em] font-bold leading-none"
-        style={{ fontSize: '35%' }}
+        className="font-display text-cream tracking-[0.3em] font-bold leading-none uppercase"
+        style={{ fontSize: '28%' }}
       >
         IMPERA
       </span>
