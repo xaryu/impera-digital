@@ -68,10 +68,10 @@ const About = () => {
             Our Story
           </p>
           <h1 className="font-display text-5xl md:text-7xl font-bold text-cream leading-tight mb-8">
-            Forged by Experience. <span className="text-gold-gradient">Built for What's Next.</span>
+            Built by Veterans, <span className="text-gold-gradient">Launched for the Future.</span>
           </h1>
-          <p className="font-body text-lg text-gold-muted max-w-2xl mx-auto">
-            From the Latin <em className="text-gold">imperare</em> — to command. Impera was founded in 2025 by veterans of the digital industry who spent a decade mastering their craft before uniting under one banner.
+          <p className="font-body text-lg text-gold-muted max-w-3xl mx-auto">
+            Impera was founded in 2025 by digital specialists who spent over a decade mastering their crafts as independent professionals. After years of delivering results for ambitious brands across Europe, we recognized businesses needed strategic partners who could combine deep expertise with cutting-edge technology. Rather than continue working in isolation, we united our skills to create Impera — a boutique agency built for brands that refuse to settle.
           </p>
         </div>
       </section>
