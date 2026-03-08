@@ -1,4 +1,5 @@
 import FadeInSection from "./FadeInSection";
+import CalendlyDialog from "./CalendlyDialog";
 
 const CTASection = () => {
   return (
@@ -20,12 +21,11 @@ const CTASection = () => {
           <p className="font-body text-lg text-gold-muted max-w-xl mx-auto mb-12">
             Every empire begins with a single decision. Let's discuss how Impera can elevate your brand to its rightful position.
           </p>
-          <a
-            href="mailto:contact@impera-group.com"
-            className="inline-block px-12 py-5 bg-gold text-navy-dark font-body text-sm font-semibold tracking-wider uppercase btn-hover hover:bg-gold-light"
-          >
-            Begin Your Ascent
-          </a>
+          <CalendlyDialog>
+            <button className="inline-block px-12 py-5 bg-gold text-navy-dark font-body text-sm font-semibold tracking-wider uppercase btn-hover hover:bg-gold-light">
+              Book a Free Call
+            </button>
+          </CalendlyDialog>
         </FadeInSection>
       </div>
     </section>
