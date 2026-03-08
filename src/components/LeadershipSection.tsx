@@ -127,6 +127,13 @@ const MemberCard = ({
             onChange={(e) => setRole(e.target.value)}
             className="w-full text-center bg-transparent border-b border-gold/30 focus:border-gold/60 text-muted-foreground font-body text-xs tracking-wider uppercase outline-none pb-1"
           />
+          <textarea
+            value={bio}
+            onChange={(e) => setBio(e.target.value)}
+            placeholder="Bio / description..."
+            rows={3}
+            className="w-full mt-2 bg-transparent border border-gold/20 focus:border-gold/50 text-muted-foreground font-body text-sm outline-none p-2 rounded resize-none"
+          />
           <div className="flex justify-center gap-3 pt-2">
             <button onClick={handleSave} className="p-1 text-gold hover:text-gold-light">
               <Check className="w-4 h-4" />
