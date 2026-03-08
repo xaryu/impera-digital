@@ -337,6 +337,21 @@
     "title": "Boek een Gratis Gesprek van 30 Minuten",
     "subtitle": "Kies een tijd die u uitkomt — we bespreken uw doelen en hoe Impera kan helpen."
   },
+  "notFound": {
+    "title": "404",
+    "subtitle": "Oeps! Pagina niet gevonden",
+    "backHome": "Terug naar Home"
+  },
+  "privacy": {
+    "legal": "Juridisch",
+    "title": "Privacybeleid",
+    "lastUpdated": "Laatst bijgewerkt: 8 maart 2025"
+  },
+  "terms": {
+    "legal": "Juridisch",
+    "title": "Algemene Voorwaarden",
+    "lastUpdated": "Laatst bijgewerkt: 8 maart 2025"
+  },
   "languageSwitcher": {
     "en": "English",
     "fr": "Français",
