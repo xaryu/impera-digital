@@ -17,13 +17,16 @@ const Index = () => {
         description="Impera is a premium digital media agency crafting luxury brand experiences that command authority and distinction."
         path="/"
       />
+      <a href="#main-content" className="skip-to-content">Skip to main content</a>
       <Navbar />
-      <HeroSection />
-      <ServicesSection />
-      <WhyImperaSection />
-      <AboutSection />
-      <GuaranteeSection />
-      <CTASection />
+      <main id="main-content" role="main">
+        <HeroSection />
+        <ServicesSection />
+        <WhyImperaSection />
+        <AboutSection />
+        <GuaranteeSection />
+        <CTASection />
+      </main>
       <Footer />
       <ExitIntentPopup />
     </div>

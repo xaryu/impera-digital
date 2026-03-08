@@ -144,30 +144,30 @@ const CareerPost = () => {
           <div className="border border-gold/10 p-8 md:p-12 bg-navy/30">
             <h2 className="font-display text-2xl font-bold text-cream mb-2">{t("careerPost.applyTitle")}</h2>
             <p className="font-body text-sm text-gold-muted mb-8">{t("careerPost.applyDesc")}</p>
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6" noValidate>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label className="font-body text-xs tracking-wider uppercase text-gold-muted mb-2 block">{t("careerPost.fullName")}</label>
-                  <input type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} required maxLength={100} className="w-full bg-transparent border border-gold/10 focus:border-gold/50 px-4 py-3 font-body text-sm text-cream outline-none transition-colors" />
+                  <label htmlFor="apply-name" className="font-body text-xs tracking-wider uppercase text-gold-muted mb-2 block">{t("careerPost.fullName")}</label>
+                  <input id="apply-name" type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} required maxLength={100} autoComplete="name" className="w-full bg-transparent border border-gold/10 focus:border-gold/50 px-4 py-3 font-body text-sm text-cream outline-none transition-colors" />
                 </div>
                 <div>
-                  <label className="font-body text-xs tracking-wider uppercase text-gold-muted mb-2 block">{t("careerPost.email")}</label>
-                  <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required maxLength={255} className="w-full bg-transparent border border-gold/10 focus:border-gold/50 px-4 py-3 font-body text-sm text-cream outline-none transition-colors" />
+                  <label htmlFor="apply-email" className="font-body text-xs tracking-wider uppercase text-gold-muted mb-2 block">{t("careerPost.email")}</label>
+                  <input id="apply-email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required maxLength={255} autoComplete="email" className="w-full bg-transparent border border-gold/10 focus:border-gold/50 px-4 py-3 font-body text-sm text-cream outline-none transition-colors" />
                 </div>
               </div>
               <div>
-                <label className="font-body text-xs tracking-wider uppercase text-gold-muted mb-2 block">{t("careerPost.motivationLetter")}</label>
-                <textarea value={motivation} onChange={(e) => setMotivation(e.target.value)} required maxLength={5000} rows={8} placeholder={t("careerPost.motivationPlaceholder")} className="w-full bg-transparent border border-gold/10 focus:border-gold/50 px-4 py-3 font-body text-sm text-cream outline-none transition-colors resize-none placeholder:text-gold-muted/30" />
+                <label htmlFor="apply-motivation" className="font-body text-xs tracking-wider uppercase text-gold-muted mb-2 block">{t("careerPost.motivationLetter")}</label>
+                <textarea id="apply-motivation" value={motivation} onChange={(e) => setMotivation(e.target.value)} required maxLength={5000} rows={8} placeholder={t("careerPost.motivationPlaceholder")} className="w-full bg-transparent border border-gold/10 focus:border-gold/50 px-4 py-3 font-body text-sm text-cream outline-none transition-colors resize-none placeholder:text-gold-muted/30" />
               </div>
               <div>
-                <label className="font-body text-xs tracking-wider uppercase text-gold-muted mb-2 block">{t("careerPost.attachCV")}</label>
-                <input ref={fileInputRef} type="file" accept=".pdf,.doc,.docx" onChange={(e) => { const file = e.target.files?.[0]; if (file && file.size > 10 * 1024 * 1024) { toast.error("File must be under 10MB"); return; } setCvFile(file || null); }} className="hidden" />
-                <button type="button" onClick={() => fileInputRef.current?.click()} className="flex items-center gap-3 border border-gold/10 hover:border-gold/30 px-6 py-3 transition-colors">
-                  <Upload className="w-4 h-4 text-gold" />
-                  <span className="font-body text-sm text-gold-muted">{cvFile ? cvFile.name : t("careerPost.chooseFile")}</span>
+                <label htmlFor="apply-cv" className="font-body text-xs tracking-wider uppercase text-gold-muted mb-2 block">{t("careerPost.attachCV")}</label>
+                <input ref={fileInputRef} id="apply-cv" type="file" accept=".pdf,.doc,.docx" onChange={(e) => { const file = e.target.files?.[0]; if (file && file.size > 10 * 1024 * 1024) { toast.error("File must be under 10MB"); return; } setCvFile(file || null); }} className="hidden" />
+                <button type="button" onClick={() => fileInputRef.current?.click()} aria-describedby="cv-file-name" className="flex items-center gap-3 border border-gold/10 hover:border-gold/30 px-6 py-3 transition-colors min-h-[44px]">
+                  <Upload className="w-4 h-4 text-gold" aria-hidden="true" />
+                  <span id="cv-file-name" className="font-body text-sm text-gold-muted">{cvFile ? cvFile.name : t("careerPost.chooseFile")}</span>
                 </button>
               </div>
-              <button type="submit" disabled={applyMutation.isPending} className="px-10 py-4 bg-gold text-navy-dark font-body text-sm font-semibold tracking-wider uppercase hover:bg-gold-light transition-colors duration-300 disabled:opacity-60">
+              <button type="submit" disabled={applyMutation.isPending} className="px-10 py-4 bg-gold text-navy-dark font-body text-sm font-semibold tracking-wider uppercase hover:bg-gold-light transition-colors duration-300 disabled:opacity-60 min-h-[48px]">
                 {applyMutation.isPending ? t("careerPost.submitting") : t("careerPost.submit")}
               </button>
             </form>

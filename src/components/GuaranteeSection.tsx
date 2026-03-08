@@ -21,7 +21,7 @@ const GuaranteeSection = () => {
           <FadeInSection>
             <div className="flex justify-center mb-8">
               <div className="inline-flex items-center gap-2.5 px-5 py-2 border border-gold/30 bg-navy-dark/50">
-                <ShieldCheck className="w-4 h-4 text-gold" />
+                <ShieldCheck className="w-4 h-4 text-gold" aria-hidden="true" />
                 <span className="font-body text-xs tracking-[0.3em] text-gold uppercase">{t("guarantee.badge")}</span>
               </div>
             </div>
@@ -46,7 +46,7 @@ const GuaranteeSection = () => {
               <FadeInSection key={i} delay={300 + i * 100}>
                 <div className="flex items-start gap-5 bg-navy-dark/40 border border-navy-light/20 p-6 hover:border-gold/25 transition-colors duration-500">
                   <div className="w-10 h-10 rounded-full border border-gold/30 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <point.icon className="w-4.5 h-4.5 text-gold" />
+                    <point.icon className="w-4.5 h-4.5 text-gold" aria-hidden="true" />
                   </div>
                   <p className="font-body text-cream/85 leading-relaxed">{point.text}</p>
                 </div>

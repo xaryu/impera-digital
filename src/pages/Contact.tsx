@@ -53,34 +53,34 @@ const Contact = () => {
               <h2 className="font-display text-3xl font-bold text-navy mb-8">
                 {t("contactPage.formTitle")}
               </h2>
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6" noValidate>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block font-body text-xs tracking-wider text-muted-foreground uppercase mb-2">
+                    <label htmlFor="contact-name" className="block font-body text-xs tracking-wider text-muted-foreground uppercase mb-2">
                       {t("contactPage.nameLabel")}
                     </label>
-                    <input type="text" name="name" value={formData.name} onChange={handleChange} required className="w-full px-4 py-3 bg-background border border-border font-body text-sm text-foreground focus:border-gold focus:outline-none transition-colors" placeholder={t("contactPage.namePlaceholder")} />
+                    <input id="contact-name" type="text" name="name" value={formData.name} onChange={handleChange} required autoComplete="name" className="w-full px-4 py-3 bg-background border border-border font-body text-sm text-foreground focus:border-gold focus:outline-none transition-colors" placeholder={t("contactPage.namePlaceholder")} />
                   </div>
                   <div>
-                    <label className="block font-body text-xs tracking-wider text-muted-foreground uppercase mb-2">
+                    <label htmlFor="contact-email" className="block font-body text-xs tracking-wider text-muted-foreground uppercase mb-2">
                       {t("contactPage.emailLabel")}
                     </label>
-                    <input type="email" name="email" value={formData.email} onChange={handleChange} required className="w-full px-4 py-3 bg-background border border-border font-body text-sm text-foreground focus:border-gold focus:outline-none transition-colors" placeholder={t("contactPage.emailPlaceholder")} />
+                    <input id="contact-email" type="email" name="email" value={formData.email} onChange={handleChange} required autoComplete="email" className="w-full px-4 py-3 bg-background border border-border font-body text-sm text-foreground focus:border-gold focus:outline-none transition-colors" placeholder={t("contactPage.emailPlaceholder")} />
                   </div>
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block font-body text-xs tracking-wider text-muted-foreground uppercase mb-2">
+                    <label htmlFor="contact-company" className="block font-body text-xs tracking-wider text-muted-foreground uppercase mb-2">
                       {t("contactPage.companyLabel")}
                     </label>
-                    <input type="text" name="company" value={formData.company} onChange={handleChange} className="w-full px-4 py-3 bg-background border border-border font-body text-sm text-foreground focus:border-gold focus:outline-none transition-colors" placeholder={t("contactPage.companyPlaceholder")} />
+                    <input id="contact-company" type="text" name="company" value={formData.company} onChange={handleChange} autoComplete="organization" className="w-full px-4 py-3 bg-background border border-border font-body text-sm text-foreground focus:border-gold focus:outline-none transition-colors" placeholder={t("contactPage.companyPlaceholder")} />
                   </div>
                   <div>
-                    <label className="block font-body text-xs tracking-wider text-muted-foreground uppercase mb-2">
+                    <label htmlFor="contact-service" className="block font-body text-xs tracking-wider text-muted-foreground uppercase mb-2">
                       {t("contactPage.serviceLabel")}
                     </label>
-                    <select name="service" value={formData.service} onChange={handleChange} className="w-full px-4 py-3 bg-background border border-border font-body text-sm text-foreground focus:border-gold focus:outline-none transition-colors appearance-none">
+                    <select id="contact-service" name="service" value={formData.service} onChange={handleChange} className="w-full px-4 py-3 bg-background border border-border font-body text-sm text-foreground focus:border-gold focus:outline-none transition-colors appearance-none">
                       <option value="">{t("contactPage.serviceDefault")}</option>
                       <option value="brand">{t("contactPage.serviceBrand")}</option>
                       <option value="web">{t("contactPage.serviceWeb")}</option>
@@ -92,10 +92,10 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label className="block font-body text-xs tracking-wider text-muted-foreground uppercase mb-2">
+                  <label htmlFor="contact-message" className="block font-body text-xs tracking-wider text-muted-foreground uppercase mb-2">
                     {t("contactPage.messageLabel")}
                   </label>
-                  <textarea name="message" value={formData.message} onChange={handleChange} required rows={6} className="w-full px-4 py-3 bg-background border border-border font-body text-sm text-foreground focus:border-gold focus:outline-none transition-colors resize-none" placeholder={t("contactPage.messagePlaceholder")} />
+                  <textarea id="contact-message" name="message" value={formData.message} onChange={handleChange} required rows={6} className="w-full px-4 py-3 bg-background border border-border font-body text-sm text-foreground focus:border-gold focus:outline-none transition-colors resize-none" placeholder={t("contactPage.messagePlaceholder")} />
                 </div>
 
                 <button type="submit" className="w-full sm:w-auto px-12 py-4 bg-gold text-navy-dark font-body text-sm font-semibold tracking-wider uppercase hover:bg-gold-light transition-colors duration-300 min-h-[48px]">

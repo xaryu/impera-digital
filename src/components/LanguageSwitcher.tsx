@@ -51,12 +51,14 @@ const LanguageSwitcher = () => {
       </button>
 
       {open && (
-        <div className="absolute right-0 top-full mt-2 bg-navy border border-navy-light/50 backdrop-blur-md shadow-lg min-w-[140px] z-50 animate-fade-in">
+        <div className="absolute right-0 top-full mt-2 bg-navy border border-navy-light/50 backdrop-blur-md shadow-lg min-w-[140px] z-50 animate-fade-in" role="menu" aria-label="Language options">
           {supportedLanguages.map((lang) => (
             <button
               key={lang}
               onClick={() => switchLanguage(lang)}
-              className={`w-full flex items-center gap-3 px-4 py-2.5 font-body text-sm transition-colors ${
+              role="menuitem"
+              aria-current={lang === currentLang ? "true" : undefined}
+              className={`w-full flex items-center gap-3 px-4 py-2.5 font-body text-sm transition-colors min-h-[44px] ${
                 lang === currentLang
                   ? "text-gold bg-navy-dark/50"
                   : "text-cream/70 hover:text-gold hover:bg-navy-dark/30"

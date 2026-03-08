@@ -112,6 +112,24 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
   }
+
+  /* Skip to content link */
+  .skip-to-content {
+    @apply sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[9999] focus:px-4 focus:py-2 focus:text-sm focus:font-semibold;
+    background: hsl(var(--gold));
+    color: hsl(var(--navy-dark));
+  }
+
+  /* Visible focus ring for keyboard navigation */
+  *:focus-visible {
+    outline: 2px solid hsl(var(--gold));
+    outline-offset: 2px;
+  }
+
+  /* Remove focus ring for mouse clicks */
+  *:focus:not(:focus-visible) {
+    outline: none;
+  }
 }
 
 @layer utilities {

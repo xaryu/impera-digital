@@ -22,7 +22,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-navy-dark border-t border-navy-light/30">
+    <footer className="bg-navy-dark border-t border-navy-light/30" role="contentinfo">
       <div className="container mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           <div className="flex flex-col items-center md:items-start space-y-5">
@@ -33,7 +33,7 @@ const Footer = () => {
             <p className="font-body text-sm text-cream/70 leading-relaxed text-center md:text-left">{t("footer.description")}</p>
             <div className="flex items-center gap-4 pt-2 justify-center md:justify-start">
               {[{ icon: Linkedin, href: "#" }, { icon: Instagram, href: "#" }].map(({ icon: Icon, href }, i) => (
-                <a key={i} href={href} target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full border border-navy-light flex items-center justify-center text-gold-muted hover:text-gold hover:border-gold/50 transition-colors">
+                <a key={i} href={href} target="_blank" rel="noopener noreferrer" aria-label={Icon === Linkedin ? "LinkedIn" : "Instagram"} className="w-9 h-9 rounded-full border border-navy-light flex items-center justify-center text-gold-muted hover:text-gold hover:border-gold/50 transition-colors">
                   <Icon size={16} />
                 </a>
               ))}
