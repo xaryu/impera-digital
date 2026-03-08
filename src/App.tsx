@@ -18,6 +18,7 @@ import CareerPost from "./pages/CareerPost";
 import NotFound from "./pages/NotFound";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
+import Methodology from "./pages/Methodology";
 
 const queryClient = new QueryClient();
 
