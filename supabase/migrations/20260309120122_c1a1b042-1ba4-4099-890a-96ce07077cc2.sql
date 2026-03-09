@@ -1,0 +1,1 @@
+UPDATE public.job_openings SET benefits = REPLACE(benefits, '£', '€') WHERE benefits LIKE '%£%';
