@@ -17,7 +17,6 @@ const Footer = () => {
   const companyLinks = [
     { label: t("footer.aboutUs"), href: "/about" },
     { label: t("footer.blog"), href: "/blog" },
-    { label: t("footer.careers"), href: "/careers" },
     { label: t("footer.contact"), href: "/contact" },
   ];
 

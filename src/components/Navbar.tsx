@@ -16,7 +16,6 @@ const Navbar = () => {
     { label: t("nav.howWeWork"), href: "/methodology" },
     { label: t("nav.blog"), href: "/blog" },
     { label: t("nav.about"), href: "/about" },
-    { label: t("nav.careers"), href: "/careers" },
   ];
 
   // Check if path matches (strip language prefix)
