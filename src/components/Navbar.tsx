@@ -29,7 +29,7 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-navy-dark/90 backdrop-blur-md border-b border-navy-light/50" aria-label="Main navigation">
       <div className="container mx-auto flex items-center justify-between py-5 px-6">
         <LocalizedLink to="/" className="flex items-center">
-          <ImperaLogo className="h-[45px] md:h-[50px] max-[480px]:h-[38px]" />
+           <ImperaLogo className="h-[45px] md:h-[50px] max-[480px]:h-[38px]" />
         </LocalizedLink>
 
         {/* Desktop */}
