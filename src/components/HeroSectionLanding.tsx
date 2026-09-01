@@ -12,11 +12,17 @@ export interface AncientNetworkBackgroundProps {
 }
 
 const VARIANT_TIMING: Record<AncientNetworkVariant, { lifeStart: number; lifeEnd: number }> = {
-  network: { lifeStart: 3.0, lifeEnd: 3.9 },
+  network: { lifeStart: 5.3, lifeEnd: 6.2 },
   aqueduct: { lifeStart: 3.35, lifeEnd: 4.15 },
 };
 
 /**
+ * Ambient gold-on-navy background for the hero: draws itself in once on
+ * mount, then settles into a quiet idle loop — faint node/marker pulsing
+ * plus a few px of parallax that follows the pointer (layered so the
+ * foreground drifts more than the background) with a gentle idle sway
+ * when nothing is moving. Respects prefers-reduced-motion.
+ *
  * Usage:
  *   <section style={{ position: "relative", overflow: "hidden" }}>
  *     <AncientNetworkBackground variant="aqueduct" />

@@ -90,18 +90,18 @@ interface Node {
 }
 const netRand = mulberry32(4104);
 const NODES: Node[] = [
-  { fx: 0.34, fy: 0.58, r: 1.6, hub: false, order: 0, phase: 0 },
-  { fx: 0.36, fy: 0.75, r: 1.6, hub: false, order: 1, phase: 0 },
-  { fx: 0.37, fy: 0.52, r: 1.8, hub: false, order: 2, phase: 0 },
-  { fx: 0.50, fy: 0.90, r: 1.8, hub: false, order: 3, phase: 0 },
-  { fx: 0.65, fy: 0.20, r: 1.8, hub: false, order: 4, phase: 0 },
-  { fx: 0.58, fy: 0.79, r: 2.2, hub: false, order: 5, phase: 0 },
-  { fx: 0.81, fy: 0.58, r: 2.2, hub: false, order: 6, phase: 0 },
-  { fx: 0.93, fy: 0.67, r: 2.6, hub: false, order: 7, phase: 0 },
-  { fx: 0.45, fy: 0.63, r: 2.6, hub: false, order: 8, phase: 0 },
-  { fx: 0.97, fy: 0.44, r: 2.2, hub: false, order: 9, phase: 0 },
-  { fx: 0.88, fy: 0.24, r: 3.0, hub: false, order: 10, phase: 0 },
-  { fx: 0.72, fy: 0.42, r: 4.6, hub: true, order: 11, phase: 0 },
+  { fx: 0.34, fy: 0.58, r: 4.9, hub: false, order: 0, phase: 0 },
+  { fx: 0.36, fy: 0.75, r: 2, hub: false, order: 1, phase: 0 },
+  { fx: 0.37, fy: 0.52, r: 4.1, hub: false, order: 2, phase: 0 },
+  { fx: 0.50, fy: 0.90, r: 2.1, hub: false, order: 3, phase: 0 },
+  { fx: 0.65, fy: 0.20, r: 4.1, hub: false, order: 4, phase: 0 },
+  { fx: 0.58, fy: 0.79, r: 2.5, hub: false, order: 5, phase: 0 },
+  { fx: 0.81, fy: 0.58, r: 4.5, hub: false, order: 6, phase: 0 },
+  { fx: 0.93, fy: 0.67, r: 4.9, hub: false, order: 7, phase: 0 },
+  { fx: 0.45, fy: 0.63, r: 2.9, hub: false, order: 8, phase: 0 },
+  { fx: 0.97, fy: 0.44, r: 4.5, hub: false, order: 9, phase: 0 },
+  { fx: 0.88, fy: 0.24, r: 5.3, hub: false, order: 10, phase: 0 },
+  { fx: 0.72, fy: 0.42, r: 8.8, hub: true, order: 11, phase: 0 },
 ];
 NODES.forEach((n) => (n.phase = netRand() * Math.PI * 2));
 
@@ -111,26 +111,26 @@ const TRAILING: [number, number, number, number, number][] = [
   [0.14, 0.71, 0.36, 0.75, -10],
 ];
 const SECONDARY: [number, number, number, number, number, number][] = [
-  [0.33, 0.18, 0.88, 0.24, 46, 0.16],
-  [0.36, 0.85, 0.58, 0.79, -20, 0.16],
-  [0.65, 0.20, 0.88, 0.24, 16, 0.14],
-  [0.37, 0.52, 0.45, 0.63, 8, 0.16],
-  [0.50, 0.90, 0.58, 0.79, -9, 0.14],
-  [0.81, 0.58, 0.93, 0.67, 10, 0.16],
+  [0.33, 0.18, 0.88, 0.24, 46, 0.46],
+  [0.36, 0.85, 0.58, 0.79, -20, 0.46],
+  [0.65, 0.20, 0.88, 0.24, 16, 0.44],
+  [0.37, 0.52, 0.45, 0.63, 8, 0.46],
+  [0.50, 0.90, 0.58, 0.79, -9, 0.44],
+  [0.81, 0.58, 0.93, 0.67, 10, 0.46],
 ];
 const PRIMARY: [number, number, number, number, number, number][] = [
-  [0.34, 0.58, 0.72, 0.42, -34, 0.46],
-  [0.72, 0.42, 0.97, 0.30, 20, 0.42],
-  [0.72, 0.42, 0.45, 0.63, 24, 0.40],
-  [0.45, 0.63, 0.58, 0.79, -16, 0.36],
-  [0.58, 0.79, 0.93, 0.67, 28, 0.38],
-  [0.72, 0.42, 0.88, 0.24, -18, 0.40],
-  [0.88, 0.24, 0.97, 0.44, 12, 0.34],
-  [0.93, 0.67, 0.97, 0.44, -14, 0.32],
-  [0.65, 0.20, 0.72, 0.42, -11, 0.34],
-  [0.81, 0.58, 0.72, 0.42, 9, 0.30],
+  [0.34, 0.58, 0.72, 0.42, -34, 0.86],
+  [0.72, 0.42, 0.97, 0.30, 20, 0.82],
+  [0.72, 0.42, 0.45, 0.63, 24, 0.80],
+  [0.45, 0.63, 0.58, 0.79, -16, 0.76],
+  [0.58, 0.79, 0.93, 0.67, 28, 0.78],
+  [0.72, 0.42, 0.88, 0.24, -18, 0.80],
+  [0.88, 0.24, 0.97, 0.44, 12, 0.74],
+  [0.93, 0.67, 0.97, 0.44, -14, 0.72],
+  [0.65, 0.20, 0.72, 0.42, -11, 0.74],
+  [0.81, 0.58, 0.72, 0.42, 9, 0.70],
 ];
-const NODE_START = 1.9, NODE_STEP = 0.06, NODE_DUR = 0.55;
+const NODE_START = 4.3, NODE_STEP = 0.06, NODE_DUR = 0.55;
 
 function drawNode(ctx: CanvasRenderingContext2D, n: Node, X: (f: number) => number, Y: (f: number) => number, scale: number, elapsed: number, pulseFactor: number) {
   const p = ease(elapsed, NODE_START + n.order * NODE_STEP, NODE_DUR);
@@ -227,8 +227,8 @@ export function drawImperialNetwork(frame: DrawFrame) {
 
   layer(ctx, dx, dy, 0.7, () => {
     PRIMARY.forEach((pr, i) => {
-      const p = ease(elapsed, 0.95 + i * 0.06, 0.6);
-      strokeLine(ctx, X(pr[0]), Y(pr[1]), X(pr[2]), Y(pr[3]), pr[4] * scale, GOLD, pr[5] * p, 1.5 * scale, p);
+      const p = ease(elapsed, 1.3 + i * 0.18, 1.8);
+      strokeLine(ctx, X(pr[0]), Y(pr[1]), X(pr[2]), Y(pr[3]), pr[4] * scale, GOLD_BRIGHT, pr[5] * p, 2.2 * scale, p);
     });
   });
 
