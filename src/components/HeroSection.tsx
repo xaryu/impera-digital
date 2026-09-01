@@ -30,9 +30,6 @@ const HeroSection = () => {
           <LocalizedLink to="/contact" className="px-10 py-4 bg-gold text-navy-dark font-body text-sm font-semibold tracking-wider uppercase btn-hover hover:bg-gold-light">
             {t("hero.cta1")}
           </LocalizedLink>
-          <LocalizedLink to="/about" className="px-10 py-4 border border-gold/40 text-cream font-body text-sm tracking-wider uppercase btn-hover hover:bg-gold/10">
-            {t("hero.cta2")}
-          </LocalizedLink>
         </div>
       </div>
 

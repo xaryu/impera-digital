@@ -103,7 +103,7 @@ const teamPersonSchemas = [
 export const defaultJsonLd = [organizationSchema, localBusinessSchema, ...teamPersonSchemas];
 
 const SEO = ({
-  title = "Impera — Command Your Digital Presence",
+  title = "Impera — Command your growth. Automate everything else.",
   description = "Impera is a premium digital media agency crafting luxury brand experiences that command authority and distinction.",
   path = "",
   ogImage = DEFAULT_OG_IMAGE,
