@@ -1,6 +1,7 @@
 import heroBg from "@/assets/hero-bg.jpg";
 import { useTranslation } from "react-i18next";
 import LocalizedLink from "@/components/LocalizedLink";
+import HeroSectionLanding from "./HeroSectionLanding";
 
 const HeroSection = () => {
   const { t } = useTranslation();
@@ -8,7 +9,8 @@ const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0">
-        <img src={heroBg} alt="Premium workspace collaboration" className="w-full h-full object-cover" fetchPriority="high" decoding="async" />
+        {/* <img src={heroBg} alt="Premium workspace collaboration" className="w-full h-full object-cover" fetchPriority="high" decoding="async" /> */}
+        <HeroSectionLanding/>
         <div className="absolute inset-0 bg-navy-dark/75" />
       </div>
 
