@@ -28,6 +28,32 @@
     "growthStrategy": "Growth Strategy",
     "growthStrategyDesc": "Data-driven frameworks that transform market presence into measurable dominance."
   },
+  "results": {
+    "eyebrow": "Proven in practice, not just promised",
+    "title": "Results we can prove.",
+    "titleHighlight": "Discretion we won't break.",
+
+    "legalSector": "Legal Services",
+    "legalStat": "20 hrs",
+    "legalLabel": "Saved every week",
+    "legalDescription": "Automated intake and document prep freed a mid-sized firm's associates from repetitive admin work — time redirected straight back to billable casework.",
+
+    "financeSector": "Accounting & Finance",
+    "financeStat": "10x",
+    "financeLabel": "More filings processed daily",
+    "financeDescription": "A workflow overhaul let one practice scale its filing throughput tenfold during peak season, without adding headcount.",
+
+    "inProgressBadge": "Case study in progress",
+    "constructionSector": "Construction & Engineering",
+    "constructionLabel": "Live engagement, early results tracking ahead of forecast",
+    "constructionDescription": "Currently deploying automated reporting and scheduling across three active sites — full figures will be published once the engagement closes.",
+
+    "realEstateSector": "Real Estate",
+    "medicalSector": "Medical Care",
+    "statPending": "Stat pending",
+
+    "confidentialityNote": "Company names withheld to protect client confidentiality — the same discretion we extend to every partnership."
+  },
   "whyImpera": {
     "eyebrow": "The Impera Difference",
     "title": "Why Scale-Ups Choose Impera",

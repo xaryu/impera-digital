@@ -52,7 +52,7 @@ const HeroSectionLanding = ({
       aria-hidden="true"
       style={{
         position: "absolute",
-        inset: 0,
+        inset: '0 0 0 -350px',
         overflow: "hidden",
         pointerEvents: "none", // never blocks clicks on real hero content
         ...style,
