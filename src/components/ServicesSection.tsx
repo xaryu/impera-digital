@@ -58,8 +58,8 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
     : {
         opacity: isInView ? 1 : 0,
         transform: isInView ? "translateY(0) scale(1)" : "translateY(20px) scale(0.98)",
-        transition: "opacity 650ms cubic-bezier(0,0,0.2,1), transform 650ms cubic-bezier(0,0,0.2,1)",
-        transitionDelay: `${index * 350}ms`,
+        transition: "opacity 850ms cubic-bezier(0,0,0.2,1), transform 850ms cubic-bezier(0,0,0.2,1)",
+        transitionDelay: `${index * 550}ms`,
       }; 
 
   return (

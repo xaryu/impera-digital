@@ -76,6 +76,23 @@
     "promiseWhy": "Pourquoi pouvons-nous faire cette garantie ? Parce que nous traitons votre budget marketing comme un portefeuille d'investissement — chaque euro est suivi, mesuré et optimisé pour un rendement maximal.",
     "cta": "Vérifiez Votre Éligibilité"
   },
+  "faq": {
+    "eyebrow": "Questions Fréquentes",
+    "title": "Foire Aux Questions",
+    "subtitle": "Tout ce que vous devez savoir avant de commander votre croissance.",
+    "q1": "En quoi Impera est-elle différente d'une agence classique ?",
+    "a1": "Nous ne sous-traitons rien. Chaque stratégie, chaque déploiement et chaque optimisation sont pris en charge par des spécialistes seniors de notre propre équipe — jamais un sous-traitant. Cela signifie des itérations plus rapides, une responsabilité directe et un travail réellement enrichi par ce que nous apprenons chez chaque client.",
+    "q2": "À quoi ressemble le processus concrètement ?",
+    "a2": "Trois étapes : Analyser, Construire, Commander. Nous commençons par cartographier précisément où votre temps et votre argent fuient, puis nous concevons et déployons nous-mêmes l'automatisation et les campagnes, avant de vous remettre une entreprise qui tourne seule — que vous pilotez, sans en gérer le quotidien.",
+    "q3": "Avec quels secteurs travaillez-vous ?",
+    "a3": "Nous sommes spécialisés dans le juridique, la finance, l'immobilier, la santé et la construction — des secteurs où la confiance, la conformité et la discrétion comptent autant que la croissance. Notre approche s'applique bien au-delà, mais c'est là que nous avons bâti nos méthodes les plus abouties.",
+    "q4": "Ai-je besoin d'une automatisation ou d'une infrastructure technique existante ?",
+    "a4": "Non. La plupart de nos clients arrivent avec tout géré manuellement. La phase d'analyse consiste justement à déterminer précisément quoi construire, et dans quel ordre — rien n'a besoin d'être en place au préalable.",
+    "q5": "Quel est l'investissement, et comment est-il structuré ?",
+    "a5": "Cela dépend du périmètre — la construction d'une seule automatisation diffère beaucoup d'un partenariat de croissance continu. Nous vous donnerons un chiffre précis après l'audit initial, sans forfait flou ni frais cachés.",
+    "q6": "Que se passe-t-il une fois l'automatisation en place ?",
+    "a6": "Nous ne disparaissons pas. Vous recevez des rapports de performance hebdomadaires et un accès direct à votre stratège, avec un temps de réponse inférieur à 24 heures, pour que le système continue de s'améliorer au lieu de se dégrader en silence."
+  },
   "cta": {
     "eyebrow": "Créons Ensemble",
     "title1": "Prêt à Dominer",
@@ -152,6 +169,17 @@
     "ctaTitle": "Prêt à Dominer Votre Marché ?",
     "ctaDesc": "Le Framework Impera a aidé des scale-ups à travers l'Europe à multiplier leurs revenus digitaux. Votre transformation de 90 jours commence par une seule conversation.",
     "ctaButton": "Lancez Votre Transformation de 90 Jours"
+  },
+  "pathway": {
+    "eyebrow": "notre méthodologie",
+    "title": "La Voie du Commandement",
+    "subtitle": "Trois étapes pour passer du chaos manuel à une entreprise qui tourne toute seule — sans perdre ce qui fait sa singularité.",
+    "step1Title": "Analyser",
+    "step1Desc": "Nous cartographions précisément où votre temps et votre argent fuient, avant de toucher un seul outil.",
+    "step2Title": "Construire",
+    "step2Desc": "Nous concevons et déployons l'automatisation nous-mêmes — des spécialistes seniors, jamais un sous-traitant.",
+    "step3Title": "Commander",
+    "step3Desc": "Vous cessez de gérer le processus et commencez à diriger l'entreprise qu'il a été conçu pour vous libérer."
   },
   "servicesPage": {
     "eyebrow": "Nos Services",

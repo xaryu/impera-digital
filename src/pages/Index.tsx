@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
+import PathwaySection from "@/components/PathwaySection";
 import ServicesSection from "@/components/ServicesSection";
 import AboutSection from "@/components/AboutSection";
 import WhyImperaSection from "@/components/WhyImperaSection";
@@ -8,6 +9,8 @@ import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import ExitIntentPopup from "@/components/ExitIntentPopup";
+import ResultsSection from "@/components/ResultsSection";
+import FAQSection from "@/components/FAQSection";
 
 const Index = () => {
   return (
@@ -22,7 +25,10 @@ const Index = () => {
       <main id="main-content" role="main">
         <HeroSection />
         <ServicesSection />
+        <ResultsSection/>
+        <PathwaySection />
         <WhyImperaSection />
+        <FAQSection />
         <AboutSection />
         <GuaranteeSection />
         <CTASection />

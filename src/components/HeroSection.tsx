@@ -7,6 +7,9 @@ const HeroSection = () => {
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-navy-dark">
+      {/* full-bleed ambient canvas, sized to the whole hero rather than a grid cell */}
+      <HeroSectionLanding transparentBg className="hidden lg:block" />
+
       <div className="relative z-10 container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-2 items-center">
 
         {/* left column — text, left-aligned */}
@@ -28,12 +31,7 @@ const HeroSection = () => {
             </LocalizedLink>
           </div>
         </div>
-
-        {/* right column — the ambient canvas, contained instead of full-bleed */}
-        <div className="relative w-full aspect-square hidden lg:block">
-          <HeroSectionLanding transparentBg/>
-        </div>
-
+        <div className="w-full aspect-square hidden lg:block" aria-hidden="true" />
       </div>
 
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-0 animate-fade-in" style={{ animationDelay: "1.2s" }}>

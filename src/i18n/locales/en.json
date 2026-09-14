@@ -102,6 +102,23 @@
     "promiseWhy": "Why can we make this guarantee? Because we treat your marketing budget like an investment portfolio — every euro is tracked, measured, and optimized for maximum return.",
     "cta": "See If You Qualify"
   },
+  "faq": {
+    "eyebrow": "Questions, Answered",
+    "title": "Frequently Asked Questions",
+    "subtitle": "Everything you want to know before commanding your growth.",
+    "q1": "How is Impera different from a typical agency?",
+    "a1": "We don't outsource. Every strategy, build, and optimization is handled by senior specialists on our own team — never a subcontractor. That means faster iteration, direct accountability, and work that's actually informed by what we learn across every client we run.",
+    "q2": "What does the process actually look like?",
+    "a2": "Three steps: Survey, Build, Command. We start by mapping exactly where your time and money are leaking, then design and deploy the automation and campaigns ourselves, then hand you a business that runs itself — with you steering, not managing the process day to day.",
+    "q3": "What industries do you work with?",
+    "a3": "We specialize in legal, finance, real estate, healthcare, and construction — sectors where trust, compliance, and discretion matter as much as growth. Our approach transfers well beyond those, but that's where we've built the deepest playbooks.",
+    "q4": "Do I need existing automation or tech infrastructure in place?",
+    "a4": "No. Most clients come to us running everything manually. Part of the Survey phase is figuring out exactly what to build and in what order — you don't need anything set up beforehand.",
+    "q5": "What's the investment, and how is it structured?",
+    "a5": "It depends on scope — a single automation build looks very different from an ongoing growth partnership. We'll give you a clear number after the initial audit, with no vague retainers or hidden fees.",
+    "q6": "What happens after the automation is live?",
+    "a6": "We don't disappear. You get weekly performance reporting and direct access to your strategist, with response times under 24 hours, so the system keeps improving instead of quietly decaying."
+  },
   "cta": {
     "eyebrow": "Let's Create Together",
     "title1": "Ready to Command",
@@ -178,6 +195,17 @@
     "ctaTitle": "Ready to Command Your Market?",
     "ctaDesc": "The Impera Framework has helped scale-ups across Europe multiply their digital revenue. Your 90-day transformation starts with a single conversation.",
     "ctaButton": "Start Your 90-Day Transformation"
+  },
+  "pathway": {
+    "eyebrow": "our methodology",
+    "title": "The Command Path",
+    "subtitle": "Three steps from manual chaos to a business that runs itself — without losing what makes it yours.",
+    "step1Title": "Survey",
+    "step1Desc": "We map exactly where your time and money are leaking, before touching a single tool.",
+    "step2Title": "Build",
+    "step2Desc": "We design and deploy the automation ourselves — senior specialists, never a subcontractor.",
+    "step3Title": "Command",
+    "step3Desc": "You stop managing the process and start running the business it was built to free you for."
   },
   "servicesPage": {
     "eyebrow": "What We Do",

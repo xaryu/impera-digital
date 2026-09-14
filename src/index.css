@@ -144,6 +144,10 @@
     background: linear-gradient(180deg, hsl(214 52% 12%) 0%, hsl(212 52% 24%) 100%);
   }
 
+  .bg-navy-gradient-reverse {
+    background: linear-gradient(0, hsl(214 52% 12%) 0%, hsl(212 52% 24%) 100%);
+  }
+
   .border-gold {
     border-color: hsl(43 62% 56% / 0.3);
   }

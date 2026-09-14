@@ -76,6 +76,23 @@
     "promiseWhy": "Waarom kunnen we deze garantie geven? Omdat we uw marketingbudget behandelen als een beleggingsportefeuille — elke euro wordt gevolgd, gemeten en geoptimaliseerd voor maximaal rendement.",
     "cta": "Controleer Uw Geschiktheid"
   },
+  "faq": {
+    "eyebrow": "Veelgestelde Vragen",
+    "title": "Veelgestelde Vragen",
+    "subtitle": "Alles wat u wilt weten voordat u uw groei gaat bevelen.",
+    "q1": "Wat maakt Impera anders dan een gewoon bureau?",
+    "a1": "Wij besteden niets uit. Elke strategie, elke build en elke optimalisatie wordt uitgevoerd door senior specialisten van ons eigen team — nooit een onderaannemer. Dat betekent snellere iteraties, directe verantwoordelijkheid en werk dat écht gevoed wordt door wat we leren bij elke klant die we begeleiden.",
+    "q2": "Hoe ziet het proces er in de praktijk uit?",
+    "a2": "Drie stappen: Verkennen, Bouwen, Bevelen. We beginnen met exact in kaart brengen waar uw tijd en geld weglekken, ontwerpen en implementeren vervolgens zelf de automatisering en campagnes, en dragen daarna een bedrijf over dat zichzelf runt — waarbij u stuurt, in plaats van het proces dagelijks te beheren.",
+    "q3": "Met welke sectoren werkt u?",
+    "a3": "Wij zijn gespecialiseerd in juridisch, financieel, vastgoed, zorg en bouw — sectoren waar vertrouwen, compliance en discretie net zo belangrijk zijn als groei. Onze aanpak werkt ook daarbuiten goed, maar daar hebben we de diepste draaiboeken opgebouwd.",
+    "q4": "Heb ik al bestaande automatisering of technische infrastructuur nodig?",
+    "a4": "Nee. De meeste klanten komen bij ons terwijl alles nog handmatig gebeurt. Tijdens de verkenningsfase bepalen we juist precies wat er gebouwd moet worden en in welke volgorde — u hoeft vooraf niets klaar te hebben staan.",
+    "q5": "Wat kost het, en hoe is dat opgebouwd?",
+    "a5": "Dat hangt af van de scope — de bouw van één automatisering ziet er heel anders uit dan een doorlopend groeipartnerschap. Na de eerste audit geven we u een helder bedrag, zonder vage abonnementen of verborgen kosten.",
+    "q6": "Wat gebeurt er nadat de automatisering live staat?",
+    "a6": "Wij verdwijnen niet. U krijgt wekelijkse prestatierapportages en directe toegang tot uw strateeg, met een responstijd onder de 24 uur, zodat het systeem blijft verbeteren in plaats van stilletjes te verslechteren."
+  },
   "cta": {
     "eyebrow": "Laten We Samen Creëren",
     "title1": "Klaar om Uw",
@@ -152,6 +169,17 @@
     "ctaTitle": "Klaar om Uw Markt te Domineren?",
     "ctaDesc": "Het Impera Framework heeft scale-ups in heel Europa geholpen hun digitale omzet te vermenigvuldigen. Uw 90-daagse transformatie begint met één gesprek.",
     "ctaButton": "Start Uw 90-Daagse Transformatie"
+  },
+  "pathway": {
+    "eyebrow": "onze methodologie",
+    "title": "Het Bevelspad",
+    "subtitle": "Drie stappen van handmatige chaos naar een bedrijf dat zichzelf runt — zonder te verliezen wat het van u maakt.",
+    "step1Title": "Verkennen",
+    "step1Desc": "We brengen exact in kaart waar uw tijd en geld weglekken, voordat we ook maar één tool aanraken.",
+    "step2Title": "Bouwen",
+    "step2Desc": "We ontwerpen en implementeren de automatisering zelf — senior specialisten, nooit een onderaannemer.",
+    "step3Title": "Bevelen",
+    "step3Desc": "U stopt met het beheren van het proces en begint het bedrijf te runnen waarvoor het gebouwd is om u te bevrijden."
   },
   "servicesPage": {
     "eyebrow": "Wat We Doen",

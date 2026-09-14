@@ -44,7 +44,7 @@ const GuaranteeSection = () => {
           <div className="space-y-5 mb-14">
             {guaranteePoints.map((point, i) => (
               <FadeInSection key={i} delay={300 + i * 100}>
-                <div className="flex items-start gap-5 bg-navy-dark/40 border border-navy-light/20 p-6 hover:border-gold/25 transition-colors duration-500">
+                <div className="flex items-center gap-5 bg-navy-dark/40 border border-navy-light/20 p-6 hover:border-gold/25 transition-colors duration-500">
                   <div className="w-10 h-10 rounded-full border border-gold/30 flex items-center justify-center flex-shrink-0 mt-0.5">
                     <point.icon className="w-4.5 h-4.5 text-gold" aria-hidden="true" />
                   </div>
