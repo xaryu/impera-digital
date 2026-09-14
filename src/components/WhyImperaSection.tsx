@@ -46,11 +46,12 @@ const WhyImperaSection = () => {
           {differentiators.map((item, i) => (
             <FadeInSection key={i} delay={i * 120}>
               <div className="h-full p-8 lg:p-10 border border-gold/10 bg-navy/40 hover:border-gold/25 transition-all duration-500 rounded-lg group">
-                <div className="w-14 h-14 rounded-xl bg-gold/10 flex items-center justify-center mb-6 group-hover:bg-gold/15 transition-colors">
-                  <item.icon className="w-7 h-7 text-gold" aria-hidden="true" />
-
+                <div className="flex flex-row items-center gap-4 mb-4 sm:flex-col sm:items-start sm:gap-0 sm:mb-0">
+                  <div className="w-14 h-14 rounded-xl bg-gold/10 flex items-center justify-center shrink-0 sm:mb-6 group-hover:bg-gold/15 transition-colors">
+                    <item.icon className="w-7 h-7 text-gold" aria-hidden="true" />
+                  </div>
+                  <p className="font-body text-[11px] tracking-[0.3em] text-gold uppercase sm:mb-2">{item.title}</p>
                 </div>
-                <p className="font-body text-[11px] tracking-[0.3em] text-gold uppercase mb-2">{item.title}</p>
                 <h3 className="font-display text-xl lg:text-2xl font-bold text-cream leading-snug mb-6">{item.headline}</h3>
                 <ul className="space-y-4">
                   {item.points.map((point, j) => (

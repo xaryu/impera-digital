@@ -47,10 +47,12 @@ const ResultsSection = () => {
           {results.map((r, i) => (
             <FadeInSection key={r.sector} delay={i * 120}>
               <div className="group h-full p-8 lg:p-10 rounded-2xl bg-navy/40 border border-gold/10 hover:border-gold/25 hover:-translate-y-1 hover:shadow-[0_20px_40px_-15px_rgba(213,173,74,0.15)] transition-all duration-500">
-                <div className="w-12 h-12 rounded-xl bg-gold/10 flex items-center justify-center mb-6 group-hover:bg-gold/15 transition-colors">
-                  <r.icon className="w-6 h-6 text-gold" aria-hidden="true" />
+                <div className="flex flex-row items-center gap-4 mb-4 sm:flex-col sm:items-start sm:gap-0 sm:mb-0">
+                  <div className="w-12 h-12 rounded-xl bg-gold/10 flex items-center justify-center shrink-0 sm:mb-6 group-hover:bg-gold/15 transition-colors">
+                    <r.icon className="w-6 h-6 text-gold" aria-hidden="true" />
+                  </div>
+                  <p className="font-body text-[11px] tracking-[0.3em] text-gold uppercase sm:mb-3">{r.sector}</p>
                 </div>
-                <p className="font-body text-[11px] tracking-[0.3em] text-gold uppercase mb-3">{r.sector}</p>
                 <p className="font-display text-4xl lg:text-5xl font-bold text-gold-gradient leading-none mb-4">{r.stat}</p>
                 <h3 className="font-display text-lg text-cream font-semibold leading-snug mb-3">{r.label}</h3>
                 <p className="font-body text-sm text-gold-muted leading-relaxed">{r.description}</p>

@@ -104,7 +104,7 @@ const PathwaySection = () => {
                     </div>
 
                     <div className="mt-6">
-                      <div className="flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-2 mb-3">
+                      <div className="flex flex-row items-center justify-center gap-2 mb-3">
                         <step.icon className="w-4 h-4 md:w-5 md:h-5 text-gold shrink-0 transition-transform duration-300 group-hover:scale-110" aria-hidden="true" />
                         <h3 className="font-display text-base sm:text-lg md:text-xl text-cream font-semibold">{step.title}</h3>
                       </div>

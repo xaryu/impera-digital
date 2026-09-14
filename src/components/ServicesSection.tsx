@@ -67,8 +67,10 @@ const ServiceCard = ({ service, index }: ServiceCardProps) => {
     // it never fights the inner card's own hover:scale-[1.02]
     <div ref={ref} style={style}>
       <div className="group relative h-full p-8 bg-background border border-border hover:border-gold/30 transition-all duration-500 hover:gold-glow hover:scale-[1.02] hover:shadow-lg">
-        <service.icon className="w-8 h-8 text-gold mb-6 group-hover:scale-110 transition-transform duration-300" aria-hidden="true" />
-        <h3 className="font-display text-xl font-semibold text-navy mb-3">{service.title}</h3>
+        <div className="flex flex-row items-center gap-4 mb-4 sm:flex-col sm:items-start sm:gap-0 sm:mb-0">
+          <service.icon className="w-8 h-8 text-gold shrink-0 sm:mb-6 group-hover:scale-110 transition-transform duration-300" aria-hidden="true" />
+          <h3 className="font-display text-xl font-semibold text-navy sm:mb-3">{service.title}</h3>
+        </div>
         <p className="font-body text-sm text-muted-foreground leading-relaxed">{service.description}</p>
       </div>
     </div>
