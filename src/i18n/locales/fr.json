@@ -1,6 +1,7 @@
 {
   "nav": {
     "services": "Services",
+    "ourServices": "Nos Services",
     "howWeWork": "Notre Méthode",
     "blog": "Blog",
     "about": "À Propos",
@@ -180,6 +181,30 @@
     "step2Desc": "Nous concevons et déployons l'automatisation nous-mêmes — des spécialistes seniors, jamais un sous-traitant.",
     "step3Title": "Commander",
     "step3Desc": "Vous cessez de gérer le processus et commencez à diriger l'entreprise qu'il a été conçu pour vous libérer."
+  },
+  "ourServicesPage": {
+    "eyebrow": "ce que nous faisons",
+    "title": "Tout sous un seul commandement.",
+    "subtitle": "Trois disciplines, conçues pour fonctionner comme un seul système — pas trois prestataires séparés que vous devez coordonner vous-même.",
+    "aiTitle": "Automatisation IA",
+    "aiDesc": "Nous construisons les systèmes qui font le travail que votre équipe ne devrait pas avoir à faire. Du traitement des documents au suivi des prospects, l'automatisation tourne discrètement en arrière-plan — pour que vos équipes consacrent leur temps à ce qui fait vraiment croître l'entreprise, pas à ce qui la maintient simplement en marche.",
+    "aiItem1": "Automatisation des flux et processus",
+    "aiItem2": "Agents IA pour les tâches répétitives",
+    "aiItem3": "Traitement des documents et des données",
+    "aiItem4": "Intégrations avec vos outils existants",
+    "webTitle": "Développement web & design",
+    "webDesc": "Votre site web est souvent la seule impression qu'un prospect retient avant de décider de vous faire confiance. Nous construisons des sites conçus pour convertir, pas seulement pour bien paraître — pour que les visiteurs deviennent des clients, pas juste des visiteurs.",
+    "webItem1": "Design orienté conversion",
+    "webItem2": "Développement sur mesure, de la landing page à la plateforme",
+    "webItem3": "E-commerce & systèmes de réservation",
+    "webItem4": "Optimisation continue des performances",
+    "marketingTitle": "Marketing digital",
+    "marketingDesc": "Du trafic sans conversion n'est que du bruit. Nous menons un marketing mesuré par le revenu, pas par les likes — campagnes payantes, contenu et positionnement construits autour d'un retour réel, pour que chaque euro dépensé puisse être retracé jusqu'à ce qu'il a produit.",
+    "marketingItem1": "Publicité payante (Meta, Google)",
+    "marketingItem2": "Contenu & stratégie SEO",
+    "marketingItem3": "Positionnement de marque & messaging",
+    "marketingItem4": "Suivi de la performance des campagnes",
+    "cta": "Obtenir mon audit de croissance"
   },
   "servicesPage": {
     "eyebrow": "Nos Services",

@@ -1,6 +1,7 @@
 {
   "nav": {
     "services": "Services",
+    "ourServices": "Our Services",
     "howWeWork": "How We Work",
     "blog": "Blog",
     "about": "About",
@@ -206,6 +207,30 @@
     "step2Desc": "We design and deploy the automation ourselves — senior specialists, never a subcontractor.",
     "step3Title": "Command",
     "step3Desc": "You stop managing the process and start running the business it was built to free you for."
+  },
+  "ourServicesPage": {
+    "eyebrow": "what we do",
+    "title": "Everything under one command.",
+    "subtitle": "Three disciplines, built to work as one system — not three separate vendors you have to coordinate yourself.",
+    "aiTitle": "AI automation",
+    "aiDesc": "We build the systems that do the work your team shouldn't have to. From document processing to lead follow-up, automation runs quietly in the background — so your people spend time on what actually grows the business, not what keeps it running in place.",
+    "aiItem1": "Workflow & process automation",
+    "aiItem2": "AI agents for repetitive tasks",
+    "aiItem3": "Document & data processing",
+    "aiItem4": "Integrations with your existing tools",
+    "webTitle": "Web development & design",
+    "webDesc": "Your website is often the only impression a prospect gets before they decide whether to trust you. We build sites engineered to convert, not just to look good — so visitors become clients instead of just visitors.",
+    "webItem1": "Conversion-focused design",
+    "webItem2": "Custom development, landing to platform",
+    "webItem3": "E-commerce & booking systems",
+    "webItem4": "Ongoing performance optimization",
+    "marketingTitle": "Digital marketing",
+    "marketingDesc": "Traffic without conversion is just noise. We run marketing measured by revenue, not likes — paid campaigns, content and positioning built around real return, so every euro spent can be traced to what it actually produced.",
+    "marketingItem1": "Paid advertising (Meta, Google)",
+    "marketingItem2": "Content & SEO strategy",
+    "marketingItem3": "Brand positioning & messaging",
+    "marketingItem4": "Campaign performance tracking",
+    "cta": "Get my growth audit"
   },
   "servicesPage": {
     "eyebrow": "What We Do",

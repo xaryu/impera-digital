@@ -15,7 +15,7 @@ const ServicesSection = () => {
   ];
 
   return (
-    <section id="services" className="py-44 bg-cream">
+    <section id="services" className="py-16 md:py-44 bg-cream">
       <div className="container mx-auto px-6">
         <FadeInSection className="text-center mb-20">
           <p className="font-body text-sm tracking-[0.3em] text-gold uppercase mb-4">{t("services.eyebrow")}</p>

@@ -1,4 +1,4 @@
-import { CSSProperties } from "react";
+import { CSSProperties, Fragment } from "react";
 import { useTranslation } from "react-i18next";
 import { Search, Cog, Crown } from "lucide-react";
 import { useInView } from "@/hooks/useInView";
@@ -23,6 +23,16 @@ const REVEAL_STEP_MS = 550;
 // has finished, even if both steps happen to already be in view at once
 // (e.g. a refresh that lands with the whole section on screen).
 const LINE_DURATION_MS = 900;
+
+// The arrowhead is a plain CSS border-triangle, not an icon component — an
+// icon's SVG has internal padding around its glyph, which left a visible gap
+// between the line and the "arrow" it was pointing to. A border-triangle has
+// no such padding, so its flat back can sit flush against the line with zero
+// seam, reading as one continuous arrow. It only fades/scales in once that
+// segment has fully drawn.
+const ARROW_DURATION_MS = 350;
+const ARROW_WIDTH_PX = 9;
+const ARROW_HALF_HEIGHT_PX = 5;
 
 const PathwaySection = () => {
   const { t } = useTranslation();
@@ -51,7 +61,7 @@ const PathwaySection = () => {
   ];
 
   return (
-    <section className="py-28 md:py-36 bg-navy-dark relative overflow-hidden">
+    <section className="py-16 md:py-36 bg-navy-dark relative overflow-hidden">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gold/[0.04] rounded-full blur-3xl pointer-events-none" />
       <div className="container mx-auto px-6 relative z-10">
         <FadeInSection className="text-center max-w-2xl mx-auto mb-20">
@@ -67,17 +77,34 @@ const PathwaySection = () => {
             {lineSegments.map((seg, i) => {
               const { isInView, reduced } = stepStates[i];
               return (
-                <div
-                  key={i}
-                  className="absolute h-px bg-gold/30 origin-left"
-                  style={{
-                    left: seg.left,
-                    right: seg.right,
-                    transform: reduced || isInView ? "scaleX(1)" : "scaleX(0)",
-                    transition: reduced ? undefined : `transform ${LINE_DURATION_MS}ms cubic-bezier(0,0,0.2,1)`,
-                    transitionDelay: reduced ? undefined : `${i * LINE_DURATION_MS}ms`,
-                  }}
-                />
+                <Fragment key={i}>
+                  <div
+                    className="absolute h-px bg-gold/30 origin-left"
+                    style={{
+                      left: seg.left,
+                      right: `calc(${seg.right} + ${ARROW_WIDTH_PX}px)`,
+                      transform: reduced || isInView ? "scaleX(1)" : "scaleX(0)",
+                      transition: reduced ? undefined : `transform ${LINE_DURATION_MS}ms cubic-bezier(0,0,0.2,1)`,
+                      transitionDelay: reduced ? undefined : `${i * LINE_DURATION_MS}ms`,
+                    }}
+                  />
+                  <span
+                    className="absolute w-0 h-0 border-y-transparent border-l-gold/30"
+                    style={{
+                      right: seg.right,
+                      top: "50%",
+                      borderTopWidth: ARROW_HALF_HEIGHT_PX,
+                      borderBottomWidth: ARROW_HALF_HEIGHT_PX,
+                      borderLeftWidth: ARROW_WIDTH_PX,
+                      transformOrigin: "right center",
+                      transform: `translateY(-50%) scale(${reduced || isInView ? 1 : 0.5})`,
+                      opacity: reduced || isInView ? 1 : 0,
+                      transition: reduced ? undefined : `opacity ${ARROW_DURATION_MS}ms cubic-bezier(0,0,0.2,1), transform ${ARROW_DURATION_MS}ms cubic-bezier(0,0,0.2,1)`,
+                      transitionDelay: reduced ? undefined : `${(i + 1) * LINE_DURATION_MS}ms`,
+                    }}
+                    aria-hidden="true"
+                  />
+                </Fragment>
               );
             })}
           </div>

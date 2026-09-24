@@ -6,7 +6,7 @@ const CTASection = () => {
   const { t } = useTranslation();
 
   return (
-    <section id="contact" className="py-32 bg-navy-gradient relative overflow-hidden">
+    <section id="contact" className="py-16 md:py-32 bg-navy-gradient relative overflow-hidden">
       <div className="absolute top-0 left-0 w-96 h-96 bg-gold/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-gold/5 rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
 

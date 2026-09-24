@@ -13,7 +13,7 @@ const GuaranteeSection = () => {
   ];
 
   return (
-    <section className="relative py-24 md:py-32 bg-navy overflow-hidden">
+    <section className="relative py-16 md:py-32 bg-navy overflow-hidden">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-gold/5 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="relative z-10 container mx-auto px-6">

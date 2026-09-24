@@ -12,7 +12,7 @@ const AboutSection = () => {
   ];
 
   return (
-    <section id="about" className="py-32 bg-navy-gradient">
+    <section id="about" className="py-16 md:py-32 bg-navy-gradient">
       <div className="container mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <FadeInSection>

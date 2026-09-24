@@ -18,7 +18,7 @@ const FAQSection = () => {
   ];
 
   return (
-    <section className="py-28 md:py-36 bg-cream relative overflow-hidden">
+    <section className="py-16 md:py-36 bg-cream relative overflow-hidden">
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gold/[0.06] rounded-full blur-[140px] pointer-events-none" />
 
       <div className="container mx-auto px-6 relative z-10">

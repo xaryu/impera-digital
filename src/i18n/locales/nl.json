@@ -1,6 +1,7 @@
 {
   "nav": {
     "services": "Diensten",
+    "ourServices": "Onze Diensten",
     "howWeWork": "Onze Aanpak",
     "blog": "Blog",
     "about": "Over Ons",
@@ -180,6 +181,30 @@
     "step2Desc": "We ontwerpen en implementeren de automatisering zelf — senior specialisten, nooit een onderaannemer.",
     "step3Title": "Bevelen",
     "step3Desc": "U stopt met het beheren van het proces en begint het bedrijf te runnen waarvoor het gebouwd is om u te bevrijden."
+  },
+  "ourServicesPage": {
+    "eyebrow": "wat wij doen",
+    "title": "Alles onder één bevel.",
+    "subtitle": "Drie disciplines, gebouwd om als één systeem te werken — geen drie aparte leveranciers die u zelf moet coördineren.",
+    "aiTitle": "AI-automatisering",
+    "aiDesc": "Wij bouwen de systemen die het werk doen dat uw team niet zou moeten doen. Van documentverwerking tot lead-opvolging — automatisering draait stil op de achtergrond, zodat uw mensen tijd besteden aan wat het bedrijf echt laat groeien, niet aan wat het slechts draaiende houdt.",
+    "aiItem1": "Workflow- & procesautomatisering",
+    "aiItem2": "AI-agents voor repetitieve taken",
+    "aiItem3": "Document- & gegevensverwerking",
+    "aiItem4": "Integraties met uw bestaande tools",
+    "webTitle": "Webontwikkeling & design",
+    "webDesc": "Uw website is vaak de enige indruk die een prospect krijgt voordat die beslist u te vertrouwen. Wij bouwen sites die ontworpen zijn om te converteren, niet alleen om er goed uit te zien — zodat bezoekers klanten worden in plaats van enkel bezoekers.",
+    "webItem1": "Conversiegericht design",
+    "webItem2": "Maatwerkontwikkeling, van landingspagina tot platform",
+    "webItem3": "E-commerce & boekingssystemen",
+    "webItem4": "Doorlopende prestatie-optimalisatie",
+    "marketingTitle": "Digitale marketing",
+    "marketingDesc": "Verkeer zonder conversie is enkel ruis. Wij voeren marketing die wordt gemeten in omzet, niet in likes — betaalde campagnes, content en positionering opgebouwd rond echt rendement, zodat elke euro herleidbaar is tot wat hij heeft opgeleverd.",
+    "marketingItem1": "Betaalde advertenties (Meta, Google)",
+    "marketingItem2": "Content & SEO-strategie",
+    "marketingItem3": "Merkpositionering & boodschap",
+    "marketingItem4": "Campagneprestaties opvolgen",
+    "cta": "Vraag mijn groei-audit aan"
   },
   "servicesPage": {
     "eyebrow": "Wat We Doen",
