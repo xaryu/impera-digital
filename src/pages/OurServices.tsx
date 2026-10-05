@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import PageHero from "@/components/PageHero";
 import FadeInSection from "@/components/FadeInSection";
 import LocalizedLink from "@/components/LocalizedLink";
 
@@ -44,20 +45,11 @@ const OurServices = () => {
       />
       <Navbar />
 
-      <section className="relative pt-32 pb-16 md:pt-40 md:pb-20 overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-gold/5 rounded-full blur-[140px] pointer-events-none" />
-        <div className="relative z-10 container mx-auto px-6 text-center max-w-2xl">
-          <FadeInSection>
-            <p className="font-body text-sm tracking-[0.3em] text-gold uppercase mb-4">{t("ourServicesPage.eyebrow")}</p>
-          </FadeInSection>
-          <FadeInSection delay={150}>
-            <h1 className="font-display text-4xl md:text-5xl font-bold text-cream leading-tight mb-6">{t("ourServicesPage.title")}</h1>
-          </FadeInSection>
-          <FadeInSection delay={300}>
-            <p className="font-body text-cream/70 leading-relaxed">{t("ourServicesPage.subtitle")}</p>
-          </FadeInSection>
-        </div>
-      </section>
+      <PageHero
+        eyebrow={t("ourServicesPage.eyebrow")}
+        title={t("ourServicesPage.title")}
+        subtitle={t("ourServicesPage.subtitle")}
+      />
 
       <section className="relative pb-24 md:pb-32">
         <div className="container mx-auto px-6 max-w-4xl">

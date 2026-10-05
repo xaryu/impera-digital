@@ -56,7 +56,7 @@ const Contact = () => {
     }
 
     setSubmitted(true);
-    toast.success(t("contactPage.successMessage") || "Message sent successfully!");
+    toast.success(t("contactPage.successMessage"));
   };
 
   return (
@@ -95,10 +95,10 @@ const Contact = () => {
                     <Mail className="w-7 h-7 text-gold" />
                   </div>
                   <h3 className="font-display text-2xl font-bold text-navy mb-3">
-                    {t("contactPage.thankYouTitle") || "Thank You!"}
+                    {t("contactPage.thankYouTitle")}
                   </h3>
                   <p className="font-body text-muted-foreground leading-relaxed max-w-md mx-auto">
-                    {t("contactPage.thankYouDesc") || "Your message has been received. We'll get back to you within 24 hours."}
+                    {t("contactPage.thankYouDesc")}
                   </p>
                 </div>
               ) : (
@@ -148,7 +148,7 @@ const Contact = () => {
                   </div>
 
                   <button type="submit" disabled={submitting} className="w-full sm:w-auto px-12 py-4 bg-gold text-navy-dark font-body text-sm font-semibold tracking-wider uppercase hover:bg-gold-light transition-colors duration-300 min-h-[48px] disabled:opacity-60">
-                    {submitting ? (t("contactPage.sending") || "Sending...") : t("contactPage.submit")}
+                    {submitting ? t("contactPage.sending") : t("contactPage.submit")}
                   </button>
                 </form>
               )}

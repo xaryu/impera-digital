@@ -14,8 +14,10 @@ const Navbar = () => {
   const navLinks = [
     { label: t("nav.services"), href: "/services" },
     { label: t("nav.ourServices"), href: "/our-services" },
+    { label: t("nav.products"), href: "/products" },
     { label: t("nav.howWeWork"), href: "/methodology" },
     { label: t("nav.blog"), href: "/blog" },
+    { label: t("nav.careers"), href: "/careers" },
     { label: t("nav.about"), href: "/about" },
   ];
 
@@ -34,7 +36,7 @@ const Navbar = () => {
         </LocalizedLink>
 
         {/* Desktop */}
-        <div className="hidden md:flex items-center gap-10">
+        <div className="hidden lg:flex items-center gap-6 xl:gap-8">
           {navLinks.map((link) => (
             <LocalizedLink
               key={link.href}
@@ -51,7 +53,7 @@ const Navbar = () => {
           <LanguageSwitcher />
           <LocalizedLink
             to="/contact"
-            className="ml-4 px-6 py-2.5 border border-gold/40 text-gold text-sm tracking-wider uppercase hover:bg-gold/10 transition-all duration-300"
+            className="ml-2 px-6 py-2.5 border border-gold/40 text-gold text-sm tracking-wider uppercase whitespace-nowrap hover:bg-gold/10 transition-all duration-300"
           >
             {t("nav.getInTouch")}
           </LocalizedLink>
@@ -60,7 +62,7 @@ const Navbar = () => {
         {/* Mobile toggle */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden text-cream p-2 min-w-[44px] min-h-[44px] flex items-center justify-center"
+          className="lg:hidden text-cream p-2 min-w-[44px] min-h-[44px] flex items-center justify-center"
           aria-label="Toggle navigation menu"
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -69,7 +71,7 @@ const Navbar = () => {
 
       {/* Mobile menu */}
       {isOpen && (
-        <div className="md:hidden bg-navy/95 backdrop-blur-md border-t border-navy-light/50 px-6 py-6 animate-fade-in max-h-[80vh] overflow-y-auto">
+        <div className="lg:hidden bg-navy/95 backdrop-blur-md border-t border-navy-light/50 px-6 py-6 animate-fade-in max-h-[80vh] overflow-y-auto">
           <div className="flex flex-col gap-1">
             {navLinks.map((link) => (
               <LocalizedLink
