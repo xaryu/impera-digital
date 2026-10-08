@@ -1,7 +1,7 @@
 import { ComponentType, CSSProperties } from "react";
 import { Megaphone, Palette, TrendingUp, Globe } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import FadeInSection from "./FadeInSection";
+import FadeInSection from "@/components/common/FadeInSection";
 import { useInView } from "@/hooks/useInView";
 
 const ServicesSection = () => {

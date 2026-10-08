@@ -394,7 +394,9 @@
     "backToJournalShort": "Back to Journal",
     "shareArticle": "Share this article",
     "relatedArticles": "Related Articles",
-    "minRead": "min read"
+    "minRead": "min read",
+    "noPosts": "No articles published yet.",
+    "noPostsDesc": "We're writing up what we learn from real client work. The first pieces will land here soon."
   },
   "careersPage": {
     "eyebrow": "join impera",

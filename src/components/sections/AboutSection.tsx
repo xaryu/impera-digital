@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import FadeInSection from "./FadeInSection";
+import FadeInSection from "@/components/common/FadeInSection";
 
 const AboutSection = () => {
   const { t } = useTranslation();

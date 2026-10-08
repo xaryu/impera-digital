@@ -1,11 +1,11 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import LocalizedLink from "@/components/LocalizedLink";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import LocalizedLink from "@/components/layout/LocalizedLink";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 import { Search, Home, Briefcase, Users, Mail, ArrowLeft } from "lucide-react";
-import SEO from "@/components/SEO";
+import SEO from "@/components/layout/SEO";
 
 const NotFound = () => {
   const location = useLocation();

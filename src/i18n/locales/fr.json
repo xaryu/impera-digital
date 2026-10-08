@@ -394,7 +394,9 @@
     "backToJournalShort": "Retour au Journal",
     "shareArticle": "Partager cet article",
     "relatedArticles": "Articles Connexes",
-    "minRead": "min de lecture"
+    "minRead": "min de lecture",
+    "noPosts": "Aucun article publié pour le moment.",
+    "noPostsDesc": "Nous mettons par écrit ce que nous apprenons sur le terrain avec nos clients. Les premiers articles arrivent bientôt."
   },
   "careersPage": {
     "eyebrow": "rejoindre impera",

@@ -2,7 +2,7 @@ import { CSSProperties, Fragment } from "react";
 import { useTranslation } from "react-i18next";
 import { Search, Cog, Crown } from "lucide-react";
 import { useInView } from "@/hooks/useInView";
-import FadeInSection from "./FadeInSection";
+import FadeInSection from "@/components/common/FadeInSection";
 
 // Column layout is a fixed 3-up grid with a 6rem column-gap (see sm:gap-x-24
 // below) and a 4rem (w-16) dot — these two derived insets are where a

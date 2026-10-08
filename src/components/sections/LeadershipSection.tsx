@@ -3,6 +3,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Pencil, Check, X, Upload, Plus, Trash2 } from "lucide-react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
+import { getErrorMessage } from "@/lib/utils";
 
 type TeamMember = {
   id: string;
@@ -59,8 +60,8 @@ const MemberCard = ({
       if (error) throw error;
       const { data } = supabase.storage.from("team-photos").getPublicUrl(path);
       setPhotoUrl(data.publicUrl + `?t=${Date.now()}`);
-    } catch (err: any) {
-      toast.error("Upload failed: " + err.message);
+    } catch (err) {
+      toast.error("Upload failed: " + getErrorMessage(err));
     } finally {
       setUploading(false);
     }
@@ -214,7 +215,7 @@ const LeadershipSection = ({ isAdmin }: { isAdmin: boolean }) => {
       queryClient.invalidateQueries({ queryKey: ["team_members"] });
       toast.success("Member updated");
     },
-    onError: (e: any) => toast.error(e.message),
+    onError: (e: Error) => toast.error(e.message),
   });
 
   const deleteMutation = useMutation({
@@ -226,7 +227,7 @@ const LeadershipSection = ({ isAdmin }: { isAdmin: boolean }) => {
       queryClient.invalidateQueries({ queryKey: ["team_members"] });
       toast.success("Member removed");
     },
-    onError: (e: any) => toast.error(e.message),
+    onError: (e: Error) => toast.error(e.message),
   });
 
   const addMutation = useMutation({
@@ -242,7 +243,7 @@ const LeadershipSection = ({ isAdmin }: { isAdmin: boolean }) => {
       queryClient.invalidateQueries({ queryKey: ["team_members"] });
       toast.success("Member added");
     },
-    onError: (e: any) => toast.error(e.message),
+    onError: (e: Error) => toast.error(e.message),
   });
 
   return (

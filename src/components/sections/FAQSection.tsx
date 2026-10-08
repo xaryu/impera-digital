@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { Plus } from "lucide-react";
 import * as AccordionPrimitive from "@radix-ui/react-accordion";
 import { Accordion, AccordionItem, AccordionContent } from "@/components/ui/accordion";
-import FadeInSection from "./FadeInSection";
+import FadeInSection from "@/components/common/FadeInSection";
 import { cn } from "@/lib/utils";
 
 const FAQSection = () => {

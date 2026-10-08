@@ -1,6 +1,6 @@
 import { Scale, Calculator, HardHat, Building2, HeartPulse, Clock } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import FadeInSection from "./FadeInSection";
+import FadeInSection from "@/components/common/FadeInSection";
 
 const ResultsSection = () => {
   const { t } = useTranslation();

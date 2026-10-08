@@ -1,11 +1,11 @@
 import { useTranslation } from "react-i18next";
 import { ArrowRight, Bot, Check, Clock, FileSearch, Workflow, Zap } from "lucide-react";
-import SEO from "@/components/SEO";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import PageHero from "@/components/PageHero";
-import FadeInSection from "@/components/FadeInSection";
-import LocalizedLink from "@/components/LocalizedLink";
+import SEO from "@/components/layout/SEO";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+import PageHero from "@/components/sections/PageHero";
+import FadeInSection from "@/components/common/FadeInSection";
+import LocalizedLink from "@/components/layout/LocalizedLink";
 
 const Products = () => {
   const { t } = useTranslation();

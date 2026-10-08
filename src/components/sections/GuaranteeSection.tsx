@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
-import FadeInSection from "@/components/FadeInSection";
+import FadeInSection from "@/components/common/FadeInSection";
 import { ShieldCheck, BarChart3, Clock, UserCheck, ArrowRight } from "lucide-react";
-import LocalizedLink from "@/components/LocalizedLink";
+import LocalizedLink from "@/components/layout/LocalizedLink";
 
 const GuaranteeSection = () => {
   const { t } = useTranslation();

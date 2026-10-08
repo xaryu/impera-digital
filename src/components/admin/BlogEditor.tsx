@@ -88,7 +88,7 @@ const BlogEditor = ({
       toast.success(isNew ? "Post created" : "Post updated");
       onClose();
     },
-    onError: (e: any) => toast.error(e.message),
+    onError: (e: Error) => toast.error(e.message),
   });
 
   const deleteMutation = useMutation({
@@ -102,7 +102,7 @@ const BlogEditor = ({
       toast.success("Post deleted");
       onClose();
     },
-    onError: (e: any) => toast.error(e.message),
+    onError: (e: Error) => toast.error(e.message),
   });
 
   return (

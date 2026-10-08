@@ -1,6 +1,6 @@
 import { Globe, TrendingUp, Users } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import FadeInSection from "./FadeInSection";
+import FadeInSection from "@/components/common/FadeInSection";
 
 const WhyImperaSection = () => {
   const { t } = useTranslation();

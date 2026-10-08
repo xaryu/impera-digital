@@ -1,16 +1,16 @@
-import Navbar from "@/components/Navbar";
-import HeroSection from "@/components/HeroSection";
-import PathwaySection from "@/components/PathwaySection";
-import ServicesSection from "@/components/ServicesSection";
-import AboutSection from "@/components/AboutSection";
-import WhyImperaSection from "@/components/WhyImperaSection";
-import GuaranteeSection from "@/components/GuaranteeSection";
-import CTASection from "@/components/CTASection";
-import Footer from "@/components/Footer";
-import SEO from "@/components/SEO";
-import ExitIntentPopup from "@/components/ExitIntentPopup";
-import ResultsSection from "@/components/ResultsSection";
-import FAQSection from "@/components/FAQSection";
+import Navbar from "@/components/layout/Navbar";
+import HeroSection from "@/components/sections/HeroSection";
+import PathwaySection from "@/components/sections/PathwaySection";
+import ServicesSection from "@/components/sections/ServicesSection";
+import AboutSection from "@/components/sections/AboutSection";
+import WhyImperaSection from "@/components/sections/WhyImperaSection";
+import GuaranteeSection from "@/components/sections/GuaranteeSection";
+import CTASection from "@/components/sections/CTASection";
+import Footer from "@/components/layout/Footer";
+import SEO from "@/components/layout/SEO";
+import ExitIntentPopup from "@/components/common/ExitIntentPopup";
+import ResultsSection from "@/components/sections/ResultsSection";
+import FAQSection from "@/components/sections/FAQSection";
 
 const Index = () => {
   return (

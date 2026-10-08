@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import LocalizedLink from "@/components/LocalizedLink";
+import LocalizedLink from "@/components/layout/LocalizedLink";
 import HeroSectionLanding from "./HeroSectionLanding";
 
 const HeroSection = () => {

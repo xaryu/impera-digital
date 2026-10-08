@@ -1,10 +1,10 @@
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import SEO from "@/components/SEO";
-import FadeInSection from "@/components/FadeInSection";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+import SEO from "@/components/layout/SEO";
+import FadeInSection from "@/components/common/FadeInSection";
 import { useTranslation } from "react-i18next";
 import { Search, Target, Rocket, ArrowRight, CheckCircle2, Clock, FileText } from "lucide-react";
-import LocalizedLink from "@/components/LocalizedLink";
+import LocalizedLink from "@/components/layout/LocalizedLink";
 
 const Methodology = () => {
   const { t } = useTranslation();

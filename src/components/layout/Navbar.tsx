@@ -2,9 +2,9 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import ImperaLogo from "@/components/ImperaLogo";
-import LocalizedLink from "@/components/LocalizedLink";
-import LanguageSwitcher from "@/components/LanguageSwitcher";
+import ImperaLogo from "@/components/common/ImperaLogo";
+import LocalizedLink from "@/components/layout/LocalizedLink";
+import LanguageSwitcher from "@/components/layout/LanguageSwitcher";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);

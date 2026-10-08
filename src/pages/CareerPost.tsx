@@ -1,10 +1,10 @@
 import { useParams } from "react-router-dom";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import SEO from "@/components/SEO";
-import LocalizedLink from "@/components/LocalizedLink";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+import SEO from "@/components/layout/SEO";
+import LocalizedLink from "@/components/layout/LocalizedLink";
 import { ArrowLeft, Upload, Loader2 } from "lucide-react";
 import { useState, useRef } from "react";
 import { toast } from "sonner";
@@ -53,7 +53,7 @@ const CareerPost = () => {
       toast.success("Application submitted successfully!");
       setFullName(""); setEmail(""); setMotivation(""); setCvFile(null);
     },
-    onError: (err: any) => toast.error(err.message),
+    onError: (err: Error) => toast.error(err.message),
   });
 
   const handleSubmit = (e: React.FormEvent) => {

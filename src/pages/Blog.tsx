@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
-import SEO from "@/components/SEO";
-import LocalizedLink from "@/components/LocalizedLink";
+import SEO from "@/components/layout/SEO";
+import LocalizedLink from "@/components/layout/LocalizedLink";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import AdminAuth from "@/components/AdminAuth";
-import BlogEditor from "@/components/BlogEditor";
-import { Plus, Pencil, Settings, LogOut, Clock, ChevronLeft, ChevronRight } from "lucide-react";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+import AdminAuth from "@/components/admin/AdminAuth";
+import BlogEditor from "@/components/admin/BlogEditor";
+import { Plus, Pencil, Settings, LogOut, Clock, ChevronLeft, ChevronRight, Inbox } from "lucide-react";
 import { toast } from "sonner";
 import { useTranslation } from "react-i18next";
 
@@ -124,6 +124,18 @@ const Blog = () => {
               {[...Array(3)].map((_, i) => (
                 <div key={i} className="h-80 bg-gold/5 animate-pulse rounded-lg" />
               ))}
+            </div>
+          </div>
+        </section>
+      ) : posts.length === 0 ? (
+        <section className="px-6 pb-24">
+          <div className="container mx-auto max-w-3xl">
+            <div className="rounded-2xl border border-gold/20 bg-navy/50 p-8 md:p-12 text-center">
+              <Inbox className="w-7 h-7 text-gold mx-auto mb-5" aria-hidden="true" />
+              <h2 className="font-display text-lg md:text-xl font-bold text-cream mb-4">{t("blogPage.noPosts")}</h2>
+              <p className="font-body text-sm text-gold-muted leading-relaxed max-w-xl mx-auto">
+                {t("blogPage.noPostsDesc")}
+              </p>
             </div>
           </div>
         </section>

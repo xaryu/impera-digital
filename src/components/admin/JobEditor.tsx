@@ -76,7 +76,7 @@ const JobEditor = ({ onClose }: { onClose: () => void }) => {
       setEditing(null);
       setForm(emptyJob);
     },
-    onError: (err: any) => toast.error(err.message),
+    onError: (err: Error) => toast.error(err.message),
   });
 
   const deleteMutation = useMutation({
@@ -89,7 +89,7 @@ const JobEditor = ({ onClose }: { onClose: () => void }) => {
       queryClient.invalidateQueries({ queryKey: ["admin-jobs"] });
       queryClient.invalidateQueries({ queryKey: ["job-openings"] });
     },
-    onError: (err: any) => toast.error(err.message),
+    onError: (err: Error) => toast.error(err.message),
   });
 
   const togglePublish = useMutation({

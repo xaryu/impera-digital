@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import SEO from "@/components/SEO";
+import SEO from "@/components/layout/SEO";
 import { Award, Users, Target, Shield, Settings, LogOut } from "lucide-react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import LeadershipSection from "@/components/LeadershipSection";
-import AdminAuth from "@/components/AdminAuth";
-import LocalizedLink from "@/components/LocalizedLink";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+import LeadershipSection from "@/components/sections/LeadershipSection";
+import AdminAuth from "@/components/admin/AdminAuth";
+import LocalizedLink from "@/components/layout/LocalizedLink";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { useTranslation } from "react-i18next";

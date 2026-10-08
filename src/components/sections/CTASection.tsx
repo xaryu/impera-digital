@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
-import FadeInSection from "./FadeInSection";
-import CalendlyDialog from "./CalendlyDialog";
+import FadeInSection from "@/components/common/FadeInSection";
+import CalendlyDialog from "@/components/common/CalendlyDialog";
 
 const CTASection = () => {
   const { t } = useTranslation();

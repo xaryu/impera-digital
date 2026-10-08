@@ -394,7 +394,9 @@
     "backToJournalShort": "Terug naar Journaal",
     "shareArticle": "Deel dit artikel",
     "relatedArticles": "Gerelateerde Artikelen",
-    "minRead": "min leestijd"
+    "minRead": "min leestijd",
+    "noPosts": "Nog geen artikelen gepubliceerd.",
+    "noPostsDesc": "We schrijven op wat we leren uit echt klantwerk. De eerste stukken verschijnen hier binnenkort."
   },
   "careersPage": {
     "eyebrow": "sluit je aan bij impera",

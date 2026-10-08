@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { Mail, MapPin, Clock, Instagram, Linkedin } from "lucide-react";
-import ImperaLogo from "@/components/ImperaLogo";
-import LocalizedLink from "@/components/LocalizedLink";
+import ImperaLogo from "@/components/common/ImperaLogo";
+import LocalizedLink from "@/components/layout/LocalizedLink";
 
 const Footer = () => {
   const { t } = useTranslation();

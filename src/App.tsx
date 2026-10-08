@@ -4,10 +4,10 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import ScrollProgress from "./components/ScrollProgress";
-import PageLoader from "./components/PageLoader";
-import LanguageLayout from "./components/LanguageLayout";
-import CookieConsent from "./components/CookieConsent";
+import ScrollProgress from "./components/layout/ScrollProgress";
+import PageLoader from "./components/layout/PageLoader";
+import LanguageLayout from "./components/layout/LanguageLayout";
+import CookieConsent from "./components/common/CookieConsent";
 import { useTrackingConsent } from "./hooks/use-tracking-consent";
 
 import Index from "./pages/Index";

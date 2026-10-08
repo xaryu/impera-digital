@@ -1,4 +1,4 @@
-import FadeInSection from "./FadeInSection";
+import FadeInSection from "@/components/common/FadeInSection";
 
 interface PageHeroProps {
   eyebrow: string;

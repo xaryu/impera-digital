@@ -1,9 +1,9 @@
 import { Megaphone, Palette, TrendingUp, Globe, ArrowRight, CheckCircle } from "lucide-react";
-import SEO from "@/components/SEO";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import LocalizedLink from "@/components/LocalizedLink";
-import CalendlyDialog from "@/components/CalendlyDialog";
+import SEO from "@/components/layout/SEO";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+import LocalizedLink from "@/components/layout/LocalizedLink";
+import CalendlyDialog from "@/components/common/CalendlyDialog";
 import { useTranslation } from "react-i18next";
 
 const serviceIcons = [Palette, Globe, Megaphone, TrendingUp];
