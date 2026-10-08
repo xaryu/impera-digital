@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react";
 import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -24,6 +25,9 @@ import NotFound from "./pages/NotFound";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import Methodology from "./pages/Methodology";
+
+// Lazy so admin-only code stays out of the public bundle.
+const Admin = lazy(() => import("./pages/Admin"));
 
 const queryClient = new QueryClient();
 
@@ -61,6 +65,14 @@ const App = () => (
           <ScrollProgress />
           <PageLoader>
             <Routes>
+              <Route
+                path="admin"
+                element={
+                  <Suspense fallback={null}>
+                    <Admin />
+                  </Suspense>
+                }
+              />
               {/* English (no prefix) */}
               <Route element={<LanguageLayout />}>
                 {AppRoutes()}

@@ -1,15 +1,19 @@
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
-import { useLocation } from "react-router-dom";
+import { LayoutDashboard, LogOut, Menu, X } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import ImperaLogo from "@/components/common/ImperaLogo";
 import LocalizedLink from "@/components/layout/LocalizedLink";
 import LanguageSwitcher from "@/components/layout/LanguageSwitcher";
+import { signOutAdmin, useAdmin } from "@/hooks/use-admin";
+
+const adminIconClass = "text-gold-muted/40 hover:text-gold transition-colors";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
   const { t } = useTranslation();
+  const { isAdmin } = useAdmin();
 
   const navLinks = [
     { label: t("nav.services"), href: "/services" },
@@ -57,6 +61,16 @@ const Navbar = () => {
           >
             {t("nav.getInTouch")}
           </LocalizedLink>
+          {isAdmin && (
+            <div className="flex items-center gap-3 pl-4 border-l border-gold/15">
+              <Link to="/admin" title="Admin dashboard" aria-label="Admin dashboard" className={adminIconClass}>
+                <LayoutDashboard className="w-4 h-4" />
+              </Link>
+              <button onClick={signOutAdmin} title="Sign out" aria-label="Sign out of admin" className={adminIconClass}>
+                <LogOut className="w-4 h-4" />
+              </button>
+            </div>
+          )}
         </div>
 
         {/* Mobile toggle */}
@@ -97,6 +111,22 @@ const Navbar = () => {
             >
               {t("nav.getInTouch")}
             </LocalizedLink>
+            {isAdmin && (
+              <div className="mt-4 pt-4 border-t border-gold/10 flex items-center justify-center gap-6 font-body text-xs tracking-wider uppercase">
+                <Link to="/admin" onClick={() => setIsOpen(false)} className={`flex items-center gap-2 py-2 ${adminIconClass}`}>
+                  <LayoutDashboard className="w-3.5 h-3.5" /> Dashboard
+                </Link>
+                <button
+                  onClick={() => {
+                    setIsOpen(false);
+                    signOutAdmin();
+                  }}
+                  className={`flex items-center gap-2 py-2 ${adminIconClass}`}
+                >
+                  <LogOut className="w-3.5 h-3.5" /> Sign out
+                </button>
+              </div>
+            )}
           </div>
         </div>
       )}

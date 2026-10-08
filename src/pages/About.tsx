@@ -1,37 +1,18 @@
-import { useEffect, useState } from "react";
 import SEO from "@/components/layout/SEO";
-import { Award, Users, Target, Shield, Settings, LogOut } from "lucide-react";
+import { Award, Users, Target, Shield } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import LeadershipSection from "@/components/sections/LeadershipSection";
-import AdminAuth from "@/components/admin/AdminAuth";
 import LocalizedLink from "@/components/layout/LocalizedLink";
-import { supabase } from "@/integrations/supabase/client";
-import { toast } from "sonner";
 import { useTranslation } from "react-i18next";
+import { useAdmin } from "@/hooks/use-admin";
 
 const valueIcons = [Shield, Target, Award, Users];
 const valueKeys = ["authority", "precision", "excellence", "partnership"];
 
 const About = () => {
   const { t } = useTranslation();
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [showAuthModal, setShowAuthModal] = useState(false);
-
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data }) => {
-      setIsAdmin(!!data.session);
-    });
-    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
-      setIsAdmin(!!session);
-    });
-    return () => listener.subscription.unsubscribe();
-  }, []);
-
-  const handleLogout = async () => {
-    await supabase.auth.signOut();
-    toast.success("Logged out");
-  };
+  const { isAdmin } = useAdmin();
 
   const stats = [
     { value: t("aboutPage.stat1"), label: t("aboutPage.stat1Label") },
@@ -152,34 +133,7 @@ const About = () => {
             {t("aboutPage.ctaButton")}
           </LocalizedLink>
         </div>
-        {/* Admin toggle */}
-        <div className="absolute bottom-4 right-6">
-          {isAdmin ? (
-            <button
-              onClick={handleLogout}
-              className="flex items-center gap-2 font-body text-xs text-gold/40 hover:text-gold/80 transition-colors"
-            >
-              <LogOut className="w-3 h-3" />
-              Exit Admin
-            </button>
-          ) : (
-            <button
-              onClick={() => setShowAuthModal(true)}
-              className="flex items-center gap-2 font-body text-xs text-gold/20 hover:text-gold/60 transition-colors"
-            >
-              <Settings className="w-3 h-3" />
-              Admin
-            </button>
-          )}
-        </div>
       </section>
-
-      {showAuthModal && (
-        <AdminAuth
-          onClose={() => setShowAuthModal(false)}
-          onLoggedIn={() => setIsAdmin(true)}
-        />
-      )}
 
       <Footer />
     </div>

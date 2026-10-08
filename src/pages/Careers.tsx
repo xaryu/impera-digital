@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import SEO from "@/components/layout/SEO";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -7,27 +6,15 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import PageHero from "@/components/sections/PageHero";
 import FadeInSection from "@/components/common/FadeInSection";
-import AdminAuth from "@/components/admin/AdminAuth";
-import JobEditor from "@/components/admin/JobEditor";
-import { ArrowRight, Hammer, Inbox, KeyRound, LogOut, Settings, ShieldCheck, Users } from "lucide-react";
-import { toast } from "sonner";
+import { ArrowRight, Hammer, Inbox, KeyRound, ShieldCheck, Users } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { useAdmin } from "@/hooks/use-admin";
 
 const CAREERS_EMAIL = "careers@impera-group.com";
 
 const Careers = () => {
   const { t } = useTranslation();
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [showAuth, setShowAuth] = useState(false);
-  const [showEditor, setShowEditor] = useState(false);
-
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data }) => setIsAdmin(!!data.session));
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setIsAdmin(!!session);
-    });
-    return () => subscription.unsubscribe();
-  }, []);
+  const { isAdmin } = useAdmin();
 
   const { data: jobs = [] } = useQuery({
     queryKey: ["job-openings"],
@@ -40,12 +27,6 @@ const Careers = () => {
 
   const visibleJobs = isAdmin ? jobs : jobs.filter((j) => j.published);
 
-  const handleLogout = async () => {
-    await supabase.auth.signOut();
-    setIsAdmin(false);
-    toast.success("Logged out");
-  };
-
   const values = [
     { icon: KeyRound, title: t("careersPage.value1Title"), description: t("careersPage.value1Desc") },
     { icon: Users, title: t("careersPage.value2Title"), description: t("careersPage.value2Desc") },
@@ -57,27 +38,6 @@ const Careers = () => {
     <div className="min-h-screen bg-cream">
       <SEO title={`${t("careersPage.title")} — Impera`} description={t("careersPage.subtitle")} path="/careers" />
       <Navbar />
-
-      {/* Admin bar */}
-      <div className="fixed bottom-6 right-6 z-40 flex gap-2">
-        {isAdmin ? (
-          <>
-            <button onClick={() => setShowEditor(true)} className="flex items-center gap-2 px-4 py-2 bg-gold text-navy-dark font-body text-xs font-semibold tracking-wider uppercase hover:bg-gold-light transition-colors">
-              <Settings className="w-4 h-4" /> Manage Jobs
-            </button>
-            <button onClick={handleLogout} className="p-2 bg-navy border border-gold/20 text-gold hover:bg-gold/10 transition-colors">
-              <LogOut className="w-4 h-4" />
-            </button>
-          </>
-        ) : (
-          <button onClick={() => setShowAuth(true)} className="px-4 py-2 border border-navy/20 text-navy font-body text-xs tracking-wider uppercase hover:bg-navy/5 transition-colors opacity-30 hover:opacity-100">
-            Admin
-          </button>
-        )}
-      </div>
-
-      {showAuth && <AdminAuth onClose={() => setShowAuth(false)} onLoggedIn={() => setIsAdmin(true)} />}
-      {showEditor && <JobEditor onClose={() => setShowEditor(false)} />}
 
       <PageHero
         eyebrow={t("careersPage.eyebrow")}

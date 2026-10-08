@@ -4,6 +4,8 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { X, Save, Trash2, Eye, EyeOff } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
+import ConfirmDelete from "@/components/admin/ConfirmDelete";
+import { useDeleteRow } from "@/hooks/use-delete-row";
 
 type BlogPost = {
   id: string;
@@ -91,19 +93,7 @@ const BlogEditor = ({
     onError: (e: Error) => toast.error(e.message),
   });
 
-  const deleteMutation = useMutation({
-    mutationFn: async () => {
-      if (!post) return;
-      const { error } = await supabase.from("blog_posts").delete().eq("id", post.id);
-      if (error) throw error;
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["blog_posts"] });
-      toast.success("Post deleted");
-      onClose();
-    },
-    onError: (e: Error) => toast.error(e.message),
-  });
+  const deleteMutation = useDeleteRow("blog_posts", "Post deleted");
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-navy-dark/90 backdrop-blur-sm p-4">
@@ -209,17 +199,12 @@ const BlogEditor = ({
             </button>
 
             {!isNew && (
-              <button
-                onClick={() => {
-                  if (confirm("Delete this post permanently?")) {
-                    deleteMutation.mutate();
-                  }
-                }}
-                className="flex items-center gap-2 font-body text-xs tracking-wider uppercase text-destructive/70 hover:text-destructive transition-colors"
-              >
-                <Trash2 className="w-3.5 h-3.5" />
-                Delete
-              </button>
+              <ConfirmDelete itemLabel={post.title} onConfirm={() => deleteMutation.mutate(post.id, { onSuccess: onClose })}>
+                <button className="flex items-center gap-2 font-body text-xs tracking-wider uppercase text-destructive/70 hover:text-destructive transition-colors">
+                  <Trash2 className="w-3.5 h-3.5" />
+                  Delete
+                </button>
+              </ConfirmDelete>
             )}
           </div>
 

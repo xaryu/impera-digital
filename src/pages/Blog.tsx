@@ -1,15 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import SEO from "@/components/layout/SEO";
 import LocalizedLink from "@/components/layout/LocalizedLink";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import AdminAuth from "@/components/admin/AdminAuth";
 import BlogEditor from "@/components/admin/BlogEditor";
-import { Plus, Pencil, Settings, LogOut, Clock, ChevronLeft, ChevronRight, Inbox } from "lucide-react";
-import { toast } from "sonner";
+import { Plus, Pencil, Clock, ChevronLeft, ChevronRight, Inbox } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { useAdmin } from "@/hooks/use-admin";
 
 const POSTS_PER_PAGE = 6;
 
@@ -49,28 +48,14 @@ const fetchPosts = async (isAdmin: boolean): Promise<BlogPost[]> => {
 
 const Blog = () => {
   const { t, i18n } = useTranslation();
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [showAuthModal, setShowAuthModal] = useState(false);
+  const { isAdmin } = useAdmin();
   const [editingPost, setEditingPost] = useState<BlogPost | null | undefined>(undefined);
   const [page, setPage] = useState(1);
-
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data }) => setIsAdmin(!!data.session));
-    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
-      setIsAdmin(!!session);
-    });
-    return () => listener.subscription.unsubscribe();
-  }, []);
 
   const { data: posts = [], isLoading } = useQuery({
     queryKey: ["blog_posts", isAdmin],
     queryFn: () => fetchPosts(isAdmin),
   });
-
-  const handleLogout = async () => {
-    await supabase.auth.signOut();
-    toast.success("Logged out");
-  };
 
   const formatDate = (dateStr: string | null) => {
     if (!dateStr) return t("blogPage.draft");
@@ -276,24 +261,6 @@ const Blog = () => {
         </>
       )}
 
-      {/* Admin toggle */}
-      <section className="py-12 bg-navy-dark text-center relative">
-        <div className="absolute bottom-4 right-6">
-          {isAdmin ? (
-            <button onClick={handleLogout} className="flex items-center gap-2 font-body text-xs text-gold/40 hover:text-gold/80 transition-colors">
-              <LogOut className="w-3 h-3" />
-              Exit Admin
-            </button>
-          ) : (
-            <button onClick={() => setShowAuthModal(true)} className="flex items-center gap-2 font-body text-xs text-gold/20 hover:text-gold/60 transition-colors">
-              <Settings className="w-3 h-3" />
-              Admin
-            </button>
-          )}
-        </div>
-      </section>
-
-      {showAuthModal && <AdminAuth onClose={() => setShowAuthModal(false)} onLoggedIn={() => setIsAdmin(true)} />}
       {editingPost !== undefined && <BlogEditor post={editingPost} onClose={() => setEditingPost(undefined)} />}
 
       <Footer />
