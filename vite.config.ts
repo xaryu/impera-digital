@@ -26,7 +26,7 @@ export default defineConfig(({ mode }) => ({
     rollupOptions: {
       output: {
         manualChunks: {
-          vendor: ["react", "react-dom", "react-router-dom"],
+          vendor: ["react", "react-dom", "react-router", "react-router-dom"],
           query: ["@tanstack/react-query"],
           ui: ["sonner", "lucide-react"],
         },

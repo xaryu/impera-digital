@@ -1,3 +1,4 @@
+/// <reference types="node" />
 // Guards the translation files in src/i18n/locales against the mistakes that are
 // easy to make while editing text: a key missing in one language, an empty
 // value, a broken {{placeholder}} or <link> tag, or a key the code needs that
