@@ -1,6 +1,6 @@
-import { Link as RouterLink, type LinkProps, useNavigate } from "react-router-dom";
+import { Link as RouterLink, type LinkProps } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { supportedLanguages, type SupportedLanguage } from "@/i18n";
+import type { SupportedLanguage } from "@/i18n";
 import { useCallback } from "react";
 
 /**

@@ -1,7 +1,8 @@
 import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
+import { company } from "@/config/company";
 
-const SITE_URL = "https://impera-digital.lovable.app";
+const SITE_URL = company.siteUrl;
 const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.png`;
 const SITE_NAME = "Impera";
 
@@ -21,14 +22,14 @@ const organizationSchema = {
   url: SITE_URL,
   logo: `${SITE_URL}/og-image.png`,
   description: "Premium digital media agency crafting luxury brand experiences that command authority and distinction.",
-  email: "contact@impera-group.com",
-  telephone: "+32 492 20 23 77",
+  email: company.email,
+  telephone: company.phone.display,
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Justus Lipsiusstraat 16",
-    addressLocality: "Leuven",
-    postalCode: "3000",
-    addressCountry: "BE",
+    streetAddress: company.address.street,
+    addressLocality: company.address.city,
+    postalCode: company.address.postalCode,
+    addressCountry: company.address.countryCode,
   },
   foundingDate: "2025",
   knowsAbout: ["Brand Identity", "Digital Marketing", "Growth Strategy", "Web Development", "SEO", "Social Media Marketing"],
@@ -50,15 +51,15 @@ const localBusinessSchema = {
   name: "Impera",
   image: `${SITE_URL}/og-image.png`,
   url: SITE_URL,
-  telephone: "+32 492 20 23 77",
-  email: "contact@impera-group.com",
+  telephone: company.phone.display,
+  email: company.email,
   priceRange: "$$$$",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Justus Lipsiusstraat 16",
-    addressLocality: "Leuven",
-    postalCode: "3000",
-    addressCountry: "BE",
+    streetAddress: company.address.street,
+    addressLocality: company.address.city,
+    postalCode: company.address.postalCode,
+    addressCountry: company.address.countryCode,
   },
   openingHoursSpecification: {
     "@type": "OpeningHoursSpecification",

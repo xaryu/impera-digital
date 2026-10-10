@@ -50,7 +50,7 @@ const CareerPost = () => {
       if (error) throw error;
     },
     onSuccess: () => {
-      toast.success("Application submitted successfully!");
+      toast.success(t("careerPost.submitSuccess"));
       setFullName(""); setEmail(""); setMotivation(""); setCvFile(null);
     },
     onError: (err: Error) => toast.error(err.message),
@@ -59,7 +59,7 @@ const CareerPost = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!fullName.trim() || !email.trim() || !motivation.trim()) {
-      toast.error("Please fill in all required fields");
+      toast.error(t("careerPost.requiredFields"));
       return;
     }
     applyMutation.mutate();
@@ -161,7 +161,7 @@ const CareerPost = () => {
               </div>
               <div>
                 <label htmlFor="apply-cv" className="font-body text-xs tracking-wider uppercase text-gold-muted mb-2 block">{t("careerPost.attachCV")}</label>
-                <input ref={fileInputRef} id="apply-cv" type="file" accept=".pdf,.doc,.docx" onChange={(e) => { const file = e.target.files?.[0]; if (file && file.size > 10 * 1024 * 1024) { toast.error("File must be under 10MB"); return; } setCvFile(file || null); }} className="hidden" />
+                <input ref={fileInputRef} id="apply-cv" type="file" accept=".pdf,.doc,.docx" onChange={(e) => { const file = e.target.files?.[0]; if (file && file.size > 10 * 1024 * 1024) { toast.error(t("careerPost.fileTooLarge")); return; } setCvFile(file || null); }} className="hidden" />
                 <button type="button" onClick={() => fileInputRef.current?.click()} aria-describedby="cv-file-name" className="flex items-center gap-3 border border-gold/10 hover:border-gold/30 px-6 py-3 transition-colors min-h-[44px]">
                   <Upload className="w-4 h-4 text-gold" aria-hidden="true" />
                   <span id="cv-file-name" className="font-body text-sm text-gold-muted">{cvFile ? cvFile.name : t("careerPost.chooseFile")}</span>

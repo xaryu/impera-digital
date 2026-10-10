@@ -1,0 +1,83 @@
+{
+  "nav": {
+    "services": "Diensten",
+    "ourServices": "Onze Diensten",
+    "products": "Producten",
+    "howWeWork": "Onze Aanpak",
+    "blog": "Blog",
+    "about": "Over Ons",
+    "careers": "Vacatures",
+    "getInTouch": "Contact"
+  },
+  "footer": {
+    "tagline": "Beheers uw groei. Automatiseer al de rest.",
+    "description": "Impera is een premium digitaal mediabureau dat gezaghebbende merkervaringen creëert. Wij werken samen met ambitieuze bedrijven om hun markten te domineren.",
+    "servicesTitle": "Diensten",
+    "companyTitle": "Bedrijf",
+    "contactTitle": "Contact",
+    "aboutUs": "Over Ons",
+    "blog": "Blog",
+    "contact": "Contact",
+    "brandStrategy": "Merkstrategie",
+    "digitalMarketing": "Digitale Marketing",
+    "webDevelopment": "Webontwikkeling",
+    "contentCreation": "Contentcreatie",
+    "performanceMarketing": "Performance Marketing",
+    "startYourProject": "Start Uw Project",
+    "rights": "© 2026 Impera. Alle rechten voorbehouden.",
+    "privacyPolicy": "Privacybeleid",
+    "termsOfService": "Algemene Voorwaarden",
+    "monFri": "Ma – Vr: 9:00 – 18:00"
+  },
+  "languageSwitcher": {
+    "en": "English",
+    "fr": "Français",
+    "nl": "Nederlands"
+  },
+  "common": {
+    "skipToContent": "Naar hoofdinhoud gaan",
+    "genericError": "Er is iets misgegaan. Probeer het opnieuw."
+  },
+  "cookieConsent": {
+    "title": "Wij respecteren uw privacy",
+    "description": "We gebruiken cookies om uw ervaring te verbeteren. Noodzakelijke cookies zorgen ervoor dat de site goed werkt. Analytische cookies helpen ons te begrijpen hoe u onze site gebruikt. Marketingcookies maken gepersonaliseerde advertenties mogelijk. U kunt uw voorkeuren hieronder beheren.",
+    "necessary": "Noodzakelijk",
+    "necessaryDesc": "Vereist om de site te laten werken. Altijd ingeschakeld.",
+    "analytics": "Analytisch",
+    "analyticsDesc": "Google Analytics 4 — helpt ons de prestaties van de site te meten.",
+    "marketing": "Marketing",
+    "marketingDesc": "Meta Pixel — maakt gerichte advertenties en retargeting mogelijk.",
+    "settings": "Cookie-instellingen",
+    "savePreferences": "Voorkeuren opslaan",
+    "acceptAll": "Alles accepteren",
+    "rejectAll": "Alles weigeren",
+    "privacyNote": "Lees ons <link>privacybeleid</link> voor meer informatie."
+  },
+  "exitPopup": {
+    "eyebrow": "Gratis Hulpbron",
+    "title": "Voordat U Gaat…",
+    "description": "Download onze gratis gids:",
+    "guideName": "De 5 Digitale Marketing Fouten Die U Klanten Kosten",
+    "placeholder": "Voer uw e-mail in",
+    "submit": "Ontvang de Gratis Gids",
+    "sending": "Verzenden…",
+    "noThanks": "Nee bedankt, het is goed",
+    "success": "Uw gids is onderweg! Controleer uw inbox.",
+    "invalidEmail": "Vul een geldig e-mailadres in",
+    "emailTooLong": "Het e-mailadres is te lang"
+  },
+  "calendly": {
+    "title": "Boek een Gratis Gesprek van 30 Minuten",
+    "subtitle": "Kies een tijd die u uitkomt — we bespreken uw doelen en hoe Impera kan helpen.",
+    "iframeTitle": "Een gesprek inplannen"
+  },
+  "notFound": {
+    "seoTitle": "Pagina niet gevonden — Impera",
+    "seoDescription": "De pagina die u zoekt bestaat niet.",
+    "title": "Deze pagina heeft haar post verlaten",
+    "subtitle": "De pagina die u zoekt is verplaatst, verwijderd of heeft nooit bestaan. Wij brengen u graag terug naar bekend terrein.",
+    "searchPlaceholder": "Zoek op onze site...",
+    "home": "Home",
+    "backHome": "Terug naar de basis"
+  }
+}

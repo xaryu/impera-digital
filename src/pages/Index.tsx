@@ -11,16 +11,19 @@ import SEO from "@/components/layout/SEO";
 import ExitIntentPopup from "@/components/common/ExitIntentPopup";
 import ResultsSection from "@/components/sections/ResultsSection";
 import FAQSection from "@/components/sections/FAQSection";
+import { useTranslation } from "react-i18next";
 
 const Index = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="min-h-screen">
       <SEO
-        title="Impera — Command your growth. Automate everything else."
-        description="Impera is a premium digital media agency crafting luxury brand experiences that command authority and distinction."
+        title={t("homePage.seoTitle")}
+        description={t("homePage.seoDescription")}
         path="/"
       />
-      <a href="#main-content" className="skip-to-content">Skip to main content</a>
+      <a href="#main-content" className="skip-to-content">{t("common.skipToContent")}</a>
       <Navbar />
       <main id="main-content" role="main">
         <HeroSection />

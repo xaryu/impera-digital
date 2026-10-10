@@ -7,13 +7,15 @@ import { useTranslation } from "react-i18next";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { z } from "zod";
+import { company } from "@/config/company";
 
+// Error messages are dictionary keys, translated when shown.
 const contactSchema = z.object({
-  name: z.string().trim().min(1, "Name is required").max(100),
-  email: z.string().trim().email("Invalid email").max(255),
+  name: z.string().trim().min(1, "contactPage.nameRequired").max(100),
+  email: z.string().trim().email("contactPage.invalidEmail").max(255),
   company: z.string().trim().max(100).optional(),
   service: z.string().max(50).optional(),
-  message: z.string().trim().min(1, "Message is required").max(5000),
+  message: z.string().trim().min(1, "contactPage.messageRequired").max(5000),
 });
 
 const Contact = () => {
@@ -36,7 +38,7 @@ const Contact = () => {
     e.preventDefault();
     const result = contactSchema.safeParse(formData);
     if (!result.success) {
-      toast.error(result.error.errors[0].message);
+      toast.error(t(result.error.errors[0].message));
       return;
     }
 
@@ -51,7 +53,7 @@ const Contact = () => {
     setSubmitting(false);
 
     if (error) {
-      toast.error("Something went wrong. Please try again.");
+      toast.error(t("common.genericError"));
       return;
     }
 
@@ -164,21 +166,21 @@ const Contact = () => {
                   <Mail className="w-5 h-5 text-gold mt-1 shrink-0" aria-hidden="true" />
                   <div>
                     <p className="font-body text-xs tracking-wider text-muted-foreground uppercase mb-1">{t("contactPage.email")}</p>
-                    <a href="mailto:contact@impera-group.com" className="font-body text-navy hover:text-gold transition-colors">contact@impera-group.com</a>
+                    <a href={`mailto:${company.email}`} className="font-body text-navy hover:text-gold transition-colors">{company.email}</a>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
                   <Phone className="w-5 h-5 text-gold mt-1 shrink-0" aria-hidden="true" />
                   <div>
                     <p className="font-body text-xs tracking-wider text-muted-foreground uppercase mb-1">{t("contactPage.phone")}</p>
-                    <a href="tel:+32492202377" className="font-body text-navy hover:text-gold transition-colors">+32 492 20 23 77</a>
+                    <a href={company.phone.href} className="font-body text-navy hover:text-gold transition-colors">{company.phone.display}</a>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
                   <MapPin className="w-5 h-5 text-gold mt-1 shrink-0" aria-hidden="true" />
                   <div>
                     <p className="font-body text-xs tracking-wider text-muted-foreground uppercase mb-1">{t("contactPage.office")}</p>
-                    <p className="font-body text-navy">Justus Lipsiusstraat 16<br />3000, Leuven</p>
+                    <p className="font-body text-navy">{company.address.street}<br />{company.address.postalCode} {company.address.city}</p>
                   </div>
                 </div>
               </div>

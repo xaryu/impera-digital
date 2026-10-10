@@ -9,8 +9,7 @@ import FadeInSection from "@/components/common/FadeInSection";
 import { ArrowRight, Hammer, Inbox, KeyRound, ShieldCheck, Users } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useAdmin } from "@/hooks/use-admin";
-
-const CAREERS_EMAIL = "careers@impera-group.com";
+import { company } from "@/config/company";
 
 const Careers = () => {
   const { t } = useTranslation();
@@ -149,10 +148,10 @@ const Careers = () => {
             <h2 className="font-display text-2xl md:text-4xl font-bold text-cream mb-5">{t("careersPage.ctaTitle")}</h2>
             <p className="font-body text-sm md:text-base text-cream/70 leading-relaxed mb-10">{t("careersPage.ctaDesc")}</p>
             <a
-              href={`mailto:${CAREERS_EMAIL}`}
+              href={`mailto:${company.careersEmail}`}
               className="inline-block px-10 py-4 border border-gold/40 text-gold font-body text-sm tracking-wider hover:bg-gold/10 transition-colors duration-300"
             >
-              {CAREERS_EMAIL}
+              {company.careersEmail}
             </a>
           </FadeInSection>
         </div>

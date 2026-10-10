@@ -3,6 +3,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Pencil, Check, X, Upload, Plus, Trash2 } from "lucide-react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
+import { useTranslation } from "react-i18next";
 import { getErrorMessage } from "@/lib/utils";
 
 type TeamMember = {
@@ -184,6 +185,7 @@ const MemberCard = ({
 };
 
 const LeadershipSection = ({ isAdmin }: { isAdmin: boolean }) => {
+  const { t } = useTranslation();
   const queryClient = useQueryClient();
 
   const { data: team = [], isLoading } = useQuery({
@@ -251,10 +253,10 @@ const LeadershipSection = ({ isAdmin }: { isAdmin: boolean }) => {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <p className="font-body text-sm tracking-[0.3em] text-gold uppercase mb-4">
-            The People
+            {t("aboutPage.leadershipEyebrow")}
           </p>
           <h2 className="font-display text-3xl md:text-4xl font-bold text-navy">
-            Our Team
+            {t("aboutPage.leadershipTitle")}
           </h2>
           {isAdmin && (
             <p className="font-body text-xs text-muted-foreground mt-3">

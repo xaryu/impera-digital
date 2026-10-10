@@ -1,0 +1,19 @@
+{
+  "blogPage": {
+    "eyebrow": "Inzichten & Perspectieven",
+    "title": "Het Impera Journaal",
+    "subtitle": "Strategisch denken, designfilosofie en industrie-inzichten van de geesten achter premium digitale ervaringen.",
+    "newPost": "Nieuw Artikel",
+    "featured": "Uitgelicht",
+    "draft": "Concept",
+    "read": "Lees →",
+    "postNotFound": "Artikel Niet Gevonden",
+    "backToJournal": "← Terug naar Journaal",
+    "backToJournalShort": "Terug naar Journaal",
+    "shareArticle": "Deel dit artikel",
+    "relatedArticles": "Gerelateerde Artikelen",
+    "minRead": "min leestijd",
+    "noPosts": "Nog geen artikelen gepubliceerd.",
+    "noPostsDesc": "We schrijven op wat we leren uit echt klantwerk. De eerste stukken verschijnen hier binnenkort."
+  }
+}

@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
 import { getConsent, saveConsent } from "@/lib/cookie-consent";
-import { Cookie, Settings2, Check, X } from "lucide-react";
+import { Cookie, Settings2, Check } from "lucide-react";
+import { Trans, useTranslation } from "react-i18next";
+import LocalizedLink from "@/components/layout/LocalizedLink";
 
 const CookieConsent = () => {
+  const { t } = useTranslation();
   const [visible, setVisible] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [analytics, setAnalytics] = useState(false);
@@ -47,12 +50,10 @@ const CookieConsent = () => {
             <Cookie className="w-6 h-6 text-gold flex-shrink-0 mt-0.5" />
             <div className="flex-1">
               <h3 className="font-display text-lg font-semibold text-cream mb-1">
-                We Value Your Privacy
+                {t("cookieConsent.title")}
               </h3>
               <p className="font-body text-sm text-gold-muted leading-relaxed">
-                We use cookies to enhance your experience. Necessary cookies ensure the site functions properly. 
-                Analytics cookies help us understand how you use our site. Marketing cookies enable personalized advertising. 
-                You can manage your preferences below.
+                {t("cookieConsent.description")}
               </p>
             </div>
           </div>
@@ -63,8 +64,8 @@ const CookieConsent = () => {
               {/* Necessary — always on */}
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-body text-sm font-medium text-cream">Necessary</p>
-                  <p className="font-body text-xs text-gold-muted">Required for the site to function. Always enabled.</p>
+                  <p className="font-body text-sm font-medium text-cream">{t("cookieConsent.necessary")}</p>
+                  <p className="font-body text-xs text-gold-muted">{t("cookieConsent.necessaryDesc")}</p>
                 </div>
                 <div className="w-11 h-6 bg-gold/30 rounded-full relative cursor-not-allowed">
                   <div className="absolute right-0.5 top-0.5 w-5 h-5 bg-gold rounded-full" />
@@ -74,11 +75,14 @@ const CookieConsent = () => {
               {/* Analytics */}
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-body text-sm font-medium text-cream">Analytics</p>
-                  <p className="font-body text-xs text-gold-muted">Google Analytics 4 — helps us measure site performance.</p>
+                  <p className="font-body text-sm font-medium text-cream">{t("cookieConsent.analytics")}</p>
+                  <p className="font-body text-xs text-gold-muted">{t("cookieConsent.analyticsDesc")}</p>
                 </div>
                 <button
                   onClick={() => setAnalytics(!analytics)}
+                  role="switch"
+                  aria-checked={analytics}
+                  aria-label={t("cookieConsent.analytics")}
                   className={`w-11 h-6 rounded-full relative transition-colors duration-200 ${analytics ? "bg-gold/30" : "bg-cream/10"}`}
                 >
                   <div className={`absolute top-0.5 w-5 h-5 rounded-full transition-all duration-200 ${analytics ? "right-0.5 bg-gold" : "left-0.5 bg-cream/40"}`} />
@@ -88,11 +92,14 @@ const CookieConsent = () => {
               {/* Marketing */}
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-body text-sm font-medium text-cream">Marketing</p>
-                  <p className="font-body text-xs text-gold-muted">Meta Pixel — enables targeted advertising and retargeting.</p>
+                  <p className="font-body text-sm font-medium text-cream">{t("cookieConsent.marketing")}</p>
+                  <p className="font-body text-xs text-gold-muted">{t("cookieConsent.marketingDesc")}</p>
                 </div>
                 <button
                   onClick={() => setMarketing(!marketing)}
+                  role="switch"
+                  aria-checked={marketing}
+                  aria-label={t("cookieConsent.marketing")}
                   className={`w-11 h-6 rounded-full relative transition-colors duration-200 ${marketing ? "bg-gold/30" : "bg-cream/10"}`}
                 >
                   <div className={`absolute top-0.5 w-5 h-5 rounded-full transition-all duration-200 ${marketing ? "right-0.5 bg-gold" : "left-0.5 bg-cream/40"}`} />
@@ -109,7 +116,7 @@ const CookieConsent = () => {
                 className="flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] bg-gold text-navy-dark font-body text-sm font-semibold tracking-wider uppercase hover:bg-gold-light transition-colors"
               >
                 <Check className="w-4 h-4" />
-                Save Preferences
+                {t("cookieConsent.savePreferences")}
               </button>
             ) : (
               <button
@@ -117,30 +124,29 @@ const CookieConsent = () => {
                 className="flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] border border-gold/30 text-gold font-body text-sm font-semibold tracking-wider uppercase hover:border-gold/60 hover:text-gold-light transition-colors"
               >
                 <Settings2 className="w-4 h-4" />
-                Cookie Settings
+                {t("cookieConsent.settings")}
               </button>
             )}
             <button
               onClick={handleAcceptAll}
               className="flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] bg-gold text-navy-dark font-body text-sm font-semibold tracking-wider uppercase hover:bg-gold-light transition-colors"
             >
-              Accept All
+              {t("cookieConsent.acceptAll")}
             </button>
             <button
               onClick={handleRejectAll}
               className="flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] border border-gold/10 text-cream/60 font-body text-sm tracking-wider uppercase hover:text-cream hover:border-gold/30 transition-colors"
             >
-              Reject All
+              {t("cookieConsent.rejectAll")}
             </button>
           </div>
 
           {/* Privacy link */}
           <p className="font-body text-xs text-gold-muted/60 mt-4">
-            Read our{" "}
-            <a href="/privacy" className="underline hover:text-gold transition-colors">
-              Privacy Policy
-            </a>{" "}
-            for more details.
+            <Trans
+              i18nKey="cookieConsent.privacyNote"
+              components={{ link: <LocalizedLink to="/privacy" className="underline hover:text-gold transition-colors" /> }}
+            />
           </p>
         </div>
       </div>

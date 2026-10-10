@@ -1,0 +1,172 @@
+{
+  "privacy": {
+    "legal": "Legal",
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated: March 8, 2025",
+    "sections": [
+      {
+        "title": "1. Introduction",
+        "paragraphs": [
+          "Impera (\"we,\" \"our,\" or \"us\") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your personal data when you interact with our website and services, in compliance with the General Data Protection Regulation (GDPR) and applicable Belgian data protection law."
+        ]
+      },
+      {
+        "title": "2. Data We Collect",
+        "paragraphs": [
+          "We collect the following personal data when you voluntarily provide it:"
+        ],
+        "list": [
+          "<b>Contact forms:</b> Name, email address, phone number, and your message.",
+          "<b>Calendly scheduling:</b> Name, email address, and any information you provide when booking a meeting through our integrated Calendly widget.",
+          "<b>Job applications:</b> Full name, email address, motivation letter, and CV/resume."
+        ],
+        "afterList": [
+          "We do not use tracking cookies for advertising purposes. Basic analytics may be used to understand site usage patterns."
+        ]
+      },
+      {
+        "title": "3. How We Use Your Data",
+        "paragraphs": [
+          "Your personal data is used exclusively for the following purposes:"
+        ],
+        "list": [
+          "To respond to your inquiries submitted through our contact form.",
+          "To schedule and manage meetings booked via Calendly.",
+          "To process and evaluate job applications.",
+          "To improve our website and services."
+        ],
+        "afterList": [
+          "We do not sell, trade, or rent your personal data to third parties. Data is only shared with service providers essential to our operations (e.g., Calendly for scheduling, email hosting for communication)."
+        ]
+      },
+      {
+        "title": "4. Legal Basis for Processing",
+        "paragraphs": [
+          "We process your personal data based on: (a) your explicit consent when submitting forms or booking meetings; (b) our legitimate interest in responding to business inquiries and evaluating candidates; and (c) contractual necessity when you engage our services."
+        ]
+      },
+      {
+        "title": "5. Data Protection",
+        "paragraphs": [
+          "We implement industry-standard security measures to protect your personal data against unauthorized access, alteration, disclosure, or destruction. This includes encrypted data transmission (SSL/TLS), secure hosting infrastructure, and restricted access controls."
+        ]
+      },
+      {
+        "title": "6. Data Retention",
+        "paragraphs": [
+          "We retain personal data only as long as necessary to fulfill the purposes outlined in this policy. Contact form submissions are retained for up to 12 months. Job applications are retained for up to 6 months after the position is filled, unless you consent to longer retention."
+        ]
+      },
+      {
+        "title": "7. Your Rights",
+        "paragraphs": [
+          "Under the GDPR, you have the right to:"
+        ],
+        "list": [
+          "<b>Access</b> — Request a copy of the personal data we hold about you.",
+          "<b>Rectification</b> — Request correction of inaccurate or incomplete data.",
+          "<b>Erasure</b> — Request deletion of your personal data (\"right to be forgotten\").",
+          "<b>Restriction</b> — Request that we limit the processing of your data.",
+          "<b>Portability</b> — Request your data in a structured, machine-readable format.",
+          "<b>Objection</b> — Object to the processing of your personal data."
+        ],
+        "afterList": [
+          "To exercise any of these rights, please contact us at the address below. We will respond within 30 days."
+        ]
+      },
+      {
+        "title": "8. Third-Party Services",
+        "paragraphs": [
+          "Our website integrates with Calendly for appointment scheduling. When you use Calendly, your data is also subject to <calendlyPolicy>Calendly's Privacy Policy</calendlyPolicy>. We encourage you to review their policy."
+        ]
+      },
+      {
+        "title": "9. Contact",
+        "paragraphs": [
+          "For any questions regarding this Privacy Policy or to exercise your data rights, please contact us:"
+        ]
+      }
+    ]
+  },
+  "terms": {
+    "legal": "Legal",
+    "title": "Terms of Service",
+    "lastUpdated": "Last updated: March 8, 2025",
+    "sections": [
+      {
+        "title": "1. Services",
+        "paragraphs": [
+          "Impera provides digital marketing and consulting services including, but not limited to: brand strategy, digital marketing campaigns, search engine optimization (SEO), web development, content creation, and performance marketing, as described on our website and in individual service agreements.",
+          "Specific deliverables, timelines, and scope of work are defined in individual project proposals or service agreements between Impera and the client."
+        ]
+      },
+      {
+        "title": "2. Payment Terms",
+        "list": [
+          "Services are invoiced monthly unless otherwise agreed in writing.",
+          "Invoices are due within 14 calendar days of the invoice date.",
+          "Late payments are subject to a penalty interest of 10% per annum, in accordance with Belgian law on combating late payment in commercial transactions.",
+          "A fixed compensation of €40 for recovery costs will be applied to overdue invoices, without prejudice to any additional recovery costs."
+        ]
+      },
+      {
+        "title": "3. Intellectual Property",
+        "paragraphs": [
+          "Upon full payment of all outstanding invoices:"
+        ],
+        "list": [
+          "The client owns all final deliverables (designs, copy, assets) as specified in the project agreement.",
+          "Impera retains ownership of all working files, internal processes, proprietary tools, methodologies, and frameworks used during the engagement.",
+          "Impera reserves the right to showcase completed work in its portfolio, unless a non-disclosure agreement (NDA) is in place."
+        ]
+      },
+      {
+        "title": "4. Client Obligations",
+        "paragraphs": [
+          "The client agrees to provide timely access to all materials, approvals, and information necessary for the completion of agreed services. Delays caused by the client may result in adjusted timelines and, where applicable, additional charges."
+        ]
+      },
+      {
+        "title": "5. Confidentiality",
+        "paragraphs": [
+          "Both parties agree to treat all proprietary information, business strategies, and project details as confidential. This obligation survives the termination of any service agreement for a period of two (2) years."
+        ]
+      },
+      {
+        "title": "6. Limitation of Liability",
+        "paragraphs": [
+          "To the maximum extent permitted by law:"
+        ],
+        "list": [
+          "Impera's total liability for any claim arising from or related to our services shall not exceed the total fees paid by the client for the specific service giving rise to the claim during the 3 months preceding the claim.",
+          "Impera shall not be liable for indirect, incidental, consequential, or punitive damages, including loss of revenue, profit, data, or business opportunities.",
+          "Impera does not guarantee specific marketing outcomes (e.g., rankings, traffic, conversion rates), as results depend on multiple factors beyond our control."
+        ]
+      },
+      {
+        "title": "7. Termination",
+        "paragraphs": [
+          "Either party may terminate a service agreement with 30 days' written notice. The client remains responsible for payment of all services rendered up to the termination date, including any work in progress. Upon termination, Impera will deliver all completed work to the client."
+        ]
+      },
+      {
+        "title": "8. Force Majeure",
+        "paragraphs": [
+          "Neither party shall be liable for delays or failure to perform due to circumstances beyond their reasonable control, including but not limited to natural disasters, government actions, pandemics, or disruptions in technology infrastructure."
+        ]
+      },
+      {
+        "title": "9. Governing Law & Jurisdiction",
+        "paragraphs": [
+          "These Terms of Service are governed by and construed in accordance with the laws of Belgium. Any disputes arising from these terms or related services shall be submitted to the exclusive jurisdiction of the courts of Leuven, Belgium."
+        ]
+      },
+      {
+        "title": "10. Contact",
+        "paragraphs": [
+          "For questions about these Terms of Service, please contact us:"
+        ]
+      }
+    ]
+  }
+}

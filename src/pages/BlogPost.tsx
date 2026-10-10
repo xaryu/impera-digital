@@ -7,8 +7,7 @@ import SEO from "@/components/layout/SEO";
 import LocalizedLink from "@/components/layout/LocalizedLink";
 import { ArrowLeft, Clock, Linkedin, Mail } from "lucide-react";
 import { useTranslation } from "react-i18next";
-
-const SITE_URL = "https://impera-digital.lovable.app";
+import { company } from "@/config/company";
 
 const estimateReadTime = (text: string) => {
   const words = text.trim().split(/\s+/).length;
@@ -97,7 +96,7 @@ const BlogPost = () => {
   }
 
   const readTime = estimateReadTime(post.content);
-  const shareUrl = `${SITE_URL}/blog/${post.slug}`;
+  const shareUrl = `${company.siteUrl}/blog/${post.slug}`;
   const shareTitle = encodeURIComponent(post.title);
   const shareText = encodeURIComponent(post.excerpt);
   const author = post.author as { id: string; name: string; role: string; photo_url: string | null } | null;

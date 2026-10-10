@@ -1,0 +1,19 @@
+{
+  "blogPage": {
+    "eyebrow": "Perspectives & Réflexions",
+    "title": "Le Journal Impera",
+    "subtitle": "Réflexion stratégique, philosophie du design et perspectives de l'industrie par les esprits derrière les expériences digitales premium.",
+    "newPost": "Nouvel Article",
+    "featured": "À la Une",
+    "draft": "Brouillon",
+    "read": "Lire →",
+    "postNotFound": "Article Non Trouvé",
+    "backToJournal": "← Retour au Journal",
+    "backToJournalShort": "Retour au Journal",
+    "shareArticle": "Partager cet article",
+    "relatedArticles": "Articles Connexes",
+    "minRead": "min de lecture",
+    "noPosts": "Aucun article publié pour le moment.",
+    "noPostsDesc": "Nous mettons par écrit ce que nous apprenons sur le terrain avec nos clients. Les premiers articles arrivent bientôt."
+  }
+}

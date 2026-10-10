@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import LocalizedLink from "@/components/layout/LocalizedLink";
@@ -6,10 +6,10 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { Search, Home, Briefcase, Users, Mail, ArrowLeft } from "lucide-react";
 import SEO from "@/components/layout/SEO";
+import { company } from "@/config/company";
 
 const NotFound = () => {
   const location = useLocation();
-  const navigate = useNavigate();
   const { t } = useTranslation();
   const [query, setQuery] = useState("");
 
@@ -20,20 +20,20 @@ const NotFound = () => {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (query.trim()) {
-      window.open(`https://www.google.com/search?q=site:impera-digital.lovable.app+${encodeURIComponent(query)}`, "_blank");
+      window.open(`https://www.google.com/search?q=site:${new URL(company.siteUrl).host}+${encodeURIComponent(query)}`, "_blank");
     }
   };
 
   const links = [
-    { to: "/", label: "Home", icon: Home },
-    { to: "/services", label: "Services", icon: Briefcase },
-    { to: "/about", label: "About", icon: Users },
-    { to: "/contact", label: "Contact", icon: Mail },
+    { to: "/", label: t("notFound.home"), icon: Home },
+    { to: "/services", label: t("nav.services"), icon: Briefcase },
+    { to: "/about", label: t("nav.about"), icon: Users },
+    { to: "/contact", label: t("footer.contact"), icon: Mail },
   ];
 
   return (
     <div className="min-h-screen flex flex-col">
-      <SEO title="Page Not Found — Impera" description="The page you're looking for doesn't exist." path={location.pathname} />
+      <SEO title={t("notFound.seoTitle")} description={t("notFound.seoDescription")} path={location.pathname} />
       <Navbar />
 
       <main className="flex-1 flex items-center justify-center bg-navy-gradient py-32">
@@ -43,11 +43,11 @@ const NotFound = () => {
           </p>
 
           <h1 className="font-display text-3xl md:text-5xl font-bold text-cream leading-tight mb-4">
-            This Page Has Lost Its Command
+            {t("notFound.title")}
           </h1>
 
           <p className="font-body text-gold-muted text-lg mb-10 max-w-lg mx-auto">
-            The page you're looking for has been moved, removed, or never existed. Let us guide you back to familiar territory.
+            {t("notFound.subtitle")}
           </p>
 
           <form onSubmit={handleSearch} className="relative max-w-md mx-auto mb-12">
@@ -56,7 +56,7 @@ const NotFound = () => {
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search our site..."
+              placeholder={t("notFound.searchPlaceholder")}
               className="w-full pl-11 pr-4 py-3.5 bg-transparent border border-gold/20 focus:border-gold/50 text-cream font-body text-sm placeholder:text-gold/30 outline-none transition-colors"
             />
           </form>
@@ -76,13 +76,13 @@ const NotFound = () => {
             ))}
           </div>
 
-          <button
-            onClick={() => navigate("/")}
+          <LocalizedLink
+            to="/"
             className="inline-flex items-center gap-2 px-10 py-4 bg-gold text-navy-dark font-body text-sm font-semibold tracking-wider uppercase hover:bg-gold-light transition-colors duration-300"
           >
             <ArrowLeft className="w-4 h-4" />
-            Return to Base
-          </button>
+            {t("notFound.backHome")}
+          </LocalizedLink>
         </div>
       </main>
 

@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { Mail, MapPin, Clock, Instagram, Linkedin } from "lucide-react";
 import ImperaLogo from "@/components/common/ImperaLogo";
 import LocalizedLink from "@/components/layout/LocalizedLink";
+import { company, companyAddressLine } from "@/config/company";
 
 const Footer = () => {
   const { t } = useTranslation();
@@ -66,11 +67,11 @@ const Footer = () => {
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <Mail size={16} className="text-gold mt-0.5 shrink-0" />
-                <a href="mailto:contact@impera-group.com" className="font-body text-sm text-cream/60 hover:text-gold transition-colors">contact@impera-group.com</a>
+                <a href={`mailto:${company.email}`} className="font-body text-sm text-cream/60 hover:text-gold transition-colors">{company.email}</a>
               </li>
               <li className="flex items-start gap-3">
                 <MapPin size={16} className="text-gold mt-0.5 shrink-0" />
-                <span className="font-body text-sm text-cream/60">Justus Lipsiusstraat 16, 3000, Leuven</span>
+                <span className="font-body text-sm text-cream/60">{companyAddressLine}</span>
               </li>
               <li className="flex items-start gap-3">
                 <Clock size={16} className="text-gold mt-0.5 shrink-0" />

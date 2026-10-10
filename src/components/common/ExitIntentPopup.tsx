@@ -5,11 +5,12 @@ import { toast } from "sonner";
 import { useTranslation } from "react-i18next";
 import { supabase } from "@/integrations/supabase/client";
 
+// Error messages are dictionary keys, translated when shown.
 const emailSchema = z
   .string()
   .trim()
-  .email({ message: "Please enter a valid email address" })
-  .max(255, { message: "Email is too long" });
+  .email({ message: "exitPopup.invalidEmail" })
+  .max(255, { message: "exitPopup.emailTooLong" });
 
 const STORAGE_KEY = "impera_exit_popup_dismissed";
 
@@ -48,14 +49,14 @@ const ExitIntentPopup = () => {
     setError("");
     const result = emailSchema.safeParse(email);
     if (!result.success) {
-      setError(result.error.errors[0].message);
+      setError(t(result.error.errors[0].message));
       return;
     }
     setSubmitting(true);
     const { error: dbError } = await supabase.from("leads").insert({ email: result.data, source: "exit_intent" });
     setSubmitting(false);
     if (dbError) {
-      toast.error("Something went wrong. Please try again.");
+      toast.error(t("common.genericError"));
       return;
     }
     toast.success(t("exitPopup.success"));

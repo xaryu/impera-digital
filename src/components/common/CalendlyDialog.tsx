@@ -1,6 +1,7 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { useTranslation } from "react-i18next";
 import { ReactNode } from "react";
+import { company } from "@/config/company";
 
 interface CalendlyDialogProps {
   children: ReactNode;
@@ -19,11 +20,11 @@ const CalendlyDialog = ({ children }: CalendlyDialogProps) => {
         </DialogHeader>
         <div className="flex-1 px-6 pb-6 h-full">
           <iframe
-            src="https://calendly.com/flavianconstantinovici48/30min"
+            src={company.calendlyUrl}
             width="100%"
             height="100%"
             frameBorder="0"
-            title="Schedule a call"
+            title={t("calendly.iframeTitle")}
             className="rounded-md"
           />
         </div>

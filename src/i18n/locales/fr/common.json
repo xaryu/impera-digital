@@ -1,0 +1,83 @@
+{
+  "nav": {
+    "services": "Services",
+    "ourServices": "Nos Services",
+    "products": "Produits",
+    "howWeWork": "Notre Méthode",
+    "blog": "Blog",
+    "about": "À Propos",
+    "careers": "Carrières",
+    "getInTouch": "Nous Contacter"
+  },
+  "footer": {
+    "tagline": "Imposez votre croissance. Automatisez tout le reste.",
+    "description": "Impera est une agence média digitale premium créant des expériences de marque autoritaires. Nous nous associons aux entreprises ambitieuses pour dominer leurs marchés.",
+    "servicesTitle": "Services",
+    "companyTitle": "Entreprise",
+    "contactTitle": "Contact",
+    "aboutUs": "À Propos",
+    "blog": "Blog",
+    "contact": "Contact",
+    "brandStrategy": "Stratégie de Marque",
+    "digitalMarketing": "Marketing Digital",
+    "webDevelopment": "Développement Web",
+    "contentCreation": "Création de Contenu",
+    "performanceMarketing": "Marketing de Performance",
+    "startYourProject": "Lancez Votre Projet",
+    "rights": "© 2026 Impera. Tous droits réservés.",
+    "privacyPolicy": "Politique de Confidentialité",
+    "termsOfService": "Conditions d'Utilisation",
+    "monFri": "Lun – Ven : 9h00 – 18h00"
+  },
+  "languageSwitcher": {
+    "en": "English",
+    "fr": "Français",
+    "nl": "Nederlands"
+  },
+  "common": {
+    "skipToContent": "Aller au contenu principal",
+    "genericError": "Une erreur s'est produite. Veuillez réessayer."
+  },
+  "cookieConsent": {
+    "title": "Nous respectons votre vie privée",
+    "description": "Nous utilisons des cookies pour améliorer votre expérience. Les cookies nécessaires assurent le bon fonctionnement du site. Les cookies analytiques nous aident à comprendre comment vous utilisez notre site. Les cookies marketing permettent une publicité personnalisée. Vous pouvez gérer vos préférences ci-dessous.",
+    "necessary": "Nécessaires",
+    "necessaryDesc": "Indispensables au fonctionnement du site. Toujours activés.",
+    "analytics": "Analytiques",
+    "analyticsDesc": "Google Analytics 4 — nous aide à mesurer les performances du site.",
+    "marketing": "Marketing",
+    "marketingDesc": "Meta Pixel — permet la publicité ciblée et le reciblage.",
+    "settings": "Paramètres des cookies",
+    "savePreferences": "Enregistrer les préférences",
+    "acceptAll": "Tout accepter",
+    "rejectAll": "Tout refuser",
+    "privacyNote": "Consultez notre <link>politique de confidentialité</link> pour plus de détails."
+  },
+  "exitPopup": {
+    "eyebrow": "Ressource Gratuite",
+    "title": "Avant de Partir…",
+    "description": "Téléchargez notre guide gratuit :",
+    "guideName": "Les 5 Erreurs de Marketing Digital Qui Vous Coûtent des Clients",
+    "placeholder": "Entrez votre email",
+    "submit": "Obtenir le Guide Gratuit",
+    "sending": "Envoi en cours…",
+    "noThanks": "Non merci, ça ira",
+    "success": "Votre guide est en route ! Vérifiez votre boîte de réception.",
+    "invalidEmail": "Veuillez saisir une adresse e-mail valide",
+    "emailTooLong": "L'adresse e-mail est trop longue"
+  },
+  "calendly": {
+    "title": "Réserver un Appel Gratuit de 30 Minutes",
+    "subtitle": "Choisissez un créneau qui vous convient — nous discuterons de vos objectifs et de comment Impera peut vous aider.",
+    "iframeTitle": "Planifier un appel"
+  },
+  "notFound": {
+    "seoTitle": "Page introuvable — Impera",
+    "seoDescription": "La page que vous recherchez n'existe pas.",
+    "title": "Cette page a quitté son poste",
+    "subtitle": "La page que vous recherchez a été déplacée, supprimée ou n'a jamais existé. Laissez-nous vous ramener en terrain connu.",
+    "searchPlaceholder": "Rechercher sur notre site...",
+    "home": "Accueil",
+    "backHome": "Retour à la base"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "blogPage": {
+    "eyebrow": "Insights & Perspectives",
+    "title": "The Impera Journal",
+    "subtitle": "Strategic thinking, design philosophy, and industry insights from the minds behind premium digital experiences.",
+    "newPost": "New Post",
+    "featured": "Featured",
+    "draft": "Draft",
+    "read": "Read →",
+    "postNotFound": "Post Not Found",
+    "backToJournal": "← Back to Journal",
+    "backToJournalShort": "Back to Journal",
+    "shareArticle": "Share this article",
+    "relatedArticles": "Related Articles",
+    "minRead": "min read",
+    "noPosts": "No articles published yet.",
+    "noPostsDesc": "We're writing up what we learn from real client work. The first pieces will land here soon."
+  }
+}
