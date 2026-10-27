@@ -13,7 +13,6 @@ import { useTrackingConsent } from "./hooks/use-tracking-consent";
 
 import Index from "./pages/Index";
 import Services from "./pages/Services";
-import OurServices from "./pages/OurServices";
 import Products from "./pages/Products";
 import Careers from "./pages/Careers";
 import CareerPost from "./pages/CareerPost";
@@ -35,7 +34,6 @@ const AppRoutes = () => (
   <>
     <Route index element={<Index />} />
     <Route path="services" element={<Services />} />
-    <Route path="our-services" element={<OurServices />} />
     <Route path="products" element={<Products />} />
     <Route path="careers" element={<Careers />} />
     <Route path="careers/:slug" element={<CareerPost />} />

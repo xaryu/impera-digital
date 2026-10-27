@@ -161,7 +161,7 @@ const Products = () => {
             <h2 className="font-display text-2xl md:text-4xl font-bold text-cream mb-5">{t("productsPage.ctaTitle")}</h2>
             <p className="font-body text-sm md:text-base text-cream/70 leading-relaxed mb-10">{t("productsPage.ctaDesc")}</p>
             <LocalizedLink
-              to="/our-services"
+              to="/services"
               className="inline-block px-10 py-4 bg-gold text-navy-dark font-body text-sm font-semibold tracking-wider uppercase hover:bg-gold-light transition-colors duration-300"
             >
               {t("productsPage.ctaButton")}

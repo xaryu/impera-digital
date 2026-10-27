@@ -16,7 +16,6 @@ Each language folder has the same files, one per part of the site:
 | `common.json` | Menu, footer, cookie banner, newsletter popup, booking dialog, 404 page, shared messages |
 | `home.json` | Home page: hero, services, results, why Impera, about, guarantee, process, FAQ, call to action |
 | `services.json` | Services page |
-| `our-services.json` | Our Services page |
 | `products.json` | Products page |
 | `methodology.json` | How We Work page |
 | `about.json` | About page |

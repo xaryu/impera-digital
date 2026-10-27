@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import LocalizedLink from "@/components/layout/LocalizedLink";
+import CalendlyDialog from "@/components/common/CalendlyDialog";
 import HeroSectionLanding from "./HeroSectionLanding";
 
 const HeroSection = () => {
@@ -26,9 +26,11 @@ const HeroSection = () => {
             {t("hero.subtitle")}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 opacity-0 animate-fade-up" style={{ animationDelay: "0.8s" }}>
-            <LocalizedLink to="/contact" className="px-10 py-4 bg-gold text-navy-dark font-body text-sm font-semibold tracking-wider uppercase btn-hover hover:bg-gold-light">
-              {t("hero.cta1")}
-            </LocalizedLink>
+            <CalendlyDialog>
+              <button className="px-10 py-4 bg-gold text-navy-dark font-body text-sm font-semibold tracking-wider uppercase btn-hover hover:bg-gold-light">
+                {t("hero.cta1")}
+              </button>
+            </CalendlyDialog>
           </div>
         </div>
         <div className="w-full aspect-square hidden lg:block" aria-hidden="true" />
