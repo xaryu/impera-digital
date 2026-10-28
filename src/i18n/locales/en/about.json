@@ -1,17 +1,17 @@
 {
   "aboutPage": {
     "eyebrow": "Our Story",
-    "title": "Built by Veterans,",
+    "title": "Built by Specialists,",
     "titleHighlight": "Launched for the Future.",
-    "intro": "Impera was founded in 2025 by digital specialists who spent over a decade mastering their crafts as independent professionals. After years of delivering results for ambitious brands across Europe, we recognized businesses needed strategic partners who could combine deep expertise with cutting-edge technology. Rather than continue working in isolation, we united our skills to create Impera — a boutique agency built for brands that refuse to settle.",
+    "intro": "Impera was founded in 2025 by three specialists: a growth strategist, an AI researcher, and a software engineer with over ten years of experience. Businesses invest in marketing to bring in more revenue, while their teams lose hours every week to work a system could do. So we put growth strategy and AI automation under one roof, with senior hands on every project and results you can measure.",
     "philosophyEyebrow": "Our Philosophy",
-    "philosophyTitle": "Where Vision Meets Authority",
-    "philosophyP1": "For over a decade, the specialists behind Impera operated independently — building brands, engineering platforms, and driving growth for clients across Europe. Startups, scale-ups, and established enterprises alike trusted them to deliver what others couldn't: results that commanded attention.",
-    "philosophyP2": "But working in isolation had its limits. The most ambitious projects demanded more than individual brilliance — they required the combined force of strategy, design, development, and performance working as one. That conviction became Impera: a modern agency built on 10+ years of collective mastery, enhanced by the tools and methodologies that define the next generation of digital excellence.",
-    "philosophyP3": "We are not a startup finding its way. We are seasoned specialists who chose to evolve — leveraging AI-powered insights, agile execution, and data-driven precision to set a new modern standard for what a digital agency can achieve.",
-    "stat1": "10+",
+    "philosophyTitle": "Thecnology Under Your Command",
+    "philosophyP1": "Growth has two levers: more revenue, and less time and money spent on work that shouldn’t need people. Most companies pull one and ignore the other. We work on both.",
+    "philosophyP2": "Strategy and automation sit under one roof, so what we decide is what we build, and what we build is measured against the plan. No hand-offs between agencies, no subcontractors, and no automation for its own sake.",
+    "philosophyP3": "We’re not a large agency pretending to be personal. We’re three specialists who stay hands-on, tell you honestly when AI isn’t the answer, and put our commitment in writing.",
+    "stat1": "20+",
     "stat1Label": "Years Collective Experience",
-    "stat2": "6",
+    "stat2": "3",
     "stat2Label": "Specialists United",
     "stat3": "100+",
     "stat3Label": "Clients Served",
@@ -31,6 +31,6 @@
     "leadershipTitle": "Our Team",
     "ctaTitle": "Built for Brands That Refuse to Settle",
     "ctaDesc": "We partner with ambitious businesses ready to claim digital authority. If average was never an option for you, we should talk.",
-    "ctaButton": "Get in Touch"
+    "ctaButton": "Book Your Audit"
   }
 }

@@ -14,14 +14,14 @@
   "services": {
     "eyebrow": "What We Do",
     "title": "Services of Distinction",
-    "brandIdentity": "AI automation",
-    "brandIdentityDesc": "Crafting visual identities that command attention and communicate prestige at every touchpoint.",
-    "webDesign": "Web Design & Development",
-    "webDesignDesc": "Bespoke digital experiences engineered for performance, elegance, and lasting impression.",
-    "digitalMarketing": "Digital Marketing",
-    "digitalMarketingDesc": "Strategic campaigns that position your brand before the audiences that matter most.",
-    "growthStrategy": "Growth Strategy",
-    "growthStrategyDesc": "Data-driven frameworks that transform market presence into measurable dominance."
+    "brandIdentity": "Senior time wasted",
+    "brandIdentityDesc": "Your highest-paid people spend their week on your cheapest work — and the thinking you actually pay them for never happens.",
+    "webDesign": "Systems that don't talk",
+    "webDesignDesc": "Every manual handoff is a chance for a costly mistake to reach a client before anyone catches it.",
+    "digitalMarketing": "Decisions arrive late",
+    "digitalMarketingDesc": "You’re steering the business by looking in the rearview mirror — the numbers arrive after the decision’s already been made.",
+    "growthStrategy": "Growth multiplies the mess",
+    "growthStrategyDesc": "Growth should feel like winning. Instead, every new client just means more manual work piled on the same team."
   },
   "results": {
     "eyebrow": "Proven in practice, not just promised",
@@ -46,38 +46,37 @@
   },
   "whyImpera": {
     "eyebrow": "The Impera Difference",
-    "title": "Why Scale-Ups Choose Impera",
+    "title": "Why Businesses Choose Impera",
     "titleHighlight": "Over Established Agencies",
     "subtitle": "Big agencies give you processes. We give you partners — senior strategists who speak your language, obsess over your ROI, and move at your speed.",
-    "multilingualTitle": "Multilingual by Default",
-    "multilingualHeadline": "Launch Across Europe — Simultaneously",
-    "multilingualP1": "8 native European languages in-house — Romanian, English, Dutch, French, Italian, Spanish, Portuguese, Ukrainian",
-    "multilingualP2": "Culturally adapted campaigns, not machine translations",
-    "multilingualP3": "Enter new markets in weeks instead of months",
-    "roiTitle": "ROI-Obsessed Execution",
-    "roiHeadline": "Every Euro Tracked, Modeled & Optimized",
+    "multilingualTitle": "BUILT FOR EUROPEAN BUSINESS",
+    "multilingualHeadline": "Automation in Your Language, Built Around Your Business",
+    "multilingualP1": "Handles work in the language it arrives in: Dutch, French, English, and 5 more native European languages in-house",
+    "multilingualP2": "Fits the tools you already use (email, spreadsheets, ERP), with no rip-and-replace",
+    "multilingualP3": "Discreet by default: only senior specialists touch your data, never subcontractors",
+    "roiHeadline": "Every Hour Saved, Tracked and Proven",
     "roiP1": "Founded by a finance analyst who treats marketing budgets like investment portfolios",
-    "roiP2": "AI-powered automation delivers results 3× faster than traditional agencies",
-    "roiP3": "Transparent reporting — you always know exactly where your money goes",
-    "accessTitle": "Direct Access to Strategists",
+    "roiP2": "We start with an audit that ranks your processes by hours lost and euros at stake, and we tell you what is not worth automating",
+    "roiP3": "Real results: 20 hours a week saved at a law firm, 10x more filings at an accounting office",
+    "accessTitle": "Direct Access to Specialists",
     "accessHeadline": "No Account Managers. No Junior Teams.",
-    "accessP1": "Work directly with Flavian (Founder), Inna (15-year veteran), and Aslan (SEO specialist)",
-    "accessP2": "Strategic decisions made in hours, not weeks",
-    "accessP3": "Senior-level thinking on every project, every time"
+    "accessP1": "Work directly with Flavian (founder), Paul (10-year softwear developer), and Emil (AI researcher, 10+ years)",
+    "accessP2": "Strategy and build in the same room: what gets decided is what gets built",
+    "accessP3": "Project completed: your team learns how it works, so nothing is a black box"
   },
   "about": {
     "eyebrow": "Our Philosophy",
-    "title1": "Where Vision",
+    "title1": "Where Strategy",
     "title2": "Meets",
-    "titleHighlight": "Authority",
-    "p1": "At Impera, we believe that true digital excellence is not merely about aesthetics — it is about commanding presence. Every pixel, every interaction, every strategy is designed to establish your brand as the undeniable leader in its space.",
-    "p2": "Our name, derived from the Latin <em>imperare</em> — to command — reflects our commitment to creating digital experiences that don't just compete, but reign.",
-    "stat1Value": "10+",
-    "stat1Label": "Years Combined Freelance Experience",
+    "titleHighlight": "Automation",
+    "p1": "At Impera, we believe AI should work for you, not the other way around. The goal isn’t more tools. It’s less manual work, better decisions, and growth you can measure. We start by finding what is actually worth automating, and we tell you honestly what isn’t.",
+    "p2": "Our name, derived from the Latin imperare, to command, reflects the promise: you stay in command of your business while the repetitive work runs itself.",
+    "stat1Value": "20+",
+    "stat1Label": "Years Combined Senior Experience",
     "stat2Value": "3",
     "stat2Label": "Specialists United Under One Vision",
     "stat3Value": "2025",
-    "stat3Label": "Founded — Modern Agency, Veteran Execution",
+    "stat3Label": "Founded — New Focus, Senior team",
     "stat4Value": "8",
     "stat4Label": "European Languages Served"
   },
@@ -85,12 +84,12 @@
     "badge": "Performance Guarantee",
     "title": "The Impera Performance Guarantee",
     "subtitle": "We're so confident in our approach that we put our commitment in writing. Within <1>90 days</1> of starting:",
-    "point1": "Measurable improvements in qualified leads, conversion rate, or pipeline value",
-    "point2": "Weekly performance reports showing exactly where your investment is going",
-    "point3": "Direct access to your strategist — response time under 24 hours",
+    "point1": "A measurable result agreed upfront, such as hours saved, errors avoided, or faster turnaround, tracked against your starting baseline",
+    "point2": "Weekly progress reports showing what’s running, what it saves, and what comes next",
+    "point3": "Direct access to your specialist, response time under 24 hours",
     "promise": "If we don't deliver measurable results in 90 days, we'll work an additional month at no cost until we do.",
-    "promiseWhy": "Why can we make this guarantee? Because we treat your marketing budget like an investment portfolio — every euro is tracked, measured, and optimized for maximum return.",
-    "cta": "See If You Qualify"
+    "promiseWhy": "Why can we promise this? Because before we build anything, we measure your current process, agree on the result that counts, and only automate what pays back. If something isn’t worth automating, we’ll tell you.",
+    "cta": "Book Your Audit"
   },
   "pathway": {
     "eyebrow": "our methodology",
@@ -121,10 +120,10 @@
     "a6": "We don't disappear. You get weekly performance reporting and direct access to your strategist, with response times under 24 hours, so the system keeps improving instead of quietly decaying."
   },
   "cta": {
-    "eyebrow": "Let's Create Together",
+    "eyebrow": "Let's Automate Together",
     "title1": "Ready to Command",
     "title2": "Your Market?",
-    "subtitle": "Every empire begins with a single decision. Let's discuss how Impera can elevate your brand to its rightful position.",
-    "button": "Book a Free Call"
+    "subtitle": "Every empire begins with a single decision. Let's discuss how Impera can elevate your company to its rightful position.",
+    "button": "Book Your Audit"
   }
 }
