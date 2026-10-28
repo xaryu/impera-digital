@@ -2,6 +2,7 @@ import Navbar from "@/components/layout/Navbar";
 import HeroSection from "@/components/sections/HeroSection";
 import PathwaySection from "@/components/sections/PathwaySection";
 import ServicesSection from "@/components/sections/ServicesSection";
+import CalculatorStrip from "@/components/sections/CalculatorStrip";
 import AboutSection from "@/components/sections/AboutSection";
 import WhyImperaSection from "@/components/sections/WhyImperaSection";
 import GuaranteeSection from "@/components/sections/GuaranteeSection";
@@ -28,6 +29,7 @@ const Index = () => {
       <main id="main-content" role="main">
         <HeroSection />
         <ServicesSection />
+        <CalculatorStrip />
         <ResultsSection/>
         <PathwaySection />
         <WhyImperaSection />

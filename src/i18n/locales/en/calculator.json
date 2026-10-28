@@ -1,0 +1,85 @@
+{
+  "calculator": {
+    "strip": {
+      "eyebrow": "Put a number on it",
+      "title": "How many hours is your team losing?",
+      "description": "Four short questions, your own figures. You see the estimate straight away — no email needed.",
+      "cta": "Open the calculator"
+    },
+    "modal": {
+      "title": "How many hours is your team losing?",
+      "description": "Four short questions. Your figures, your estimate — nothing is sent anywhere unless you ask for the report.",
+      "progress": "Step {{current}} of {{total}}",
+      "back": "Back",
+      "next": "Next",
+      "seeResult": "See my estimate",
+      "close": "Close",
+      "startOver": "Start over"
+    },
+    "people": {
+      "label": "How many people do repetitive admin work?",
+      "help": "Everyone who spends part of a normal week on manual, repeating tasks.",
+      "unit": "people"
+    },
+    "hours": {
+      "label": "How many hours a week does each of them spend on it?",
+      "help": "An average is fine. Think of an ordinary week, not your busiest one.",
+      "unit": "hours per week"
+    },
+    "cost": {
+      "label": "What does an hour of their time cost you?",
+      "help": "Gross cost to the company per hour, not take-home pay. Change it if 40 is not right for your team.",
+      "unit": "per hour",
+      "inputLabel": "Hourly cost in euros"
+    },
+    "tasksStep": {
+      "label": "Which tasks does that work involve?",
+      "help": "Pick everything that applies. This shapes the breakdown report; it does not change the numbers.",
+      "optional": "Optional — you can skip this step."
+    },
+    "tasks": {
+      "documentProcessing": "Document processing",
+      "dataEntry": "Data entry",
+      "quotes": "Quotes",
+      "followUpEmails": "Follow-up emails",
+      "reporting": "Reporting",
+      "invoicing": "Invoicing"
+    },
+    "result": {
+      "eyebrow": "Your estimate",
+      "title": "Here is what that time is worth",
+      "hoursPerWeek": "Hours lost per week",
+      "hoursPerYear": "Hours lost per year",
+      "yearlyCost": "What that costs per year",
+      "rangeTitle": "What could realistically be automated",
+      "rangeHours": "{{low}} – {{high}} hours a year",
+      "rangeCost": "{{low}} – {{high}} a year",
+      "rangeHelp": "That is {{low}}% to {{high}}% of the hours above.",
+      "estimateNote": "This is an estimate based on the figures you entered and the assumptions below. It is not a measurement of your business, and we would confirm it with you before anyone builds anything.",
+      "assumptionsTitle": "Assumptions behind this estimate",
+      "assumption1": "Your figures: {{people}} people × {{hours}} hours a week × {{cost}} an hour.",
+      "assumption2": "{{weeks}} working weeks a year, allowing for holidays and public holidays.",
+      "assumption3": "The {{low}}%–{{high}}% band is the planning range we scope automation projects with. Where a business lands inside it depends on its tools, its data and how consistent the process already is.",
+      "assumption4": "The figures are gross: they do not subtract the cost of building and running the automation.",
+      "auditCta": "Get My Growth Audit"
+    },
+    "email": {
+      "title": "Want the breakdown?",
+      "description": "We will email you a short report, written around the tasks you picked:",
+      "bullet1": "Your tasks ranked by the time we would expect to save first",
+      "bullet2": "What we would automate first, and why",
+      "bullet3": "What is probably not worth automating",
+      "label": "Work email",
+      "placeholder": "you@company.com",
+      "consent": "Impera may email me this report and follow up about it. See the <link>Privacy Policy</link>.",
+      "submit": "Send me the breakdown",
+      "sending": "Sending…",
+      "success": "On its way.",
+      "successNote": "The report should reach your inbox within a few minutes. Check your spam folder if it does not.",
+      "invalidEmail": "Please enter a valid email address",
+      "emailTooLong": "Email is too long",
+      "consentRequired": "Please tick the box so we may send you the report.",
+      "error": "We could not send that. Please try again."
+    }
+  }
+}

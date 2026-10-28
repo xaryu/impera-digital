@@ -73,6 +73,93 @@ export type Database = {
           },
         ]
       }
+      calculator_events: {
+        Row: {
+          created_at: string
+          details: Json
+          event: string
+          id: string
+          language: string
+          session_id: string
+        }
+        Insert: {
+          created_at?: string
+          details?: Json
+          event: string
+          id?: string
+          language?: string
+          session_id: string
+        }
+        Update: {
+          created_at?: string
+          details?: Json
+          event?: string
+          id?: string
+          language?: string
+          session_id?: string
+        }
+        Relationships: []
+      }
+      calculator_submissions: {
+        Row: {
+          automatable_cost_high: number
+          automatable_cost_low: number
+          automatable_hours_high: number
+          automatable_hours_low: number
+          consent: boolean
+          created_at: string
+          email: string
+          hourly_cost: number
+          hours_per_person_per_week: number
+          hours_per_week: number
+          hours_per_year: number
+          id: string
+          language: string
+          people: number
+          report_sent: boolean
+          tasks: string[]
+          yearly_cost: number
+        }
+        Insert: {
+          automatable_cost_high: number
+          automatable_cost_low: number
+          automatable_hours_high: number
+          automatable_hours_low: number
+          consent?: boolean
+          created_at?: string
+          email: string
+          hourly_cost: number
+          hours_per_person_per_week: number
+          hours_per_week: number
+          hours_per_year: number
+          id?: string
+          language?: string
+          people: number
+          report_sent?: boolean
+          tasks?: string[]
+          yearly_cost: number
+        }
+        Update: {
+          automatable_cost_high?: number
+          automatable_cost_low?: number
+          automatable_hours_high?: number
+          automatable_hours_low?: number
+          consent?: boolean
+          created_at?: string
+          email?: string
+          hourly_cost?: number
+          hours_per_person_per_week?: number
+          hours_per_week?: number
+          hours_per_year?: number
+          id?: string
+          language?: string
+          people?: number
+          report_sent?: boolean
+          tasks?: string[]
+          yearly_cost?: number
+        }
+        Relationships: []
+      }
       contact_submissions: {
         Row: {
           company: string | null

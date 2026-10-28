@@ -1,1 +1,5 @@
 project_id = "vxeaywnlscwrcvlfuuqv"
+
+[functions.send-calculator-report]
+# Called by visitors who are not signed in.
+verify_jwt = false

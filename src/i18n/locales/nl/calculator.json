@@ -1,0 +1,85 @@
+{
+  "calculator": {
+    "strip": {
+      "eyebrow": "Zet er een cijfer op",
+      "title": "Hoeveel uren verliest uw team?",
+      "description": "Vier korte vragen, uw eigen cijfers. U ziet de schatting meteen — geen e-mailadres nodig.",
+      "cta": "Open de rekenmodule"
+    },
+    "modal": {
+      "title": "Hoeveel uren verliest uw team?",
+      "description": "Vier korte vragen. Uw cijfers, uw schatting — er wordt niets verstuurd tenzij u het rapport vraagt.",
+      "progress": "Stap {{current}} van {{total}}",
+      "back": "Terug",
+      "next": "Volgende",
+      "seeResult": "Toon mijn schatting",
+      "close": "Sluiten",
+      "startOver": "Opnieuw beginnen"
+    },
+    "people": {
+      "label": "Hoeveel mensen doen repetitief administratief werk?",
+      "help": "Iedereen die in een normale week tijd besteedt aan manuele, terugkerende taken.",
+      "unit": "personen"
+    },
+    "hours": {
+      "label": "Hoeveel uur per week besteedt elk van hen daaraan?",
+      "help": "Een gemiddelde volstaat. Denk aan een gewone week, niet aan uw drukste.",
+      "unit": "uur per week"
+    },
+    "cost": {
+      "label": "Wat kost een uur van hun tijd u?",
+      "help": "Brutokost voor het bedrijf per uur, niet het nettoloon. Pas het aan als 40 niet klopt voor uw team.",
+      "unit": "per uur",
+      "inputLabel": "Uurkost in euro"
+    },
+    "tasksStep": {
+      "label": "Over welke taken gaat dat werk?",
+      "help": "Kies alles wat van toepassing is. Dit bepaalt het rapport, niet de cijfers.",
+      "optional": "Optioneel — u mag deze stap overslaan."
+    },
+    "tasks": {
+      "documentProcessing": "Documenten verwerken",
+      "dataEntry": "Gegevens invoeren",
+      "quotes": "Offertes",
+      "followUpEmails": "Opvolgmails",
+      "reporting": "Rapportering",
+      "invoicing": "Facturatie"
+    },
+    "result": {
+      "eyebrow": "Uw schatting",
+      "title": "Dit is wat die tijd waard is",
+      "hoursPerWeek": "Verloren uren per week",
+      "hoursPerYear": "Verloren uren per jaar",
+      "yearlyCost": "Wat dat per jaar kost",
+      "rangeTitle": "Wat realistisch geautomatiseerd kan worden",
+      "rangeHours": "{{low}} – {{high}} uur per jaar",
+      "rangeCost": "{{low}} – {{high}} per jaar",
+      "rangeHelp": "Dat is {{low}}% tot {{high}}% van de uren hierboven.",
+      "estimateNote": "Dit is een schatting op basis van de cijfers die u invulde en de aannames hieronder. Het is geen meting van uw bedrijf, en we bevestigen ze samen met u voor er iets gebouwd wordt.",
+      "assumptionsTitle": "Aannames achter deze schatting",
+      "assumption1": "Uw cijfers: {{people}} personen × {{hours}} uur per week × {{cost}} per uur.",
+      "assumption2": "{{weeks}} werkweken per jaar, rekening houdend met verlof en feestdagen.",
+      "assumption3": "De band van {{low}}% tot {{high}}% is het planningsbereik waarmee wij automatiseringsprojecten inschatten. Waar een bedrijf daarbinnen uitkomt, hangt af van zijn tools, zijn data en hoe consistent het proces vandaag al verloopt.",
+      "assumption4": "De cijfers zijn bruto: de kost om de automatisering te bouwen en te laten draaien is er niet van afgetrokken.",
+      "auditCta": "Vraag mijn Growth Audit"
+    },
+    "email": {
+      "title": "Wilt u de uitsplitsing?",
+      "description": "We mailen u een kort rapport, geschreven rond de taken die u koos:",
+      "bullet1": "Uw taken gerangschikt naar de tijd die we het eerst zouden winnen",
+      "bullet2": "Wat we eerst zouden automatiseren, en waarom",
+      "bullet3": "Wat wellicht niet de moeite is om te automatiseren",
+      "label": "Werk-e-mailadres",
+      "placeholder": "u@bedrijf.be",
+      "consent": "Impera mag mij dit rapport mailen en erover opvolgen. Zie het <link>Privacybeleid</link>.",
+      "submit": "Stuur mij de uitsplitsing",
+      "sending": "Versturen…",
+      "success": "Onderweg.",
+      "successNote": "Het rapport zou binnen enkele minuten in uw inbox moeten staan. Kijk anders even in uw spam.",
+      "invalidEmail": "Vul een geldig e-mailadres in",
+      "emailTooLong": "E-mailadres is te lang",
+      "consentRequired": "Vink het vakje aan zodat we u het rapport mogen sturen.",
+      "error": "Versturen is niet gelukt. Probeer het opnieuw."
+    }
+  }
+}

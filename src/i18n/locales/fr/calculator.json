@@ -1,0 +1,85 @@
+{
+  "calculator": {
+    "strip": {
+      "eyebrow": "Chiffrez-le",
+      "title": "Combien d'heures votre équipe perd-elle ?",
+      "description": "Quatre questions courtes, vos propres chiffres. L'estimation s'affiche immédiatement — sans adresse e-mail.",
+      "cta": "Ouvrir le calculateur"
+    },
+    "modal": {
+      "title": "Combien d'heures votre équipe perd-elle ?",
+      "description": "Quatre questions courtes. Vos chiffres, votre estimation — rien n'est envoyé tant que vous ne demandez pas le rapport.",
+      "progress": "Étape {{current}} sur {{total}}",
+      "back": "Retour",
+      "next": "Suivant",
+      "seeResult": "Voir mon estimation",
+      "close": "Fermer",
+      "startOver": "Recommencer"
+    },
+    "people": {
+      "label": "Combien de personnes effectuent des tâches administratives répétitives ?",
+      "help": "Toute personne qui consacre une partie d'une semaine normale à des tâches manuelles et récurrentes.",
+      "unit": "personnes"
+    },
+    "hours": {
+      "label": "Combien d'heures par semaine chacune y consacre-t-elle ?",
+      "help": "Une moyenne suffit. Pensez à une semaine ordinaire, pas à la plus chargée.",
+      "unit": "heures par semaine"
+    },
+    "cost": {
+      "label": "Combien vous coûte une heure de leur temps ?",
+      "help": "Coût brut pour l'entreprise par heure, pas le salaire net. Modifiez-le si 40 ne correspond pas à votre équipe.",
+      "unit": "par heure",
+      "inputLabel": "Coût horaire en euros"
+    },
+    "tasksStep": {
+      "label": "Quelles tâches ce travail recouvre-t-il ?",
+      "help": "Sélectionnez tout ce qui s'applique. Cela façonne le rapport, pas les chiffres.",
+      "optional": "Facultatif — vous pouvez passer cette étape."
+    },
+    "tasks": {
+      "documentProcessing": "Traitement de documents",
+      "dataEntry": "Saisie de données",
+      "quotes": "Devis",
+      "followUpEmails": "E-mails de relance",
+      "reporting": "Reporting",
+      "invoicing": "Facturation"
+    },
+    "result": {
+      "eyebrow": "Votre estimation",
+      "title": "Voici ce que vaut ce temps",
+      "hoursPerWeek": "Heures perdues par semaine",
+      "hoursPerYear": "Heures perdues par an",
+      "yearlyCost": "Ce que cela coûte par an",
+      "rangeTitle": "Ce qui peut réalistement être automatisé",
+      "rangeHours": "{{low}} – {{high}} heures par an",
+      "rangeCost": "{{low}} – {{high}} par an",
+      "rangeHelp": "Soit {{low}} % à {{high}} % des heures ci-dessus.",
+      "estimateNote": "Il s'agit d'une estimation fondée sur les chiffres que vous avez saisis et sur les hypothèses ci-dessous. Ce n'est pas une mesure de votre entreprise, et nous la validerions avec vous avant de construire quoi que ce soit.",
+      "assumptionsTitle": "Hypothèses derrière cette estimation",
+      "assumption1": "Vos chiffres : {{people}} personnes × {{hours}} heures par semaine × {{cost}} de l'heure.",
+      "assumption2": "{{weeks}} semaines travaillées par an, congés et jours fériés déduits.",
+      "assumption3": "La fourchette de {{low}} % à {{high}} % est la plage de planification avec laquelle nous cadrons nos projets d'automatisation. Où une entreprise se situe à l'intérieur dépend de ses outils, de ses données et de la régularité du processus actuel.",
+      "assumption4": "Les chiffres sont bruts : ils ne déduisent pas le coût de construction et d'exploitation de l'automatisation.",
+      "auditCta": "Obtenir mon Growth Audit"
+    },
+    "email": {
+      "title": "Vous voulez le détail ?",
+      "description": "Nous vous envoyons un court rapport, rédigé autour des tâches que vous avez choisies :",
+      "bullet1": "Vos tâches classées selon le temps que nous gagnerions en premier",
+      "bullet2": "Ce que nous automatiserions d'abord, et pourquoi",
+      "bullet3": "Ce qui ne vaut probablement pas la peine d'être automatisé",
+      "label": "E-mail professionnel",
+      "placeholder": "vous@entreprise.be",
+      "consent": "Impera peut m'envoyer ce rapport par e-mail et en assurer le suivi. Voir la <link>Politique de confidentialité</link>.",
+      "submit": "Envoyez-moi le détail",
+      "sending": "Envoi…",
+      "success": "En route.",
+      "successNote": "Le rapport devrait arriver dans votre boîte dans quelques minutes. Vérifiez vos spams le cas échéant.",
+      "invalidEmail": "Veuillez saisir une adresse e-mail valide",
+      "emailTooLong": "L'adresse e-mail est trop longue",
+      "consentRequired": "Cochez la case pour que nous puissions vous envoyer le rapport.",
+      "error": "L'envoi a échoué. Veuillez réessayer."
+    }
+  }
+}
