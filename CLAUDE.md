@@ -52,12 +52,11 @@ Run `source ~/.nvm/nvm.sh && nvm use 24` first (Node 24, see `.nvmrc`).
     any address once (per-IP limit of 5/hour and plus-address dedupe are in the hardening migration,
     but an attacker with many IPs gets around the IP limit, and the global 100/hour cap can still
     lock real visitors out with 503).
-  - Fixed in migration `20261030150000_calculator_hardening.sql` (committed, **not yet pushed or
-    deployed**): atomic dedupe/cap/insert via the `claim_calculator_submission` RPC, `created_at`
+  - Fixed in migration `20261030150000_calculator_hardening.sql` (pushed and `calculator-report`
+    redeployed as v5 on 2026-10-30): atomic dedupe/cap/insert via the `claim_calculator_submission` RPC, `created_at`
     index, per-IP limit (HMAC of the IP, cleared after 24h, stated in `legal.json`), plus-address
     dedupe (`email_key`), a sending lock (409 while another request sends), `calculator_events` insert
-    bounded (timestamp check, 8 per run_id, 1000/hour in total, 12-month retention). Push the migration (`npx supabase db push`) before redeploying `calculator-report`,
-    since the function now calls the RPC.
+    bounded (timestamp check, 8 per run_id, 1000/hour in total, 12-month retention). Always push migrations before deploying the function, since it calls the RPC.
   - CORS allows `SITE_URL` plus `localhost:8080` and `:5173` in production; Vercel previews and a
     custom domain need adding to `SITE_URL` (comma-separated). Consider dropping the localhost origins.
 - **Step 7 Resend setup (resume here)**, following https://resend.com/setup.md:
