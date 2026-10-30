@@ -15,6 +15,7 @@ import { computeResult, inputsSchema } from "../_shared/lib/calculator.ts";
 import { buildReportEmail } from "./email.ts";
 
 const DUPLICATE_WINDOW_MINUTES = 10;
+const HOURLY_SUBMISSION_CAP = 100;
 
 const requestSchema = z.object({
   email: z.string().trim().toLowerCase().email().max(255),
@@ -61,26 +62,72 @@ Deno.serve(async (request) => {
   });
 
   const since = new Date(Date.now() - DUPLICATE_WINDOW_MINUTES * 60_000).toISOString();
-  const { count, error: lookupError } = await supabase
+  const { data: recent, error: lookupError } = await supabase
     .from("calculator_submissions")
-    .select("id", { count: "exact", head: true })
+    .select("id, language, inputs, report_sent_at")
     .eq("email", email)
-    .gte("created_at", since);
+    .gte("created_at", since)
+    .order("created_at", { ascending: true })
+    .order("id", { ascending: true });
   if (lookupError) {
     console.error("duplicate check failed:", lookupError.message);
     return reply({ error: "server_error" }, 500);
   }
-  if (count) return reply({ error: "rate_limited" }, 429);
+  // Only a report that was really sent counts as a duplicate (the modal shows 429 as "already sent").
+  if (recent.some((r) => r.report_sent_at)) return reply({ error: "rate_limited" }, 429);
 
-  const now = new Date().toISOString();
-  const { data: row, error: insertError } = await supabase
-    .from("calculator_submissions")
-    .insert({ email, language, inputs, result: computeResult(inputs), consent_at: now })
-    .select("id")
-    .single();
-  if (insertError) {
-    console.error("insert failed:", insertError.message);
-    return reply({ error: "server_error" }, 500);
+  // An earlier attempt stored the lead but the email never went out: send that one again. Resend's
+  // Idempotency-Key is the row id, so concurrent retries still produce one email.
+  let row: { id: string };
+  let reportInputs = inputs;
+  let reportLanguage = language;
+  const unsent = recent[0];
+  const storedInputs = unsent ? inputsSchema.safeParse(unsent.inputs) : null;
+  if (unsent && storedInputs?.success) {
+    row = unsent;
+    reportInputs = storedInputs.data;
+    reportLanguage = unsent.language as typeof language;
+  } else {
+    // The endpoint is public, so cap total volume to bound abuse (spam to other people's addresses).
+    const hourAgo = new Date(Date.now() - 60 * 60_000).toISOString();
+    const { count: hourly, error: capError } = await supabase
+      .from("calculator_submissions")
+      .select("id", { count: "exact", head: true })
+      .gte("created_at", hourAgo);
+    if (capError) {
+      console.error("volume check failed:", capError.message);
+      return reply({ error: "server_error" }, 500);
+    }
+    if ((hourly ?? 0) >= HOURLY_SUBMISSION_CAP) return reply({ error: "busy" }, 503);
+
+    const now = new Date().toISOString();
+    const { data: inserted, error: insertError } = await supabase
+      .from("calculator_submissions")
+      .insert({ email, language, inputs, result: computeResult(inputs), consent_at: now })
+      .select("id, created_at")
+      .single();
+    if (insertError) {
+      console.error("insert failed:", insertError.message);
+      return reply({ error: "server_error" }, 500);
+    }
+    row = inserted;
+
+    // The check above and this insert are not atomic. If a concurrent request for the same email
+    // stored a row first, keep only the oldest one so a single report goes out.
+    const { data: winners, error: raceError } = await supabase
+      .from("calculator_submissions")
+      .select("id")
+      .eq("email", email)
+      .gte("created_at", since)
+      .order("created_at", { ascending: true })
+      .order("id", { ascending: true })
+      .limit(1);
+    if (raceError) {
+      console.error("race check failed:", raceError.message);
+    } else if (winners[0] && winners[0].id !== row.id) {
+      await supabase.from("calculator_submissions").delete().eq("id", row.id);
+      return reply({ error: "rate_limited" }, 429);
+    }
   }
 
   // From here the row is the lead: a failed email is logged and can be retried, but the visitor
@@ -92,7 +139,7 @@ Deno.serve(async (request) => {
     return reply({ ok: true });
   }
 
-  const { subject, html } = buildReportEmail(inputs, language);
+  const { subject, html } = buildReportEmail(reportInputs, reportLanguage);
   try {
     const response = await fetch("https://api.resend.com/emails", {
       method: "POST",
