@@ -48,11 +48,19 @@ CREATE INDEX idx_calculator_events_created_at ON public.calculator_events (creat
 
 -- Retention: submissions older than 24 months are deleted daily at 03:00 UTC. Events hold no
 -- personal data and are kept.
--- pg_cron must be allowed on the project (Dashboard > Database > Extensions) before this runs.
-CREATE EXTENSION IF NOT EXISTS pg_cron WITH SCHEMA pg_catalog;
-
-SELECT cron.schedule(
-  'calculator-submissions-retention',
-  '0 3 * * *',
-  $$DELETE FROM public.calculator_submissions WHERE created_at < now() - interval '24 months'$$
-);
+-- Skipped with a notice where pg_cron is not available (e.g. local `supabase db reset`), so the
+-- tables above still get created. Enable it on the project under Dashboard > Database > Extensions.
+DO $$
+BEGIN
+  IF EXISTS (SELECT 1 FROM pg_available_extensions WHERE name = 'pg_cron') THEN
+    CREATE EXTENSION IF NOT EXISTS pg_cron WITH SCHEMA pg_catalog;
+    PERFORM cron.schedule(
+      'calculator-submissions-retention',
+      '0 3 * * *',
+      $job$DELETE FROM public.calculator_submissions WHERE created_at < now() - interval '24 months'$job$
+    );
+  ELSE
+    RAISE NOTICE 'pg_cron is not available: the calculator retention job was not scheduled';
+  END IF;
+END
+$$;

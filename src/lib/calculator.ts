@@ -90,8 +90,8 @@ const LOCALES: Record<string, string> = { en: "en-IE", fr: "fr-BE", nl: "nl-BE" 
 
 const localeFor = (language: string) => LOCALES[language.slice(0, 2)] ?? LOCALES.en;
 
-export const formatHours = (value: number, language: string) =>
-  new Intl.NumberFormat(localeFor(language), { maximumFractionDigits: 0 }).format(value);
+export const formatHours = (value: number, language: string, fractionDigits = 0) =>
+  new Intl.NumberFormat(localeFor(language), { maximumFractionDigits: fractionDigits }).format(value);
 
 export const formatEuro = (value: number, language: string) =>
   new Intl.NumberFormat(localeFor(language), {

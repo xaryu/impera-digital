@@ -40,8 +40,9 @@ export const buildReportEmail = (inputs: CalculatorInputs, language: Language) =
   const hours = (value: number) => formatHours(value, language);
   const euro = (value: number) => formatEuro(value, language);
   const percent = (value: number) => Math.round(value * 100);
-  const taskName = (id: string) => t.tasks[id as keyof typeof t.tasks];
-  const why = (id: string) => t.report.why[id as keyof typeof t.report.why];
+  // A task id missing from a dictionary must not break the send, so fall back to the id / no text.
+  const taskName = (id: string) => t.tasks[id as keyof typeof t.tasks] ?? id;
+  const why = (id: string) => t.report.why[id as keyof typeof t.report.why] ?? "";
   const fitLabel = (fit: "high" | "medium") => t.report.fit[fit];
 
   const heading = (text: string) =>
@@ -70,7 +71,7 @@ export const buildReportEmail = (inputs: CalculatorInputs, language: Language) =
         .map(
           (task) =>
             `<li style="margin:0 0 6px;font:15px/1.5 Arial,sans-serif;color:#333">${escapeHtml(taskName(task.id))}: ${escapeHtml(
-              fill(t.report.notWorthItReason, { hours: hours(task.weeklyHours) }),
+              fill(t.report.notWorthItReason, { hours: formatHours(task.weeklyHours, language, 1) }),
             )}</li>`,
         )
         .join("")}</ul>`

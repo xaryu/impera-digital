@@ -5,7 +5,7 @@
 // is never a number the browser claimed.
 //
 // Secrets (supabase secrets set ...): RESEND_API_KEY (sending-only key), REPORT_FROM
-// (e.g. "Impera <report@mail.impera-group.com>"), SITE_URL (allowed CORS origin).
+// (e.g. "Impera <report@mail.impera-group.com>"), SITE_URL (allowed CORS origins, comma-separated).
 // SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are provided by Supabase.
 //
 // Shared code lives in ../_shared (npm run sync:function-shared), never edit it there.
@@ -25,8 +25,15 @@ const requestSchema = z.object({
   website: z.string().optional(), // honeypot: real visitors never fill it
 });
 
-const allowedOrigins = () =>
-  [Deno.env.get("SITE_URL"), "http://localhost:8080", "http://localhost:5173"].filter(Boolean) as string[];
+// SITE_URL may hold several origins, comma-separated (custom domain, www, ...).
+const allowedOrigins = () => [
+  ...(Deno.env.get("SITE_URL") ?? "")
+    .split(",")
+    .map((origin) => origin.trim().replace(/\/$/, ""))
+    .filter(Boolean),
+  "http://localhost:8080",
+  "http://localhost:5173",
+];
 
 const corsHeaders = (origin: string | null) => ({
   "Access-Control-Allow-Origin": origin && allowedOrigins().includes(origin) ? origin : "null",
@@ -55,7 +62,10 @@ Deno.serve(async (request) => {
   const { email, language, inputs, website } = parsed.data;
 
   // Bots fill the hidden field. Pretend it worked so they learn nothing.
-  if (website) return reply({ ok: true });
+  if (website) {
+    console.warn("honeypot filled, submission dropped");
+    return reply({ ok: true });
+  }
 
   const supabase = createClient(Deno.env.get("SUPABASE_URL")!, Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!, {
     auth: { persistSession: false },

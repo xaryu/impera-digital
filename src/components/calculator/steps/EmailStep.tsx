@@ -53,17 +53,17 @@ const EmailStep = ({ email, consent, website, error, onEmailChange, onConsentCha
 
       {/* Honeypot: hidden from people and assistive tech, bots fill it in. */}
       <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
-        <label>
-          Website
-          <input
-            type="text"
-            name="website"
-            tabIndex={-1}
-            autoComplete="off"
-            value={website}
-            onChange={(event) => onWebsiteChange(event.target.value)}
-          />
-        </label>
+        {/* No label and a neutral name, so autofill and password managers leave it alone. */}
+        <input
+          type="text"
+          name="calc-ref"
+          tabIndex={-1}
+          autoComplete="off"
+          data-lpignore="true"
+          data-1p-ignore
+          value={website}
+          onChange={(event) => onWebsiteChange(event.target.value)}
+        />
       </div>
 
       <div>

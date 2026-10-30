@@ -91,9 +91,16 @@ const HoursCalculatorModal = ({ open, onOpenChange, returnFocusRef }: HoursCalcu
   }, [i18n.language]);
 
   useEffect(() => {
-    if (!open) runId.current = null;
-    else if (!runId.current) startRun();
-  }, [open, startRun]);
+    if (!open) {
+      runId.current = null;
+    } else if (!runId.current) {
+      // Inputs are kept across close/reopen, but a new run must not start on a later funnel step:
+      // it would log "finished" again without the visitor having gone through the questions.
+      if (step === "done") dispatch({ type: "reset" });
+      else if (step === "result" || step === "email") dispatch({ type: "goTo", step: "people" });
+      startRun();
+    }
+  }, [open, startRun, step]);
 
   useEffect(() => {
     if (step !== "result" || !runId.current || finishedRunId.current === runId.current) return;
@@ -122,6 +129,7 @@ const HoursCalculatorModal = ({ open, onOpenChange, returnFocusRef }: HoursCalcu
 
     setEmailError(null);
     setSending(true);
+    const submittedRun = runId.current;
     const { error } = await supabase.functions.invoke("calculator-report", {
       body: {
         email: parsedEmail.data,
@@ -132,6 +140,9 @@ const HoursCalculatorModal = ({ open, onOpenChange, returnFocusRef }: HoursCalcu
       },
     });
     setSending(false);
+
+    // The visitor closed the modal or started over while the request was in flight: don't move them.
+    if (runId.current !== submittedRun) return;
 
     // 429 = this address already asked within the last few minutes, so a report is on its way.
     const alreadySent = (error as { context?: { status?: number } } | null)?.context?.status === 429;
@@ -296,7 +307,8 @@ const HoursCalculatorModal = ({ open, onOpenChange, returnFocusRef }: HoursCalcu
               <button
                 type="button"
                 onClick={goBack}
-                className="min-h-[44px] px-4 font-body text-sm text-gold-muted hover:text-cream transition-colors"
+                disabled={sending}
+                className="min-h-[44px] px-4 font-body text-sm text-gold-muted hover:text-cream transition-colors disabled:opacity-50"
               >
                 {t("calculator.modal.back")}
               </button>

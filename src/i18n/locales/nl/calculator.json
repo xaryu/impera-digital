@@ -99,7 +99,7 @@
       "cost": "Kost per jaar: {{value}}",
       "range": "Realistisch te automatiseren (schatting): {{hours}} uur en {{cost}} per jaar",
       "rankedTitle": "Uw taken, gerangschikt naar geschiktheid voor automatisering",
-      "rankedHours": "ongeveer {{hours}} uur per jaar",
+      "rankedHours": "ongeveer {{hours}} u per jaar",
       "fit": {
         "high": "Hoge geschiktheid",
         "medium": "Gemiddelde geschiktheid"
@@ -115,7 +115,7 @@
       "automateFirstTitle": "Wat we eerst zouden automatiseren",
       "automateFirstNone": "Geen van uw gekozen taken is een duidelijke eerste kandidaat. Een korte audit toont waar te beginnen.",
       "notWorthItTitle": "Wellicht nog niet de moeite waard",
-      "notWorthItReason": "Bij ongeveer {{hours}} uur per week valt er nog weinig te winnen.",
+      "notWorthItReason": "Bij ongeveer {{hours}} u per week valt er nog weinig te winnen.",
       "notWorthItNone": "Niets op uw lijst valt onder die grens.",
       "assumptionsTitle": "Aannames",
       "assumptionEvenSplit": "Uw opgegeven uren zijn gelijk verdeeld over de taken die u koos. We kennen uw echte verdeling niet.",

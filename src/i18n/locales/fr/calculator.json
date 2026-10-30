@@ -99,7 +99,7 @@
       "cost": "Coût par an : {{value}}",
       "range": "Raisonnablement automatisable (estimation) : {{hours}} heures et {{cost}} par an",
       "rankedTitle": "Vos tâches, classées selon leur potentiel d'automatisation",
-      "rankedHours": "environ {{hours}} heures par an",
+      "rankedHours": "environ {{hours}} h par an",
       "fit": {
         "high": "Potentiel élevé",
         "medium": "Potentiel moyen"
@@ -115,7 +115,7 @@
       "automateFirstTitle": "Ce que nous automatiserions en premier",
       "automateFirstNone": "Aucune de vos tâches sélectionnées n'est un premier candidat évident. Un court audit montrerait par où commencer.",
       "notWorthItTitle": "Probablement pas encore utile d'automatiser",
-      "notWorthItReason": "Avec environ {{hours}} heures par semaine, il y a encore peu à gagner.",
+      "notWorthItReason": "Avec environ {{hours}} h par semaine, il y a encore peu à gagner.",
       "notWorthItNone": "Rien dans votre liste ne passe sous ce seuil.",
       "assumptionsTitle": "Hypothèses",
       "assumptionEvenSplit": "Les heures que vous avez indiquées sont réparties équitablement entre les tâches choisies. Nous ne connaissons pas votre répartition réelle.",

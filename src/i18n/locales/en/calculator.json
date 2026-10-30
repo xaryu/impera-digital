@@ -99,7 +99,7 @@
       "cost": "Cost per year: {{value}}",
       "range": "Realistically automatable (estimate): {{hours}} hours and {{cost}} a year",
       "rankedTitle": "Your tasks, ranked by automation fit",
-      "rankedHours": "about {{hours}} hours a year",
+      "rankedHours": "about {{hours}} h a year",
       "fit": {
         "high": "High fit",
         "medium": "Medium fit"
@@ -115,7 +115,7 @@
       "automateFirstTitle": "What we would automate first",
       "automateFirstNone": "None of your selected tasks is a clear first candidate. A short audit would show where to start.",
       "notWorthItTitle": "Probably not worth automating yet",
-      "notWorthItReason": "At about {{hours}} hours a week, there is little to gain yet.",
+      "notWorthItReason": "At about {{hours}} h a week, there is little to gain yet.",
       "notWorthItNone": "Nothing on your list falls below that line.",
       "assumptionsTitle": "Assumptions",
       "assumptionEvenSplit": "Your stated hours are split evenly across the tasks you selected. We do not know your real split.",
