@@ -10,6 +10,7 @@ const CookieConsent = () => {
   const [showSettings, setShowSettings] = useState(false);
   const [analytics, setAnalytics] = useState(false);
   const [marketing, setMarketing] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   useEffect(() => {
     const consent = getConsent();
@@ -19,6 +20,16 @@ const CookieConsent = () => {
       return () => clearTimeout(timer);
     }
   }, []);
+
+  // Wait while a modal is open: the banner sits above it and a click on it would close the modal.
+  useEffect(() => {
+    if (!visible) return;
+    const check = () => setDialogOpen(!!document.querySelector('[role="dialog"], [role="alertdialog"]'));
+    check();
+    const observer = new MutationObserver(check);
+    observer.observe(document.body, { childList: true, subtree: true });
+    return () => observer.disconnect();
+  }, [visible]);
 
   const handleAcceptAll = () => {
     saveConsent({ analytics: true, marketing: true });
@@ -35,7 +46,7 @@ const CookieConsent = () => {
     setVisible(false);
   };
 
-  if (!visible) return null;
+  if (!visible || dialogOpen) return null;
 
   return (
     <div className="fixed inset-0 z-[9999] flex items-end justify-center pointer-events-none">
