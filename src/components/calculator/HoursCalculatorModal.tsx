@@ -1,4 +1,4 @@
-import { useCallback, useReducer } from "react";
+import { useCallback, useReducer, type RefObject } from "react";
 import { useTranslation } from "react-i18next";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import { Progress } from "@/components/ui/progress";
@@ -58,11 +58,13 @@ const focusOnMount = (element: HTMLElement | null) => element?.focus();
 interface HoursCalculatorModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  /** Where focus goes on close. Radix only does this for a Dialog.Trigger, which we don't use. */
+  returnFocusRef?: RefObject<HTMLElement>;
 }
 
 // The reducer lives here, above the dialog content, so closing and reopening within the same page
 // view keeps the visitor's inputs.
-const HoursCalculatorModal = ({ open, onOpenChange }: HoursCalculatorModalProps) => {
+const HoursCalculatorModal = ({ open, onOpenChange, returnFocusRef }: HoursCalculatorModalProps) => {
   const { t } = useTranslation();
   const [state, dispatch] = useReducer(reducer, initialState);
   const { step } = state;
@@ -105,6 +107,10 @@ const HoursCalculatorModal = ({ open, onOpenChange }: HoursCalculatorModalProps)
         closeLabel={t("calculator.a11y.close")}
         // Our own question takes the focus on each step (see focusOnMount).
         onOpenAutoFocus={(event) => event.preventDefault()}
+        onCloseAutoFocus={(event) => {
+          event.preventDefault();
+          returnFocusRef?.current?.focus();
+        }}
         className="flex flex-col gap-0 p-0 bg-navy border border-gold/20 text-cream max-w-lg max-h-[100dvh] max-sm:left-0 max-sm:top-0 max-sm:h-[100dvh] max-sm:max-w-none max-sm:translate-x-0 max-sm:translate-y-0 max-sm:rounded-none sm:max-h-[90vh]"
       >
         <div className="px-6 pt-6 pb-4 pr-12">

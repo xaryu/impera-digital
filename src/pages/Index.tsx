@@ -2,6 +2,7 @@ import Navbar from "@/components/layout/Navbar";
 import HeroSection from "@/components/sections/HeroSection";
 import PathwaySection from "@/components/sections/PathwaySection";
 import ServicesSection from "@/components/sections/ServicesSection";
+import HoursCalculatorStrip from "@/components/sections/HoursCalculatorStrip";
 import AboutSection from "@/components/sections/AboutSection";
 import WhyImperaSection from "@/components/sections/WhyImperaSection";
 import GuaranteeSection from "@/components/sections/GuaranteeSection";
@@ -27,6 +28,7 @@ const Index = () => {
       <Navbar />
       <main id="main-content" role="main">
         <HeroSection />
+        <HoursCalculatorStrip />
         <ServicesSection />
         <ResultsSection/>
         <PathwaySection />
