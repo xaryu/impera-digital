@@ -51,12 +51,11 @@ Run `source ~/.nvm/nvm.sh && nvm use 24` first (Node 24, see `.nvmrc`).
   - Abuse: any address can be mailed from the Impera domain (plus-address variants each get their own
     dedupe key), and the global 100/hour cap lets an attacker lock out real visitors with 503. No
     per-IP limit, CAPTCHA or double opt-in.
-  - Dedupe, hourly cap and insert are not atomic; a unique constraint or advisory lock on
-    (email, window) would replace the read-then-write check in `calculator-report/index.ts`.
-  - `calculator_events` anon INSERT policy is `WITH CHECK (true)`, unbounded, and retention never
-    cleans it up (migration `20261030120000_hours_calculator.sql`).
-  - The hourly-cap count filters on `created_at` only; the sole index is `(email, created_at)`. Add
-    an index on `created_at`.
+  - Fixed in migration `20261030150000_calculator_hardening.sql` (committed, **not yet pushed or
+    deployed**): atomic dedupe/cap/insert via the `claim_calculator_submission` RPC, `created_at`
+    index, `calculator_events` insert bounded (timestamp check, max 8 events per run_id, 12-month
+    retention). Push the migration (`npx supabase db push`) before redeploying `calculator-report`,
+    since the function now calls the RPC.
   - CORS allows `SITE_URL` plus `localhost:8080` and `:5173` in production; Vercel previews and a
     custom domain need adding to `SITE_URL` (comma-separated). Consider dropping the localhost origins.
 - **Step 7 Resend setup (resume here)**, following https://resend.com/setup.md:

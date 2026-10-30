@@ -71,79 +71,27 @@ Deno.serve(async (request) => {
     auth: { persistSession: false },
   });
 
-  const since = new Date(Date.now() - DUPLICATE_WINDOW_MINUTES * 60_000).toISOString();
-  const { data: recent, error: lookupError } = await supabase
-    .from("calculator_submissions")
-    .select("id, language, inputs, report_sent_at")
-    .eq("email", email)
-    .gte("created_at", since)
-    .order("created_at", { ascending: true })
-    .order("id", { ascending: true });
-  if (lookupError) {
-    console.error("duplicate check failed:", lookupError.message);
+  // One atomic call: dedupe window, hourly volume cap (the endpoint is public, so total volume is
+  // bounded) and insert/reuse. See claim_calculator_submission in the calculator_hardening migration.
+  const { data: claim, error: claimError } = await supabase
+    .rpc("claim_calculator_submission", {
+      p_email: email,
+      p_language: language,
+      p_inputs: inputs,
+      p_result: computeResult(inputs),
+      p_window_minutes: DUPLICATE_WINDOW_MINUTES,
+      p_hourly_cap: HOURLY_SUBMISSION_CAP,
+    })
+    .single<{ status: "ok" | "rate_limited" | "busy"; submission_id: string | null }>();
+  if (claimError || !claim) {
+    console.error("claim failed:", claimError?.message);
     return reply({ error: "server_error" }, 500);
   }
-  // Only a report that was really sent counts as a duplicate (the modal shows 429 as "already sent").
-  if (recent.some((r) => r.report_sent_at)) return reply({ error: "rate_limited" }, 429);
-
-  // An earlier attempt stored the lead but the email never went out: reuse that row, with what the
-  // visitor submitted now (they may have changed the numbers or the language since).
-  let row: { id: string };
-  const unsent = recent[0];
-  if (unsent) {
-    row = unsent;
-    const { error: updateError } = await supabase
-      .from("calculator_submissions")
-      .update({ language, inputs, result: computeResult(inputs) })
-      .eq("id", row.id);
-    if (updateError) {
-      console.error("update of unsent submission failed:", updateError.message);
-      return reply({ error: "server_error" }, 500);
-    }
-  } else {
-    // The endpoint is public, so cap total volume to bound abuse (spam to other people's addresses).
-    const hourAgo = new Date(Date.now() - 60 * 60_000).toISOString();
-    const { count: hourly, error: capError } = await supabase
-      .from("calculator_submissions")
-      .select("id", { count: "exact", head: true })
-      .gte("created_at", hourAgo);
-    if (capError) {
-      console.error("volume check failed:", capError.message);
-      return reply({ error: "server_error" }, 500);
-    }
-    if ((hourly ?? 0) >= HOURLY_SUBMISSION_CAP) return reply({ error: "busy" }, 503);
-
-    const now = new Date().toISOString();
-    const { data: inserted, error: insertError } = await supabase
-      .from("calculator_submissions")
-      .insert({ email, language, inputs, result: computeResult(inputs), consent_at: now })
-      .select("id, created_at")
-      .single();
-    if (insertError) {
-      console.error("insert failed:", insertError.message);
-      return reply({ error: "server_error" }, 500);
-    }
-    row = inserted;
-
-    // The check above and this insert are not atomic. If a concurrent request for the same email
-    // stored a row first, keep only the oldest one so a single report goes out.
-    const { data: winners, error: raceError } = await supabase
-      .from("calculator_submissions")
-      .select("id")
-      .eq("email", email)
-      .gte("created_at", since)
-      .order("created_at", { ascending: true })
-      .order("id", { ascending: true })
-      .limit(1);
-    if (raceError) {
-      console.error("race check failed:", raceError.message);
-    } else if (winners[0] && winners[0].id !== row.id) {
-      const { error: deleteError } = await supabase.from("calculator_submissions").delete().eq("id", row.id);
-      if (deleteError) console.error("could not remove duplicate row", row.id, deleteError.message);
-      // Not 429: the other request's email may still fail, so the visitor must not be told it was sent.
-      return reply({ error: "in_progress" }, 409);
-    }
-  }
+  // rate_limited: a report was really sent in the window (the modal shows 429 as "already sent").
+  if (claim.status === "rate_limited") return reply({ error: "rate_limited" }, 429);
+  if (claim.status === "busy") return reply({ error: "busy" }, 503);
+  // An unsent row from an earlier attempt is reused by the claim, so a retry never duplicates a lead.
+  const row = { id: claim.submission_id! };
 
   // From here the row is the lead and is kept. If the email can't go out the visitor gets an error
   // (report_sent_at stays null), and submitting again retries the send.

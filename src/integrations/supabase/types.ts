@@ -357,6 +357,20 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      claim_calculator_submission: {
+        Args: {
+          p_email: string
+          p_hourly_cap: number
+          p_inputs: Json
+          p_language: string
+          p_result: Json
+          p_window_minutes: number
+        }
+        Returns: {
+          status: string
+          submission_id: string
+        }[]
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
