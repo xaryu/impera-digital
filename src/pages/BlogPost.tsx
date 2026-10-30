@@ -104,7 +104,10 @@ const BlogPost = () => {
   const locale = i18n.language === "fr" ? "fr-FR" : i18n.language === "nl" ? "nl-NL" : "en-US";
 
   const renderContent = (content: string) => {
-    const lines = content.split("\n");
+    // Post content is rendered as HTML below, so escape it first: only the ** / * markers become tags.
+    const escapeHtml = (text: string) =>
+      text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+    const lines = escapeHtml(content).split("\n");
     const elements: JSX.Element[] = [];
     let i = 0;
     while (i < lines.length) {

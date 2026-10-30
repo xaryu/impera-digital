@@ -23,6 +23,7 @@ Each language folder has the same files, one per part of the site:
 | `careers.json` | Careers page and job pages (labels only — job openings are written in `/admin`) |
 | `contact.json` | Contact page |
 | `legal.json` | Full text of the Privacy Policy and Terms of Service |
+| `calculator.json` | "How many hours is your team losing?" calculator: homepage strip, questions, result, report email. `fr/calculator.json` currently holds the English text, awaiting translation (the French report email goes out in English until then). The numbers behind it (limits, 46 weeks, 30–60%) are in `src/config/calculator.ts`, not here |
 
 Contact details (email, phone, address, Calendly link, website address) are not here — they are in
 `src/config/company.ts`, so they only need changing in one place.

@@ -24,6 +24,7 @@ import NotFound from "./pages/NotFound";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import Methodology from "./pages/Methodology";
+import CalculatorConfirm from "./pages/CalculatorConfirm";
 
 // Lazy so admin-only code stays out of the public bundle.
 const Admin = lazy(() => import("./pages/Admin"));
@@ -44,6 +45,7 @@ const AppRoutes = () => (
     <Route path="methodology" element={<Methodology />} />
     <Route path="privacy" element={<Privacy />} />
     <Route path="terms" element={<Terms />} />
+    <Route path="calculator/confirm" element={<CalculatorConfirm />} />
   </>
 );
 

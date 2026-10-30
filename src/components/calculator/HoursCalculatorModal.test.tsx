@@ -1,0 +1,251 @@
+import { useState } from "react";
+import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
+import { MemoryRouter } from "react-router-dom";
+import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
+import i18n from "@/i18n";
+import { supabase } from "@/integrations/supabase/client";
+import { track } from "@/lib/track";
+import HoursCalculatorModal from "./HoursCalculatorModal";
+
+vi.mock("@/lib/track", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@/lib/track")>()),
+  track: vi.fn(),
+}));
+
+vi.mock("@/integrations/supabase/client", () => ({
+  supabase: { functions: { invoke: vi.fn() } },
+}));
+
+const Harness = () => {
+  const [open, setOpen] = useState(true);
+  return (
+    <MemoryRouter>
+      <button onClick={() => setOpen(true)}>reopen</button>
+      <HoursCalculatorModal open={open} onOpenChange={setOpen} />
+    </MemoryRouter>
+  );
+};
+
+const next = () => fireEvent.click(screen.getByRole("button", { name: /^(Next|See my estimate)$/ }));
+
+const setNumber = (label: string | RegExp, value: string) =>
+  fireEvent.change(screen.getByLabelText(label, { selector: "input" }), { target: { value } });
+
+beforeAll(async () => {
+  await i18n.changeLanguage("en");
+});
+
+beforeEach(() => {
+  vi.mocked(track).mockClear();
+  vi.mocked(supabase.functions.invoke).mockReset();
+});
+
+afterEach(cleanup);
+
+describe("HoursCalculatorModal", () => {
+  it("opens on the first question with progress and a labelled dialog", () => {
+    render(<Harness />);
+    expect(screen.getByRole("dialog", { name: "How many hours is your team losing?" })).toBeInTheDocument();
+    expect(screen.getByText("How many people do repetitive admin work?")).toBeInTheDocument();
+    expect(screen.getAllByText("Step 1 of 4").length).toBeGreaterThan(0);
+    expect(screen.queryByRole("button", { name: "Back" })).not.toBeInTheDocument();
+  });
+
+  it("moves focus to the question on each step", () => {
+    render(<Harness />);
+    expect(document.activeElement).toHaveTextContent("How many people do repetitive admin work?");
+    next();
+    expect(document.activeElement).toHaveTextContent("How many hours a week does each of them spend on it?");
+  });
+
+  it("blocks Next on invalid input and shows a message", () => {
+    render(<Harness />);
+    setNumber("Number of people", "0");
+    expect(screen.getByRole("button", { name: "Next" })).toBeDisabled();
+    expect(screen.getByRole("alert")).toHaveTextContent("Enter a whole number between 1 and 50");
+
+    setNumber("Number of people", "51");
+    expect(screen.getByRole("button", { name: "Next" })).toBeDisabled();
+
+    setNumber("Number of people", "");
+    expect(screen.getByRole("button", { name: "Next" })).toBeDisabled();
+
+    setNumber("Number of people", "50");
+    expect(screen.getByRole("button", { name: "Next" })).toBeEnabled();
+    expect(screen.queryByRole("alert")).not.toBeInTheDocument();
+  });
+
+  it("fills the default hourly cost into the help text", () => {
+    render(<Harness />);
+    next();
+    next();
+    expect(screen.getByText(/Change it if 40 is not right/)).toBeInTheDocument();
+    expect(document.body).not.toHaveTextContent("{{");
+  });
+
+  it("needs at least one task before showing the result", () => {
+    render(<Harness />);
+    next();
+    next();
+    next();
+    expect(screen.getByRole("group")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "See my estimate" })).toBeDisabled();
+
+    fireEvent.click(screen.getByLabelText("Invoicing"));
+    expect(screen.getByRole("button", { name: "See my estimate" })).toBeEnabled();
+
+    fireEvent.click(screen.getByLabelText("Invoicing"));
+    expect(screen.getByRole("alert")).toHaveTextContent("Pick at least one task");
+    expect(screen.getByRole("button", { name: "See my estimate" })).toBeDisabled();
+  });
+
+  it("shows the worked example without asking for an email", () => {
+    render(<Harness />);
+    next(); // 3 people
+    next(); // 5 hours
+    next(); // 40 euro
+    fireEvent.click(screen.getByLabelText("Document processing"));
+    next();
+
+    expect(screen.getByText("Hours lost per week").nextSibling).toHaveTextContent("15");
+    expect(screen.getByText("Hours lost per year").nextSibling).toHaveTextContent("690");
+    expect(screen.getByText("What that costs per year").nextSibling).toHaveTextContent("27,600");
+    expect(screen.getByText(/207 – 414 hours a year/)).toBeInTheDocument();
+    expect(screen.getByText(/8,280.*16,560 a year/)).toBeInTheDocument();
+    expect(screen.getByText(/This is an estimate/)).toBeInTheDocument();
+    expect(screen.getByText("Assumptions")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Get My Growth Audit" })).toBeInTheDocument();
+    expect(screen.queryByLabelText(/email/i)).not.toBeInTheDocument();
+  });
+
+  it("keeps the inputs when going back", () => {
+    render(<Harness />);
+    setNumber("Number of people", "7");
+    next();
+    fireEvent.click(screen.getByRole("button", { name: "Back" }));
+    expect(screen.getByLabelText("Number of people", { selector: "input" })).toHaveValue(7);
+  });
+
+  it("closes on Escape and keeps the inputs when reopened", () => {
+    render(<Harness />);
+    setNumber("Number of people", "9");
+    fireEvent.keyDown(document.activeElement ?? document.body, { key: "Escape" });
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+
+    fireEvent.click(screen.getByText("reopen"));
+    expect(screen.getByLabelText("Number of people", { selector: "input" })).toHaveValue(9);
+  });
+
+  it("starts over from the result", () => {
+    render(<Harness />);
+    setNumber("Number of people", "9");
+    next();
+    next();
+    next();
+    fireEvent.click(screen.getByLabelText("Quotes"));
+    next();
+    fireEvent.click(screen.getByRole("button", { name: "Start over" }));
+    expect(screen.getByLabelText("Number of people", { selector: "input" })).toHaveValue(3);
+  });
+
+  describe("tracking", () => {
+    const events = () => vi.mocked(track).mock.calls.map(([event]) => event);
+    const toResult = () => {
+      next();
+      next();
+      next();
+      fireEvent.click(screen.getByLabelText("Quotes"));
+      next();
+    };
+
+    it("logs started once per open, and finished once per run", () => {
+      render(<Harness />);
+      expect(events()).toEqual(["started"]);
+      toResult();
+      expect(events()).toEqual(["started", "finished"]);
+      fireEvent.click(screen.getByRole("button", { name: "Back" }));
+      next();
+      expect(events()).toEqual(["started", "finished"]);
+    });
+
+    it("uses the same run id within a run and a new one after start over", () => {
+      render(<Harness />);
+      toResult();
+      const [first, second] = vi.mocked(track).mock.calls.map(([, runId]) => runId);
+      expect(first).toBe(second);
+      fireEvent.click(screen.getByRole("button", { name: "Start over" }));
+      const startedAgain = vi.mocked(track).mock.calls.at(-1);
+      expect(startedAgain?.[0]).toBe("started");
+      expect(startedAgain?.[1]).not.toBe(first);
+    });
+
+    it("logs audit_clicked when the audit button is clicked", () => {
+      render(<Harness />);
+      toResult();
+      const audit = screen.getByRole("button", { name: /audit/i });
+      fireEvent.click(audit);
+      expect(events().filter((event) => event === "audit_clicked")).toHaveLength(1);
+    });
+  });
+  describe("email report", () => {
+    const toEmailStep = () => {
+      next();
+      next();
+      next();
+      fireEvent.click(screen.getByLabelText("Quotes"));
+      next();
+      fireEvent.click(screen.getByRole("button", { name: "Email me the breakdown" }));
+    };
+    const fillEmail = (value = "ana@example.com") =>
+      fireEvent.change(screen.getByLabelText("Work email"), { target: { value } });
+    const submit = () => fireEvent.click(screen.getByRole("button", { name: "Send me the breakdown" }));
+
+    it("does not send without a valid email and consent", () => {
+      render(<Harness />);
+      toEmailStep();
+      fillEmail("not-an-email");
+      submit();
+      expect(screen.getByRole("alert")).toHaveTextContent("Please enter a valid email address");
+
+      fillEmail();
+      submit();
+      expect(screen.getByRole("alert")).toHaveTextContent("Please tick the box");
+      expect(supabase.functions.invoke).not.toHaveBeenCalled();
+    });
+
+    it("sends the inputs to the function and shows the confirmation", async () => {
+      vi.mocked(supabase.functions.invoke).mockResolvedValue({ data: { ok: true }, error: null });
+      render(<Harness />);
+      toEmailStep();
+      fillEmail();
+      fireEvent.click(screen.getByRole("checkbox"));
+      submit();
+
+      await waitFor(() => expect(screen.getByText("Check your inbox")).toBeInTheDocument());
+      expect(supabase.functions.invoke).toHaveBeenCalledWith("calculator-report", {
+        body: {
+          email: "ana@example.com",
+          language: "en",
+          inputs: { people: 3, hoursPerPerson: 5, hourlyCost: 40, tasks: ["quotes"] },
+          consent: true,
+          website: "",
+        },
+      });
+      expect(vi.mocked(track).mock.calls.map(([event]) => event)).toContain("email_submitted");
+      expect(screen.getByRole("button", { name: "Get My Growth Audit" })).toBeInTheDocument();
+    });
+
+    it("shows an error and stays on the form when the function fails", async () => {
+      vi.mocked(supabase.functions.invoke).mockResolvedValue({ data: null, error: new Error("boom") });
+      render(<Harness />);
+      toEmailStep();
+      fillEmail();
+      fireEvent.click(screen.getByRole("checkbox"));
+      submit();
+
+      await waitFor(() => expect(screen.getByRole("alert")).toHaveTextContent("We could not send that"));
+      expect(screen.queryByText("Check your inbox")).not.toBeInTheDocument();
+      expect(vi.mocked(track).mock.calls.map(([event]) => event)).not.toContain("email_submitted");
+    });
+  });
+});

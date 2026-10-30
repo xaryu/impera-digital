@@ -1,0 +1,152 @@
+{
+  "calculator": {
+    "strip": {
+      "eyebrow": "Mettez un chiffre dessus",
+      "title": "Combien d'heures votre équipe perd-elle ?",
+      "description": "Quatre questions courtes, vos propres chiffres. Vous voyez l'estimation tout de suite, sans e-mail.",
+      "cta": "Calculer mes heures"
+    },
+    "modal": {
+      "title": "Combien d'heures votre équipe perd-elle ?",
+      "progress": "Étape {{current}} sur {{total}}",
+      "back": "Retour",
+      "next": "Suivant",
+      "seeResult": "Voir mon estimation",
+      "startOver": "Recommencer"
+    },
+    "steps": {
+      "people": {
+        "label": "Combien de personnes font du travail administratif répétitif ?",
+        "help": "Toute personne qui consacre une partie d'une semaine normale à des tâches manuelles et répétitives.",
+        "unit": "personnes",
+        "inputLabel": "Nombre de personnes",
+        "error": "Saisissez un nombre entier entre {{min}} et {{max}}"
+      },
+      "hours": {
+        "label": "Combien d'heures par semaine chacune y consacre-t-elle ?",
+        "help": "Une moyenne suffit. Pensez à une semaine ordinaire, pas à votre semaine la plus chargée.",
+        "unit": "heures par semaine",
+        "inputLabel": "Heures par personne et par semaine",
+        "error": "Saisissez un nombre entier entre {{min}} et {{max}}"
+      },
+      "cost": {
+        "label": "Combien vous coûte une heure de leur temps ?",
+        "help": "Coût brut pour l'entreprise par heure, pas le salaire net. Modifiez-le si {{default}} ne correspond pas à votre équipe.",
+        "unit": "euros par heure",
+        "inputLabel": "Coût horaire en euros",
+        "error": "Saisissez un montant entier entre {{min}} et {{max}}"
+      },
+      "tasks": {
+        "label": "Quelles tâches ce travail comprend-il ?",
+        "help": "Cochez tout ce qui s'applique. Cela oriente le rapport détaillé ; les chiffres ne changent pas.",
+        "error": "Choisissez au moins une tâche"
+      }
+    },
+    "tasks": {
+      "documents": "Traitement de documents",
+      "dataEntry": "Saisie de données",
+      "invoicing": "Facturation",
+      "followUps": "E-mails de relance",
+      "reporting": "Reporting",
+      "quotes": "Devis"
+    },
+    "result": {
+      "eyebrow": "Votre estimation",
+      "title": "Voici ce que vaut ce temps",
+      "hoursPerWeek": "Heures perdues par semaine",
+      "hoursPerYear": "Heures perdues par an",
+      "yearlyCost": "Ce que cela coûte par an",
+      "rangeTitle": "Ce qui pourrait raisonnablement être automatisé (estimation)",
+      "rangeHours": "{{low}} – {{high}} heures par an",
+      "rangeCost": "{{low}} – {{high}} par an",
+      "estimateNote": "Il s'agit d'une estimation basée sur les chiffres que vous avez saisis et sur les hypothèses ci-dessous. Ce n'est pas une mesure de votre entreprise.",
+      "assumptionsTitle": "Hypothèses",
+      "assumptionInputs": "Vos chiffres : {{people}} personnes × {{hours}} heures par semaine × {{cost}} par heure. Le coût horaire est votre propre chiffre.",
+      "assumptionWeeks": "{{weeks}} semaines de travail par an, en tenant compte des congés et des jours fériés.",
+      "assumptionRange": "La fourchette de {{low}} % à {{high}} % est l'estimation d'Impera, pas un chiffre mesuré. La position d'une entreprise dans cette fourchette dépend de ses outils, de ses données et de la régularité de ses processus.",
+      "auditCta": "Obtenir mon audit de croissance",
+      "emailCta": "Recevoir le détail par e-mail"
+    },
+    "email": {
+      "title": "Envie du détail ?",
+      "description": "Nous vous envoyons par e-mail un court rapport, construit autour des tâches que vous avez choisies :",
+      "bullet1": "Vos tâches classées selon leur potentiel d'automatisation",
+      "bullet2": "Ce que nous automatiserions en premier, et pourquoi",
+      "bullet3": "Ce qui ne vaut probablement pas la peine d'être automatisé",
+      "label": "E-mail professionnel",
+      "placeholder": "vous@entreprise.com",
+      "consent": "Impera peut m'envoyer par e-mail un lien de confirmation, puis ce rapport. Voir la <link>Politique de confidentialité</link>.",
+      "submit": "Envoyez-moi le détail",
+      "sending": "Envoi en cours…",
+      "invalidEmail": "Veuillez saisir une adresse e-mail valide",
+      "emailTooLong": "L'adresse e-mail est trop longue",
+      "consentRequired": "Veuillez cocher la case pour que nous puissions vous envoyer le rapport.",
+      "error": "L'envoi a échoué. Veuillez réessayer."
+    },
+    "done": {
+      "title": "Consultez votre boîte de réception",
+      "description": "Nous vous avons envoyé un e-mail. Ouvrez-le et cliquez sur le bouton pour confirmer, le rapport suit aussitôt. Vérifiez vos courriers indésirables si vous ne le voyez pas d'ici quelques minutes.",
+      "auditText": "Envie de passer les chiffres en revue avec nous ?"
+    },
+    "confirmEmail": {
+      "subject": "Confirmez votre e-mail pour recevoir votre rapport",
+      "intro": "Vous avez demandé le détail derrière votre estimation des heures perdues. Cliquez sur le bouton pour confirmer que cette adresse est bien la vôtre et nous vous envoyons le rapport aussitôt.",
+      "button": "Confirmer et recevoir mon rapport",
+      "expires": "Le lien est valable 24 heures.",
+      "ignore": "Si vous n'êtes pas à l'origine de cette demande, ignorez cet e-mail. Rien ne sera envoyé et nous ne vous écrirons plus."
+    },
+    "confirmPage": {
+      "title": "Recevez votre rapport",
+      "description": "Cliquez sur le bouton pour confirmer votre adresse e-mail. Nous vous envoyons aussitôt votre rapport détaillé.",
+      "button": "Envoyez-moi mon rapport",
+      "sending": "Envoi en cours…",
+      "sent": "C'est fait. Votre rapport est en route et devrait vous parvenir d'ici quelques minutes. Vérifiez vos courriers indésirables s'il n'arrive pas.",
+      "alreadySent": "Ce rapport vous a déjà été envoyé. Vérifiez votre boîte de réception et vos courriers indésirables.",
+      "invalid": "Ce lien n'est pas valide. Utilisez le lien du dernier e-mail reçu, ou recommencez depuis le calculateur.",
+      "expired": "Ce lien a expiré. Relancez le calculateur pour en obtenir un nouveau.",
+      "busy": "Votre rapport est en cours d'envoi. Patientez un instant et vérifiez votre boîte de réception.",
+      "error": "L'envoi du rapport a échoué. Veuillez réessayer.",
+      "back": "Retour au calculateur"
+    },
+    "report": {
+      "subject": "Votre estimation : {{hours}} heures par an perdues en administratif répétitif",
+      "intro": "Voici le détail derrière votre estimation, basé sur les chiffres que vous avez saisis.",
+      "inputsTitle": "Vos chiffres",
+      "inputsLine": "{{people}} personnes × {{hours}} heures par semaine × {{cost}} par heure",
+      "resultTitle": "Ce que cela représente",
+      "weekly": "Heures perdues par semaine : {{value}}",
+      "yearly": "Heures perdues par an : {{value}}",
+      "cost": "Coût par an : {{value}}",
+      "range": "Raisonnablement automatisable (estimation) : {{hours}} heures et {{cost}} par an",
+      "rankedTitle": "Vos tâches, classées selon leur potentiel d'automatisation",
+      "rankedHours": "environ {{hours}} h par an",
+      "fit": {
+        "high": "Potentiel élevé",
+        "medium": "Potentiel moyen"
+      },
+      "why": {
+        "documents": "Répétitif, basé sur des règles, résultat structuré.",
+        "dataEntry": "Copier des données d'un système à l'autre est le cas d'automatisation classique.",
+        "invoicing": "Modélisable, déclenché par des événements connus.",
+        "followUps": "Les modèles fonctionnent, mais le ton et le moment demandent une relecture humaine.",
+        "reporting": "La collecte de données s'automatise bien, l'interprétation non.",
+        "quotes": "Dépend du degré de standardisation des prix."
+      },
+      "automateFirstTitle": "Ce que nous automatiserions en premier",
+      "automateFirstNone": "Aucune de vos tâches sélectionnées n'est un premier candidat évident. Un court audit montrerait par où commencer.",
+      "notWorthItTitle": "Probablement pas encore utile d'automatiser",
+      "notWorthItReason": "Avec environ {{hours}} h par semaine, il y a encore peu à gagner.",
+      "notWorthItNone": "Rien dans votre liste ne passe sous ce seuil.",
+      "assumptionsTitle": "Hypothèses",
+      "assumptionEvenSplit": "Les heures que vous avez indiquées sont réparties équitablement entre les tâches choisies. Nous ne connaissons pas votre répartition réelle.",
+      "assumptionFit": "Le potentiel d'automatisation est le jugement d'Impera, pas un chiffre mesuré.",
+      "disclaimer": "Il s'agit d'une estimation, pas d'un devis ni d'une promesse d'économies.",
+      "auditText": "Envie de vérifier ces chiffres sur vos processus réels ?",
+      "auditCta": "Obtenir mon audit de croissance"
+    },
+    "a11y": {
+      "close": "Fermer",
+      "resultShown": "Votre estimation est prête"
+    }
+  }
+}
