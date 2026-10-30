@@ -49,20 +49,29 @@ Run `source ~/.nvm/nvm.sh && nvm use 24` first (Node 24, see `.nvmrc`).
   a dev dependency, not on PATH). Note that until `RESEND_API_KEY` is set the function now returns 502
   and the modal shows its error. Remaining:
   - Abuse: double opt-in is implemented (migration `20261030170000_calculator_double_optin.sql` pushed and
-    `calculator-report` redeployed on 2026-10-30; code not committed yet). Submitting only sends a short
+    `calculator-report` redeployed on 2026-10-30; committed in `65efb6d`). Submitting only sends a short
     confirmation email; the report goes out when the visitor presses the button on
     `/calculator/confirm?token=` (POST `{action:"confirm", token}`, 24h one-time link, only the token
     hash is stored). No CAPTCHA by decision. Still true: the domain can be used to send one short
     confirmation email to any address, and an attacker with many IPs gets around the per-IP limit
-    of 5/hour, while the global 100/hour cap can lock real visitors out with 503.
+    of 5/hour, while the global 100/hour cap can lock real visitors out with 503. Migration
+    `20261030190000_calculator_cap_sent_only.sql` makes that cap count only confirmation emails sent
+    (or being sent) in the last hour, not every attempt.
+  - **Untested (review 2026-10-30 #1)**: `hashIp` uses the first `X-Forwarded-For` entry (as
+    Supabase's own examples do). If the gateway keeps a client-supplied value there, the per-IP limit
+    is bypassable. Test: 6 POSTs with different fake `X-Forwarded-For`; the 6th should get 503
+    `ip_limited`. Don't switch to the last entry blindly, it may be a proxy IP shared by everyone.
+  - Public forms (review 2026-10-30 #2, #5) hardened in `20261030180000_public_forms_hardening.sql`
+    (pushed): `cv-uploads` limited to 10 MB PDF/DOC/DOCX, only into a published opening's folder,
+    30/hour; hourly insert caps (leads 100, contact 50, applications 30) and length checks.
     `src/integrations/supabase/types.ts` regenerated after the push. Confirm-link text in `calculator.confirmEmail.*` / `confirmPage.*`.
   - Fixed in migration `20261030150000_calculator_hardening.sql` (pushed and `calculator-report`
     redeployed as v5 on 2026-10-30): atomic dedupe/cap/insert via the `claim_calculator_submission` RPC, `created_at`
     index, per-IP limit (HMAC of the IP, cleared after 24h, stated in `legal.json`), plus-address
     dedupe (`email_key`), a sending lock (409 while another request sends), `calculator_events` insert
     bounded (timestamp check, 8 per run_id, 1000/hour in total, 12-month retention). Always push migrations before deploying the function, since it calls the RPC.
-  - CORS allows only the origins in `SITE_URL` (localhost removed from the code, uncommitted until
-    redeploy). Vercel previews and a custom domain need adding to `SITE_URL` (comma-separated); add
+  - CORS allows only the origins in `SITE_URL` (localhost removed from the code, committed and
+    deployed). Vercel previews and a custom domain need adding to `SITE_URL` (comma-separated); add
     `http://localhost:8080` there only while testing locally. The confirmation link is built from
     the request's allowed Origin, so `SITE_URL` must be set.
 - **Step 7 Resend setup (resume here)**, following https://resend.com/setup.md:

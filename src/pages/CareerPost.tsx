@@ -53,7 +53,7 @@ const CareerPost = () => {
       toast.success(t("careerPost.submitSuccess"));
       setFullName(""); setEmail(""); setMotivation(""); setCvFile(null);
     },
-    onError: (err: Error) => toast.error(err.message),
+    onError: () => toast.error(t("common.genericError")),
   });
 
   const handleSubmit = (e: React.FormEvent) => {

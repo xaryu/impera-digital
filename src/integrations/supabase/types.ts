@@ -406,6 +406,7 @@ export type Database = {
           submission_id: string
         }[]
       }
+      cv_upload_allowed: { Args: { p_name: string }; Returns: boolean }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
