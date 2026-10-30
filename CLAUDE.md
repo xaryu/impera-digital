@@ -84,12 +84,12 @@ Run `source ~/.nvm/nvm.sh && nvm use 24` first (Node 24, see `.nvmrc`).
   - **Moving to `impera.digital` (decided 2026-10-30)**: the sender and the contact addresses change.
     Code is on branch `chore/impera-digital-domain` (`company.ts` → `contact@` / `careers@impera.digital`,
     `_shared` synced). Domain `mail.impera.digital` created in Resend (ID
-    `da8f7c17-cc32-4c1d-9746-33cf7b42917a`, `eu-west-1`, status `not_started`). `impera.digital` is on
+    `da8f7c17-cc32-4c1d-9746-33cf7b42917a`, `eu-west-1`), **verified** on 2026-10-30. `impera.digital` is on
     the boss's GoDaddy account and has **no MX records**, so it can't receive mail yet. Root DMARC
     already exists (`p=quarantine`), so don't add another. Order:
-    1. Boss adds the 4 Resend records (get them with `get-domain`) or presses Auto configure, and sets
-       up mailboxes for `contact@` and `careers@impera.digital` (e.g. Zoho, as on `impera-group.com`).
-    2. `verify-domain`, poll until `verified`. If the current API key is restricted to the old domain,
+    1. Done: Resend records added and domain verified. Still open: mailboxes for `contact@` and
+       `careers@impera.digital` (e.g. Zoho, as on `impera-group.com`); no MX records yet.
+    2. If the current API key is restricted to the old domain,
        create a new **sending-only** key for `mail.impera.digital` (never full access); Paul sets it himself.
     3. Paul sets `REPORT_FROM="Impera <report@mail.impera.digital>"`; send a real test report.
     4. Only after MX works: merge `chore/impera-digital-domain` into `main` and deploy (otherwise
