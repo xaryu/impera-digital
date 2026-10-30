@@ -43,6 +43,20 @@ Run `source ~/.nvm/nvm.sh && nvm use 24` first (Node 24, see `.nvmrc`).
   Full technical plan: [`docs/plans/hours-calculator.md`](docs/plans/hours-calculator.md).
   Read it before touching this feature. The remote `origin/feature/hours-calculator` is a different
   implementation; only borrow from it (see its `report.ts` for the email template at step 7).
+- **Open review findings (not fixed, decide before step 10 QA)**. The review fixes for failed sends,
+  stale retry, race-loser status, email state on reopen and close-while-sending are committed but
+  **not redeployed** (`supabase functions deploy calculator-report`). Remaining:
+  - Abuse: any address can be mailed from the Impera domain (plus-address variants each get their own
+    dedupe key), and the global 100/hour cap lets an attacker lock out real visitors with 503. No
+    per-IP limit, CAPTCHA or double opt-in.
+  - Dedupe, hourly cap and insert are not atomic; a unique constraint or advisory lock on
+    (email, window) would replace the read-then-write check in `calculator-report/index.ts`.
+  - `calculator_events` anon INSERT policy is `WITH CHECK (true)`, unbounded, and retention never
+    cleans it up (migration `20261030120000_hours_calculator.sql`).
+  - The hourly-cap count filters on `created_at` only; the sole index is `(email, created_at)`. Add
+    an index on `created_at`.
+  - CORS allows `SITE_URL` plus `localhost:8080` and `:5173` in production; Vercel previews and a
+    custom domain need adding to `SITE_URL` (comma-separated). Consider dropping the localhost origins.
 - **Step 7 Resend setup (resume here)**, following https://resend.com/setup.md:
   - Done: Resend MCP plugin installed (user scope) and signed in via OAuth. Domain
     `mail.impera-group.com` created in Resend, region `eu-west-1`, domain ID
