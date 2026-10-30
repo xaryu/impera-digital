@@ -1,0 +1,132 @@
+{
+  "calculator": {
+    "strip": {
+      "eyebrow": "Put a number on it",
+      "title": "How many hours is your team losing?",
+      "description": "Four short questions, your own figures. You see the estimate straight away, no email needed.",
+      "cta": "Calculate my hours"
+    },
+    "modal": {
+      "title": "How many hours is your team losing?",
+      "progress": "Step {{current}} of {{total}}",
+      "back": "Back",
+      "next": "Next",
+      "seeResult": "See my estimate",
+      "startOver": "Start over"
+    },
+    "steps": {
+      "people": {
+        "label": "How many people do repetitive admin work?",
+        "help": "Everyone who spends part of a normal week on manual, repeating tasks.",
+        "unit": "people",
+        "inputLabel": "Number of people",
+        "error": "Enter a whole number between {{min}} and {{max}}"
+      },
+      "hours": {
+        "label": "How many hours a week does each of them spend on it?",
+        "help": "An average is fine. Think of an ordinary week, not your busiest one.",
+        "unit": "hours per week",
+        "inputLabel": "Hours per person per week",
+        "error": "Enter a whole number between {{min}} and {{max}}"
+      },
+      "cost": {
+        "label": "What does an hour of their time cost you?",
+        "help": "Gross cost to the company per hour, not take-home pay. Change it if {{default}} is not right for your team.",
+        "unit": "euro per hour",
+        "inputLabel": "Hourly cost in euros",
+        "error": "Enter a whole amount between {{min}} and {{max}}"
+      },
+      "tasks": {
+        "label": "Which tasks does that work involve?",
+        "help": "Pick everything that applies. This shapes the breakdown report; it does not change the numbers.",
+        "error": "Pick at least one task"
+      }
+    },
+    "tasks": {
+      "documents": "Document processing",
+      "dataEntry": "Data entry",
+      "invoicing": "Invoicing",
+      "followUps": "Follow-up emails",
+      "reporting": "Reporting",
+      "quotes": "Quotes"
+    },
+    "result": {
+      "eyebrow": "Your estimate",
+      "title": "Here is what that time is worth",
+      "hoursPerWeek": "Hours lost per week",
+      "hoursPerYear": "Hours lost per year",
+      "yearlyCost": "What that costs per year",
+      "rangeTitle": "What could realistically be automated (estimate)",
+      "rangeHours": "{{low}} – {{high}} hours a year",
+      "rangeCost": "{{low}} – {{high}} a year",
+      "estimateNote": "This is an estimate based on the figures you entered and the assumptions below. It is not a measurement of your business.",
+      "assumptionsTitle": "Assumptions",
+      "assumptionInputs": "Your figures: {{people}} people × {{hours}} hours a week × {{cost}} an hour. The hourly cost is your own figure.",
+      "assumptionWeeks": "{{weeks}} working weeks a year, allowing for holidays and public holidays.",
+      "assumptionRange": "The {{low}}% to {{high}}% range is Impera's own estimate, not a measured figure. Where a business lands inside it depends on its tools, its data and how consistent the process already is.",
+      "auditCta": "Get My Growth Audit",
+      "emailCta": "Email me the breakdown"
+    },
+    "email": {
+      "title": "Want the breakdown?",
+      "description": "We will email you a short report, written around the tasks you picked:",
+      "bullet1": "Your tasks ranked by how well they automate",
+      "bullet2": "What we would automate first, and why",
+      "bullet3": "What is probably not worth automating",
+      "label": "Work email",
+      "placeholder": "you@company.com",
+      "consent": "Impera may email me this report. See the <link>Privacy Policy</link>.",
+      "submit": "Send me the breakdown",
+      "sending": "Sending…",
+      "invalidEmail": "Please enter a valid email address",
+      "emailTooLong": "Email is too long",
+      "consentRequired": "Please tick the box so we may send you the report.",
+      "error": "We could not send that. Please try again."
+    },
+    "done": {
+      "title": "Check your inbox",
+      "description": "The report should reach you within a few minutes. Check your spam folder if it does not.",
+      "auditText": "Want to go through the numbers with us?"
+    },
+    "report": {
+      "subject": "Your estimate: {{hours}} hours a year lost to repetitive admin",
+      "intro": "Here is the breakdown behind your estimate, based on the figures you entered.",
+      "inputsTitle": "Your figures",
+      "inputsLine": "{{people}} people × {{hours}} hours a week × {{cost}} an hour",
+      "resultTitle": "What that adds up to",
+      "weekly": "Hours lost per week: {{value}}",
+      "yearly": "Hours lost per year: {{value}}",
+      "cost": "Cost per year: {{value}}",
+      "range": "Realistically automatable (estimate): {{hours}} hours and {{cost}} a year",
+      "rankedTitle": "Your tasks, ranked by automation fit",
+      "rankedHours": "about {{hours}} hours a year",
+      "fit": {
+        "high": "High fit",
+        "medium": "Medium fit"
+      },
+      "why": {
+        "documents": "Repetitive, rule-based, structured output.",
+        "dataEntry": "Copying between systems is the classic automation case.",
+        "invoicing": "Templated, triggered by known events.",
+        "followUps": "Templating works, but tone and timing need human review.",
+        "reporting": "Data gathering automates well, interpretation does not.",
+        "quotes": "Depends on how standardised the pricing is."
+      },
+      "automateFirstTitle": "What we would automate first",
+      "automateFirstNone": "None of your selected tasks is a clear first candidate. A short audit would show where to start.",
+      "notWorthItTitle": "Probably not worth automating yet",
+      "notWorthItReason": "At about {{hours}} hours a week, there is little to gain yet.",
+      "notWorthItNone": "Nothing on your list falls below that line.",
+      "assumptionsTitle": "Assumptions",
+      "assumptionEvenSplit": "Your stated hours are split evenly across the tasks you selected. We do not know your real split.",
+      "assumptionFit": "Automation fit is Impera's own judgement, not a measured figure.",
+      "disclaimer": "This is an estimate, not a quote or a promise of savings.",
+      "auditText": "Want to check these numbers against your real processes?",
+      "auditCta": "Get My Growth Audit"
+    },
+    "a11y": {
+      "close": "Close",
+      "resultShown": "Your estimate is ready"
+    }
+  }
+}
