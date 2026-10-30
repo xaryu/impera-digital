@@ -50,7 +50,7 @@
     "savePreferences": "Save Preferences",
     "acceptAll": "Accept All",
     "rejectAll": "Reject All",
-    "privacyNote": "Read our <link>Privacy Policy</link> for more details."
+    "privacyNote": "Read our <privacy>Privacy Policy</privacy> for more details."
   },
   "exitPopup": {
     "eyebrow": "Free Resource",

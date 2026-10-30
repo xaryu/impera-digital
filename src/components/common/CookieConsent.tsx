@@ -145,7 +145,7 @@ const CookieConsent = () => {
           <p className="font-body text-xs text-gold-muted/60 mt-4">
             <Trans
               i18nKey="cookieConsent.privacyNote"
-              components={{ link: <LocalizedLink to="/privacy" className="underline hover:text-gold transition-colors" /> }}
+              components={{ privacy: <LocalizedLink to="/privacy" className="underline hover:text-gold transition-colors" /> }}
             />
           </p>
         </div>

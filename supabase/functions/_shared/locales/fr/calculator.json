@@ -75,7 +75,7 @@
       "bullet3": "Ce qui ne vaut probablement pas la peine d'être automatisé",
       "label": "E-mail professionnel",
       "placeholder": "vous@entreprise.com",
-      "consent": "Impera peut m'envoyer par e-mail un lien de confirmation, puis ce rapport. Voir la <link>Politique de confidentialité</link>.",
+      "consent": "Impera peut m'envoyer par e-mail un lien de confirmation, puis ce rapport. Voir la <privacy>Politique de confidentialité</privacy>.",
       "submit": "Envoyez-moi le détail",
       "sending": "Envoi en cours…",
       "invalidEmail": "Veuillez saisir une adresse e-mail valide",

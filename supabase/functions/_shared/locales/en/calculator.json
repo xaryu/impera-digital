@@ -75,7 +75,7 @@
       "bullet3": "What is probably not worth automating",
       "label": "Work email",
       "placeholder": "you@company.com",
-      "consent": "Impera may email me a confirmation link and then this report. See the <link>Privacy Policy</link>.",
+      "consent": "Impera may email me a confirmation link and then this report. See the <privacy>Privacy Policy</privacy>.",
       "submit": "Send me the breakdown",
       "sending": "Sending…",
       "invalidEmail": "Please enter a valid email address",

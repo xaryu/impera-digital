@@ -47,8 +47,8 @@ To change the same text in every language, edit the same line in `en/`, `fr/` an
 - **Quotes inside a text** must be written as `\"` — for example `"Read the \"Guide\""`.
   Apostrophes (`'`) are fine as they are.
 - **Keep the comma** at the end of the line if there was one (the last line of a group has none).
-- **Keep `{{name}}` placeholders and `<link>…</link>` tags exactly as they are.** You can
-  move them within the sentence and change the words between `<link>` and `</link>`.
+- **Keep `{{name}}` placeholders and tags like `<privacy>…</privacy>` exactly as they are.** You can
+  move them within the sentence and change the words between `<privacy>` and `</privacy>`.
 - **Don't leave a text empty.** If a text should disappear, ask a developer.
 - **Add or remove texts only together with a developer** — the page has to be changed too.
   (The legal texts are the exception: see below.)
@@ -81,7 +81,7 @@ npm run check:texts
 ```
 
 It reports, in plain terms, any text that is missing in one language, left empty,
-or has a broken `{{placeholder}}` or `<link>` tag.
+or has a broken `{{placeholder}}` or `<privacy>` tag.
 
 If a file has a typo that breaks its format (a missing quote or comma), the website
 build fails and the live site stays as it was, so a mistake can't take the site down.

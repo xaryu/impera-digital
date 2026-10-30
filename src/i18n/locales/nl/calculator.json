@@ -75,7 +75,7 @@
       "bullet3": "Wat wellicht niet de moeite is om te automatiseren",
       "label": "Werk-e-mailadres",
       "placeholder": "u@bedrijf.be",
-      "consent": "Impera mag mij een bevestigingslink en daarna dit rapport mailen. Zie het <link>Privacybeleid</link>.",
+      "consent": "Impera mag mij een bevestigingslink en daarna dit rapport mailen. Zie het <privacy>Privacybeleid</privacy>.",
       "submit": "Stuur mij de uitsplitsing",
       "sending": "Versturen…",
       "invalidEmail": "Vul een geldig e-mailadres in",

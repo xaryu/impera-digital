@@ -1,7 +1,7 @@
 /// <reference types="node" />
 // Guards the translation files in src/i18n/locales against the mistakes that are
 // easy to make while editing text: a key missing in one language, an empty
-// value, a broken {{placeholder}} or <link> tag, or a key the code needs that
+// value, a broken {{placeholder}} or <privacy> tag, or a key the code needs that
 // no longer exists. Run with `npm test`.
 import fs from "node:fs";
 import path from "node:path";
@@ -64,6 +64,17 @@ describe("translation files", () => {
         .map(([key]) => `${file}: ${key}`),
     );
     expect(empty).toEqual([]);
+  });
+
+  // <Trans> parses tags as HTML: a void element such as <link> drops the words inside it.
+  const voidTags = ["area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr"];
+  it.each(supportedLanguages)("%s uses no HTML void element as a <tag>", (lang) => {
+    const bad = listFiles(lang).flatMap((file) =>
+      Object.entries(flatten(readFile(lang, file)))
+        .filter(([, value]) => voidTags.some((tag) => value.includes(`<${tag}>`)))
+        .map(([key]) => `${file}: ${key}`),
+    );
+    expect(bad).toEqual([]);
   });
 
   it.each(supportedLanguages)("%s never defines the same section in two files", (lang) => {

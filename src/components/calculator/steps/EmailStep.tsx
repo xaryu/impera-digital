@@ -80,7 +80,7 @@ const EmailStep = ({ email, consent, website, error, onEmailChange, onConsentCha
             <Trans
               i18nKey="calculator.email.consent"
               components={{
-                link: (
+                privacy: (
                   <LocalizedLink
                     to="/privacy"
                     target="_blank"
