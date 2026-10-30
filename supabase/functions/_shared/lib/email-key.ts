@@ -7,5 +7,5 @@ export const emailKey = (email: string): string => {
   const domain = rawDomain === "googlemail.com" ? "gmail.com" : rawDomain;
   const local = rawLocal.split("+")[0];
   // Gmail ignores dots in the local part; other providers may not, so only strip them there.
-  return `${domain === "gmail.com" ? local.replaceAll(".", "") : local}@${domain}`;
+  return `${domain === "gmail.com" ? local.replace(/\./g, "") : local}@${domain}`;
 };

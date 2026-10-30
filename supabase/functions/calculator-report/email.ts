@@ -131,3 +131,23 @@ export const buildReportEmail = (inputs: CalculatorInputs, language: Language) =
 
   return { subject, html };
 };
+
+// The short email that comes first: one button, no report content. The report is only sent after the
+// address owner opens the link (double opt-in), so this must not reveal anything about the inputs.
+export const buildConfirmationEmail = (language: Language, confirmUrl: string) => {
+  const t = dictionaries[language].confirmEmail;
+  const subject = t.subject;
+
+  const html = `<!doctype html>
+<html lang="${language}"><body style="margin:0;padding:24px;background:#f6f1e7">
+<div style="max-width:600px;margin:0 auto;background:#ffffff;padding:32px;border-top:4px solid ${GOLD}">
+  <p style="margin:0 0 4px;font:600 13px Arial,sans-serif;letter-spacing:1px;text-transform:uppercase;color:${GOLD}">${escapeHtml(company.name)}</p>
+  <h1 style="margin:0 0 12px;font:600 24px Georgia,serif;color:${NAVY}">${escapeHtml(subject)}</h1>
+  <p style="margin:0 0 16px;font:15px/1.5 Arial,sans-serif;color:#333">${escapeHtml(t.intro)}</p>
+  <p style="margin:0 0 16px"><a href="${escapeHtml(confirmUrl)}" style="display:inline-block;padding:12px 24px;background:${GOLD};color:${NAVY};font:600 15px Arial,sans-serif;text-decoration:none;border-radius:4px">${escapeHtml(t.button)}</a></p>
+  <p style="margin:0 0 8px;font:13px/1.5 Arial,sans-serif;color:#666">${escapeHtml(t.expires)}</p>
+  <p style="margin:0;font:13px/1.5 Arial,sans-serif;color:#666">${escapeHtml(t.ignore)}</p>
+</div></body></html>`;
+
+  return { subject, html };
+};

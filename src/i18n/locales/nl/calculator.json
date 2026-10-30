@@ -75,7 +75,7 @@
       "bullet3": "Wat wellicht niet de moeite is om te automatiseren",
       "label": "Werk-e-mailadres",
       "placeholder": "u@bedrijf.be",
-      "consent": "Impera mag mij dit rapport mailen. Zie het <link>Privacybeleid</link>.",
+      "consent": "Impera mag mij een bevestigingslink en daarna dit rapport mailen. Zie het <link>Privacybeleid</link>.",
       "submit": "Stuur mij de uitsplitsing",
       "sending": "Versturen…",
       "invalidEmail": "Vul een geldig e-mailadres in",
@@ -85,8 +85,28 @@
     },
     "done": {
       "title": "Kijk in uw inbox",
-      "description": "Het rapport zou binnen enkele minuten bij u moeten zijn. Kijk anders even in uw spam.",
+      "description": "We hebben u een e-mail gestuurd. Open hem en druk op de knop om te bevestigen, dan volgt het rapport meteen. Kijk in uw spam als u hem binnen enkele minuten niet ziet.",
       "auditText": "Wilt u de cijfers samen met ons doorlopen?"
+    },
+    "confirmEmail": {
+      "subject": "Bevestig uw e-mailadres om uw rapport te ontvangen",
+      "intro": "U vroeg de uitsplitsing achter uw schatting van de verloren uren aan. Druk op de knop om te bevestigen dat dit uw adres is, dan sturen we het rapport meteen.",
+      "button": "Bevestigen en mijn rapport ontvangen",
+      "expires": "De link is 24 uur geldig.",
+      "ignore": "Hebt u dit niet aangevraagd, negeer deze e-mail dan. Er wordt niets verstuurd en we mailen u niet opnieuw."
+    },
+    "confirmPage": {
+      "title": "Ontvang uw rapport",
+      "description": "Druk op de knop om uw e-mailadres te bevestigen. We sturen uw rapport met de uitsplitsing meteen.",
+      "button": "Stuur mij mijn rapport",
+      "sending": "Versturen…",
+      "sent": "Klaar. Uw rapport is onderweg en zou binnen enkele minuten bij u moeten zijn. Kijk anders even in uw spam.",
+      "alreadySent": "Dit rapport is al naar u verstuurd. Kijk in uw inbox en spam.",
+      "invalid": "Deze link is niet geldig. Gebruik de link uit de laatste e-mail, of begin opnieuw vanuit de calculator.",
+      "expired": "Deze link is verlopen. Gebruik de calculator opnieuw om een nieuwe te krijgen.",
+      "busy": "Uw rapport wordt verstuurd. Wacht even en kijk in uw inbox.",
+      "error": "Het rapport versturen is niet gelukt. Probeer het opnieuw.",
+      "back": "Terug naar de calculator"
     },
     "report": {
       "subject": "Uw schatting: {{hours}} uur per jaar verloren aan repetitief administratief werk",

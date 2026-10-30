@@ -48,17 +48,23 @@ Run `source ~/.nvm/nvm.sh && nvm use 24` first (Node 24, see `.nvmrc`).
   the function was redeployed on 2026-10-30 (`npx supabase functions deploy calculator-report`; the CLI is
   a dev dependency, not on PATH). Note that until `RESEND_API_KEY` is set the function now returns 502
   and the modal shows its error. Remaining:
-  - Abuse, still open: no CAPTCHA or double opt-in, so the Impera domain can still be used to mail
-    any address once (per-IP limit of 5/hour and plus-address dedupe are in the hardening migration,
-    but an attacker with many IPs gets around the IP limit, and the global 100/hour cap can still
-    lock real visitors out with 503).
+  - Abuse: double opt-in is implemented (migration `20261030170000_calculator_double_optin.sql` pushed and
+    `calculator-report` redeployed on 2026-10-30; code not committed yet). Submitting only sends a short
+    confirmation email; the report goes out when the visitor presses the button on
+    `/calculator/confirm?token=` (POST `{action:"confirm", token}`, 24h one-time link, only the token
+    hash is stored). No CAPTCHA by decision. Still true: the domain can be used to send one short
+    confirmation email to any address, and an attacker with many IPs gets around the per-IP limit
+    of 5/hour, while the global 100/hour cap can lock real visitors out with 503.
+    `src/integrations/supabase/types.ts` regenerated after the push. Confirm-link text in `calculator.confirmEmail.*` / `confirmPage.*`.
   - Fixed in migration `20261030150000_calculator_hardening.sql` (pushed and `calculator-report`
     redeployed as v5 on 2026-10-30): atomic dedupe/cap/insert via the `claim_calculator_submission` RPC, `created_at`
     index, per-IP limit (HMAC of the IP, cleared after 24h, stated in `legal.json`), plus-address
     dedupe (`email_key`), a sending lock (409 while another request sends), `calculator_events` insert
     bounded (timestamp check, 8 per run_id, 1000/hour in total, 12-month retention). Always push migrations before deploying the function, since it calls the RPC.
-  - CORS allows `SITE_URL` plus `localhost:8080` and `:5173` in production; Vercel previews and a
-    custom domain need adding to `SITE_URL` (comma-separated). Consider dropping the localhost origins.
+  - CORS allows only the origins in `SITE_URL` (localhost removed from the code, uncommitted until
+    redeploy). Vercel previews and a custom domain need adding to `SITE_URL` (comma-separated); add
+    `http://localhost:8080` there only while testing locally. The confirmation link is built from
+    the request's allowed Origin, so `SITE_URL` must be set.
 - **Step 7 Resend setup (resume here)**, following https://resend.com/setup.md:
   - Done: Resend MCP plugin installed (user scope) and signed in via OAuth. Domain
     `mail.impera-group.com` created in Resend, region `eu-west-1`, domain ID

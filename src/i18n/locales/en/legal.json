@@ -19,7 +19,7 @@
           "<b>Contact forms:</b> Name, email address, phone number, and your message.",
           "<b>Calendly scheduling:</b> Name, email address, and any information you provide when booking a meeting through our integrated Calendly widget.",
           "<b>Job applications:</b> Full name, email address, motivation letter, and CV/resume.",
-          "<b>Hours calculator:</b> If you ask for the emailed report, your email address, the figures you entered (number of people, hours per week, hourly cost, selected tasks), the calculated result, your language, the time of your consent and a keyed hash of your IP address (not the address itself), used only to limit abuse and deleted after 24 hours. The calculator itself needs no email, and we count anonymous usage steps (started, finished, report requested, audit clicked) without any personal data, cookies or storage."
+          "<b>Hours calculator:</b> If you ask for the emailed report, your email address, the figures you entered (number of people, hours per week, hourly cost, selected tasks), the calculated result, your language, the time of your consent, a one-time confirmation link (we store only a hash of it, and it expires after 24 hours) and a keyed hash of your IP address (not the address itself), used only to limit abuse and deleted after 24 hours. The calculator itself needs no email, and we count anonymous usage steps (started, finished, report requested, audit clicked) without any personal data, cookies or storage."
         ],
         "afterList": [
           "We do not use tracking cookies for advertising purposes. Basic analytics may be used to understand site usage patterns."
@@ -34,7 +34,7 @@
           "To respond to your inquiries submitted through our contact form.",
           "To schedule and manage meetings booked via Calendly.",
           "To process and evaluate job applications.",
-          "To email you the calculator report you asked for. This consent covers that one report only, not newsletters or marketing.",
+          "To email you a confirmation link and, once you press it, the calculator report you asked for. Without that confirmation no report is sent. This consent covers that one report only, not newsletters or marketing.",
           "To improve our website and services."
         ],
         "afterList": [
@@ -80,7 +80,7 @@
         "title": "8. Third-Party Services",
         "paragraphs": [
           "Our website integrates with Calendly for appointment scheduling. When you use Calendly, your data is also subject to <calendlyPolicy>Calendly's Privacy Policy</calendlyPolicy>. We encourage you to review their policy.",
-          "We use Resend (Resend, Inc.) to send the hours calculator report to your email address. Resend processes your email address and the report content on our behalf. We use its EU (Ireland) sending region."
+          "We use Resend (Resend, Inc.) to send the hours calculator confirmation link and report to your email address. Resend processes your email address and the report content on our behalf. We use its EU (Ireland) sending region."
         ]
       },
       {

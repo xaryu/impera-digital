@@ -75,7 +75,7 @@
       "bullet3": "Ce qui ne vaut probablement pas la peine d'être automatisé",
       "label": "E-mail professionnel",
       "placeholder": "vous@entreprise.com",
-      "consent": "Impera peut m'envoyer ce rapport par e-mail. Voir la <link>Politique de confidentialité</link>.",
+      "consent": "Impera peut m'envoyer par e-mail un lien de confirmation, puis ce rapport. Voir la <link>Politique de confidentialité</link>.",
       "submit": "Envoyez-moi le détail",
       "sending": "Envoi en cours…",
       "invalidEmail": "Veuillez saisir une adresse e-mail valide",
@@ -85,8 +85,28 @@
     },
     "done": {
       "title": "Consultez votre boîte de réception",
-      "description": "Le rapport devrait vous parvenir d'ici quelques minutes. Vérifiez vos courriers indésirables s'il n'arrive pas.",
+      "description": "Nous vous avons envoyé un e-mail. Ouvrez-le et cliquez sur le bouton pour confirmer, le rapport suit aussitôt. Vérifiez vos courriers indésirables si vous ne le voyez pas d'ici quelques minutes.",
       "auditText": "Envie de passer les chiffres en revue avec nous ?"
+    },
+    "confirmEmail": {
+      "subject": "Confirmez votre e-mail pour recevoir votre rapport",
+      "intro": "Vous avez demandé le détail derrière votre estimation des heures perdues. Cliquez sur le bouton pour confirmer que cette adresse est bien la vôtre et nous vous envoyons le rapport aussitôt.",
+      "button": "Confirmer et recevoir mon rapport",
+      "expires": "Le lien est valable 24 heures.",
+      "ignore": "Si vous n'êtes pas à l'origine de cette demande, ignorez cet e-mail. Rien ne sera envoyé et nous ne vous écrirons plus."
+    },
+    "confirmPage": {
+      "title": "Recevez votre rapport",
+      "description": "Cliquez sur le bouton pour confirmer votre adresse e-mail. Nous vous envoyons aussitôt votre rapport détaillé.",
+      "button": "Envoyez-moi mon rapport",
+      "sending": "Envoi en cours…",
+      "sent": "C'est fait. Votre rapport est en route et devrait vous parvenir d'ici quelques minutes. Vérifiez vos courriers indésirables s'il n'arrive pas.",
+      "alreadySent": "Ce rapport vous a déjà été envoyé. Vérifiez votre boîte de réception et vos courriers indésirables.",
+      "invalid": "Ce lien n'est pas valide. Utilisez le lien du dernier e-mail reçu, ou recommencez depuis le calculateur.",
+      "expired": "Ce lien a expiré. Relancez le calculateur pour en obtenir un nouveau.",
+      "busy": "Votre rapport est en cours d'envoi. Patientez un instant et vérifiez votre boîte de réception.",
+      "error": "L'envoi du rapport a échoué. Veuillez réessayer.",
+      "back": "Retour au calculateur"
     },
     "report": {
       "subject": "Votre estimation : {{hours}} heures par an perdues en administratif répétitif",

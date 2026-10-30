@@ -124,6 +124,10 @@ export type Database = {
       }
       calculator_submissions: {
         Row: {
+          confirm_expires_at: string | null
+          confirm_token_hash: string | null
+          confirmation_sent_at: string | null
+          confirmed_at: string | null
           consent_at: string
           created_at: string
           email: string
@@ -137,6 +141,10 @@ export type Database = {
           sending_at: string | null
         }
         Insert: {
+          confirm_expires_at?: string | null
+          confirm_token_hash?: string | null
+          confirmation_sent_at?: string | null
+          confirmed_at?: string | null
           consent_at: string
           created_at?: string
           email: string
@@ -150,6 +158,10 @@ export type Database = {
           sending_at?: string | null
         }
         Update: {
+          confirm_expires_at?: string | null
+          confirm_token_hash?: string | null
+          confirmation_sent_at?: string | null
+          confirmed_at?: string | null
           consent_at?: string
           created_at?: string
           email?: string
@@ -380,6 +392,16 @@ export type Database = {
           p_window_minutes: number
         }
         Returns: {
+          status: string
+          submission_id: string
+        }[]
+      }
+      confirm_calculator_submission: {
+        Args: { p_sending_seconds: number; p_token_hash: string }
+        Returns: {
+          email: string
+          inputs: Json
+          language: string
           status: string
           submission_id: string
         }[]

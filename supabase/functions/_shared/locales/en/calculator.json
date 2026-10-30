@@ -75,7 +75,7 @@
       "bullet3": "What is probably not worth automating",
       "label": "Work email",
       "placeholder": "you@company.com",
-      "consent": "Impera may email me this report. See the <link>Privacy Policy</link>.",
+      "consent": "Impera may email me a confirmation link and then this report. See the <link>Privacy Policy</link>.",
       "submit": "Send me the breakdown",
       "sending": "Sending…",
       "invalidEmail": "Please enter a valid email address",
@@ -85,8 +85,28 @@
     },
     "done": {
       "title": "Check your inbox",
-      "description": "The report should reach you within a few minutes. Check your spam folder if it does not.",
+      "description": "We sent you an email. Open it and press the button to confirm, and the report follows right away. Check your spam folder if you do not see it within a few minutes.",
       "auditText": "Want to go through the numbers with us?"
+    },
+    "confirmEmail": {
+      "subject": "Confirm your email to get your report",
+      "intro": "You asked for the breakdown behind your hours-lost estimate. Press the button to confirm this is your address and we will send the report straight away.",
+      "button": "Confirm and send my report",
+      "expires": "The link works for 24 hours.",
+      "ignore": "If you did not ask for this, ignore this email. Nothing will be sent and we will not email you again."
+    },
+    "confirmPage": {
+      "title": "Get your report",
+      "description": "Press the button to confirm your email address. We will send your breakdown report right away.",
+      "button": "Send me my report",
+      "sending": "Sending…",
+      "sent": "Done. Your report is on its way, it should reach you within a few minutes. Check your spam folder if it does not.",
+      "alreadySent": "This report was already sent to you. Check your inbox and spam folder.",
+      "invalid": "This link is not valid. Please use the link from the latest email, or start again from the calculator.",
+      "expired": "This link has expired. Please run the calculator again to get a new one.",
+      "busy": "Your report is being sent. Please wait a moment and check your inbox.",
+      "error": "We could not send the report. Please try again.",
+      "back": "Back to the calculator"
     },
     "report": {
       "subject": "Your estimate: {{hours}} hours a year lost to repetitive admin",
