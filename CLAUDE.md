@@ -44,8 +44,10 @@ Run `source ~/.nvm/nvm.sh && nvm use 24` first (Node 24, see `.nvmrc`).
   Read it before touching this feature. The remote `origin/feature/hours-calculator` is a different
   implementation; only borrow from it (see its `report.ts` for the email template at step 7).
 - **Open review findings (not fixed, decide before step 10 QA)**. The review fixes for failed sends,
-  stale retry, race-loser status, email state on reopen and close-while-sending are committed but
-  **not redeployed** (`supabase functions deploy calculator-report`). Remaining:
+  stale retry, race-loser status, email state on reopen and close-while-sending are committed, and
+  the function was redeployed on 2026-10-30 (`npx supabase functions deploy calculator-report`; the CLI is
+  a dev dependency, not on PATH). Note that until `RESEND_API_KEY` is set the function now returns 502
+  and the modal shows its error. Remaining:
   - Abuse: any address can be mailed from the Impera domain (plus-address variants each get their own
     dedupe key), and the global 100/hour cap lets an attacker lock out real visitors with 503. No
     per-IP limit, CAPTCHA or double opt-in.
