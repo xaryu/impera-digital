@@ -34,13 +34,16 @@ Run `source ~/.nvm/nvm.sh && nvm use 24` first (Node 24, see `.nvmrc`).
 
 ## Active work
 
-- **Hours-lost calculator (homepage modal + email report)**: in progress; branch
-  `feature/hours-calculator-impl` (pushed) was merged into `main` on 2026-10-30. Plan steps 1-6 are committed. Steps 7 (code only), 8
-  and 9 are committed: `supabase/functions/calculator-report` (Deno
-  type-checked, shared code synced via `npm run sync:function-shared` into `_shared/`, drift test in
-  `src/lib/function-shared.test.ts`), the email/done steps in the modal, and the privacy update in
-  `legal.json`. Function is deployed and `RESEND_API_KEY` is set (2026-10-30); not done: the move
-  to `impera.digital` (below), the real send test and step 10 QA.
+- **Hours-lost calculator (homepage modal + email report)**: live on `main` since 2026-10-30
+  (branches `feature/hours-calculator-impl` and `chore/impera-digital-domain` merged and pushed).
+  `supabase/functions/calculator-report` is Deno type-checked; shared code is synced via
+  `npm run sync:function-shared` into `_shared/` (drift test in `src/lib/function-shared.test.ts`).
+  Step 10 QA done on 2026-10-30 against the live site: plan §11 checklist passes in EN/NL/FR at
+  360/768/1440 px, real submission through the modal → confirm page → report delivered, all four
+  events recorded, link is one-time. Fixed during QA: `<link>` tags in translations rendered empty
+  (void HTML element, renamed to `<privacy>`, test added), 44px dialog close button, cookie banner
+  waits while a modal is open. Not done: VoiceOver (macOS/iOS) and a real phone with the keyboard
+  open (Paul), contact mailboxes on `impera.digital` (below).
   Full technical plan: [`docs/plans/hours-calculator.md`](docs/plans/hours-calculator.md).
   Read it before touching this feature. The remote `origin/feature/hours-calculator` is a different
   implementation; only borrow from it (see its `report.ts` for the email template at step 7).
@@ -91,7 +94,8 @@ Run `source ~/.nvm/nvm.sh && nvm use 24` first (Node 24, see `.nvmrc`).
        `careers@impera.digital` (e.g. Zoho, as on `impera-group.com`); no MX records yet.
     2. Done (2026-10-30): `REPORT_FROM="Impera <report@mail.impera.digital>"` set; the existing API
        key works for the new domain. Real test via curl: confirmation and report both delivered.
-    3. Only after MX works: merge `chore/impera-digital-domain` into `main` and deploy (otherwise
-       visitor emails to the contact addresses bounce). Then step 10 QA. Remove the old domain later.
+    3. Merged and deployed on 2026-10-30 at Paul's request, before MX existed: until the boss adds
+       `impera.digital` in Zoho (as an alias of `impera-group.com`) plus the Zoho MX/SPF records,
+       mail to the contact addresses on the site bounces. Remove the old Resend domain later.
   - Function bundling is decided: use the sync script, no cross-folder imports. Never ask for or
     accept an API key pasted in chat.
