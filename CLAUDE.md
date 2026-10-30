@@ -89,10 +89,9 @@ Run `source ~/.nvm/nvm.sh && nvm use 24` first (Node 24, see `.nvmrc`).
     already exists (`p=quarantine`), so don't add another. Order:
     1. Done: Resend records added and domain verified. Still open: mailboxes for `contact@` and
        `careers@impera.digital` (e.g. Zoho, as on `impera-group.com`); no MX records yet.
-    2. If the current API key is restricted to the old domain,
-       create a new **sending-only** key for `mail.impera.digital` (never full access); Paul sets it himself.
-    3. Paul sets `REPORT_FROM="Impera <report@mail.impera.digital>"`; send a real test report.
-    4. Only after MX works: merge `chore/impera-digital-domain` into `main` and deploy (otherwise
+    2. Done (2026-10-30): `REPORT_FROM="Impera <report@mail.impera.digital>"` set; the existing API
+       key works for the new domain. Real test via curl: confirmation and report both delivered.
+    3. Only after MX works: merge `chore/impera-digital-domain` into `main` and deploy (otherwise
        visitor emails to the contact addresses bounce). Then step 10 QA. Remove the old domain later.
   - Function bundling is decided: use the sync script, no cross-folder imports. Never ask for or
     accept an API key pasted in chat.
