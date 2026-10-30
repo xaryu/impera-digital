@@ -1,132 +1,132 @@
 {
   "calculator": {
     "strip": {
-      "eyebrow": "Put a number on it",
-      "title": "How many hours is your team losing?",
-      "description": "Four short questions, your own figures. You see the estimate straight away, no email needed.",
-      "cta": "Calculate my hours"
+      "eyebrow": "Mettez un chiffre dessus",
+      "title": "Combien d'heures votre équipe perd-elle ?",
+      "description": "Quatre questions courtes, vos propres chiffres. Vous voyez l'estimation tout de suite, sans e-mail.",
+      "cta": "Calculer mes heures"
     },
     "modal": {
-      "title": "How many hours is your team losing?",
-      "progress": "Step {{current}} of {{total}}",
-      "back": "Back",
-      "next": "Next",
-      "seeResult": "See my estimate",
-      "startOver": "Start over"
+      "title": "Combien d'heures votre équipe perd-elle ?",
+      "progress": "Étape {{current}} sur {{total}}",
+      "back": "Retour",
+      "next": "Suivant",
+      "seeResult": "Voir mon estimation",
+      "startOver": "Recommencer"
     },
     "steps": {
       "people": {
-        "label": "How many people do repetitive admin work?",
-        "help": "Everyone who spends part of a normal week on manual, repeating tasks.",
-        "unit": "people",
-        "inputLabel": "Number of people",
-        "error": "Enter a whole number between {{min}} and {{max}}"
+        "label": "Combien de personnes font du travail administratif répétitif ?",
+        "help": "Toute personne qui consacre une partie d'une semaine normale à des tâches manuelles et répétitives.",
+        "unit": "personnes",
+        "inputLabel": "Nombre de personnes",
+        "error": "Saisissez un nombre entier entre {{min}} et {{max}}"
       },
       "hours": {
-        "label": "How many hours a week does each of them spend on it?",
-        "help": "An average is fine. Think of an ordinary week, not your busiest one.",
-        "unit": "hours per week",
-        "inputLabel": "Hours per person per week",
-        "error": "Enter a whole number between {{min}} and {{max}}"
+        "label": "Combien d'heures par semaine chacune y consacre-t-elle ?",
+        "help": "Une moyenne suffit. Pensez à une semaine ordinaire, pas à votre semaine la plus chargée.",
+        "unit": "heures par semaine",
+        "inputLabel": "Heures par personne et par semaine",
+        "error": "Saisissez un nombre entier entre {{min}} et {{max}}"
       },
       "cost": {
-        "label": "What does an hour of their time cost you?",
-        "help": "Gross cost to the company per hour, not take-home pay. Change it if {{default}} is not right for your team.",
-        "unit": "euro per hour",
-        "inputLabel": "Hourly cost in euros",
-        "error": "Enter a whole amount between {{min}} and {{max}}"
+        "label": "Combien vous coûte une heure de leur temps ?",
+        "help": "Coût brut pour l'entreprise par heure, pas le salaire net. Modifiez-le si {{default}} ne correspond pas à votre équipe.",
+        "unit": "euros par heure",
+        "inputLabel": "Coût horaire en euros",
+        "error": "Saisissez un montant entier entre {{min}} et {{max}}"
       },
       "tasks": {
-        "label": "Which tasks does that work involve?",
-        "help": "Pick everything that applies. This shapes the breakdown report; it does not change the numbers.",
-        "error": "Pick at least one task"
+        "label": "Quelles tâches ce travail comprend-il ?",
+        "help": "Cochez tout ce qui s'applique. Cela oriente le rapport détaillé ; les chiffres ne changent pas.",
+        "error": "Choisissez au moins une tâche"
       }
     },
     "tasks": {
-      "documents": "Document processing",
-      "dataEntry": "Data entry",
-      "invoicing": "Invoicing",
-      "followUps": "Follow-up emails",
+      "documents": "Traitement de documents",
+      "dataEntry": "Saisie de données",
+      "invoicing": "Facturation",
+      "followUps": "E-mails de relance",
       "reporting": "Reporting",
-      "quotes": "Quotes"
+      "quotes": "Devis"
     },
     "result": {
-      "eyebrow": "Your estimate",
-      "title": "Here is what that time is worth",
-      "hoursPerWeek": "Hours lost per week",
-      "hoursPerYear": "Hours lost per year",
-      "yearlyCost": "What that costs per year",
-      "rangeTitle": "What could realistically be automated (estimate)",
-      "rangeHours": "{{low}} – {{high}} hours a year",
-      "rangeCost": "{{low}} – {{high}} a year",
-      "estimateNote": "This is an estimate based on the figures you entered and the assumptions below. It is not a measurement of your business.",
-      "assumptionsTitle": "Assumptions",
-      "assumptionInputs": "Your figures: {{people}} people × {{hours}} hours a week × {{cost}} an hour. The hourly cost is your own figure.",
-      "assumptionWeeks": "{{weeks}} working weeks a year, allowing for holidays and public holidays.",
-      "assumptionRange": "The {{low}}% to {{high}}% range is Impera's own estimate, not a measured figure. Where a business lands inside it depends on its tools, its data and how consistent the process already is.",
-      "auditCta": "Get My Growth Audit",
-      "emailCta": "Email me the breakdown"
+      "eyebrow": "Votre estimation",
+      "title": "Voici ce que vaut ce temps",
+      "hoursPerWeek": "Heures perdues par semaine",
+      "hoursPerYear": "Heures perdues par an",
+      "yearlyCost": "Ce que cela coûte par an",
+      "rangeTitle": "Ce qui pourrait raisonnablement être automatisé (estimation)",
+      "rangeHours": "{{low}} – {{high}} heures par an",
+      "rangeCost": "{{low}} – {{high}} par an",
+      "estimateNote": "Il s'agit d'une estimation basée sur les chiffres que vous avez saisis et sur les hypothèses ci-dessous. Ce n'est pas une mesure de votre entreprise.",
+      "assumptionsTitle": "Hypothèses",
+      "assumptionInputs": "Vos chiffres : {{people}} personnes × {{hours}} heures par semaine × {{cost}} par heure. Le coût horaire est votre propre chiffre.",
+      "assumptionWeeks": "{{weeks}} semaines de travail par an, en tenant compte des congés et des jours fériés.",
+      "assumptionRange": "La fourchette de {{low}} % à {{high}} % est l'estimation d'Impera, pas un chiffre mesuré. La position d'une entreprise dans cette fourchette dépend de ses outils, de ses données et de la régularité de ses processus.",
+      "auditCta": "Obtenir mon audit de croissance",
+      "emailCta": "Recevoir le détail par e-mail"
     },
     "email": {
-      "title": "Want the breakdown?",
-      "description": "We will email you a short report, written around the tasks you picked:",
-      "bullet1": "Your tasks ranked by how well they automate",
-      "bullet2": "What we would automate first, and why",
-      "bullet3": "What is probably not worth automating",
-      "label": "Work email",
-      "placeholder": "you@company.com",
-      "consent": "Impera may email me this report. See the <link>Privacy Policy</link>.",
-      "submit": "Send me the breakdown",
-      "sending": "Sending…",
-      "invalidEmail": "Please enter a valid email address",
-      "emailTooLong": "Email is too long",
-      "consentRequired": "Please tick the box so we may send you the report.",
-      "error": "We could not send that. Please try again."
+      "title": "Envie du détail ?",
+      "description": "Nous vous envoyons par e-mail un court rapport, construit autour des tâches que vous avez choisies :",
+      "bullet1": "Vos tâches classées selon leur potentiel d'automatisation",
+      "bullet2": "Ce que nous automatiserions en premier, et pourquoi",
+      "bullet3": "Ce qui ne vaut probablement pas la peine d'être automatisé",
+      "label": "E-mail professionnel",
+      "placeholder": "vous@entreprise.com",
+      "consent": "Impera peut m'envoyer ce rapport par e-mail. Voir la <link>Politique de confidentialité</link>.",
+      "submit": "Envoyez-moi le détail",
+      "sending": "Envoi en cours…",
+      "invalidEmail": "Veuillez saisir une adresse e-mail valide",
+      "emailTooLong": "L'adresse e-mail est trop longue",
+      "consentRequired": "Veuillez cocher la case pour que nous puissions vous envoyer le rapport.",
+      "error": "L'envoi a échoué. Veuillez réessayer."
     },
     "done": {
-      "title": "Check your inbox",
-      "description": "The report should reach you within a few minutes. Check your spam folder if it does not.",
-      "auditText": "Want to go through the numbers with us?"
+      "title": "Consultez votre boîte de réception",
+      "description": "Le rapport devrait vous parvenir d'ici quelques minutes. Vérifiez vos courriers indésirables s'il n'arrive pas.",
+      "auditText": "Envie de passer les chiffres en revue avec nous ?"
     },
     "report": {
-      "subject": "Your estimate: {{hours}} hours a year lost to repetitive admin",
-      "intro": "Here is the breakdown behind your estimate, based on the figures you entered.",
-      "inputsTitle": "Your figures",
-      "inputsLine": "{{people}} people × {{hours}} hours a week × {{cost}} an hour",
-      "resultTitle": "What that adds up to",
-      "weekly": "Hours lost per week: {{value}}",
-      "yearly": "Hours lost per year: {{value}}",
-      "cost": "Cost per year: {{value}}",
-      "range": "Realistically automatable (estimate): {{hours}} hours and {{cost}} a year",
-      "rankedTitle": "Your tasks, ranked by automation fit",
-      "rankedHours": "about {{hours}} hours a year",
+      "subject": "Votre estimation : {{hours}} heures par an perdues en administratif répétitif",
+      "intro": "Voici le détail derrière votre estimation, basé sur les chiffres que vous avez saisis.",
+      "inputsTitle": "Vos chiffres",
+      "inputsLine": "{{people}} personnes × {{hours}} heures par semaine × {{cost}} par heure",
+      "resultTitle": "Ce que cela représente",
+      "weekly": "Heures perdues par semaine : {{value}}",
+      "yearly": "Heures perdues par an : {{value}}",
+      "cost": "Coût par an : {{value}}",
+      "range": "Raisonnablement automatisable (estimation) : {{hours}} heures et {{cost}} par an",
+      "rankedTitle": "Vos tâches, classées selon leur potentiel d'automatisation",
+      "rankedHours": "environ {{hours}} heures par an",
       "fit": {
-        "high": "High fit",
-        "medium": "Medium fit"
+        "high": "Potentiel élevé",
+        "medium": "Potentiel moyen"
       },
       "why": {
-        "documents": "Repetitive, rule-based, structured output.",
-        "dataEntry": "Copying between systems is the classic automation case.",
-        "invoicing": "Templated, triggered by known events.",
-        "followUps": "Templating works, but tone and timing need human review.",
-        "reporting": "Data gathering automates well, interpretation does not.",
-        "quotes": "Depends on how standardised the pricing is."
+        "documents": "Répétitif, basé sur des règles, résultat structuré.",
+        "dataEntry": "Copier des données d'un système à l'autre est le cas d'automatisation classique.",
+        "invoicing": "Modélisable, déclenché par des événements connus.",
+        "followUps": "Les modèles fonctionnent, mais le ton et le moment demandent une relecture humaine.",
+        "reporting": "La collecte de données s'automatise bien, l'interprétation non.",
+        "quotes": "Dépend du degré de standardisation des prix."
       },
-      "automateFirstTitle": "What we would automate first",
-      "automateFirstNone": "None of your selected tasks is a clear first candidate. A short audit would show where to start.",
-      "notWorthItTitle": "Probably not worth automating yet",
-      "notWorthItReason": "At about {{hours}} hours a week, there is little to gain yet.",
-      "notWorthItNone": "Nothing on your list falls below that line.",
-      "assumptionsTitle": "Assumptions",
-      "assumptionEvenSplit": "Your stated hours are split evenly across the tasks you selected. We do not know your real split.",
-      "assumptionFit": "Automation fit is Impera's own judgement, not a measured figure.",
-      "disclaimer": "This is an estimate, not a quote or a promise of savings.",
-      "auditText": "Want to check these numbers against your real processes?",
-      "auditCta": "Get My Growth Audit"
+      "automateFirstTitle": "Ce que nous automatiserions en premier",
+      "automateFirstNone": "Aucune de vos tâches sélectionnées n'est un premier candidat évident. Un court audit montrerait par où commencer.",
+      "notWorthItTitle": "Probablement pas encore utile d'automatiser",
+      "notWorthItReason": "Avec environ {{hours}} heures par semaine, il y a encore peu à gagner.",
+      "notWorthItNone": "Rien dans votre liste ne passe sous ce seuil.",
+      "assumptionsTitle": "Hypothèses",
+      "assumptionEvenSplit": "Les heures que vous avez indiquées sont réparties équitablement entre les tâches choisies. Nous ne connaissons pas votre répartition réelle.",
+      "assumptionFit": "Le potentiel d'automatisation est le jugement d'Impera, pas un chiffre mesuré.",
+      "disclaimer": "Il s'agit d'une estimation, pas d'un devis ni d'une promesse d'économies.",
+      "auditText": "Envie de vérifier ces chiffres sur vos processus réels ?",
+      "auditCta": "Obtenir mon audit de croissance"
     },
     "a11y": {
-      "close": "Close",
-      "resultShown": "Your estimate is ready"
+      "close": "Fermer",
+      "resultShown": "Votre estimation est prête"
     }
   }
 }
