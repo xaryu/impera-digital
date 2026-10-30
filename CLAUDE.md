@@ -34,8 +34,8 @@ Run `source ~/.nvm/nvm.sh && nvm use 24` first (Node 24, see `.nvmrc`).
 
 ## Active work
 
-- **Hours-lost calculator (homepage modal + email report)**: in progress on local branch
-  `feature/hours-calculator-impl` (not pushed). Plan steps 1-6 are committed. Steps 7 (code only), 8
+- **Hours-lost calculator (homepage modal + email report)**: in progress; branch
+  `feature/hours-calculator-impl` (pushed) was merged into `main` on 2026-10-30. Plan steps 1-6 are committed. Steps 7 (code only), 8
   and 9 are committed: `supabase/functions/calculator-report` (Deno
   type-checked, shared code synced via `npm run sync:function-shared` into `_shared/`, drift test in
   `src/lib/function-shared.test.ts`), the email/done steps in the modal, and the privacy update in
