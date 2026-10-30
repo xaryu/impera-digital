@@ -48,13 +48,15 @@ Run `source ~/.nvm/nvm.sh && nvm use 24` first (Node 24, see `.nvmrc`).
   the function was redeployed on 2026-10-30 (`npx supabase functions deploy calculator-report`; the CLI is
   a dev dependency, not on PATH). Note that until `RESEND_API_KEY` is set the function now returns 502
   and the modal shows its error. Remaining:
-  - Abuse: any address can be mailed from the Impera domain (plus-address variants each get their own
-    dedupe key), and the global 100/hour cap lets an attacker lock out real visitors with 503. No
-    per-IP limit, CAPTCHA or double opt-in.
+  - Abuse, still open: no CAPTCHA or double opt-in, so the Impera domain can still be used to mail
+    any address once (per-IP limit of 5/hour and plus-address dedupe are in the hardening migration,
+    but an attacker with many IPs gets around the IP limit, and the global 100/hour cap can still
+    lock real visitors out with 503).
   - Fixed in migration `20261030150000_calculator_hardening.sql` (committed, **not yet pushed or
     deployed**): atomic dedupe/cap/insert via the `claim_calculator_submission` RPC, `created_at`
-    index, `calculator_events` insert bounded (timestamp check, max 8 events per run_id, 12-month
-    retention). Push the migration (`npx supabase db push`) before redeploying `calculator-report`,
+    index, per-IP limit (HMAC of the IP, cleared after 24h, stated in `legal.json`), plus-address
+    dedupe (`email_key`), a sending lock (409 while another request sends), `calculator_events` insert
+    bounded (timestamp check, 8 per run_id, 1000/hour in total, 12-month retention). Push the migration (`npx supabase db push`) before redeploying `calculator-report`,
     since the function now calls the RPC.
   - CORS allows `SITE_URL` plus `localhost:8080` and `:5173` in production; Vercel previews and a
     custom domain need adding to `SITE_URL` (comma-separated). Consider dropping the localhost origins.

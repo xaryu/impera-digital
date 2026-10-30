@@ -127,31 +127,40 @@ export type Database = {
           consent_at: string
           created_at: string
           email: string
+          email_key: string
           id: string
           inputs: Json
+          ip_hash: string | null
           language: string
           report_sent_at: string | null
           result: Json
+          sending_at: string | null
         }
         Insert: {
           consent_at: string
           created_at?: string
           email: string
+          email_key: string
           id?: string
           inputs: Json
+          ip_hash?: string | null
           language: string
           report_sent_at?: string | null
           result: Json
+          sending_at?: string | null
         }
         Update: {
           consent_at?: string
           created_at?: string
           email?: string
+          email_key?: string
           id?: string
           inputs?: Json
+          ip_hash?: string | null
           language?: string
           report_sent_at?: string | null
           result?: Json
+          sending_at?: string | null
         }
         Relationships: []
       }
@@ -360,10 +369,14 @@ export type Database = {
       claim_calculator_submission: {
         Args: {
           p_email: string
+          p_email_key: string
           p_hourly_cap: number
           p_inputs: Json
+          p_ip_hash: string
+          p_ip_hourly_cap: number
           p_language: string
           p_result: Json
+          p_sending_seconds: number
           p_window_minutes: number
         }
         Returns: {

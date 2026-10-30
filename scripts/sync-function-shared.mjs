@@ -12,6 +12,7 @@ export const SHARED_FILES = [
   ["src/config/calculator.ts", "config/calculator.ts"],
   ["src/config/company.ts", "config/company.ts"],
   ["src/lib/calculator.ts", "lib/calculator.ts"],
+  ["src/lib/email-key.ts", "lib/email-key.ts"],
   ...["en", "fr", "nl"].map((lang) => [
     `src/i18n/locales/${lang}/calculator.json`,
     `locales/${lang}/calculator.json`,

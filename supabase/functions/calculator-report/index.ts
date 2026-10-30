@@ -12,10 +12,29 @@
 import { createClient } from "@supabase/supabase-js";
 import { z } from "zod";
 import { computeResult, inputsSchema } from "../_shared/lib/calculator.ts";
+import { emailKey } from "../_shared/lib/email-key.ts";
 import { buildReportEmail } from "./email.ts";
 
 const DUPLICATE_WINDOW_MINUTES = 10;
 const HOURLY_SUBMISSION_CAP = 100;
+const IP_HOURLY_CAP = 5;
+const SENDING_LOCK_SECONDS = 60;
+
+// Keyed hash of the caller's IP, for the per-IP limit only. The service role key is the HMAC key:
+// it never leaves the server, so the hashes cannot be reversed by enumerating IPv4 addresses.
+const hashIp = async (request: Request): Promise<string | null> => {
+  const ip = request.headers.get("x-forwarded-for")?.split(",")[0].trim();
+  if (!ip) return null;
+  const key = await crypto.subtle.importKey(
+    "raw",
+    new TextEncoder().encode(Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!),
+    { name: "HMAC", hash: "SHA-256" },
+    false,
+    ["sign"],
+  );
+  const mac = new Uint8Array(await crypto.subtle.sign("HMAC", key, new TextEncoder().encode(ip)));
+  return Array.from(mac.slice(0, 16), (byte) => byte.toString(16).padStart(2, "0")).join("");
+};
 
 const requestSchema = z.object({
   email: z.string().trim().toLowerCase().email().max(255),
@@ -76,22 +95,40 @@ Deno.serve(async (request) => {
   const { data: claim, error: claimError } = await supabase
     .rpc("claim_calculator_submission", {
       p_email: email,
+      p_email_key: emailKey(email),
+      p_ip_hash: await hashIp(request),
       p_language: language,
       p_inputs: inputs,
       p_result: computeResult(inputs),
       p_window_minutes: DUPLICATE_WINDOW_MINUTES,
       p_hourly_cap: HOURLY_SUBMISSION_CAP,
+      p_ip_hourly_cap: IP_HOURLY_CAP,
+      p_sending_seconds: SENDING_LOCK_SECONDS,
     })
-    .single<{ status: "ok" | "rate_limited" | "busy"; submission_id: string | null }>();
+    .single<{
+      status: "ok" | "rate_limited" | "in_progress" | "ip_limited" | "busy";
+      submission_id: string | null;
+    }>();
   if (claimError || !claim) {
     console.error("claim failed:", claimError?.message);
     return reply({ error: "server_error" }, 500);
   }
   // rate_limited: a report was really sent in the window (the modal shows 429 as "already sent").
   if (claim.status === "rate_limited") return reply({ error: "rate_limited" }, 429);
+  // Not 429: the other request's email may still fail, so the visitor must not be told it was sent.
+  if (claim.status === "in_progress") return reply({ error: "in_progress" }, 409);
+  if (claim.status === "ip_limited") return reply({ error: "ip_limited" }, 503);
   if (claim.status === "busy") return reply({ error: "busy" }, 503);
   // An unsent row from an earlier attempt is reused by the claim, so a retry never duplicates a lead.
   const row = { id: claim.submission_id! };
+
+  // The claim marked the row as "sending" so a concurrent request waits. On a failed send, release
+  // it so the visitor's retry is not blocked for the rest of the lock window.
+  const failed = async () => {
+    const { error } = await supabase.from("calculator_submissions").update({ sending_at: null }).eq("id", row.id);
+    if (error) console.error("could not release sending lock for", row.id, error.message);
+    return reply({ error: "email_failed" }, 502);
+  };
 
   // From here the row is the lead and is kept. If the email can't go out the visitor gets an error
   // (report_sent_at stays null), and submitting again retries the send.
@@ -99,7 +136,7 @@ Deno.serve(async (request) => {
   const from = Deno.env.get("REPORT_FROM");
   if (!apiKey || !from) {
     console.error("RESEND_API_KEY or REPORT_FROM is not set; report not sent for", row.id);
-    return reply({ error: "email_failed" }, 502);
+    return failed();
   }
 
   const { subject, html } = buildReportEmail(inputs, language);
@@ -119,11 +156,11 @@ Deno.serve(async (request) => {
     });
     if (!response.ok) {
       console.error("Resend rejected the report for", row.id, response.status, await response.text());
-      return reply({ error: "email_failed" }, 502);
+      return failed();
     }
   } catch (error) {
     console.error("Resend request failed for", row.id, error);
-    return reply({ error: "email_failed" }, 502);
+    return failed();
   }
 
   const { error: sentError } = await supabase

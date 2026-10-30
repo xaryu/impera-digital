@@ -130,7 +130,7 @@ None of the fit levels carries a percentage. They are labels, not statistics.
 | `src/pages/Index.tsx` | edit | Insert `<HoursCalculatorStrip />` between `<HeroSection />` and `<ServicesSection />` (D1) |
 | `src/i18n/locales/*/calculator.json` | new | Copy (D2/D3) |
 | `src/i18n/locales/*/legal.json` | edit | Privacy update (D8) |
-| `src/integrations/supabase/types.ts` | regen | `npx supabase gen types typescript --project-id vxeaywnlscwrcvlfuuqv` |
+| `src/integrations/supabase/types.ts` | regen | `npx supabase gen types typescript --project-id hcotcpkpxcheeptejmum` |
 
 Reuse: `ui/dialog`, `ui/slider`, `ui/checkbox`, `ui/progress`, `ui/button`, `ui/label`,
 `CalendlyDialog`, `sonner` toasts, zod. Follow the `ExitIntentPopup` pattern where dictionary keys
