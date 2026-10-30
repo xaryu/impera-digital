@@ -4,15 +4,18 @@ import { ReactNode } from "react";
 import { company } from "@/config/company";
 
 interface CalendlyDialogProps {
-  children: ReactNode;
+  /** The trigger. Omit it when driving the dialog with `open` / `onOpenChange`. */
+  children?: ReactNode;
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
 }
 
-const CalendlyDialog = ({ children }: CalendlyDialogProps) => {
+const CalendlyDialog = ({ children, open, onOpenChange }: CalendlyDialogProps) => {
   const { t } = useTranslation();
 
   return (
-    <Dialog>
-      <DialogTrigger asChild>{children}</DialogTrigger>
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      {children && <DialogTrigger asChild>{children}</DialogTrigger>}
       <DialogContent className="max-w-3xl h-[80vh] max-h-[700px] p-0 overflow-hidden bg-navy border border-gold/20 rounded-lg">
         <DialogHeader className="p-6 pb-0">
           <DialogTitle className="font-display text-xl text-cream">{t("calendly.title")}</DialogTitle>
