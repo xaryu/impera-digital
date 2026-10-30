@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
-import { cleanup, fireEvent, render, screen } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
+import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import i18n from "@/i18n";
+import { supabase } from "@/integrations/supabase/client";
 import { track } from "@/lib/track";
 import HoursCalculatorModal from "./HoursCalculatorModal";
 
@@ -10,13 +12,17 @@ vi.mock("@/lib/track", async (importOriginal) => ({
   track: vi.fn(),
 }));
 
+vi.mock("@/integrations/supabase/client", () => ({
+  supabase: { functions: { invoke: vi.fn() } },
+}));
+
 const Harness = () => {
   const [open, setOpen] = useState(true);
   return (
-    <>
+    <MemoryRouter>
       <button onClick={() => setOpen(true)}>reopen</button>
       <HoursCalculatorModal open={open} onOpenChange={setOpen} />
-    </>
+    </MemoryRouter>
   );
 };
 
@@ -29,7 +35,10 @@ beforeAll(async () => {
   await i18n.changeLanguage("en");
 });
 
-beforeEach(() => vi.mocked(track).mockClear());
+beforeEach(() => {
+  vi.mocked(track).mockClear();
+  vi.mocked(supabase.functions.invoke).mockReset();
+});
 
 afterEach(cleanup);
 
@@ -176,6 +185,67 @@ describe("HoursCalculatorModal", () => {
       const audit = screen.getByRole("button", { name: /audit/i });
       fireEvent.click(audit);
       expect(events().filter((event) => event === "audit_clicked")).toHaveLength(1);
+    });
+  });
+  describe("email report", () => {
+    const toEmailStep = () => {
+      next();
+      next();
+      next();
+      fireEvent.click(screen.getByLabelText("Quotes"));
+      next();
+      fireEvent.click(screen.getByRole("button", { name: "Email me the breakdown" }));
+    };
+    const fillEmail = (value = "ana@example.com") =>
+      fireEvent.change(screen.getByLabelText("Work email"), { target: { value } });
+    const submit = () => fireEvent.click(screen.getByRole("button", { name: "Send me the breakdown" }));
+
+    it("does not send without a valid email and consent", () => {
+      render(<Harness />);
+      toEmailStep();
+      fillEmail("not-an-email");
+      submit();
+      expect(screen.getByRole("alert")).toHaveTextContent("Please enter a valid email address");
+
+      fillEmail();
+      submit();
+      expect(screen.getByRole("alert")).toHaveTextContent("Please tick the box");
+      expect(supabase.functions.invoke).not.toHaveBeenCalled();
+    });
+
+    it("sends the inputs to the function and shows the confirmation", async () => {
+      vi.mocked(supabase.functions.invoke).mockResolvedValue({ data: { ok: true }, error: null });
+      render(<Harness />);
+      toEmailStep();
+      fillEmail();
+      fireEvent.click(screen.getByRole("checkbox"));
+      submit();
+
+      await waitFor(() => expect(screen.getByText("Check your inbox")).toBeInTheDocument());
+      expect(supabase.functions.invoke).toHaveBeenCalledWith("calculator-report", {
+        body: {
+          email: "ana@example.com",
+          language: "en",
+          inputs: { people: 3, hoursPerPerson: 5, hourlyCost: 40, tasks: ["quotes"] },
+          consent: true,
+          website: "",
+        },
+      });
+      expect(vi.mocked(track).mock.calls.map(([event]) => event)).toContain("email_submitted");
+      expect(screen.getByRole("button", { name: "Get My Growth Audit" })).toBeInTheDocument();
+    });
+
+    it("shows an error and stays on the form when the function fails", async () => {
+      vi.mocked(supabase.functions.invoke).mockResolvedValue({ data: null, error: new Error("boom") });
+      render(<Harness />);
+      toEmailStep();
+      fillEmail();
+      fireEvent.click(screen.getByRole("checkbox"));
+      submit();
+
+      await waitFor(() => expect(screen.getByRole("alert")).toHaveTextContent("We could not send that"));
+      expect(screen.queryByText("Check your inbox")).not.toBeInTheDocument();
+      expect(vi.mocked(track).mock.calls.map(([event]) => event)).not.toContain("email_submitted");
     });
   });
 });

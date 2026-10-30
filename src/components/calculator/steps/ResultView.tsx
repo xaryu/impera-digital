@@ -7,11 +7,12 @@ interface ResultViewProps {
   inputs: CalculatorInputs;
   onStartOver: () => void;
   onAuditClick: () => void;
+  onEmailClick: () => void;
 }
 
 const percent = (share: number) => Math.round(share * 100);
 
-const ResultView = ({ inputs, onStartOver, onAuditClick }: ResultViewProps) => {
+const ResultView = ({ inputs, onStartOver, onAuditClick, onEmailClick }: ResultViewProps) => {
   const { t, i18n } = useTranslation();
   const lang = i18n.language;
   const result = computeResult(inputs);
@@ -76,6 +77,13 @@ const ResultView = ({ inputs, onStartOver, onAuditClick }: ResultViewProps) => {
             {t("calculator.result.auditCta")}
           </button>
         </CalendlyDialog>
+        <button
+          type="button"
+          onClick={onEmailClick}
+          className="px-6 py-3 min-h-[44px] border border-gold/60 text-gold font-body text-sm font-semibold tracking-wider uppercase hover:bg-gold/10 transition-colors"
+        >
+          {t("calculator.result.emailCta")}
+        </button>
         <button
           type="button"
           onClick={onStartOver}

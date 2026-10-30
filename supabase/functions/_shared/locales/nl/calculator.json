@@ -1,0 +1,132 @@
+{
+  "calculator": {
+    "strip": {
+      "eyebrow": "Zet er een cijfer op",
+      "title": "Hoeveel uren verliest uw team?",
+      "description": "Vier korte vragen, uw eigen cijfers. U ziet de schatting meteen, geen e-mailadres nodig.",
+      "cta": "Bereken mijn uren"
+    },
+    "modal": {
+      "title": "Hoeveel uren verliest uw team?",
+      "progress": "Stap {{current}} van {{total}}",
+      "back": "Terug",
+      "next": "Volgende",
+      "seeResult": "Toon mijn schatting",
+      "startOver": "Opnieuw beginnen"
+    },
+    "steps": {
+      "people": {
+        "label": "Hoeveel mensen doen repetitief administratief werk?",
+        "help": "Iedereen die in een normale week tijd besteedt aan manuele, terugkerende taken.",
+        "unit": "personen",
+        "inputLabel": "Aantal personen",
+        "error": "Vul een geheel getal in tussen {{min}} en {{max}}"
+      },
+      "hours": {
+        "label": "Hoeveel uur per week besteedt elk van hen daaraan?",
+        "help": "Een gemiddelde volstaat. Denk aan een gewone week, niet aan uw drukste.",
+        "unit": "uur per week",
+        "inputLabel": "Uren per persoon per week",
+        "error": "Vul een geheel getal in tussen {{min}} en {{max}}"
+      },
+      "cost": {
+        "label": "Wat kost een uur van hun tijd u?",
+        "help": "Brutokost voor het bedrijf per uur, niet het nettoloon. Pas het aan als {{default}} niet klopt voor uw team.",
+        "unit": "euro per uur",
+        "inputLabel": "Uurkost in euro",
+        "error": "Vul een geheel bedrag in tussen {{min}} en {{max}}"
+      },
+      "tasks": {
+        "label": "Over welke taken gaat dat werk?",
+        "help": "Kies alles wat van toepassing is. Dit bepaalt het rapport, niet de cijfers.",
+        "error": "Kies minstens één taak"
+      }
+    },
+    "tasks": {
+      "documents": "Documenten verwerken",
+      "dataEntry": "Gegevens invoeren",
+      "invoicing": "Facturatie",
+      "followUps": "Opvolgmails",
+      "reporting": "Rapportering",
+      "quotes": "Offertes"
+    },
+    "result": {
+      "eyebrow": "Uw schatting",
+      "title": "Dit is wat die tijd waard is",
+      "hoursPerWeek": "Verloren uren per week",
+      "hoursPerYear": "Verloren uren per jaar",
+      "yearlyCost": "Wat dat per jaar kost",
+      "rangeTitle": "Wat realistisch geautomatiseerd kan worden (schatting)",
+      "rangeHours": "{{low}} – {{high}} uur per jaar",
+      "rangeCost": "{{low}} – {{high}} per jaar",
+      "estimateNote": "Dit is een schatting op basis van de cijfers die u invulde en de aannames hieronder. Het is geen meting van uw bedrijf.",
+      "assumptionsTitle": "Aannames",
+      "assumptionInputs": "Uw cijfers: {{people}} personen × {{hours}} uur per week × {{cost}} per uur. De uurkost is uw eigen cijfer.",
+      "assumptionWeeks": "{{weeks}} werkweken per jaar, rekening houdend met verlof en feestdagen.",
+      "assumptionRange": "De band van {{low}}% tot {{high}}% is een eigen schatting van Impera, geen gemeten cijfer. Waar een bedrijf daarbinnen uitkomt, hangt af van zijn tools, zijn data en hoe consistent het proces vandaag al verloopt.",
+      "auditCta": "Vraag mijn Growth Audit",
+      "emailCta": "Mail mij de uitsplitsing"
+    },
+    "email": {
+      "title": "Wilt u de uitsplitsing?",
+      "description": "We mailen u een kort rapport, geschreven rond de taken die u koos:",
+      "bullet1": "Uw taken gerangschikt naar hoe goed ze te automatiseren zijn",
+      "bullet2": "Wat we eerst zouden automatiseren, en waarom",
+      "bullet3": "Wat wellicht niet de moeite is om te automatiseren",
+      "label": "Werk-e-mailadres",
+      "placeholder": "u@bedrijf.be",
+      "consent": "Impera mag mij dit rapport mailen. Zie het <link>Privacybeleid</link>.",
+      "submit": "Stuur mij de uitsplitsing",
+      "sending": "Versturen…",
+      "invalidEmail": "Vul een geldig e-mailadres in",
+      "emailTooLong": "E-mailadres is te lang",
+      "consentRequired": "Vink het vakje aan zodat we u het rapport mogen sturen.",
+      "error": "Versturen is niet gelukt. Probeer het opnieuw."
+    },
+    "done": {
+      "title": "Kijk in uw inbox",
+      "description": "Het rapport zou binnen enkele minuten bij u moeten zijn. Kijk anders even in uw spam.",
+      "auditText": "Wilt u de cijfers samen met ons doorlopen?"
+    },
+    "report": {
+      "subject": "Uw schatting: {{hours}} uur per jaar verloren aan repetitief administratief werk",
+      "intro": "Hier is de uitsplitsing achter uw schatting, op basis van de cijfers die u invulde.",
+      "inputsTitle": "Uw cijfers",
+      "inputsLine": "{{people}} personen × {{hours}} uur per week × {{cost}} per uur",
+      "resultTitle": "Waar dat op neerkomt",
+      "weekly": "Verloren uren per week: {{value}}",
+      "yearly": "Verloren uren per jaar: {{value}}",
+      "cost": "Kost per jaar: {{value}}",
+      "range": "Realistisch te automatiseren (schatting): {{hours}} uur en {{cost}} per jaar",
+      "rankedTitle": "Uw taken, gerangschikt naar geschiktheid voor automatisering",
+      "rankedHours": "ongeveer {{hours}} uur per jaar",
+      "fit": {
+        "high": "Hoge geschiktheid",
+        "medium": "Gemiddelde geschiktheid"
+      },
+      "why": {
+        "documents": "Repetitief, regelgebaseerd, gestructureerde uitvoer.",
+        "dataEntry": "Overtypen tussen systemen is het klassieke automatiseringsgeval.",
+        "invoicing": "Gestandaardiseerd en getriggerd door bekende gebeurtenissen.",
+        "followUps": "Sjablonen werken, maar toon en timing vragen menselijke controle.",
+        "reporting": "Gegevens verzamelen automatiseert goed, interpretatie niet.",
+        "quotes": "Hangt af van hoe gestandaardiseerd de prijzen zijn."
+      },
+      "automateFirstTitle": "Wat we eerst zouden automatiseren",
+      "automateFirstNone": "Geen van uw gekozen taken is een duidelijke eerste kandidaat. Een korte audit toont waar te beginnen.",
+      "notWorthItTitle": "Wellicht nog niet de moeite waard",
+      "notWorthItReason": "Bij ongeveer {{hours}} uur per week valt er nog weinig te winnen.",
+      "notWorthItNone": "Niets op uw lijst valt onder die grens.",
+      "assumptionsTitle": "Aannames",
+      "assumptionEvenSplit": "Uw opgegeven uren zijn gelijk verdeeld over de taken die u koos. We kennen uw echte verdeling niet.",
+      "assumptionFit": "De geschiktheid voor automatisering is een eigen inschatting van Impera, geen gemeten cijfer.",
+      "disclaimer": "Dit is een schatting, geen offerte en geen belofte van besparingen.",
+      "auditText": "Wilt u deze cijfers toetsen aan uw echte processen?",
+      "auditCta": "Vraag mijn Growth Audit"
+    },
+    "a11y": {
+      "close": "Sluiten",
+      "resultShown": "Uw schatting is klaar"
+    }
+  }
+}

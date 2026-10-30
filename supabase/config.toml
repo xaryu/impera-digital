@@ -1,1 +1,4 @@
 project_id = "vxeaywnlscwrcvlfuuqv"
+[functions.calculator-report]
+# Called by visitors who are not signed in; the function validates the request itself.
+verify_jwt = false

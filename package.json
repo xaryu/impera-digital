@@ -14,7 +14,8 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
-    "check:texts": "vitest run src/i18n"
+    "check:texts": "vitest run src/i18n",
+    "sync:function-shared": "node scripts/sync-function-shared.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

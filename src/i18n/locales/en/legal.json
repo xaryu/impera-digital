@@ -2,7 +2,7 @@
   "privacy": {
     "legal": "Legal",
     "title": "Privacy Policy",
-    "lastUpdated": "Last updated: March 8, 2025",
+    "lastUpdated": "Last updated: October 30, 2026",
     "sections": [
       {
         "title": "1. Introduction",
@@ -18,7 +18,8 @@
         "list": [
           "<b>Contact forms:</b> Name, email address, phone number, and your message.",
           "<b>Calendly scheduling:</b> Name, email address, and any information you provide when booking a meeting through our integrated Calendly widget.",
-          "<b>Job applications:</b> Full name, email address, motivation letter, and CV/resume."
+          "<b>Job applications:</b> Full name, email address, motivation letter, and CV/resume.",
+          "<b>Hours calculator:</b> If you ask for the emailed report, your email address, the figures you entered (number of people, hours per week, hourly cost, selected tasks), the calculated result, your language and the time of your consent. The calculator itself needs no email, and we count anonymous usage steps (started, finished, report requested, audit clicked) without any personal data, cookies or storage."
         ],
         "afterList": [
           "We do not use tracking cookies for advertising purposes. Basic analytics may be used to understand site usage patterns."
@@ -33,6 +34,7 @@
           "To respond to your inquiries submitted through our contact form.",
           "To schedule and manage meetings booked via Calendly.",
           "To process and evaluate job applications.",
+          "To email you the calculator report you asked for. This consent covers that one report only, not newsletters or marketing.",
           "To improve our website and services."
         ],
         "afterList": [
@@ -54,7 +56,7 @@
       {
         "title": "6. Data Retention",
         "paragraphs": [
-          "We retain personal data only as long as necessary to fulfill the purposes outlined in this policy. Contact form submissions are retained for up to 12 months. Job applications are retained for up to 6 months after the position is filled, unless you consent to longer retention."
+          "We retain personal data only as long as necessary to fulfill the purposes outlined in this policy. Contact form submissions are retained for up to 12 months. Job applications are retained for up to 6 months after the position is filled, unless you consent to longer retention. Hours calculator submissions (including your email address) are deleted automatically after 24 months."
         ]
       },
       {
@@ -77,7 +79,8 @@
       {
         "title": "8. Third-Party Services",
         "paragraphs": [
-          "Our website integrates with Calendly for appointment scheduling. When you use Calendly, your data is also subject to <calendlyPolicy>Calendly's Privacy Policy</calendlyPolicy>. We encourage you to review their policy."
+          "Our website integrates with Calendly for appointment scheduling. When you use Calendly, your data is also subject to <calendlyPolicy>Calendly's Privacy Policy</calendlyPolicy>. We encourage you to review their policy.",
+          "We use Resend (Resend, Inc.) to send the hours calculator report to your email address. Resend processes your email address and the report content on our behalf. We use its EU (Ireland) sending region."
         ]
       },
       {

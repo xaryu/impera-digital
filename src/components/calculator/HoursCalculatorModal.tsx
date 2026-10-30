@@ -1,16 +1,27 @@
-import { useCallback, useEffect, useReducer, useRef, type RefObject } from "react";
+import { useCallback, useEffect, useReducer, useRef, useState, type RefObject } from "react";
 import { useTranslation } from "react-i18next";
+import { z } from "zod";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import { Progress } from "@/components/ui/progress";
 import { calculator, type CalculatorTaskId } from "@/config/calculator";
+import { supabase } from "@/integrations/supabase/client";
 import { inputsSchema } from "@/lib/calculator";
-import { newRunId, track } from "@/lib/track";
+import { newRunId, toTrackLanguage, track } from "@/lib/track";
+import DoneView from "./steps/DoneView";
+import EmailStep from "./steps/EmailStep";
 import NumberStep from "./steps/NumberStep";
 import ResultView from "./steps/ResultView";
 import TasksStep from "./steps/TasksStep";
 
 const INPUT_STEPS = ["people", "hours", "cost", "tasks"] as const;
-type Step = (typeof INPUT_STEPS)[number] | "result";
+type Step = (typeof INPUT_STEPS)[number] | "result" | "email" | "done";
+
+// Error messages are dictionary keys, translated when shown.
+const emailSchema = z
+  .string()
+  .trim()
+  .email({ message: "calculator.email.invalidEmail" })
+  .max(255, { message: "calculator.email.emailTooLong" });
 
 // The number fields are null while the visitor has cleared the input.
 interface State {
@@ -94,10 +105,45 @@ const HoursCalculatorModal = ({ open, onOpenChange, returnFocusRef }: HoursCalcu
     if (runId.current) track("audit_clicked", runId.current, i18n.language);
   }, [i18n.language]);
 
+  // The email step. Kept outside the reducer: it is not part of the estimate and "start over" clears it.
+  const [email, setEmail] = useState("");
+  const [consent, setConsent] = useState(false);
+  const [website, setWebsite] = useState(""); // honeypot
+  const [emailError, setEmailError] = useState<string | null>(null);
+  const [sending, setSending] = useState(false);
+
   const validation = inputsSchema.safeParse(state);
+
+  const submitEmail = async () => {
+    const parsedEmail = emailSchema.safeParse(email);
+    if (!parsedEmail.success) return setEmailError(parsedEmail.error.errors[0].message);
+    if (!consent) return setEmailError("calculator.email.consentRequired");
+    if (!validation.success) return;
+
+    setEmailError(null);
+    setSending(true);
+    const { error } = await supabase.functions.invoke("calculator-report", {
+      body: {
+        email: parsedEmail.data,
+        language: toTrackLanguage(i18n.language),
+        inputs: validation.data,
+        consent: true,
+        website,
+      },
+    });
+    setSending(false);
+
+    // 429 = this address already asked within the last few minutes, so a report is on its way.
+    const alreadySent = (error as { context?: { status?: number } } | null)?.context?.status === 429;
+    if (error && !alreadySent) return setEmailError("calculator.email.error");
+
+    if (runId.current) track("email_submitted", runId.current, i18n.language);
+    dispatch({ type: "goTo", step: "done" });
+  };
+
   const stepValid = (() => {
     if (step === "tasks") return state.tasks.length > 0;
-    if (step === "result") return true;
+    if (step === "result" || step === "email" || step === "done") return true;
     const field = { people: "people", hours: "hoursPerPerson", cost: "hourlyCost" }[step] as
       | "people"
       | "hoursPerPerson"
@@ -115,16 +161,25 @@ const HoursCalculatorModal = ({ open, onOpenChange, returnFocusRef }: HoursCalcu
   };
 
   const goBack = () => {
-    if (step === "result") dispatch({ type: "goTo", step: "tasks" });
+    if (step === "email") dispatch({ type: "goTo", step: "result" });
+    else if (step === "result") dispatch({ type: "goTo", step: "tasks" });
     else if (stepIndex > 0) dispatch({ type: "goTo", step: INPUT_STEPS[stepIndex - 1] });
   };
 
   const onStartOver = useCallback(() => {
     dispatch({ type: "reset" });
+    setEmail("");
+    setConsent(false);
+    setWebsite("");
+    setEmailError(null);
     startRun();
   }, [startRun]);
 
-  const question = step === "result" ? t("calculator.result.title") : t(`calculator.steps.${step}.label`);
+  const question = {
+    result: t("calculator.result.title"),
+    email: t("calculator.email.title"),
+    done: t("calculator.done.title"),
+  }[step as "result" | "email" | "done"] ?? t(`calculator.steps.${step}.label`);
   const progressText = isInputStep
     ? t("calculator.modal.progress", { current: stepIndex + 1, total: INPUT_STEPS.length })
     : t("calculator.a11y.resultShown");
@@ -162,10 +217,12 @@ const HoursCalculatorModal = ({ open, onOpenChange, returnFocusRef }: HoursCalcu
         </div>
 
         <form
+          noValidate // our own translated messages replace the browser's native tooltips
           className="flex flex-1 flex-col min-h-0"
           onSubmit={(event) => {
             event.preventDefault();
-            goNext();
+            if (step === "email") void submitEmail();
+            else goNext();
           }}
         >
           <div className="flex-1 overflow-y-auto px-6 pb-4">
@@ -207,11 +264,52 @@ const HoursCalculatorModal = ({ open, onOpenChange, returnFocusRef }: HoursCalcu
               <TasksStep selected={state.tasks} onToggle={(id) => dispatch({ type: "toggleTask", id })} />
             )}
             {step === "result" && validation.success && (
-              <ResultView inputs={validation.data} onStartOver={onStartOver} onAuditClick={onAuditClick} />
+              <ResultView
+                inputs={validation.data}
+                onStartOver={onStartOver}
+                onAuditClick={onAuditClick}
+                onEmailClick={() => dispatch({ type: "goTo", step: "email" })}
+              />
             )}
+            {step === "email" && (
+              <EmailStep
+                email={email}
+                consent={consent}
+                website={website}
+                error={emailError}
+                onEmailChange={(value) => {
+                  setEmail(value);
+                  setEmailError(null);
+                }}
+                onConsentChange={(value) => {
+                  setConsent(value);
+                  setEmailError(null);
+                }}
+                onWebsiteChange={setWebsite}
+              />
+            )}
+            {step === "done" && <DoneView onAuditClick={onAuditClick} />}
           </div>
 
-          {step !== "result" && (
+          {step === "email" && (
+            <div className="flex items-center justify-between gap-3 border-t border-navy-light/40 px-6 py-4">
+              <button
+                type="button"
+                onClick={goBack}
+                className="min-h-[44px] px-4 font-body text-sm text-gold-muted hover:text-cream transition-colors"
+              >
+                {t("calculator.modal.back")}
+              </button>
+              <button
+                type="submit"
+                disabled={sending}
+                className="px-8 py-3 min-h-[44px] bg-gold text-navy-dark font-body text-sm font-semibold tracking-wider uppercase hover:bg-gold-light transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {sending ? t("calculator.email.sending") : t("calculator.email.submit")}
+              </button>
+            </div>
+          )}
+          {isInputStep && (
             <div className="flex items-center justify-between gap-3 border-t border-navy-light/40 px-6 py-4">
               {stepIndex > 0 ? (
                 <button
