@@ -23,7 +23,7 @@ const NumberStep = ({ stepId, value, limits, onChange, prefix }: NumberStepProps
 
   return (
     <div className="space-y-6">
-      <p className="font-body text-sm text-gold-muted">{t(`${key}.help`)}</p>
+      <p className="font-body text-sm text-gold-muted">{t(`${key}.help`, { default: limits.default })}</p>
       <Slider
         min={limits.min}
         max={limits.max}
@@ -31,6 +31,7 @@ const NumberStep = ({ stepId, value, limits, onChange, prefix }: NumberStepProps
         value={[sliderValue]}
         onValueChange={([next]) => onChange(next)}
         thumbLabel={inputLabel}
+        className="[&>span:first-child]:bg-navy-dark [&>span:first-child>span]:bg-gold [&_[role=slider]]:border-gold [&_[role=slider]]:bg-navy"
       />
       <div>
         <label htmlFor={id} className="block font-body text-xs tracking-wider text-gold uppercase mb-2">

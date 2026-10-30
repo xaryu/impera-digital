@@ -58,6 +58,14 @@ describe("HoursCalculatorModal", () => {
     expect(screen.queryByRole("alert")).not.toBeInTheDocument();
   });
 
+  it("fills the default hourly cost into the help text", () => {
+    render(<Harness />);
+    next();
+    next();
+    expect(screen.getByText(/Change it if 40 is not right/)).toBeInTheDocument();
+    expect(document.body).not.toHaveTextContent("{{");
+  });
+
   it("needs at least one task before showing the result", () => {
     render(<Harness />);
     next();
