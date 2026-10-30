@@ -39,15 +39,16 @@ Run `source ~/.nvm/nvm.sh && nvm use 24` first (Node 24, see `.nvmrc`).
   and 9 are committed: `supabase/functions/calculator-report` (Deno
   type-checked, shared code synced via `npm run sync:function-shared` into `_shared/`, drift test in
   `src/lib/function-shared.test.ts`), the email/done steps in the modal, and the privacy update in
-  `legal.json`. Function is deployed; not done: `RESEND_API_KEY`, the real send test (both wait for DNS) and step 10 QA.
+  `legal.json`. Function is deployed and `RESEND_API_KEY` is set (2026-10-30); not done: the move
+  to `impera.digital` (below), the real send test and step 10 QA.
   Full technical plan: [`docs/plans/hours-calculator.md`](docs/plans/hours-calculator.md).
   Read it before touching this feature. The remote `origin/feature/hours-calculator` is a different
   implementation; only borrow from it (see its `report.ts` for the email template at step 7).
 - **Open review findings (not fixed, decide before step 10 QA)**. The review fixes for failed sends,
   stale retry, race-loser status, email state on reopen and close-while-sending are committed, and
   the function was redeployed on 2026-10-30 (`npx supabase functions deploy calculator-report`; the CLI is
-  a dev dependency, not on PATH). Note that until `RESEND_API_KEY` is set the function now returns 502
-  and the modal shows its error. Remaining:
+  a dev dependency, not on PATH). If Resend rejects a send the function returns 502 and the modal
+  shows its error. Remaining:
   - Abuse: double opt-in is implemented (migration `20261030170000_calculator_double_optin.sql` pushed and
     `calculator-report` redeployed on 2026-10-30; committed in `65efb6d`). Submitting only sends a short
     confirmation email; the report goes out when the visitor presses the button on
@@ -76,21 +77,21 @@ Run `source ~/.nvm/nvm.sh && nvm use 24` first (Node 24, see `.nvmrc`).
     the request's allowed Origin, so `SITE_URL` must be set.
 - **Step 7 Resend setup (resume here)**, following https://resend.com/setup.md:
   - Done: Resend MCP plugin installed (user scope) and signed in via OAuth. Domain
-    `mail.impera-group.com` created in Resend, region `eu-west-1`, domain ID
-    `ca214ee7-e51a-4dbc-8a62-d7bef76ed356`, status `not_started`. Sender will be
-    `Impera <report@mail.impera-group.com>` (this replaces `impera-group.com` in plan D4 and §6.3).
-  - **Blocked on DNS**: Paul does not own `impera-group.com`; the boss owns the GoDaddy account
-    (nameservers `domaincontrol.com`). The boss must add the 4 records (get them with the Resend
-    `get-domain` tool) or press Auto configure at `https://resend.com/domains/<id>`. Root DMARC
-    already exists (`p=quarantine`), so don't add another.
-  - Done (2026-10-30): `REPORT_FROM` and `SITE_URL` (`https://impera-digital.vercel.app`) secrets
-    set and `calculator-report` deployed to project `hcotcpkpxcheeptejmum` (CORS and validation
-    checked). Without `RESEND_API_KEY` the function stores the lead and skips the email. Note that
-    `supabase/config.toml` `project_id` is a stale Lovable ref; the CLI is linked to the real project.
-  - Next (once the boss added the DNS records): `verify-domain`, poll until `verified`; create a
-    **sending-only** API key restricted to the domain (never the full-access key); Paul runs
-    `supabase secrets set RESEND_API_KEY=...` himself; send a real test report; then step 10 QA and
-    update the `Active work` notes. Function bundling is decided: use the sync script, no
-    cross-folder imports.
-  - Until the domain is verified, test sends can only go from `onboarding@resend.dev` to Paul's own
-    address. Never ask for or accept an API key pasted in chat.
+    `mail.impera-group.com` (ID `ca214ee7-e51a-4dbc-8a62-d7bef76ed356`, `eu-west-1`) is
+    **verified**; `RESEND_API_KEY`, `REPORT_FROM` and `SITE_URL` (`https://impera-digital.vercel.app`)
+    are set and `calculator-report` is deployed to project `hcotcpkpxcheeptejmum`. Note that
+    `supabase/config.toml` `project_id` is a stale Lovable ref; pass `--project-ref` to the CLI.
+  - **Moving to `impera.digital` (decided 2026-10-30)**: the sender and the contact addresses change.
+    Code is on branch `chore/impera-digital-domain` (`company.ts` → `contact@` / `careers@impera.digital`,
+    `_shared` synced). Domain `mail.impera.digital` created in Resend (ID
+    `da8f7c17-cc32-4c1d-9746-33cf7b42917a`, `eu-west-1`), **verified** on 2026-10-30. `impera.digital` is on
+    the boss's GoDaddy account and has **no MX records**, so it can't receive mail yet. Root DMARC
+    already exists (`p=quarantine`), so don't add another. Order:
+    1. Done: Resend records added and domain verified. Still open: mailboxes for `contact@` and
+       `careers@impera.digital` (e.g. Zoho, as on `impera-group.com`); no MX records yet.
+    2. Done (2026-10-30): `REPORT_FROM="Impera <report@mail.impera.digital>"` set; the existing API
+       key works for the new domain. Real test via curl: confirmation and report both delivered.
+    3. Only after MX works: merge `chore/impera-digital-domain` into `main` and deploy (otherwise
+       visitor emails to the contact addresses bounce). Then step 10 QA. Remove the old domain later.
+  - Function bundling is decided: use the sync script, no cross-folder imports. Never ask for or
+    accept an API key pasted in chat.

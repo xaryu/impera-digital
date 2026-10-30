@@ -4,8 +4,8 @@
 export const company = {
   name: "Impera",
   siteUrl: "https://impera-digital.vercel.app",
-  email: "contact@impera-group.com",
-  careersEmail: "careers@impera-group.com",
+  email: "contact@impera.digital",
+  careersEmail: "careers@impera.digital",
   phone: {
     display: "+32 492 20 23 77",
     href: "tel:+32492202377",
