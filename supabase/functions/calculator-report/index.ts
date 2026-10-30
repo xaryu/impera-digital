@@ -11,7 +11,7 @@
 // is never a number the browser claimed.
 //
 // Secrets (supabase secrets set ...): RESEND_API_KEY (sending-only key), REPORT_FROM
-// (e.g. "Impera <report@mail.impera-group.com>"), SITE_URL (allowed CORS origins, comma-separated).
+// (e.g. "Impera <report@mail.impera.digital>"), SITE_URL (allowed CORS origins, comma-separated).
 // SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are provided by Supabase.
 //
 // Shared code lives in ../_shared (npm run sync:function-shared), never edit it there.
