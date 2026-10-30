@@ -85,6 +85,20 @@ const HoursCalculatorModal = ({ open, onOpenChange, returnFocusRef }: HoursCalcu
   const runId = useRef<string | null>(null);
   const finishedRunId = useRef<string | null>(null);
 
+  // The email step. Kept outside the reducer: it is not part of the estimate and "start over" clears it.
+  const [email, setEmail] = useState("");
+  const [consent, setConsent] = useState(false);
+  const [website, setWebsite] = useState(""); // honeypot
+  const [emailError, setEmailError] = useState<string | null>(null);
+  const [sending, setSending] = useState(false);
+
+  const clearEmailStep = useCallback(() => {
+    setEmail("");
+    setConsent(false);
+    setWebsite("");
+    setEmailError(null);
+  }, []);
+
   const startRun = useCallback(() => {
     runId.current = newRunId();
     track("started", runId.current, i18n.language);
@@ -98,9 +112,11 @@ const HoursCalculatorModal = ({ open, onOpenChange, returnFocusRef }: HoursCalcu
       // it would log "finished" again without the visitor having gone through the questions.
       if (step === "done") dispatch({ type: "reset" });
       else if (step === "result" || step === "email") dispatch({ type: "goTo", step: "people" });
+      // Never carry an email address or a ticked consent box over to the next visitor.
+      clearEmailStep();
       startRun();
     }
-  }, [open, startRun, step]);
+  }, [open, startRun, step, clearEmailStep]);
 
   useEffect(() => {
     if (step !== "result" || !runId.current || finishedRunId.current === runId.current) return;
@@ -111,13 +127,6 @@ const HoursCalculatorModal = ({ open, onOpenChange, returnFocusRef }: HoursCalcu
   const onAuditClick = useCallback(() => {
     if (runId.current) track("audit_clicked", runId.current, i18n.language);
   }, [i18n.language]);
-
-  // The email step. Kept outside the reducer: it is not part of the estimate and "start over" clears it.
-  const [email, setEmail] = useState("");
-  const [consent, setConsent] = useState(false);
-  const [website, setWebsite] = useState(""); // honeypot
-  const [emailError, setEmailError] = useState<string | null>(null);
-  const [sending, setSending] = useState(false);
 
   const validation = inputsSchema.safeParse(state);
 
@@ -141,14 +150,16 @@ const HoursCalculatorModal = ({ open, onOpenChange, returnFocusRef }: HoursCalcu
     });
     setSending(false);
 
-    // The visitor closed the modal or started over while the request was in flight: don't move them.
-    if (runId.current !== submittedRun) return;
-
-    // 429 = this address already asked within the last few minutes, so a report is on its way.
+    // 429 = a report for this address was already sent within the last few minutes.
     const alreadySent = (error as { context?: { status?: number } } | null)?.context?.status === 429;
-    if (error && !alreadySent) return setEmailError("calculator.email.error");
+    const succeeded = !error || alreadySent;
 
-    if (runId.current) track("email_submitted", runId.current, i18n.language);
+    // Count the submission even if the visitor closed the modal or started over meanwhile.
+    if (succeeded && submittedRun) track("email_submitted", submittedRun, i18n.language);
+
+    // ...but only move them (or show an error) if they are still in the run that submitted.
+    if (runId.current !== submittedRun) return;
+    if (!succeeded) return setEmailError("calculator.email.error");
     dispatch({ type: "goTo", step: "done" });
   };
 
@@ -179,12 +190,9 @@ const HoursCalculatorModal = ({ open, onOpenChange, returnFocusRef }: HoursCalcu
 
   const onStartOver = useCallback(() => {
     dispatch({ type: "reset" });
-    setEmail("");
-    setConsent(false);
-    setWebsite("");
-    setEmailError(null);
+    clearEmailStep();
     startRun();
-  }, [startRun]);
+  }, [startRun, clearEmailStep]);
 
   const question = {
     result: t("calculator.result.title"),

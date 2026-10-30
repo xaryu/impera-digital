@@ -86,17 +86,20 @@ Deno.serve(async (request) => {
   // Only a report that was really sent counts as a duplicate (the modal shows 429 as "already sent").
   if (recent.some((r) => r.report_sent_at)) return reply({ error: "rate_limited" }, 429);
 
-  // An earlier attempt stored the lead but the email never went out: send that one again. Resend's
-  // Idempotency-Key is the row id, so concurrent retries still produce one email.
+  // An earlier attempt stored the lead but the email never went out: reuse that row, with what the
+  // visitor submitted now (they may have changed the numbers or the language since).
   let row: { id: string };
-  let reportInputs = inputs;
-  let reportLanguage = language;
   const unsent = recent[0];
-  const storedInputs = unsent ? inputsSchema.safeParse(unsent.inputs) : null;
-  if (unsent && storedInputs?.success) {
+  if (unsent) {
     row = unsent;
-    reportInputs = storedInputs.data;
-    reportLanguage = unsent.language as typeof language;
+    const { error: updateError } = await supabase
+      .from("calculator_submissions")
+      .update({ language, inputs, result: computeResult(inputs) })
+      .eq("id", row.id);
+    if (updateError) {
+      console.error("update of unsent submission failed:", updateError.message);
+      return reply({ error: "server_error" }, 500);
+    }
   } else {
     // The endpoint is public, so cap total volume to bound abuse (spam to other people's addresses).
     const hourAgo = new Date(Date.now() - 60 * 60_000).toISOString();
@@ -135,39 +138,51 @@ Deno.serve(async (request) => {
     if (raceError) {
       console.error("race check failed:", raceError.message);
     } else if (winners[0] && winners[0].id !== row.id) {
-      await supabase.from("calculator_submissions").delete().eq("id", row.id);
-      return reply({ error: "rate_limited" }, 429);
+      const { error: deleteError } = await supabase.from("calculator_submissions").delete().eq("id", row.id);
+      if (deleteError) console.error("could not remove duplicate row", row.id, deleteError.message);
+      // Not 429: the other request's email may still fail, so the visitor must not be told it was sent.
+      return reply({ error: "in_progress" }, 409);
     }
   }
 
-  // From here the row is the lead: a failed email is logged and can be retried, but the visitor
-  // still gets ok (report_sent_at stays null).
+  // From here the row is the lead and is kept. If the email can't go out the visitor gets an error
+  // (report_sent_at stays null), and submitting again retries the send.
   const apiKey = Deno.env.get("RESEND_API_KEY");
   const from = Deno.env.get("REPORT_FROM");
   if (!apiKey || !from) {
     console.error("RESEND_API_KEY or REPORT_FROM is not set; report not sent for", row.id);
-    return reply({ ok: true });
+    return reply({ error: "email_failed" }, 502);
   }
 
-  const { subject, html } = buildReportEmail(reportInputs, reportLanguage);
+  const { subject, html } = buildReportEmail(inputs, language);
+  // The key covers the content too: Resend rejects a reused key with a different payload, which
+  // would otherwise block a retry after the visitor changed their numbers.
+  const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(JSON.stringify({ inputs, language })));
+  const contentHash = Array.from(new Uint8Array(digest).slice(0, 8), (byte) => byte.toString(16).padStart(2, "0")).join("");
   try {
     const response = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${apiKey}`,
         "Content-Type": "application/json",
-        "Idempotency-Key": `calculator-report/${row.id}`,
+        "Idempotency-Key": `calculator-report/${row.id}/${contentHash}`,
       },
       body: JSON.stringify({ from, to: [email], subject, html }),
     });
-    if (response.ok) {
-      await supabase.from("calculator_submissions").update({ report_sent_at: new Date().toISOString() }).eq("id", row.id);
-    } else {
+    if (!response.ok) {
       console.error("Resend rejected the report for", row.id, response.status, await response.text());
+      return reply({ error: "email_failed" }, 502);
     }
   } catch (error) {
     console.error("Resend request failed for", row.id, error);
+    return reply({ error: "email_failed" }, 502);
   }
+
+  const { error: sentError } = await supabase
+    .from("calculator_submissions")
+    .update({ report_sent_at: new Date().toISOString() })
+    .eq("id", row.id);
+  if (sentError) console.error("could not mark report as sent for", row.id, sentError.message);
 
   return reply({ ok: true });
 });
