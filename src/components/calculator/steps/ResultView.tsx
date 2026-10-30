@@ -6,11 +6,12 @@ import { computeResult, formatEuro, formatHours, type CalculatorInputs } from "@
 interface ResultViewProps {
   inputs: CalculatorInputs;
   onStartOver: () => void;
+  onAuditClick: () => void;
 }
 
 const percent = (share: number) => Math.round(share * 100);
 
-const ResultView = ({ inputs, onStartOver }: ResultViewProps) => {
+const ResultView = ({ inputs, onStartOver, onAuditClick }: ResultViewProps) => {
   const { t, i18n } = useTranslation();
   const lang = i18n.language;
   const result = computeResult(inputs);
@@ -69,6 +70,7 @@ const ResultView = ({ inputs, onStartOver }: ResultViewProps) => {
         <CalendlyDialog>
           <button
             type="button"
+            onClick={onAuditClick}
             className="px-6 py-3 min-h-[44px] bg-gold text-navy-dark font-body text-sm font-semibold tracking-wider uppercase hover:bg-gold-light transition-colors"
           >
             {t("calculator.result.auditCta")}

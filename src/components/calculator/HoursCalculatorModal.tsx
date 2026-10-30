@@ -1,9 +1,10 @@
-import { useCallback, useReducer, type RefObject } from "react";
+import { useCallback, useEffect, useReducer, useRef, type RefObject } from "react";
 import { useTranslation } from "react-i18next";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import { Progress } from "@/components/ui/progress";
 import { calculator, type CalculatorTaskId } from "@/config/calculator";
 import { inputsSchema } from "@/lib/calculator";
+import { newRunId, track } from "@/lib/track";
 import NumberStep from "./steps/NumberStep";
 import ResultView from "./steps/ResultView";
 import TasksStep from "./steps/TasksStep";
@@ -65,9 +66,33 @@ interface HoursCalculatorModalProps {
 // The reducer lives here, above the dialog content, so closing and reopening within the same page
 // view keeps the visitor's inputs.
 const HoursCalculatorModal = ({ open, onOpenChange, returnFocusRef }: HoursCalculatorModalProps) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [state, dispatch] = useReducer(reducer, initialState);
   const { step } = state;
+
+  // One run = one modal open, or one "start over". The id lives in memory only (see lib/track.ts).
+  const runId = useRef<string | null>(null);
+  const finishedRunId = useRef<string | null>(null);
+
+  const startRun = useCallback(() => {
+    runId.current = newRunId();
+    track("started", runId.current, i18n.language);
+  }, [i18n.language]);
+
+  useEffect(() => {
+    if (!open) runId.current = null;
+    else if (!runId.current) startRun();
+  }, [open, startRun]);
+
+  useEffect(() => {
+    if (step !== "result" || !runId.current || finishedRunId.current === runId.current) return;
+    finishedRunId.current = runId.current;
+    track("finished", runId.current, i18n.language);
+  }, [step, i18n.language]);
+
+  const onAuditClick = useCallback(() => {
+    if (runId.current) track("audit_clicked", runId.current, i18n.language);
+  }, [i18n.language]);
 
   const validation = inputsSchema.safeParse(state);
   const stepValid = (() => {
@@ -94,7 +119,10 @@ const HoursCalculatorModal = ({ open, onOpenChange, returnFocusRef }: HoursCalcu
     else if (stepIndex > 0) dispatch({ type: "goTo", step: INPUT_STEPS[stepIndex - 1] });
   };
 
-  const onStartOver = useCallback(() => dispatch({ type: "reset" }), []);
+  const onStartOver = useCallback(() => {
+    dispatch({ type: "reset" });
+    startRun();
+  }, [startRun]);
 
   const question = step === "result" ? t("calculator.result.title") : t(`calculator.steps.${step}.label`);
   const progressText = isInputStep
@@ -179,7 +207,7 @@ const HoursCalculatorModal = ({ open, onOpenChange, returnFocusRef }: HoursCalcu
               <TasksStep selected={state.tasks} onToggle={(id) => dispatch({ type: "toggleTask", id })} />
             )}
             {step === "result" && validation.success && (
-              <ResultView inputs={validation.data} onStartOver={onStartOver} />
+              <ResultView inputs={validation.data} onStartOver={onStartOver} onAuditClick={onAuditClick} />
             )}
           </div>
 

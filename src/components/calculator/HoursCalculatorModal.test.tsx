@@ -1,8 +1,14 @@
 import { useState } from "react";
-import { afterEach, beforeAll, describe, expect, it } from "vitest";
+import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import i18n from "@/i18n";
+import { track } from "@/lib/track";
 import HoursCalculatorModal from "./HoursCalculatorModal";
+
+vi.mock("@/lib/track", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@/lib/track")>()),
+  track: vi.fn(),
+}));
 
 const Harness = () => {
   const [open, setOpen] = useState(true);
@@ -22,6 +28,8 @@ const setNumber = (label: string | RegExp, value: string) =>
 beforeAll(async () => {
   await i18n.changeLanguage("en");
 });
+
+beforeEach(() => vi.mocked(track).mockClear());
 
 afterEach(cleanup);
 
@@ -130,5 +138,44 @@ describe("HoursCalculatorModal", () => {
     fireEvent.click(screen.getByRole("button", { name: "Start over" }));
     expect(screen.getByLabelText("Number of people", { selector: "input" })).toHaveValue(3);
   });
-});
 
+  describe("tracking", () => {
+    const events = () => vi.mocked(track).mock.calls.map(([event]) => event);
+    const toResult = () => {
+      next();
+      next();
+      next();
+      fireEvent.click(screen.getByLabelText("Quotes"));
+      next();
+    };
+
+    it("logs started once per open, and finished once per run", () => {
+      render(<Harness />);
+      expect(events()).toEqual(["started"]);
+      toResult();
+      expect(events()).toEqual(["started", "finished"]);
+      fireEvent.click(screen.getByRole("button", { name: "Back" }));
+      next();
+      expect(events()).toEqual(["started", "finished"]);
+    });
+
+    it("uses the same run id within a run and a new one after start over", () => {
+      render(<Harness />);
+      toResult();
+      const [first, second] = vi.mocked(track).mock.calls.map(([, runId]) => runId);
+      expect(first).toBe(second);
+      fireEvent.click(screen.getByRole("button", { name: "Start over" }));
+      const startedAgain = vi.mocked(track).mock.calls.at(-1);
+      expect(startedAgain?.[0]).toBe("started");
+      expect(startedAgain?.[1]).not.toBe(first);
+    });
+
+    it("logs audit_clicked when the audit button is clicked", () => {
+      render(<Harness />);
+      toResult();
+      const audit = screen.getByRole("button", { name: /audit/i });
+      fireEvent.click(audit);
+      expect(events().filter((event) => event === "audit_clicked")).toHaveLength(1);
+    });
+  });
+});
