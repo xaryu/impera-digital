@@ -3,7 +3,7 @@ import { Award, Users, Target, Shield } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import LeadershipSection from "@/components/sections/LeadershipSection";
-import LocalizedLink from "@/components/layout/LocalizedLink";
+import BookingLink from "@/components/common/BookingLink";
 import { useTranslation } from "react-i18next";
 import { useAdmin } from "@/hooks/use-admin";
 
@@ -126,12 +126,9 @@ const About = () => {
           <p className="font-body text-lg text-gold-muted max-w-xl mx-auto mb-10">
             {t("aboutPage.ctaDesc")}
           </p>
-          <LocalizedLink
-            to="/contact"
-            className="inline-block px-12 py-5 bg-gold text-navy-dark font-body text-sm font-semibold tracking-wider uppercase hover:bg-gold-light transition-colors duration-300"
-          >
+          <BookingLink className="inline-block px-12 py-5 bg-gold text-navy-dark font-body text-sm font-semibold tracking-wider uppercase hover:bg-gold-light transition-colors duration-300">
             {t("aboutPage.ctaButton")}
-          </LocalizedLink>
+          </BookingLink>
         </div>
       </section>
 

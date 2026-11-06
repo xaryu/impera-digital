@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import FadeInSection from "@/components/common/FadeInSection";
 import { ShieldCheck, BarChart3, Clock, UserCheck, ArrowRight } from "lucide-react";
-import LocalizedLink from "@/components/layout/LocalizedLink";
+import BookingLink from "@/components/common/BookingLink";
 
 const GuaranteeSection = () => {
   const { t } = useTranslation();
@@ -64,13 +64,10 @@ const GuaranteeSection = () => {
 
           <FadeInSection delay={800}>
             <div className="text-center">
-              <LocalizedLink
-                to="/contact"
-                className="inline-flex items-center gap-3 px-10 py-4 bg-gold text-navy-dark font-body text-sm tracking-wider uppercase font-semibold hover:bg-gold-light transition-colors duration-300"
-              >
+              <BookingLink className="inline-flex items-center gap-3 px-10 py-4 bg-gold text-navy-dark font-body text-sm tracking-wider uppercase font-semibold hover:bg-gold-light transition-colors duration-300">
                 {t("guarantee.cta")}
                 <ArrowRight className="w-4 h-4" />
-              </LocalizedLink>
+              </BookingLink>
             </div>
           </FadeInSection>
         </div>
