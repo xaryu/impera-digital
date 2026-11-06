@@ -14,14 +14,18 @@
   "services": {
     "eyebrow": "Wat We Doen",
     "title": "Diensten van Onderscheiding",
-    "brandIdentity": "Merkidentiteit",
-    "brandIdentityDesc": "Het creëren van visuele identiteiten die aandacht afdwingen en prestige communiceren op elk contactpunt.",
-    "webDesign": "Webdesign & Ontwikkeling",
-    "webDesignDesc": "Op maat gemaakte digitale ervaringen ontworpen voor prestaties, elegantie en een blijvende indruk.",
-    "digitalMarketing": "Digitale Marketing",
-    "digitalMarketingDesc": "Strategische campagnes die uw merk positioneren voor de doelgroepen die er het meest toe doen.",
-    "growthStrategy": "Groeistrategie",
-    "growthStrategyDesc": "Datagedreven kaders die marktaanwezigheid transformeren in meetbare dominantie."
+    "seniorTime": "Verspilde seniortijd",
+    "seniorTimeDesc": "Uw best betaalde mensen besteden hun week aan uw goedkoopste werk — en het denkwerk waarvoor u hen eigenlijk betaalt, komt er nooit van.",
+    "disconnectedSystems": "Systemen die niet samenwerken",
+    "disconnectedSystemsDesc": "Elke handmatige overdracht is een kans dat een dure fout bij een klant belandt voordat iemand ze opmerkt.",
+    "lateDecisions": "Beslissingen komen te laat",
+    "lateDecisionsDesc": "U stuurt uw bedrijf bij via de achteruitkijkspiegel — de cijfers komen pas binnen nadat de beslissing al genomen is.",
+    "growingMess": "Groei vergroot de chaos",
+    "growingMessDesc": "Groei zou als winnen moeten voelen. In plaats daarvan betekent elke nieuwe klant gewoon meer handwerk voor hetzelfde team.",
+    "coldLeads": "Leads koelen af",
+    "coldLeadsDesc": "Elke aanvraag wacht tot iemand eraan toekomt. Tegen die tijd heeft de prospect al getekend bij wie als eerste antwoordde.",
+    "keyPerson": "Kennis in één hoofd",
+    "keyPersonDesc": "Belangrijke processen zitten in het geheugen van één persoon. Is die afwezig, dan ligt het werk stil, en vertrekt die persoon, dan verdwijnt de kennis mee."
   },
   "results": {
     "eyebrow": "Bewezen in de praktijk, niet alleen beloofd",

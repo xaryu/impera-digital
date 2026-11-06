@@ -14,14 +14,18 @@
   "services": {
     "eyebrow": "What We Do",
     "title": "Services of Distinction",
-    "brandIdentity": "Senior time wasted",
-    "brandIdentityDesc": "Your highest-paid people spend their week on your cheapest work — and the thinking you actually pay them for never happens.",
-    "webDesign": "Systems that don't talk",
-    "webDesignDesc": "Every manual handoff is a chance for a costly mistake to reach a client before anyone catches it.",
-    "digitalMarketing": "Decisions arrive late",
-    "digitalMarketingDesc": "You’re steering the business by looking in the rearview mirror — the numbers arrive after the decision’s already been made.",
-    "growthStrategy": "Growth multiplies the mess",
-    "growthStrategyDesc": "Growth should feel like winning. Instead, every new client just means more manual work piled on the same team."
+    "seniorTime": "Senior time wasted",
+    "seniorTimeDesc": "Your highest-paid people spend their week on your cheapest work — and the thinking you actually pay them for never happens.",
+    "disconnectedSystems": "Systems that don't talk",
+    "disconnectedSystemsDesc": "Every manual handoff is a chance for a costly mistake to reach a client before anyone catches it.",
+    "lateDecisions": "Decisions arrive late",
+    "lateDecisionsDesc": "You’re steering the business by looking in the rearview mirror — the numbers arrive after the decision’s already been made.",
+    "growingMess": "Growth multiplies the mess",
+    "growingMessDesc": "Growth should feel like winning. Instead, every new client just means more manual work piled on the same team.",
+    "coldLeads": "Leads go cold",
+    "coldLeadsDesc": "Every enquiry waits for someone to get to it. By the time they do, the prospect has already signed with whoever answered first.",
+    "keyPerson": "Knowledge in one head",
+    "keyPersonDesc": "Key processes live in one person's memory. When they're away, the work stops, and when they leave, it goes with them."
   },
   "results": {
     "eyebrow": "Proven in practice, not just promised",

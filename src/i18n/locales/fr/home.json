@@ -14,14 +14,18 @@
   "services": {
     "eyebrow": "Nos Services",
     "title": "Des Services d'Excellence",
-    "brandIdentity": "Identité de Marque",
-    "brandIdentityDesc": "Création d'identités visuelles qui imposent l'attention et communiquent le prestige à chaque point de contact.",
-    "webDesign": "Design & Développement Web",
-    "webDesignDesc": "Des expériences digitales sur mesure, conçues pour la performance, l'élégance et une impression durable.",
-    "digitalMarketing": "Marketing Digital",
-    "digitalMarketingDesc": "Des campagnes stratégiques qui positionnent votre marque devant les audiences qui comptent le plus.",
-    "growthStrategy": "Stratégie de Croissance",
-    "growthStrategyDesc": "Des cadres basés sur les données qui transforment la présence sur le marché en domination mesurable."
+    "seniorTime": "Du temps senior gaspillé",
+    "seniorTimeDesc": "Vos collaborateurs les mieux payés passent leur semaine sur vos tâches les moins rentables — et la réflexion pour laquelle vous les payez n'a jamais lieu.",
+    "disconnectedSystems": "Des systèmes qui ne se parlent pas",
+    "disconnectedSystemsDesc": "Chaque transfert manuel est une occasion de voir une erreur coûteuse atteindre un client avant que quiconque ne la repère.",
+    "lateDecisions": "Des décisions qui arrivent trop tard",
+    "lateDecisionsDesc": "Vous pilotez l'entreprise dans le rétroviseur — les chiffres arrivent une fois la décision déjà prise.",
+    "growingMess": "La croissance multiplie le désordre",
+    "growingMessDesc": "La croissance devrait avoir le goût de la victoire. Au lieu de cela, chaque nouveau client ajoute du travail manuel à la même équipe.",
+    "coldLeads": "Des leads qui refroidissent",
+    "coldLeadsDesc": "Chaque demande attend que quelqu'un s'en occupe. Entre-temps, le prospect a déjà signé avec celui qui a répondu le premier.",
+    "keyPerson": "Un savoir dans une seule tête",
+    "keyPersonDesc": "Les processus clés reposent sur la mémoire d'une seule personne. Quand elle s'absente, le travail s'arrête ; quand elle part, tout part avec elle."
   },
   "results": {
     "eyebrow": "Prouvé sur le terrain, pas seulement promis",
