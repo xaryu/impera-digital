@@ -35,7 +35,8 @@
   },
   "common": {
     "skipToContent": "Naar hoofdinhoud gaan",
-    "genericError": "Er is iets misgegaan. Probeer het opnieuw."
+    "genericError": "Er is iets misgegaan. Probeer het opnieuw.",
+    "opensInNewTab": "opent in een nieuw tabblad"
   },
   "cookieConsent": {
     "title": "Wij respecteren uw privacy",
@@ -64,11 +65,6 @@
     "success": "Uw gids is onderweg! Controleer uw inbox.",
     "invalidEmail": "Vul een geldig e-mailadres in",
     "emailTooLong": "Het e-mailadres is te lang"
-  },
-  "calendly": {
-    "title": "Boek een Gratis Gesprek van 30 Minuten",
-    "subtitle": "Kies een tijd die u uitkomt — we bespreken uw doelen en hoe Impera kan helpen.",
-    "iframeTitle": "Een gesprek inplannen"
   },
   "notFound": {
     "seoTitle": "Pagina niet gevonden — Impera",

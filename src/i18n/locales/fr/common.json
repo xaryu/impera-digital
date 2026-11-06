@@ -35,7 +35,8 @@
   },
   "common": {
     "skipToContent": "Aller au contenu principal",
-    "genericError": "Une erreur s'est produite. Veuillez réessayer."
+    "genericError": "Une erreur s'est produite. Veuillez réessayer.",
+    "opensInNewTab": "s'ouvre dans un nouvel onglet"
   },
   "cookieConsent": {
     "title": "Nous respectons votre vie privée",
@@ -64,11 +65,6 @@
     "success": "Votre guide est en route ! Vérifiez votre boîte de réception.",
     "invalidEmail": "Veuillez saisir une adresse e-mail valide",
     "emailTooLong": "L'adresse e-mail est trop longue"
-  },
-  "calendly": {
-    "title": "Réserver un Appel Gratuit de 30 Minutes",
-    "subtitle": "Choisissez un créneau qui vous convient — nous discuterons de vos objectifs et de comment Impera peut vous aider.",
-    "iframeTitle": "Planifier un appel"
   },
   "notFound": {
     "seoTitle": "Page introuvable — Impera",

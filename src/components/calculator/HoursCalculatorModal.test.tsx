@@ -2,6 +2,7 @@ import { useState } from "react";
 import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
 import { MemoryRouter } from "react-router-dom";
 import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { company } from "@/config/company";
 import i18n from "@/i18n";
 import { supabase } from "@/integrations/supabase/client";
 import { track } from "@/lib/track";
@@ -114,7 +115,10 @@ describe("HoursCalculatorModal", () => {
     expect(screen.getByText(/8,280.*16,560 a year/)).toBeInTheDocument();
     expect(screen.getByText(/This is an estimate/)).toBeInTheDocument();
     expect(screen.getByText("Assumptions")).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Get My Growth Audit" })).toBeInTheDocument();
+    const audit = screen.getByRole("link", { name: /Get My Growth Audit/ });
+    expect(audit).toHaveAttribute("href", company.calendlyUrl);
+    expect(audit).toHaveAttribute("target", "_blank");
+    expect(audit).toHaveAttribute("rel", "noopener noreferrer");
     expect(screen.queryByLabelText(/email/i)).not.toBeInTheDocument();
   });
 
@@ -182,7 +186,7 @@ describe("HoursCalculatorModal", () => {
     it("logs audit_clicked when the audit button is clicked", () => {
       render(<Harness />);
       toResult();
-      const audit = screen.getByRole("button", { name: /audit/i });
+      const audit = screen.getByRole("link", { name: /audit/i });
       fireEvent.click(audit);
       expect(events().filter((event) => event === "audit_clicked")).toHaveLength(1);
     });
@@ -232,7 +236,7 @@ describe("HoursCalculatorModal", () => {
         },
       });
       expect(vi.mocked(track).mock.calls.map(([event]) => event)).toContain("email_submitted");
-      expect(screen.getByRole("button", { name: "Get My Growth Audit" })).toBeInTheDocument();
+      expect(screen.getByRole("link", { name: /Get My Growth Audit/ })).toBeInTheDocument();
     });
 
     it("shows an error and stays on the form when the function fails", async () => {
