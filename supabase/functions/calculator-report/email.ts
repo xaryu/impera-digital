@@ -4,6 +4,7 @@
 // and no tracking pixels.
 import { calculator } from "@/config/calculator";
 import { company } from "@/config/company";
+import { emailTheme } from "@/config/email-theme";
 import {
   buildReport,
   computeResult,
@@ -23,8 +24,15 @@ const dictionaries: Record<Language, typeof en.calculator> = {
   nl: nl.calculator,
 };
 
-const NAVY = "#0f1b33";
-const GOLD = "#c9a24a";
+const NAVY = emailTheme.navyDark;
+const GOLD = emailTheme.gold;
+
+// Asks mail apps not to recolor the email in dark mode, which is one way a gold button can turn dark.
+const documentHead = `<head>
+<meta charset="utf-8">
+<meta name="color-scheme" content="light only">
+<meta name="supported-color-schemes" content="light only">
+</head>`;
 
 const escapeHtml = (value: string) =>
   value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -56,7 +64,7 @@ export const buildReportEmail = (inputs: CalculatorInputs, language: Language) =
     .map(
       (task) => `<li style="margin:0 0 10px;font:15px/1.5 Arial,sans-serif;color:#333">
         <strong>${escapeHtml(taskName(task.id))}</strong>
-        <span style="color:${GOLD}"> · ${escapeHtml(fitLabel(task.fit))}</span><br>
+        <span style="color:${emailTheme.navy}"> · ${escapeHtml(fitLabel(task.fit))}</span><br>
         ${escapeHtml(fill(t.report.rankedHours, { hours: hours(task.yearlyHours) }))}<br>
         <span style="color:#666">${escapeHtml(why(task.id))}</span></li>`,
     )
@@ -93,9 +101,9 @@ export const buildReportEmail = (inputs: CalculatorInputs, language: Language) =
   const subject = fill(t.report.subject, { hours: hours(result.yearlyHours) });
 
   const html = `<!doctype html>
-<html lang="${language}"><body style="margin:0;padding:24px;background:#f6f1e7">
+<html lang="${language}">${documentHead}<body style="margin:0;padding:24px;background:${emailTheme.cream}">
 <div style="max-width:600px;margin:0 auto;background:#ffffff;padding:32px;border-top:4px solid ${GOLD}">
-  <p style="margin:0 0 4px;font:600 13px Arial,sans-serif;letter-spacing:1px;text-transform:uppercase;color:${GOLD}">${escapeHtml(company.name)}</p>
+  <p style="margin:0 0 4px;font:600 13px Arial,sans-serif;letter-spacing:1px;text-transform:uppercase;color:${emailTheme.navy}">${escapeHtml(company.name)}</p>
   <h1 style="margin:0 0 12px;font:600 24px Georgia,serif;color:${NAVY}">${escapeHtml(subject)}</h1>
   ${paragraph(t.report.intro)}
   ${heading(t.report.inputsTitle)}
@@ -139,9 +147,9 @@ export const buildConfirmationEmail = (language: Language, confirmUrl: string) =
   const subject = t.subject;
 
   const html = `<!doctype html>
-<html lang="${language}"><body style="margin:0;padding:24px;background:#f6f1e7">
+<html lang="${language}">${documentHead}<body style="margin:0;padding:24px;background:${emailTheme.cream}">
 <div style="max-width:600px;margin:0 auto;background:#ffffff;padding:32px;border-top:4px solid ${GOLD}">
-  <p style="margin:0 0 4px;font:600 13px Arial,sans-serif;letter-spacing:1px;text-transform:uppercase;color:${GOLD}">${escapeHtml(company.name)}</p>
+  <p style="margin:0 0 4px;font:600 13px Arial,sans-serif;letter-spacing:1px;text-transform:uppercase;color:${emailTheme.navy}">${escapeHtml(company.name)}</p>
   <h1 style="margin:0 0 12px;font:600 24px Georgia,serif;color:${NAVY}">${escapeHtml(subject)}</h1>
   <p style="margin:0 0 16px;font:15px/1.5 Arial,sans-serif;color:#333">${escapeHtml(t.intro)}</p>
   <p style="margin:0 0 16px"><a href="${escapeHtml(confirmUrl)}" style="display:inline-block;padding:12px 24px;background:${GOLD};color:${NAVY};font:600 15px Arial,sans-serif;text-decoration:none;border-radius:4px">${escapeHtml(t.button)}</a></p>
