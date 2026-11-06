@@ -28,8 +28,8 @@ const Index = () => {
       <Navbar />
       <main id="main-content" role="main">
         <HeroSection />
-        <HoursCalculatorStrip />
         <ServicesSection />
+        <HoursCalculatorStrip />
         <ResultsSection/>
         <PathwaySection />
         <WhyImperaSection />

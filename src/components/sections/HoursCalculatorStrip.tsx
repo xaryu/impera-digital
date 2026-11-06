@@ -11,7 +11,8 @@ const HoursCalculatorStrip = () => {
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   return (
-    <section className="py-12 md:py-16 bg-navy" aria-labelledby="calculator-strip-title">
+    // the gold line keeps the strip from merging with ResultsSection, whose gradient starts at navy
+    <section className="py-12 md:py-16 bg-navy border-b border-gold/30" aria-labelledby="calculator-strip-title">
       <div className="container mx-auto px-6">
         <FadeInSection className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 text-center md:text-left">
           <div className="max-w-2xl">
