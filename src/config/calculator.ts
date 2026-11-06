@@ -16,6 +16,8 @@ export const calculator = {
   automationRange: { low: 0.3, high: 0.6 },
   /** Hours per week, split evenly across the selected tasks, below which a task is "probably not worth it". */
   notWorthItHoursPerWeek: 2,
+  /** The "cost of waiting" chart in the report email: today's yearly cost over this many years. */
+  costOfWaitingYears: [1, 3, 5],
   /** In display order. `id` matches the keys under `calculator.tasks.<id>` in the translation files. */
   tasks: [
     { id: "documents", fit: "high" },

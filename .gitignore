@@ -27,3 +27,6 @@ dist-ssr
 
 # Supabase CLI link state
 supabase/.temp
+
+# Rendered email previews (npm run render:email-samples)
+email-samples

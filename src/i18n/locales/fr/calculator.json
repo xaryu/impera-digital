@@ -111,13 +111,22 @@
     "report": {
       "subject": "Votre estimation : {{hours}} heures par an perdues en administratif répétitif",
       "intro": "Voici le détail derrière votre estimation, basé sur les chiffres que vous avez saisis.",
-      "inputsTitle": "Vos chiffres",
+      "headline": "Ce que l'administratif répétitif vous coûte chaque année",
       "inputsLine": "{{people}} personnes × {{hours}} heures par semaine × {{cost}} par heure",
-      "resultTitle": "Ce que cela représente",
-      "weekly": "Heures perdues par semaine : {{value}}",
-      "yearly": "Heures perdues par an : {{value}}",
-      "cost": "Coût par an : {{value}}",
+      "recovery": {
+        "title": "Ce qui pourrait être récupéré (estimation)",
+        "likely": "Probable (jusqu'à {{low}} %)",
+        "possible": "Possible ({{low}} à {{high}} %)",
+        "rest": "Reste manuel"
+      },
       "range": "Raisonnablement automatisable (estimation) : {{hours}} heures et {{cost}} par an",
+      "waiting": {
+        "title": "Le coût de l'attente",
+        "oneYear": "1 an",
+        "years": "{{years}} ans",
+        "note": "Aux chiffres d'aujourd'hui, sans croissance ni hausse des prix."
+      },
+      "hoursByFitTitle": "Heures par an selon le potentiel d'automatisation",
       "rankedTitle": "Vos tâches, classées selon leur potentiel d'automatisation",
       "rankedHours": "environ {{hours}} h par an",
       "fit": {

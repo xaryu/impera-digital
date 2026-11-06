@@ -16,6 +16,7 @@
     "test:watch": "vitest",
     "check:texts": "vitest run src/i18n",
     "sync:function-shared": "node scripts/sync-function-shared.mjs",
+    "render:email-samples": "node scripts/render-email-samples.mjs",
     "check:function": "cd supabase/functions/calculator-report && deno check --config deno.json index.ts"
   },
   "dependencies": {
