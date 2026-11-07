@@ -55,6 +55,19 @@ describe("buildReportEmail", () => {
     expect(html).not.toContain("#f6f1e7");
   });
 
+  it("sets every fill and text color in the form Gmail's dark mode leaves alone", () => {
+    const emails = [buildReportEmail(defaults, "en").html, buildConfirmationEmail("en", "https://example.com").html];
+    for (const html of emails) {
+      const fills = [...html.matchAll(/background-color:(#[0-9a-f]{6})(;background-image:linear-gradient\(\1,\1\))?/g)];
+      const texts = [...html.matchAll(/(?<![-\w])color:(#[0-9a-f]{6})(;-webkit-text-fill-color:\1)?/g)];
+      expect(fills.length).toBeGreaterThan(0);
+      expect(texts.length).toBeGreaterThan(0);
+      expect(fills.filter((match) => !match[2])).toEqual([]);
+      expect(texts.filter((match) => !match[2])).toEqual([]);
+      expect(html).not.toMatch(/[;"]background:/);
+    }
+  });
+
   it("has no images, so charts show when images are blocked", () => {
     const { html } = buildReportEmail(defaults, "en");
     expect(html).not.toMatch(/<(img|svg)\b/i);
