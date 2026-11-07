@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import CalendlyDialog from "@/components/common/CalendlyDialog";
+import BookingLink from "@/components/common/BookingLink";
 import { calculator } from "@/config/calculator";
 import { computeResult, formatEuro, formatHours, type CalculatorInputs } from "@/lib/calculator";
 
@@ -68,15 +68,12 @@ const ResultView = ({ inputs, onStartOver, onAuditClick, onEmailClick }: ResultV
       </div>
 
       <div className="flex flex-col sm:flex-row gap-3 sm:items-center">
-        <CalendlyDialog>
-          <button
-            type="button"
-            onClick={onAuditClick}
-            className="px-6 py-3 min-h-[44px] bg-gold text-navy-dark font-body text-sm font-semibold tracking-wider uppercase hover:bg-gold-light transition-colors"
-          >
-            {t("calculator.result.auditCta")}
-          </button>
-        </CalendlyDialog>
+        <BookingLink
+          onClick={onAuditClick}
+          className="px-6 py-3 min-h-[44px] text-center bg-gold text-navy-dark font-body text-sm font-semibold tracking-wider uppercase hover:bg-gold-light transition-colors"
+        >
+          {t("calculator.result.auditCta")}
+        </BookingLink>
         <button
           type="button"
           onClick={onEmailClick}

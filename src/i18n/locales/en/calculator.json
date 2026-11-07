@@ -111,13 +111,22 @@
     "report": {
       "subject": "Your estimate: {{hours}} hours a year lost to repetitive admin",
       "intro": "Here is the breakdown behind your estimate, based on the figures you entered.",
-      "inputsTitle": "Your figures",
+      "headline": "What repetitive admin costs you each year",
       "inputsLine": "{{people}} people × {{hours}} hours a week × {{cost}} an hour",
-      "resultTitle": "What that adds up to",
-      "weekly": "Hours lost per week: {{value}}",
-      "yearly": "Hours lost per year: {{value}}",
-      "cost": "Cost per year: {{value}}",
+      "recovery": {
+        "title": "What could be recovered (estimate)",
+        "likely": "Likely (up to {{low}}%)",
+        "possible": "Possible ({{low}}–{{high}}%)",
+        "rest": "Stays manual"
+      },
       "range": "Realistically automatable (estimate): {{hours}} hours and {{cost}} a year",
+      "waiting": {
+        "title": "The cost of waiting",
+        "oneYear": "1 year",
+        "years": "{{years}} years",
+        "note": "At today's figures, with no growth or price rises."
+      },
+      "hoursByFitTitle": "Hours a year by automation fit",
       "rankedTitle": "Your tasks, ranked by automation fit",
       "rankedHours": "about {{hours}} h a year",
       "fit": {

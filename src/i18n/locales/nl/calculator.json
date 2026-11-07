@@ -111,13 +111,22 @@
     "report": {
       "subject": "Uw schatting: {{hours}} uur per jaar verloren aan repetitief administratief werk",
       "intro": "Hier is de uitsplitsing achter uw schatting, op basis van de cijfers die u invulde.",
-      "inputsTitle": "Uw cijfers",
+      "headline": "Wat repetitief administratief werk u per jaar kost",
       "inputsLine": "{{people}} personen × {{hours}} uur per week × {{cost}} per uur",
-      "resultTitle": "Waar dat op neerkomt",
-      "weekly": "Verloren uren per week: {{value}}",
-      "yearly": "Verloren uren per jaar: {{value}}",
-      "cost": "Kost per jaar: {{value}}",
+      "recovery": {
+        "title": "Wat u kunt terugwinnen (schatting)",
+        "likely": "Waarschijnlijk (tot {{low}}%)",
+        "possible": "Mogelijk ({{low}}–{{high}}%)",
+        "rest": "Blijft handwerk"
+      },
       "range": "Realistisch te automatiseren (schatting): {{hours}} uur en {{cost}} per jaar",
+      "waiting": {
+        "title": "De kost van wachten",
+        "oneYear": "1 jaar",
+        "years": "{{years}} jaar",
+        "note": "Aan de cijfers van vandaag, zonder groei of prijsstijgingen."
+      },
+      "hoursByFitTitle": "Uren per jaar volgens geschiktheid voor automatisering",
       "rankedTitle": "Uw taken, gerangschikt naar geschiktheid voor automatisering",
       "rankedHours": "ongeveer {{hours}} u per jaar",
       "fit": {

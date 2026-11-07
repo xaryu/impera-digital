@@ -4,7 +4,7 @@ import SEO from "@/components/layout/SEO";
 import FadeInSection from "@/components/common/FadeInSection";
 import { useTranslation } from "react-i18next";
 import { Search, Target, Rocket, ArrowRight, CheckCircle2, Clock, FileText } from "lucide-react";
-import LocalizedLink from "@/components/layout/LocalizedLink";
+import BookingLink from "@/components/common/BookingLink";
 
 const Methodology = () => {
   const { t } = useTranslation();
@@ -102,9 +102,9 @@ const Methodology = () => {
             <div className="max-w-2xl mx-auto">
               <h2 className="font-display text-3xl md:text-4xl text-cream font-bold mb-6">{t("methodology.ctaTitle")}</h2>
               <p className="font-body text-cream/60 mb-10 leading-relaxed">{t("methodology.ctaDesc")}</p>
-              <LocalizedLink to="/contact" className="inline-flex items-center gap-3 px-10 py-4 bg-gold text-navy-dark font-body text-sm tracking-wider uppercase font-semibold hover:bg-gold-light transition-colors duration-300">
+              <BookingLink className="inline-flex items-center gap-3 px-10 py-4 bg-gold text-navy-dark font-body text-sm tracking-wider uppercase font-semibold hover:bg-gold-light transition-colors duration-300">
                 {t("methodology.ctaButton")}<ArrowRight className="w-4 h-4" />
-              </LocalizedLink>
+              </BookingLink>
             </div>
           </FadeInSection>
         </div>

@@ -85,6 +85,35 @@ export const buildReport = (inputs: CalculatorInputs): Report => {
   return { ranked, automateFirst, notWorthIt };
 };
 
+export interface ReportCharts {
+  /** The yearly cost split by the automation range. The three parts add up to the yearly cost. */
+  recovery: { likely: number; possible: number; rest: number };
+  /** Today's yearly cost multiplied out. No growth or inflation is assumed. */
+  costOfWaiting: { years: number; cost: number }[];
+  /** Yearly hours by automation fit, from the even split across the selected tasks. */
+  hoursByFit: Record<TaskFit, number>;
+}
+
+// Only figures the report already stands behind. Hours per task would be equal bars (the split is
+// even), so there is deliberately no such chart.
+export const buildCharts = (inputs: CalculatorInputs): ReportCharts => {
+  const { yearlyCost, automatableCost } = computeResult(inputs);
+  const hoursFor = (fit: TaskFit) =>
+    buildReport(inputs)
+      .ranked.filter((task) => task.fit === fit)
+      .reduce((sum, task) => sum + task.yearlyHours, 0);
+
+  return {
+    recovery: {
+      likely: automatableCost.low,
+      possible: automatableCost.high - automatableCost.low,
+      rest: yearlyCost - automatableCost.high,
+    },
+    costOfWaiting: calculator.costOfWaitingYears.map((years) => ({ years, cost: yearlyCost * years })),
+    hoursByFit: { high: hoursFor("high"), medium: hoursFor("medium") },
+  };
+};
+
 // Belgian locales, so numbers and currency read the way a visitor expects in each language.
 const LOCALES: Record<string, string> = { en: "en-IE", fr: "fr-BE", nl: "nl-BE" };
 

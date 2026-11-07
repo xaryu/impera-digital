@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import FadeInSection from "@/components/common/FadeInSection";
-import CalendlyDialog from "@/components/common/CalendlyDialog";
+import BookingLink from "@/components/common/BookingLink";
 
 const CTASection = () => {
   const { t } = useTranslation();
@@ -19,11 +19,9 @@ const CTASection = () => {
             {t("cta.title2")}
           </h2>
           <p className="font-body text-lg text-gold-muted max-w-xl mx-auto mb-12">{t("cta.subtitle")}</p>
-          <CalendlyDialog>
-            <button className="inline-block px-12 py-5 bg-gold text-navy-dark font-body text-sm font-semibold tracking-wider uppercase btn-hover hover:bg-gold-light">
-              {t("cta.button")}
-            </button>
-          </CalendlyDialog>
+          <BookingLink className="inline-block px-12 py-5 bg-gold text-navy-dark font-body text-sm font-semibold tracking-wider uppercase btn-hover hover:bg-gold-light">
+            {t("cta.button")}
+          </BookingLink>
         </FadeInSection>
       </div>
     </section>

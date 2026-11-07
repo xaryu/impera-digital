@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { calculator } from "@/config/calculator";
-import { buildReport, computeResult, formatEuro, formatHours, inputsSchema } from "@/lib/calculator";
+import { buildCharts, buildReport, computeResult, formatEuro, formatHours, inputsSchema } from "@/lib/calculator";
 
 const base = { people: 3, hoursPerPerson: 5, hourlyCost: 40, tasks: ["documents" as const] };
 
@@ -70,6 +70,34 @@ describe("buildReport", () => {
 
   it("flags nothing when every task clears the threshold", () => {
     expect(buildReport(base).notWorthIt).toEqual([]);
+  });
+});
+
+describe("buildCharts", () => {
+  it("splits the yearly cost by the automation range, and the parts add up", () => {
+    const { recovery } = buildCharts(base);
+    expect(recovery.likely).toBeCloseTo(8280);
+    expect(recovery.possible).toBeCloseTo(8280);
+    expect(recovery.rest).toBeCloseTo(11040);
+    expect(recovery.likely + recovery.possible + recovery.rest).toBeCloseTo(27600);
+  });
+
+  it("multiplies today's cost over the configured years", () => {
+    expect(buildCharts(base).costOfWaiting).toEqual([
+      { years: 1, cost: 27600 },
+      { years: 3, cost: 82800 },
+      { years: 5, cost: 138000 },
+    ]);
+  });
+
+  it("adds up the yearly hours by fit", () => {
+    const { hoursByFit } = buildCharts({ ...base, tasks: ["documents", "dataEntry", "quotes"] });
+    expect(hoursByFit.high).toBeCloseTo(460);
+    expect(hoursByFit.medium).toBeCloseTo(230);
+  });
+
+  it("gives zero for a fit with no selected tasks", () => {
+    expect(buildCharts(base).hoursByFit).toEqual({ high: 690, medium: 0 });
   });
 });
 

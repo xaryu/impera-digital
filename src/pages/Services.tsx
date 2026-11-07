@@ -3,7 +3,7 @@ import SEO from "@/components/layout/SEO";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import LocalizedLink from "@/components/layout/LocalizedLink";
-import CalendlyDialog from "@/components/common/CalendlyDialog";
+import BookingLink from "@/components/common/BookingLink";
 import { useTranslation } from "react-i18next";
 
 const serviceIcons = [Palette, Globe, Megaphone, TrendingUp];
@@ -85,12 +85,10 @@ const Services = () => {
                       {t(`servicesPage.${service.descKey}`)}
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4">
-                      <CalendlyDialog>
-                        <button className="inline-flex items-center gap-2 px-8 py-3 bg-gold text-navy-dark font-body text-sm font-semibold tracking-wider uppercase hover:bg-gold-light transition-colors duration-300">
-                          {t("servicesPage.bookFreeCall")}
-                          <ArrowRight className="w-4 h-4" />
-                        </button>
-                      </CalendlyDialog>
+                      <BookingLink className="inline-flex items-center gap-2 px-8 py-3 bg-gold text-navy-dark font-body text-sm font-semibold tracking-wider uppercase hover:bg-gold-light transition-colors duration-300">
+                        {t("servicesPage.bookFreeCall")}
+                        <ArrowRight className="w-4 h-4" />
+                      </BookingLink>
                       <LocalizedLink
                         to="/contact"
                         className="inline-flex items-center gap-2 px-8 py-3 border border-gold/40 text-navy font-body text-sm font-semibold tracking-wider uppercase hover:bg-gold/10 transition-all duration-300"
