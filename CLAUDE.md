@@ -34,11 +34,11 @@ Run `source ~/.nvm/nvm.sh && nvm use 24` first (Node 24, see `.nvmrc`).
 
 ## Active work
 
-- **Launch feedback (built 2026-11-06, merged to `main` 2026-11-07, `calculator-report` not deployed)**:
+- **Launch feedback (built 2026-11-06, merged to `main` and `calculator-report` deployed as v10 on 2026-11-07)**:
   final feedback round before launch, all six items: homepage, booking, emails. Plan and
   decisions: [`docs/plans/launch-feedback.md`](docs/plans/launch-feedback.md). Still to do: Paul checks
   the NL/FR copy, real mail-client tests (Gmail web/mobile light and dark, Apple Mail, Outlook),
-  deploy `calculator-report`, one real submission. Preview emails with `npm run render:email-samples`.
+  one real submission. Preview emails with `npm run render:email-samples`.
 - **Hours-lost calculator (homepage modal + email report)**: live on `main` since 2026-10-30
   (branches `feature/hours-calculator-impl` and `chore/impera-digital-domain` merged and pushed).
   `supabase/functions/calculator-report` is Deno type-checked; shared code is synced via
