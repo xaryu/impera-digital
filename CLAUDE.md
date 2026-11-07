@@ -23,8 +23,8 @@ Run `source ~/.nvm/nvm.sh && nvm use 24` first (Node 24, see `.nvmrc`).
 - Routing: English has no prefix, FR/NL use `/fr/...` and `/nl/...`. Use `LocalizedLink` for internal links.
 - Brand: `navy` / `gold` / `cream` Tailwind colors, `font-display` (Playfair Display) for headings,
   `font-body` (DM Sans) for text. Look at existing sections before styling.
-- Modals: use `@/components/ui/dialog` (Radix: focus trap, Escape). Audit/booking CTAs open
-  `CalendlyDialog`.
+- Modals: use `@/components/ui/dialog` (Radix: focus trap, Escape).
+- Audit/booking CTAs use `BookingLink`, which opens the calendar in a new tab.
 - Forms: zod schemas whose error messages are dictionary keys (see `ExitIntentPopup.tsx`).
 - Supabase: every table has RLS. Admin access goes through `public.has_role(auth.uid(), 'admin')`.
   Public forms insert with anon policies. Anything that sends email must go through an Edge Function
@@ -34,12 +34,17 @@ Run `source ~/.nvm/nvm.sh && nvm use 24` first (Node 24, see `.nvmrc`).
 
 ## Active work
 
+- **Launch feedback (built 2026-11-06, merged to `main` 2026-11-07, `calculator-report` not deployed)**:
+  final feedback round before launch, all six items: homepage, booking, emails. Plan and
+  decisions: [`docs/plans/launch-feedback.md`](docs/plans/launch-feedback.md). Still to do: Paul checks
+  the NL/FR copy, real mail-client tests (Gmail web/mobile light and dark, Apple Mail, Outlook),
+  deploy `calculator-report`, one real submission. Preview emails with `npm run render:email-samples`.
 - **Hours-lost calculator (homepage modal + email report)**: live on `main` since 2026-10-30
   (branches `feature/hours-calculator-impl` and `chore/impera-digital-domain` merged and pushed).
   `supabase/functions/calculator-report` is Deno type-checked; shared code is synced via
   `npm run sync:function-shared` into `_shared/` (drift test in `src/lib/function-shared.test.ts`).
-  Step 10 QA done on 2026-10-30 against the live site: plan §11 checklist passes in EN/NL/FR at
-  360/768/1440 px, real submission through the modal → confirm page → report delivered, all four
+  Step 10 QA done on 2026-10-30 against the live site: plan §11 checklist passes (except the items
+  under "Not done" below) in EN/NL/FR at 360/768/1440 px, real submission through the modal → confirm page → report delivered, all four
   events recorded, link is one-time. Fixed during QA: `<link>` tags in translations rendered empty
   (void HTML element, renamed to `<privacy>`, test added), 44px dialog close button, cookie banner
   waits while a modal is open. Not done: VoiceOver (macOS/iOS) and a real phone with the keyboard
@@ -47,7 +52,7 @@ Run `source ~/.nvm/nvm.sh && nvm use 24` first (Node 24, see `.nvmrc`).
   Full technical plan: [`docs/plans/hours-calculator.md`](docs/plans/hours-calculator.md).
   Read it before touching this feature. The remote `origin/feature/hours-calculator` is a different
   implementation; only borrow from it (see its `report.ts` for the email template at step 7).
-- **Open review findings (not fixed, decide before step 10 QA)**. The review fixes for failed sends,
+- **Review findings (feature is live; the X-Forwarded-For test below is still open)**. The review fixes for failed sends,
   stale retry, race-loser status, email state on reopen and close-while-sending are committed, and
   the function was redeployed on 2026-10-30 (`npx supabase functions deploy calculator-report`; the CLI is
   a dev dependency, not on PATH). If Resend rejects a send the function returns 502 and the modal
@@ -59,7 +64,7 @@ Run `source ~/.nvm/nvm.sh && nvm use 24` first (Node 24, see `.nvmrc`).
     hash is stored). No CAPTCHA by decision. Still true: the domain can be used to send one short
     confirmation email to any address, and an attacker with many IPs gets around the per-IP limit
     of 5/hour, while the global 100/hour cap can lock real visitors out with 503. Migration
-    `20261030190000_calculator_cap_sent_only.sql` makes that cap count only confirmation emails sent
+    `20261030190000_calculator_cap_sent_only.sql` (pushed, confirmed 2026-10-31) makes that cap count only confirmation emails sent
     (or being sent) in the last hour, not every attempt.
   - **Untested (review 2026-10-30 #1)**: `hashIp` uses the first `X-Forwarded-For` entry (as
     Supabase's own examples do). If the gateway keeps a client-supplied value there, the per-IP limit
@@ -78,14 +83,15 @@ Run `source ~/.nvm/nvm.sh && nvm use 24` first (Node 24, see `.nvmrc`).
     deployed). Vercel previews and a custom domain need adding to `SITE_URL` (comma-separated); add
     `http://localhost:8080` there only while testing locally. The confirmation link is built from
     the request's allowed Origin, so `SITE_URL` must be set.
-- **Step 7 Resend setup (resume here)**, following https://resend.com/setup.md:
+- **Resend setup (step 7, done)**, following https://resend.com/setup.md. Remaining open items for
+  the feature: VoiceOver, real-phone keyboard test, `impera.digital` mailboxes/MX, X-Forwarded-For test.
   - Done: Resend MCP plugin installed (user scope) and signed in via OAuth. Domain
     `mail.impera-group.com` (ID `ca214ee7-e51a-4dbc-8a62-d7bef76ed356`, `eu-west-1`) is
     **verified**; `RESEND_API_KEY`, `REPORT_FROM` and `SITE_URL` (`https://impera-digital.vercel.app`)
     are set and `calculator-report` is deployed to project `hcotcpkpxcheeptejmum`. Note that
     `supabase/config.toml` `project_id` is a stale Lovable ref; pass `--project-ref` to the CLI.
   - **Moving to `impera.digital` (decided 2026-10-30)**: the sender and the contact addresses change.
-    Code is on branch `chore/impera-digital-domain` (`company.ts` → `contact@` / `careers@impera.digital`,
+    Code is on `main` (`chore/impera-digital-domain` merged; `company.ts` → `contact@` / `careers@impera.digital`,
     `_shared` synced). Domain `mail.impera.digital` created in Resend (ID
     `da8f7c17-cc32-4c1d-9746-33cf7b42917a`, `eu-west-1`), **verified** on 2026-10-30. `impera.digital` is on
     the boss's GoDaddy account and has **no MX records**, so it can't receive mail yet. Root DMARC
