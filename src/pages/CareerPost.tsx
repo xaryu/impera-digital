@@ -40,7 +40,10 @@ const CareerPost = () => {
   const { data: job, isLoading } = useQuery({
     queryKey: ["job-opening", slug],
     queryFn: async () => {
-      const { data, error } = await supabase.from("job_openings").select("*").eq("slug", slug!).eq("published", true).single();
+      // No published filter here: RLS shows visitors only published openings and admins every one,
+      // so an admin can open a draft from the careers list (as on BlogPost). maybeSingle: a missing
+      // slug is "not found", not a 406 error.
+      const { data, error } = await supabase.from("job_openings").select("*").eq("slug", slug!).maybeSingle();
       if (error) throw error;
       return data;
     },
@@ -130,6 +133,11 @@ const CareerPost = () => {
           <LocalizedLink to="/careers" className="inline-flex items-center gap-2 text-gold font-body text-sm tracking-wider uppercase hover:text-gold-light transition-colors mb-8">
             <ArrowLeft className="w-4 h-4" /> {t("careerPost.backToCareers")}
           </LocalizedLink>
+          {!job.published && (
+            <p role="status" className="mb-8 border border-gold/40 bg-gold/10 px-4 py-3 font-body text-sm text-cream">
+              {t("careerPost.draftNotice")}
+            </p>
+          )}
           <div className="flex flex-wrap items-center gap-4 mb-4">
             <span className="font-body text-xs tracking-wider text-gold-muted/60 uppercase border border-gold/10 px-3 py-1">{job.department}</span>
             <span className="font-body text-xs tracking-wider text-gold-muted/60 uppercase border border-gold/10 px-3 py-1">{job.type}</span>
@@ -201,7 +209,8 @@ const CareerPost = () => {
                   <span id="cv-file-name" className="font-body text-sm text-gold-muted">{cvFile ? cvFile.name : t("careerPost.chooseFile")}</span>
                 </button>
               </div>
-              <button type="submit" disabled={applyMutation.isPending} className="px-10 py-4 bg-gold text-navy-dark font-body text-sm font-semibold tracking-wider uppercase hover:bg-gold-light transition-colors duration-300 disabled:opacity-60 min-h-[48px]">
+              {/* form-submit only accepts applications for published openings. */}
+              <button type="submit" disabled={applyMutation.isPending || !job.published} className="px-10 py-4 bg-gold text-navy-dark font-body text-sm font-semibold tracking-wider uppercase hover:bg-gold-light transition-colors duration-300 disabled:opacity-60 min-h-[48px]">
                 {applyMutation.isPending ? t("careerPost.submitting") : t("careerPost.submit")}
               </button>
             </form>
