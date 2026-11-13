@@ -42,6 +42,7 @@
     "requiredFields": "Veuillez remplir tous les champs obligatoires",
     "fileTooLarge": "Le fichier doit faire moins de 10 Mo",
     "fileWrongType": "Veuillez joindre un fichier PDF, DOC ou DOCX",
+    "draftNotice": "Brouillon : seuls les administrateurs voient cette page. Publiez-la dans l'admin pour recevoir des candidatures.",
     "invalidEmail": "Veuillez saisir une adresse e-mail valide"
   }
 }

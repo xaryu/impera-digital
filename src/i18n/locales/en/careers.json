@@ -42,6 +42,7 @@
     "requiredFields": "Please fill in all required fields",
     "fileTooLarge": "File must be under 10MB",
     "fileWrongType": "Please upload a PDF, DOC or DOCX file",
+    "draftNotice": "Draft: only admins can see this page. Publish it in the admin to accept applications.",
     "invalidEmail": "Please enter a valid email address"
   }
 }

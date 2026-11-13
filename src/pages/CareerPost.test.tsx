@@ -25,9 +25,12 @@ const job = {
   published: true,
 };
 
+// What the job query returns; RLS decides visibility, so the page sees drafts only as an admin.
+let current: typeof job | null = job;
+
 const upload = vi.fn();
 vi.mock("@/integrations/supabase/client", () => {
-  const query = { select: () => query, eq: () => query, single: async () => ({ data: job, error: null }) };
+  const query = { select: () => query, eq: () => query, maybeSingle: async () => ({ data: current, error: null }) };
   return {
     supabase: {
       from: () => query,
@@ -65,6 +68,7 @@ beforeAll(async () => {
 });
 
 beforeEach(() => {
+  current = job;
   vi.mocked(toast.error).mockReset();
   upload.mockReset().mockResolvedValue({ data: {}, error: null });
   vi.mocked(supabase.functions.invoke).mockReset().mockResolvedValue({ data: { ok: true }, error: null } as never);
@@ -115,5 +119,21 @@ describe("CareerPost application", () => {
     fireEvent.change(document.getElementById("apply-cv")!, { target: { files: [file] } });
     await waitFor(() => expect(toast.error).toHaveBeenCalledWith("Please upload a PDF, DOC or DOCX file"));
     expect((document.getElementById("apply-cv") as HTMLInputElement).value).toBe("");
+  });
+});
+
+describe("CareerPost visibility", () => {
+  it("shows a draft (admin) with a notice and no way to apply", async () => {
+    current = { ...job, published: false };
+    renderPage();
+    await screen.findByText("Designer", { selector: "h1" });
+    expect(screen.getByRole("status")).toHaveTextContent("Draft: only admins can see this page");
+    expect(screen.getByRole("button", { name: "Submit Application" })).toBeDisabled();
+  });
+
+  it("says not found when the slug does not exist or is hidden", async () => {
+    current = null;
+    renderPage();
+    expect(await screen.findByText("Position Not Found")).toBeInTheDocument();
   });
 });

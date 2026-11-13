@@ -42,6 +42,7 @@
     "requiredFields": "Vul alle verplichte velden in",
     "fileTooLarge": "Het bestand moet kleiner zijn dan 10 MB",
     "fileWrongType": "Upload een PDF-, DOC- of DOCX-bestand",
+    "draftNotice": "Concept: alleen beheerders zien deze pagina. Publiceer ze in de admin om sollicitaties te ontvangen.",
     "invalidEmail": "Vul een geldig e-mailadres in"
   }
 }
