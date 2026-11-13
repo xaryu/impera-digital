@@ -1,10 +1,9 @@
 {
   "homePage": {
     "seoTitle": "Impera — Command your growth. Automate everything else.",
-    "seoDescription": "Impera is a premium digital media agency crafting luxury brand experiences that command authority and distinction."
+    "seoDescription": "Growth strategy and AI automation for ambitious businesses. Senior specialists only."
   },
   "hero": {
-    "eyebrow": "Digital Media Agency",
     "title1": "Command Your Growth.",
     "title2": "Automate everything else.",
     "subtitle": "We turn AI automation and growth strategy into revenue you can measure. Not decks, not theory",
@@ -12,8 +11,8 @@
     "scroll": "Scroll"
   },
   "services": {
-    "eyebrow": "What We Do",
-    "title": "Services of Distinction",
+    "eyebrow": "Sound Familiar?",
+    "title": "The Hidden Cost of Standing Still",
     "seniorTime": "Senior time wasted",
     "seniorTimeDesc": "Your highest-paid people spend their week on your cheapest work — and the thinking you actually pay them for never happens.",
     "disconnectedSystems": "Systems that don't talk",

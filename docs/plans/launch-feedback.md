@@ -22,7 +22,7 @@ No database migrations in any phase.
 | D2 | How to build the charts | Option 1 in C2: HTML table charts inside the email |
 | D3 | Where did the reviewer see black? | Screenshot received 2026-11-07: looks like the Gmail app in dark mode, which recolors the whole email and ignores `color-scheme`. Every fill and text color now also uses the forms Gmail is reported to leave alone (`solid`, `ink` in `email.ts`). Not confirmed until tested in the Gmail app in dark mode, iOS and Android |
 | D4 | Methodology "Start Your 90-Day Transformation" | Goes to the calendar, label unchanged |
-| D5 | "Services of Distinction" / "What We Do" heading | Keep it as it is in all languages |
+| D5 | "Services of Distinction" / "What We Do" heading | Kept at first; **superseded 2026-11-13**: the homepage section is now "Sound Familiar?" / "The Hidden Cost of Standing Still" (see "Follow-up feedback" below). The Services page keeps its own heading |
 
 ## Phase A: homepage
 
@@ -194,3 +194,23 @@ Not part of this feedback, but relevant to the launch decision:
   (2026-10-30), and the site shows these addresses.
 - `X-Forwarded-For` rate-limit test.
 - VoiceOver and real-phone keyboard tests.
+
+## Follow-up feedback (2026-11-13)
+
+Branch `feature/footer-homepage-copy`. Vercel only: no migrations, and the Edge Function doesn't use
+the address, so no function deploy (`_shared/config/company.ts` was synced anyway for the drift test).
+
+| # | Request | Done |
+| - | ------- | ---- |
+| F1 | Remove "Digital Media Agency" above the hero title | `hero.eyebrow` deleted (all languages), animation delays moved up 0.2s. Same wording also removed from the meta/OG descriptions (`index.html`, `homePage.seoDescription`, `SEO.tsx` default and JSON-LD) |
+| F2 | Homepage pain-points heading | "Sound Familiar?" / "The Hidden Cost of Standing Still"; FR "Ça vous parle ?" / "Le Coût Caché de l'Immobilisme"; NL "Klinkt Bekend?" / "De Verborgen Kosten van Stilstand" |
+| F3 | Footer description | "Growth strategy and AI automation for ambitious businesses. Senior specialists only." (+ FR/NL) |
+| F4 | Footer services = the Services page list, each scrolling to its section | One list in `src/config/services.ts` used by the Services page, the footer and the JSON-LD offer catalog. Anchors `/services#ai-automation`, `#web-development`, `#digital-marketing`, `#growth-strategy`; `ScrollOnNavigate` (`src/hooks/use-scroll-on-navigate.ts`, App-level) handles all scrolling on navigation: top of page, anchor (top if missing), nothing on back/forward or language switch; `LocalizedLink` no longer scrolls itself. Language switch keeps `#anchor`. AI service keys renamed `brandIdentity*`/`brandD*` → `aiAutomation*`/`aiD*`. Tests in `Footer.test.tsx` and `src/config/services.test.ts` (service keys exist in every language) |
+| F5 | Address: Groenstraat 80, 3001 Heverlee | `src/config/company.ts` (footer, contact page, legal pages, JSON-LD) |
+| F6 | Footer button "Start Your Project" → "Get in Touch" | `footer.getInTouch`: FR "Nous Contacter", NL "Neem Contact Op" (NL nav says "Contact", which would repeat the heading) |
+
+Found on the way: FR/NL service 1 on the Services page was still "Identité de Marque"/"Merkidentiteit"
+(EN changed to AI automation in `e2263e2` without FR/NL), which would have shown in the footer. Now
+translated (Paul to check). EN typos fixed there ("handeled", "Documating"). Still open, not in this
+feedback: the FR/NL About page has the same gap (`about.json` changed in EN only in `e2263e2`), and
+the team `Person` JSON-LD in `SEO.tsx` doesn't match the About page's three specialists.

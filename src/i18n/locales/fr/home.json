@@ -1,10 +1,9 @@
 {
   "homePage": {
     "seoTitle": "Impera — Imposez votre croissance. Automatisez tout le reste.",
-    "seoDescription": "Impera est une agence média digitale premium qui crée des expériences de marque luxueuses, synonymes d'autorité et de distinction."
+    "seoDescription": "Stratégie de croissance et automatisation par l'IA pour les entreprises ambitieuses. Uniquement des spécialistes seniors."
   },
   "hero": {
-    "eyebrow": "Agence Média Digitale",
     "title1": "Imposez Votre Croissance.",
     "title2": "Automatisez tout le reste.",
     "subtitle": "Nous transformons l'automatisation par l'IA et la stratégie de croissance en revenus mesurables. Pas de présentations, pas de théorie",
@@ -12,8 +11,8 @@
     "scroll": "Défiler"
   },
   "services": {
-    "eyebrow": "Nos Services",
-    "title": "Des Services d'Excellence",
+    "eyebrow": "Ça vous parle ?",
+    "title": "Le Coût Caché de l'Immobilisme",
     "seniorTime": "Du temps senior gaspillé",
     "seniorTimeDesc": "Vos collaborateurs les mieux payés passent leur semaine sur vos tâches les moins rentables — et la réflexion pour laquelle vous les payez n'a jamais lieu.",
     "disconnectedSystems": "Des systèmes qui ne se parlent pas",

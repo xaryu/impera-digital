@@ -1,10 +1,18 @@
 import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 import { company } from "@/config/company";
+import { services } from "@/config/services";
+import { resources } from "@/i18n/resources";
 
 const SITE_URL = company.siteUrl;
 const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.png`;
 const SITE_NAME = "Impera";
+
+const enHome = resources.en.translation.homePage as Record<string, string>;
+const enServices = resources.en.translation.servicesPage as Record<string, string>;
+// English description for the structured data below (search engines get one English version).
+// Pages without their own description use the homepage text in the visitor's language.
+const DEFAULT_DESCRIPTION = enHome.seoDescription;
 
 interface SEOProps {
   title?: string;
@@ -21,7 +29,7 @@ const organizationSchema = {
   name: "Impera",
   url: SITE_URL,
   logo: `${SITE_URL}/og-image.png`,
-  description: "Premium digital media agency crafting luxury brand experiences that command authority and distinction.",
+  description: DEFAULT_DESCRIPTION,
   email: company.email,
   telephone: company.phone.display,
   address: {
@@ -32,16 +40,20 @@ const organizationSchema = {
     addressCountry: company.address.countryCode,
   },
   foundingDate: "2025",
-  knowsAbout: ["Brand Identity", "Digital Marketing", "Growth Strategy", "Web Development", "SEO", "Social Media Marketing"],
+  knowsAbout: ["AI Automation", "Growth Strategy", "Process Automation", "Web Development", "Digital Marketing", "SEO"],
   hasOfferCatalog: {
     "@type": "OfferCatalog",
-    name: "Digital Marketing Services",
-    itemListElement: [
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Brand Identity", description: "Complete brand systems that communicate prestige, consistency, and authority." } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Digital Marketing", description: "Multi-channel campaigns that elevate visibility and drive measurable growth." } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Growth Strategy", description: "Data-driven strategies that transform brands into market leaders." } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Web Development", description: "High-performance digital platforms that convert visitors into loyal clients." } },
-    ],
+    name: "Services",
+    // Same services as the Services page, in English, so search engines never see an old list.
+    itemListElement: services.map((service) => ({
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: enServices[service.titleKey],
+        description: enServices[service.taglineKey],
+        url: `${SITE_URL}/services#${service.id}`,
+      },
+    })),
   },
 };
 
@@ -105,13 +117,14 @@ export const defaultJsonLd = [organizationSchema, localBusinessSchema, ...teamPe
 
 const SEO = ({
   title = "Impera — Command your growth. Automate everything else.",
-  description = "Impera is a premium digital media agency crafting luxury brand experiences that command authority and distinction.",
+  description: descriptionProp,
   path = "",
   ogImage = DEFAULT_OG_IMAGE,
   ogType = "website",
   jsonLd,
 }: SEOProps) => {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
+  const description = descriptionProp ?? t("homePage.seoDescription");
   const currentLang = i18n.language?.slice(0, 2) || "en";
   
   // Build canonical URL based on current language

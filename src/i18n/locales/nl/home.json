@@ -1,10 +1,9 @@
 {
   "homePage": {
     "seoTitle": "Impera — Beheers uw groei. Automatiseer al de rest.",
-    "seoDescription": "Impera is een premium digitaal mediabureau dat luxueuze merkervaringen creëert die autoriteit en distinctie uitstralen."
+    "seoDescription": "Groeistrategie en AI-automatisering voor ambitieuze bedrijven. Uitsluitend senior specialisten."
   },
   "hero": {
-    "eyebrow": "Digitaal Mediabureau",
     "title1": "Beheers Uw Groei.",
     "title2": "Automatiseer al de rest.",
     "subtitle": "Wij zetten AI-automatisering en groeistrategie om in meetbare omzet. Geen presentaties, geen theorie",
@@ -12,8 +11,8 @@
     "scroll": "Scroll"
   },
   "services": {
-    "eyebrow": "Wat We Doen",
-    "title": "Diensten van Onderscheiding",
+    "eyebrow": "Klinkt Bekend?",
+    "title": "De Verborgen Kosten van Stilstand",
     "seniorTime": "Verspilde seniortijd",
     "seniorTimeDesc": "Uw best betaalde mensen besteden hun week aan uw goedkoopste werk — en het denkwerk waarvoor u hen eigenlijk betaalt, komt er nooit van.",
     "disconnectedSystems": "Systemen die niet samenwerken",

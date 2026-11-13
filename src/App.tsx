@@ -10,6 +10,7 @@ import PageLoader from "./components/layout/PageLoader";
 import LanguageLayout from "./components/layout/LanguageLayout";
 import CookieConsent from "./components/common/CookieConsent";
 import { useTrackingConsent } from "./hooks/use-tracking-consent";
+import { ScrollOnNavigate } from "./hooks/use-scroll-on-navigate";
 
 import Index from "./pages/Index";
 import Services from "./pages/Services";
@@ -62,6 +63,7 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <TrackingLoader />
+          <ScrollOnNavigate />
           <ScrollProgress />
           <PageLoader>
             <Routes>

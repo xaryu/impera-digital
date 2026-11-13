@@ -14,18 +14,15 @@ const HeroSection = () => {
 
         {/* left column — text, left-aligned */}
         <div className="text-left">
-          <p className="font-body text-sm tracking-[0.4em] text-gold uppercase mb-6 opacity-0 animate-fade-up" style={{ animationDelay: "0.2s" }}>
-            {t("hero.eyebrow")}
-          </p>
-          <h1 className="font-display text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-cream leading-tight mb-6 sm:mb-8 opacity-0 animate-fade-up" style={{ animationDelay: "0.4s" }}>
+          <h1 className="font-display text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-cream leading-tight mb-6 sm:mb-8 opacity-0 animate-fade-up" style={{ animationDelay: "0.2s" }}>
             {t("hero.title1")}
             <br />
             <span className="text-gold-gradient">{t("hero.title2")}</span>
           </h1>
-          <p className="font-body text-lg md:text-xl text-gold-muted max-w-lg mb-12 opacity-0 animate-fade-up" style={{ animationDelay: "0.6s" }}>
+          <p className="font-body text-lg md:text-xl text-gold-muted max-w-lg mb-12 opacity-0 animate-fade-up" style={{ animationDelay: "0.4s" }}>
             {t("hero.subtitle")}
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 opacity-0 animate-fade-up" style={{ animationDelay: "0.8s" }}>
+          <div className="flex flex-col sm:flex-row gap-4 opacity-0 animate-fade-up" style={{ animationDelay: "0.6s" }}>
             <BookingLink className="px-10 py-4 text-center bg-gold text-navy-dark font-body text-sm font-semibold tracking-wider uppercase btn-hover hover:bg-gold-light">
               {t("hero.cta1")}
             </BookingLink>

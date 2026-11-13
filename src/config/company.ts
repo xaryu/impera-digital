@@ -11,9 +11,9 @@ export const company = {
     href: "tel:+32492202377",
   },
   address: {
-    street: "Justus Lipsiusstraat 16",
-    postalCode: "3000",
-    city: "Leuven",
+    street: "Groenstraat 80",
+    postalCode: "3001",
+    city: "Heverlee",
     country: "Belgium",
     countryCode: "BE",
   },

@@ -3,17 +3,16 @@ import { Mail, MapPin, Clock, Instagram, Linkedin } from "lucide-react";
 import ImperaLogo from "@/components/common/ImperaLogo";
 import LocalizedLink from "@/components/layout/LocalizedLink";
 import { company, companyAddressLine } from "@/config/company";
+import { services } from "@/config/services";
 
 const Footer = () => {
   const { t } = useTranslation();
 
-  const serviceLinks = [
-    { label: t("footer.brandStrategy"), href: "/services" },
-    { label: t("footer.digitalMarketing"), href: "/services" },
-    { label: t("footer.webDevelopment"), href: "/services" },
-    { label: t("footer.contentCreation"), href: "/services" },
-    { label: t("footer.performanceMarketing"), href: "/services" },
-  ];
+  // Same list, titles and order as the Services page; each link scrolls to its section there.
+  const serviceLinks = services.map((service) => ({
+    label: t(`servicesPage.${service.titleKey}`),
+    href: `/services#${service.id}`,
+  }));
 
   const companyLinks = [
     { label: t("footer.aboutUs"), href: "/about" },
@@ -44,7 +43,7 @@ const Footer = () => {
             <h4 className="font-display text-sm font-semibold tracking-widest text-cream uppercase mb-6">{t("footer.servicesTitle")}</h4>
             <ul className="space-y-3">
               {serviceLinks.map((link) => (
-                <li key={link.label}>
+                <li key={link.href}>
                   <LocalizedLink to={link.href} className="font-body text-sm text-cream/60 hover:text-gold transition-colors">{link.label}</LocalizedLink>
                 </li>
               ))}
@@ -79,7 +78,7 @@ const Footer = () => {
               </li>
             </ul>
             <LocalizedLink to="/contact" className="mt-8 inline-block px-6 py-3 bg-accent text-accent-foreground font-body text-sm font-semibold tracking-wider uppercase hover:bg-accent/90 transition-colors">
-              {t("footer.startYourProject")}
+              {t("footer.getInTouch")}
             </LocalizedLink>
           </div>
         </div>
