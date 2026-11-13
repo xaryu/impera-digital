@@ -70,8 +70,12 @@ Run `source ~/.nvm/nvm.sh && nvm use 24` first (Node 24, see `.nvmrc`).
      loaded. GA4 relies on Enhanced Measurement (history changes, on by default).
   8. **Fixed.** `CareerPost.tsx`: zod schema with dictionary keys (`careerPost.invalidEmail`), file type
      check (`careerPost.fileWrongType`), file input reset after success and after a rejected file.
+  9. **Fixed and live (2026-11-13).** Found while testing: admins see draft openings on /careers, but
+     `CareerPost` filtered `published=true` + `.single()`, so a draft gave 406 / "Position not found".
+     Now RLS decides visibility (as on BlogPost), drafts show `careerPost.draftNotice` and the apply
+     button is disabled; `.maybeSingle()` for a missing slug.
   New FR/NL strings for Paul to check: `common.rateLimited`, `careerPost.fileWrongType`,
-  `careerPost.invalidEmail`; `legal.json` (English in all locales) got a form IP-hash item and a wider
+  `careerPost.invalidEmail`, `careerPost.draftNotice`; `legal.json` (English in all locales) got a form IP-hash item and a wider
   Resend paragraph.
 
 - **Follow-up feedback (2026-11-13, branch `feature/footer-homepage-copy`, merged to `main` and pushed
