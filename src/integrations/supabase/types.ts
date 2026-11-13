@@ -182,6 +182,7 @@ export type Database = {
           created_at: string
           email: string
           id: string
+          ip_hash: string | null
           message: string
           name: string
           service: string | null
@@ -191,6 +192,7 @@ export type Database = {
           created_at?: string
           email: string
           id?: string
+          ip_hash?: string | null
           message: string
           name: string
           service?: string | null
@@ -200,6 +202,7 @@ export type Database = {
           created_at?: string
           email?: string
           id?: string
+          ip_hash?: string | null
           message?: string
           name?: string
           service?: string | null
@@ -213,6 +216,7 @@ export type Database = {
           email: string
           full_name: string
           id: string
+          ip_hash: string | null
           job_opening_id: string
           motivation_letter: string
         }
@@ -222,6 +226,7 @@ export type Database = {
           email: string
           full_name: string
           id?: string
+          ip_hash?: string | null
           job_opening_id: string
           motivation_letter?: string
         }
@@ -231,6 +236,7 @@ export type Database = {
           email?: string
           full_name?: string
           id?: string
+          ip_hash?: string | null
           job_opening_id?: string
           motivation_letter?: string
         }
@@ -303,18 +309,21 @@ export type Database = {
           created_at: string
           email: string
           id: string
+          ip_hash: string | null
           source: string
         }
         Insert: {
           created_at?: string
           email: string
           id?: string
+          ip_hash?: string | null
           source?: string
         }
         Update: {
           created_at?: string
           email?: string
           id?: string
+          ip_hash?: string | null
           source?: string
         }
         Relationships: []

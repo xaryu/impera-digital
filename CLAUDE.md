@@ -36,12 +36,12 @@ Run `source ~/.nvm/nvm.sh && nvm use 24` first (Node 24, see `.nvmrc`).
 ## Active work
 
 - **Bug hunt 2026-11-13 (time-boxed, 7 min, logic/UI/security), by severity.** Fixes on branch
-  `fix/bug-hunt-2026-11-13`, **not deployed**. Deploy order: (1) `npx supabase db push` for
-  `20261113120000_public_forms_via_function.sql`, (2) `npx supabase functions deploy form-submit
-  --project-ref hcotcpkpxcheeptejmum`, (3) merge to `main` (Vercel), (4) set the notification email
-  in /admin → Settings, (5) regenerate `src/integrations/supabase/types.ts` (`site_settings` was
-  added by hand), (6) one real submission of each form. Between (1) and (3) the live site cannot
-  submit these forms (its anon inserts are refused), so do (1)–(3) together.
+  `fix/bug-hunt-2026-11-13`, **deployed 2026-11-13**: migration
+  `20261113120000_public_forms_via_function.sql` pushed, `form-submit` deployed (smoke-tested: 400 on
+  invalid body, honeypot returns ok, CORS ok), merged to `main` and live on Vercel, `types.ts`
+  regenerated. The repo is now `supabase link`ed to `hcotcpkpxcheeptejmum`. Still to do: Paul sets
+  the notification email in /admin → Settings, then one real submission of each form (contact, exit
+  popup, application with a CV whose filename has accents) and check the emails arrive.
   1. **Not a bug (status: no change needed).** `BlogPost.tsx` already escapes post content before the
      `**`/`*` replacements (lines 107-110), so review 2026-10-30 #3 was fixed; the 7-minute pass read
      only the replace lines. `AboutSection.tsx` rendered `about.p2` as HTML although it holds none:
