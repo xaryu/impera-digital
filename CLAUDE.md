@@ -34,7 +34,7 @@ Run `source ~/.nvm/nvm.sh && nvm use 24` first (Node 24, see `.nvmrc`).
 
 ## Active work
 
-- **Follow-up feedback (2026-11-13, branch `feature/footer-homepage-copy`, not merged yet)**: hero
+- **Follow-up feedback (2026-11-13, branch `feature/footer-homepage-copy`, merged to `main` 2026-11-13)**: hero
   eyebrow removed, homepage heading "The Hidden Cost of Standing Still", new footer description,
   address Groenstraat 80 Heverlee, footer services link to `/services#<id>` (list in
   `src/config/services.ts`), footer button "Get in Touch". Details and open items: "Follow-up
