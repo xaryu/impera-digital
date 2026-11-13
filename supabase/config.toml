@@ -2,3 +2,6 @@ project_id = "hcotcpkpxcheeptejmum"
 [functions.calculator-report]
 # Called by visitors who are not signed in; the function validates the request itself.
 verify_jwt = false
+[functions.form-submit]
+# Public forms (contact, leads, applications); validates and rate-limits the request itself.
+verify_jwt = false

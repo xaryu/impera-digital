@@ -19,6 +19,7 @@
           "<b>Contact forms:</b> Name, email address, phone number, and your message.",
           "<b>Calendly scheduling:</b> Name, email address, and any information you provide when booking a meeting through our Calendly booking page.",
           "<b>Job applications:</b> Full name, email address, motivation letter, and CV/resume.",
+          "<b>Abuse protection for our forms:</b> When you send the contact form, request our guide or apply for a job, we also store a keyed hash of your IP address (not the address itself), used only to limit abuse and deleted after 24 hours.",
           "<b>Hours calculator:</b> If you ask for the emailed report, your email address, the figures you entered (number of people, hours per week, hourly cost, selected tasks), the calculated result, your language, the time of your consent, a one-time confirmation link (we store only a hash of it, and it expires after 24 hours) and a keyed hash of your IP address (not the address itself), used only to limit abuse and deleted after 24 hours. The calculator itself needs no email, and we count anonymous usage steps (started, finished, report requested, audit clicked) without any personal data, cookies or storage."
         ],
         "afterList": [
@@ -80,7 +81,7 @@
         "title": "8. Third-Party Services",
         "paragraphs": [
           "Our website links to Calendly for appointment scheduling. When you use Calendly, your data is also subject to <calendlyPolicy>Calendly's Privacy Policy</calendlyPolicy>. We encourage you to review their policy.",
-          "We use Resend (Resend, Inc.) to send the hours calculator confirmation link and report to your email address. Resend processes your email address and the report content on our behalf. We use its EU (Ireland) sending region."
+          "We use Resend (Resend, Inc.) to send the hours calculator confirmation link and report to your email address, and to forward what you send through our contact form, guide request and job application form to our team by email (for applications, with a time-limited link to your CV). Resend processes your email address and the content of these emails on our behalf. We use its EU (Ireland) sending region."
         ]
       },
       {

@@ -40,6 +40,8 @@
     "positionNotFound": "Positie Niet Gevonden",
     "submitSuccess": "Sollicitatie succesvol verzonden!",
     "requiredFields": "Vul alle verplichte velden in",
-    "fileTooLarge": "Het bestand moet kleiner zijn dan 10 MB"
+    "fileTooLarge": "Het bestand moet kleiner zijn dan 10 MB",
+    "fileWrongType": "Upload een PDF-, DOC- of DOCX-bestand",
+    "invalidEmail": "Vul een geldig e-mailadres in"
   }
 }

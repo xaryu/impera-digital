@@ -40,6 +40,8 @@
     "positionNotFound": "Position Not Found",
     "submitSuccess": "Application submitted successfully!",
     "requiredFields": "Please fill in all required fields",
-    "fileTooLarge": "File must be under 10MB"
+    "fileTooLarge": "File must be under 10MB",
+    "fileWrongType": "Please upload a PDF, DOC or DOCX file",
+    "invalidEmail": "Please enter a valid email address"
   }
 }

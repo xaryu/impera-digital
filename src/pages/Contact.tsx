@@ -4,7 +4,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { supabase } from "@/integrations/supabase/client";
+import { submitForm, honeypotProps, honeypotWrapperClass } from "@/lib/submit-form";
 import { toast } from "sonner";
 import { z } from "zod";
 import { company } from "@/config/company";
@@ -28,6 +28,7 @@ const Contact = () => {
     service: "",
     message: "",
   });
+  const [website, setWebsite] = useState(""); // honeypot
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
@@ -44,17 +45,19 @@ const Contact = () => {
     }
 
     setSubmitting(true);
-    const { error } = await supabase.from("contact_submissions").insert({
+    const errorKey = await submitForm({
+      kind: "contact",
       name: result.data.name,
       email: result.data.email,
       company: result.data.company || "",
       service: result.data.service || "",
       message: result.data.message,
+      website,
     });
     setSubmitting(false);
 
-    if (error) {
-      toast.error(t("common.genericError"));
+    if (errorKey) {
+      toast.error(t(errorKey));
       return;
     }
 
@@ -106,6 +109,9 @@ const Contact = () => {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+                  <div aria-hidden="true" className={honeypotWrapperClass}>
+                    <input {...honeypotProps} value={website} onChange={(e) => setWebsite(e.target.value)} />
+                  </div>
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <label htmlFor="contact-name" className="block font-body text-xs tracking-wider text-muted-foreground uppercase mb-2">

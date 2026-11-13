@@ -31,6 +31,7 @@
   "common": {
     "skipToContent": "Aller au contenu principal",
     "genericError": "Une erreur s'est produite. Veuillez réessayer.",
+    "rateLimited": "Nous avons reçu trop de messages en même temps. Veuillez réessayer dans une heure ou nous écrire directement par e-mail.",
     "opensInNewTab": "s'ouvre dans un nouvel onglet"
   },
   "cookieConsent": {

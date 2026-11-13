@@ -6,6 +6,7 @@ import LocalizedLink from "@/components/layout/LocalizedLink";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { supabase } from "@/integrations/supabase/client";
+import { getConfirmToken } from "@/lib/confirm-token";
 
 type Status = "idle" | "sending" | "sent" | "alreadySent" | "invalid" | "expired" | "busy" | "error";
 
@@ -14,7 +15,8 @@ type Status = "idle" | "sending" | "sent" | "alreadySent" | "invalid" | "expired
 const CalculatorConfirm = () => {
   const { t } = useTranslation();
   const [params] = useSearchParams();
-  const token = params.get("token");
+  // main.tsx moves the token out of the URL (so analytics never see it); getConfirmToken returns it.
+  const token = getConfirmToken(params.get("token"));
   const [status, setStatus] = useState<Status>(token ? "idle" : "invalid");
 
   const confirm = async () => {

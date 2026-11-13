@@ -14,10 +14,13 @@ import {
 // Wraps a trigger button with a "delete permanently?" confirmation.
 const ConfirmDelete = ({
   itemLabel,
+  note,
   onConfirm,
   children,
 }: {
   itemLabel: string;
+  /** Extra sentence about what else gets deleted. */
+  note?: string;
   onConfirm: () => void;
   children: ReactNode;
 }) => (
@@ -27,7 +30,7 @@ const ConfirmDelete = ({
       <AlertDialogHeader>
         <AlertDialogTitle className="font-display text-cream">Delete permanently?</AlertDialogTitle>
         <AlertDialogDescription className="font-body text-gold-muted">
-          “{itemLabel}” will be removed from the database and the site. This can't be undone.
+          “{itemLabel}” will be removed from the database and the site.{note ? ` ${note}` : ""} This can't be undone.
         </AlertDialogDescription>
       </AlertDialogHeader>
       <AlertDialogFooter>
