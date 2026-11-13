@@ -34,12 +34,20 @@ Run `source ~/.nvm/nvm.sh && nvm use 24` first (Node 24, see `.nvmrc`).
 
 ## Active work
 
-- **Follow-up feedback (2026-11-13, branch `feature/footer-homepage-copy`, merged to `main` 2026-11-13)**: hero
+- **Follow-up feedback (2026-11-13, branch `feature/footer-homepage-copy`, merged to `main` and pushed
+  2026-11-13, Vercel deploys from `main`; live site not checked yet)**: hero
   eyebrow removed, homepage heading "The Hidden Cost of Standing Still", new footer description,
   address Groenstraat 80 Heverlee, footer services link to `/services#<id>` (list in
   `src/config/services.ts`), footer button "Get in Touch". Details and open items: "Follow-up
   feedback" in [`docs/plans/launch-feedback.md`](docs/plans/launch-feedback.md). Paul checks the
   new FR/NL text.
+  **Services list (2026-11-13)**: the four services are AI Automation, Web Design & Development,
+  Digital Marketing, Growth Strategy (as on the Services page). `src/config/services.ts` is the only
+  source: footer, SEO structured data and the contact form dropdown read it. The contact form now
+  stores the service `id` (e.g. `ai-automation`) in `contact_submissions.service` instead of the old
+  `brand`/`web`/`marketing`/`strategy`, plus `multiple`. Never list services by hand in a component
+  or dictionary. Terms (`legal.json` → services sentence, English in all three locales) updated to
+  the four services; Paul checks the legal wording.
   **Code review 2026-11-13**, all 10 status: **fixed** (same branch). 1, 2, 3 and 8 were fixed by
   replacing the hook with `ScrollOnNavigate` in `src/hooks/use-scroll-on-navigate.ts`; the old file
   `use-scroll-to-hash.ts` named below is gone. The language switch passes `state.keepScroll`. 10 restores
