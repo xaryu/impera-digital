@@ -31,6 +31,7 @@
   "common": {
     "skipToContent": "Naar hoofdinhoud gaan",
     "genericError": "Er is iets misgegaan. Probeer het opnieuw.",
+    "rateLimited": "We hebben te veel berichten tegelijk ontvangen. Probeer het over een uur opnieuw of mail ons rechtstreeks.",
     "opensInNewTab": "opent in een nieuw tabblad"
   },
   "cookieConsent": {

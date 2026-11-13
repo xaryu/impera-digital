@@ -23,7 +23,7 @@ const AboutSection = () => {
               {t("about.title2")} <span className="text-gold-gradient">{t("about.titleHighlight")}</span>
             </h2>
             <p className="font-body text-gold-muted leading-relaxed mb-6">{t("about.p1")}</p>
-            <p className="font-body text-gold-muted leading-relaxed" dangerouslySetInnerHTML={{ __html: t("about.p2") }} />
+            <p className="font-body text-gold-muted leading-relaxed">{t("about.p2")}</p>
           </FadeInSection>
 
           <FadeInSection delay={150}>

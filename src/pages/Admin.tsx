@@ -10,6 +10,7 @@ import { useDeleteRow } from "@/hooks/use-delete-row";
 import ImperaLogo from "@/components/common/ImperaLogo";
 import AdminLogin from "@/components/admin/AdminLogin";
 import ConfirmDelete from "@/components/admin/ConfirmDelete";
+import SettingsPanel from "@/components/admin/SettingsPanel";
 import BlogEditor from "@/components/admin/BlogEditor";
 import JobEditor, { type JobOpening } from "@/components/admin/JobEditor";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -39,9 +40,10 @@ type ListRowProps = {
   onEdit: () => void;
   onDelete: () => void;
   deleting: boolean;
+  deleteNote?: string;
 };
 
-const ListRow = ({ title, meta, published, onEdit, onDelete, deleting }: ListRowProps) => (
+const ListRow = ({ title, meta, published, onEdit, onDelete, deleting, deleteNote }: ListRowProps) => (
   <li className="flex items-center justify-between gap-4 border border-gold/10 bg-navy/30 hover:border-gold/30 transition-colors rounded-lg px-5 py-4">
     <div className="min-w-0">
       <div className="flex flex-wrap items-center gap-3 mb-1">
@@ -57,7 +59,7 @@ const ListRow = ({ title, meta, published, onEdit, onDelete, deleting }: ListRow
       >
         <Pencil className="w-3.5 h-3.5" /> Edit
       </button>
-      <ConfirmDelete itemLabel={title} onConfirm={onDelete}>
+      <ConfirmDelete itemLabel={title} note={deleteNote} onConfirm={onDelete}>
         <button
           disabled={deleting}
           className="flex items-center gap-2 font-body text-xs tracking-wider uppercase text-destructive/60 hover:text-destructive transition-colors disabled:opacity-40"
@@ -135,9 +137,24 @@ const BlogPanel = () => {
   );
 };
 
+// Deleting an opening deletes its applications (ON DELETE CASCADE); their CVs live in
+// cv-uploads/<job id>/ and are personal data, so remove them too.
+const removeJobCvs = async (jobId: string) => {
+  const bucket = supabase.storage.from("cv-uploads");
+  for (;;) {
+    const { data: files, error } = await bucket.list(jobId, { limit: 100 });
+    if (error) throw error;
+    if (!files.length) return;
+    const { data: removed, error: removeError } = await bucket.remove(files.map((file) => `${jobId}/${file.name}`));
+    if (removeError) throw removeError;
+    // A delete RLS refuses removes nothing without an error; stop instead of listing forever.
+    if (!removed.length) throw new Error("the CV files could not be deleted (admin storage policy missing?)");
+  }
+};
+
 const CareersPanel = () => {
   const [editing, setEditing] = useState<EditorTarget<JobOpening>>(undefined);
-  const deleteMutation = useDeleteRow("job_openings", "Job deleted");
+  const deleteMutation = useDeleteRow("job_openings", "Job and its applications deleted", removeJobCvs);
 
   const { data: jobs = [], isLoading } = useQuery({
     queryKey: ["job-openings", "admin"],
@@ -166,6 +183,7 @@ const CareersPanel = () => {
               onEdit={() => setEditing(job)}
               onDelete={() => deleteMutation.mutate(job.id)}
               deleting={deleteMutation.isPending && deleteMutation.variables === job.id}
+              deleteNote="All applications for this job and their CV files are deleted too."
             />
           ))}
         </ul>
@@ -205,12 +223,18 @@ const Dashboard = ({ email }: { email: string }) => (
           <TabsTrigger value="careers" className="font-body text-xs tracking-wider uppercase data-[state=active]:bg-gold data-[state=active]:text-navy-dark">
             Careers
           </TabsTrigger>
+          <TabsTrigger value="settings" className="font-body text-xs tracking-wider uppercase data-[state=active]:bg-gold data-[state=active]:text-navy-dark">
+            Settings
+          </TabsTrigger>
         </TabsList>
         <TabsContent value="blog">
           <BlogPanel />
         </TabsContent>
         <TabsContent value="careers">
           <CareersPanel />
+        </TabsContent>
+        <TabsContent value="settings">
+          <SettingsPanel />
         </TabsContent>
       </Tabs>
     </main>

@@ -31,6 +31,7 @@
   "common": {
     "skipToContent": "Skip to main content",
     "genericError": "Something went wrong. Please try again.",
+    "rateLimited": "We received too many messages at once. Please try again in an hour, or email us directly.",
     "opensInNewTab": "opens in a new tab"
   },
   "cookieConsent": {

@@ -27,12 +27,52 @@ Run `source ~/.nvm/nvm.sh && nvm use 24` first (Node 24, see `.nvmrc`).
 - Audit/booking CTAs use `BookingLink`, which opens the calendar in a new tab.
 - Forms: zod schemas whose error messages are dictionary keys (see `ExitIntentPopup.tsx`).
 - Supabase: every table has RLS. Admin access goes through `public.has_role(auth.uid(), 'admin')`.
-  Public forms insert with anon policies. Anything that sends email must go through an Edge Function
+  Public forms (contact, leads, applications) go through the `form-submit` Edge Function via
+  `src/lib/submit-form.ts`; only calculator events and CV uploads still use anon policies. Anything that sends email must go through an Edge Function
   using the service role. Regenerate `src/integrations/supabase/types.ts` after migrations.
 - Privacy: new personal-data collection requires updating `legal.json` (all languages).
 - Tracking: GA4 and Meta load only after cookie consent (`use-tracking-consent.ts`).
 
 ## Active work
+
+- **Bug hunt 2026-11-13 (time-boxed, 7 min, logic/UI/security), by severity.** Fixes on branch
+  `fix/bug-hunt-2026-11-13`, **not deployed**. Deploy order: (1) `npx supabase db push` for
+  `20261113120000_public_forms_via_function.sql`, (2) `npx supabase functions deploy form-submit
+  --project-ref hcotcpkpxcheeptejmum`, (3) merge to `main` (Vercel), (4) set the notification email
+  in /admin → Settings, (5) regenerate `src/integrations/supabase/types.ts` (`site_settings` was
+  added by hand), (6) one real submission of each form. Between (1) and (3) the live site cannot
+  submit these forms (its anon inserts are refused), so do (1)–(3) together.
+  1. **Not a bug (status: no change needed).** `BlogPost.tsx` already escapes post content before the
+     `**`/`*` replacements (lines 107-110), so review 2026-10-30 #3 was fixed; the 7-minute pass read
+     only the replace lines. `AboutSection.tsx` rendered `about.p2` as HTML although it holds none:
+     now plain text (**fixed**).
+  2. **Fixed.** Contact messages, leads and job applications were stored but nobody was notified. New
+     Edge Function `supabase/functions/form-submit` stores them (service role) and emails the owner at
+     `site_settings.notification_email`, set in /admin → Settings (`SettingsPanel.tsx`), fallback
+     `company.email`. Reply-To is the sender; applications get a 7-day signed CV link. If the email
+     fails the row is still kept and the visitor sees success. No admin list of submissions yet.
+  3. **Fixed.** `CareerPost.tsx`: the CV path contained the applicant's name; now
+     `<job id>/<uuid>.<ext>`, which form-submit also enforces. Test in `CareerPost.test.tsx`.
+  4. **Fixed.** Contact, exit popup and application forms have a honeypot (`src/lib/submit-form.ts`) and
+     go through form-submit with a per-IP limit of 5/hour/form (HMAC IP hash, cleared after 24h by
+     pg_cron, stated in `legal.json`). Anon INSERT policies on the three tables are dropped, so the
+     REST API can no longer bypass the function. 429/503 show `common.rateLimited`. The global caps
+     (50/100/30 per hour) remain, so many IPs can still fill them.
+  5. **Fixed (partly).** Deleting a job opening now also deletes `cv-uploads/<job id>/` (new storage
+     policy "Admins can delete CVs"; the dialog says so), and form-submit removes the CV when the insert
+     fails. Still open: a CV uploaded by someone who never completes the form stays as an orphan, and
+     the retention periods in `legal.json` (contact 12 months, applications 6 months after the position
+     is filled) are not enforced by any job.
+  6. **Fixed.** `src/lib/confirm-token.ts`, called in `main.tsx` before React and tracking: the token is
+     moved from the URL to memory/sessionStorage, so GA4/Meta never see it. Note: GA4/Meta IDs in
+     `use-tracking-consent.ts` are still placeholders, so no tracking runs today.
+  7. **Fixed.** `use-tracking-consent.ts`: Meta `PageView` on every pathname change when the pixel is
+     loaded. GA4 relies on Enhanced Measurement (history changes, on by default).
+  8. **Fixed.** `CareerPost.tsx`: zod schema with dictionary keys (`careerPost.invalidEmail`), file type
+     check (`careerPost.fileWrongType`), file input reset after success and after a rejected file.
+  New FR/NL strings for Paul to check: `common.rateLimited`, `careerPost.fileWrongType`,
+  `careerPost.invalidEmail`; `legal.json` (English in all locales) got a form IP-hash item and a wider
+  Resend paragraph.
 
 - **Follow-up feedback (2026-11-13, branch `feature/footer-homepage-copy`, merged to `main` and pushed
   2026-11-13, Vercel deploys from `main`; live site not checked yet)**: hero

@@ -319,6 +319,24 @@ export type Database = {
         }
         Relationships: []
       }
+      site_settings: {
+        Row: {
+          id: boolean
+          notification_email: string | null
+          updated_at: string
+        }
+        Insert: {
+          id?: boolean
+          notification_email?: string | null
+          updated_at?: string
+        }
+        Update: {
+          id?: boolean
+          notification_email?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       team_members: {
         Row: {
           bio: string | null

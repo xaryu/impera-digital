@@ -1,4 +1,5 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
+import { useLocation } from "react-router-dom";
 import { getConsent, CookiePreferences } from "@/lib/cookie-consent";
 
 // Replace these with your real IDs when ready
@@ -62,4 +63,19 @@ export const useTrackingConsent = () => {
     window.addEventListener("cookie-consent-updated", handler);
     return () => window.removeEventListener("cookie-consent-updated", handler);
   }, []);
+
+  // The pixel script sends one PageView when it loads; a single-page app never reloads, so send
+  // one per route change after that. (GA4 counts these itself through Enhanced Measurement's
+  // "page changes based on browser history events", on by default.) Only if the pixel was loaded,
+  // i.e. marketing consent was given. Hash-only changes are not new pages.
+  const { pathname } = useLocation();
+  const firstPath = useRef(true);
+  useEffect(() => {
+    if (firstPath.current) {
+      firstPath.current = false;
+      return;
+    }
+    const fbq = (window as Window & { fbq?: (...args: unknown[]) => void }).fbq;
+    fbq?.("track", "PageView");
+  }, [pathname]);
 };

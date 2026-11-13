@@ -3,7 +3,7 @@ import { X } from "lucide-react";
 import { z } from "zod";
 import { toast } from "sonner";
 import { useTranslation } from "react-i18next";
-import { supabase } from "@/integrations/supabase/client";
+import { submitForm, honeypotProps, honeypotWrapperClass } from "@/lib/submit-form";
 
 // Error messages are dictionary keys, translated when shown.
 const emailSchema = z
@@ -19,6 +19,7 @@ const ExitIntentPopup = () => {
   const [visible, setVisible] = useState(false);
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
+  const [website, setWebsite] = useState(""); // honeypot
   const [submitting, setSubmitting] = useState(false);
 
   const dismiss = useCallback(() => {
@@ -53,10 +54,10 @@ const ExitIntentPopup = () => {
       return;
     }
     setSubmitting(true);
-    const { error: dbError } = await supabase.from("leads").insert({ email: result.data, source: "exit_intent" });
+    const errorKey = await submitForm({ kind: "lead", email: result.data, source: "exit_intent", website });
     setSubmitting(false);
-    if (dbError) {
-      toast.error(t("common.genericError"));
+    if (errorKey) {
+      toast.error(t(errorKey));
       return;
     }
     toast.success(t("exitPopup.success"));
@@ -81,6 +82,9 @@ const ExitIntentPopup = () => {
             <span className="text-cream font-medium">{t("exitPopup.guideName")}</span>
           </p>
           <form onSubmit={handleSubmit} className="space-y-3">
+            <div aria-hidden="true" className={honeypotWrapperClass}>
+              <input {...honeypotProps} value={website} onChange={(e) => setWebsite(e.target.value)} />
+            </div>
             <div>
               <label htmlFor="exit-email" className="sr-only">{t("exitPopup.placeholder")}</label>
               <input id="exit-email" type="email" value={email} onChange={(e) => { setEmail(e.target.value); setError(""); }} placeholder={t("exitPopup.placeholder")} className="w-full px-4 py-3 rounded-lg bg-navy-dark border border-navy-light/50 text-cream placeholder:text-gold-muted/50 font-body text-sm focus:outline-none focus:border-gold/60 transition-colors" maxLength={255} autoComplete="email" aria-invalid={!!error} aria-describedby={error ? "exit-email-error" : undefined} />
