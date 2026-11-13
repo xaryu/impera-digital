@@ -1,39 +1,18 @@
-import { Megaphone, Palette, TrendingUp, Globe, ArrowRight, CheckCircle } from "lucide-react";
+import { Bot, Megaphone, TrendingUp, Globe, ArrowRight, CheckCircle, type LucideIcon } from "lucide-react";
 import SEO from "@/components/layout/SEO";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import LocalizedLink from "@/components/layout/LocalizedLink";
 import BookingLink from "@/components/common/BookingLink";
 import { useTranslation } from "react-i18next";
+import { services, type ServiceId } from "@/config/services";
 
-const serviceIcons = [Palette, Globe, Megaphone, TrendingUp];
-
-const serviceKeys = [
-  {
-    titleKey: "brandIdentity",
-    taglineKey: "brandIdentityTagline",
-    descKey: "brandIdentityDesc",
-    deliverables: ["brandD1", "brandD2", "brandD3", "brandD4", "brandD5"],
-  },
-  {
-    titleKey: "webDesign",
-    taglineKey: "webDesignTagline",
-    descKey: "webDesignDesc",
-    deliverables: ["webD1", "webD2", "webD3", "webD4", "webD5"],
-  },
-  {
-    titleKey: "digitalMarketing",
-    taglineKey: "digitalMarketingTagline",
-    descKey: "digitalMarketingDesc",
-    deliverables: ["marketingD1", "marketingD2", "marketingD3", "marketingD4", "marketingD5"],
-  },
-  {
-    titleKey: "growthStrategy",
-    taglineKey: "growthStrategyTagline",
-    descKey: "growthStrategyDesc",
-    deliverables: ["growthD1", "growthD2", "growthD3", "growthD4", "growthD5"],
-  },
-];
+const serviceIcons: Record<ServiceId, LucideIcon> = {
+  "ai-automation": Bot,
+  "web-development": Globe,
+  "digital-marketing": Megaphone,
+  "growth-strategy": TrendingUp,
+};
 
 const Services = () => {
   const { t } = useTranslation();
@@ -65,12 +44,13 @@ const Services = () => {
       <section className="py-24 bg-cream">
         <div className="container mx-auto px-6">
           <div className="space-y-24">
-            {serviceKeys.map((service, i) => {
-              const Icon = serviceIcons[i];
+            {services.map((service, i) => {
+              const Icon = serviceIcons[service.id];
               return (
                 <div
-                  key={service.titleKey}
-                  className={`grid lg:grid-cols-2 gap-16 items-start ${i % 2 === 1 ? "lg:direction-rtl" : ""}`}
+                  key={service.id}
+                  id={service.id}
+                  className={`scroll-mt-28 focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-gold grid lg:grid-cols-2 gap-16 items-start ${i % 2 === 1 ? "lg:direction-rtl" : ""}`}
                 >
                   <div className={i % 2 === 1 ? "lg:order-2" : ""}>
                     <div className="flex items-center gap-4 mb-6">

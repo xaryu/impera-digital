@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
 import { Globe } from "lucide-react";
 import { supportedLanguages, type SupportedLanguage } from "@/i18n";
+import type { KeepScrollState } from "@/hooks/use-scroll-on-navigate";
 
 const flags: Record<SupportedLanguage, string> = {
   en: "🇬🇧",
@@ -36,7 +37,9 @@ const LanguageSwitcher = () => {
     const isLangPrefix = supportedLanguages.includes(pathParts[0] as SupportedLanguage);
     const cleanPath = isLangPrefix ? "/" + pathParts.slice(1).join("/") : location.pathname;
     const newPath = lang === "en" ? (cleanPath || "/") : `/${lang}${cleanPath === "/" ? "" : cleanPath}`;
-    navigate(newPath);
+    // Keep ?query and #anchor so shared section links survive, and keep the reading position.
+    const state: KeepScrollState = { keepScroll: true };
+    navigate(`${newPath}${location.search}${location.hash}`, { state });
   };
 
   return (

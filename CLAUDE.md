@@ -34,6 +34,44 @@ Run `source ~/.nvm/nvm.sh && nvm use 24` first (Node 24, see `.nvmrc`).
 
 ## Active work
 
+- **Follow-up feedback (2026-11-13, branch `feature/footer-homepage-copy`, not merged yet)**: hero
+  eyebrow removed, homepage heading "The Hidden Cost of Standing Still", new footer description,
+  address Groenstraat 80 Heverlee, footer services link to `/services#<id>` (list in
+  `src/config/services.ts`), footer button "Get in Touch". Details and open items: "Follow-up
+  feedback" in [`docs/plans/launch-feedback.md`](docs/plans/launch-feedback.md). Paul checks the
+  new FR/NL text.
+  **Code review 2026-11-13**, all 10 status: **fixed** (same branch). 1, 2, 3 and 8 were fixed by
+  replacing the hook with `ScrollOnNavigate` in `src/hooks/use-scroll-on-navigate.ts`; the old file
+  `use-scroll-to-hash.ts` named below is gone. The language switch passes `state.keepScroll`. 10 restores
+  the originals in `afterEach`, because jsdom has no `scrollIntoView` to spy on. 6 is covered by
+  `src/config/services.test.ts`.
+  1. `src/hooks/use-scroll-to-hash.ts:38`: if the hash target isn't found within 30 frames the hook
+     gives up, and since `LocalizedLink` skips scroll-to-top for hash links, the page opens at the
+     old scroll offset. Fix: fall back to `window.scrollTo(0, 0)` when the target is never found.
+  2. `src/components/layout/LocalizedLink.tsx:15`: `hasHash` is true for a bare `#` (`/#`,
+     `/services#`), which the hook ignores, so neither scroll happens. Fix: treat only a non-empty
+     fragment as a hash.
+  3. `src/hooks/use-scroll-to-hash.ts:50`: effect runs on back/forward (POP) too and overrides scroll
+     restoration and steals focus. Fix: skip when `useNavigationType() === "POP"`.
+  4. `src/components/layout/LanguageSwitcher.tsx:39`: language switch drops `location.hash`. Fix:
+     append `location.hash` (and `search`) to the new URL.
+  5. `src/pages/Services.tsx:53`: `focus:outline-none` hides focus on the programmatically focused
+     section (WCAG 2.4.7). Fix: use a visible `focus-visible` ring, or drop the class.
+  6. `src/components/layout/Footer.tsx:13`: template-literal key `servicesPage.${titleKey}` is
+     invisible to the dictionary test, so a missing key ships as raw text. Fix: add a test that every
+     key in `src/config/services.ts` exists in all locales.
+  7. `src/config/services.ts:10`: `ai-automation` still uses `brandIdentity*` keys. Fix: rename to
+     `aiAutomation*` in all three `services.json` and the config.
+  8. `src/components/layout/LocalizedLink.tsx:20`: scroll-to-top lives in the link's onClick while
+     anchor scrolling is router-level; `navigate()` and plain links get neither. Fix: handle both in
+     the router-level hook (top on pathname change without hash, else anchor with top fallback) and
+     remove the onClick scroll. Fixes 1 and 2 at the root.
+  9. `src/components/layout/SEO.tsx:14`: `DEFAULT_DESCRIPTION` is read from `resources.en`, so FR/NL
+     pages without a description prop get English meta. Fix: use `t("homePage.seoDescription")`.
+  10. `src/components/layout/Footer.test.tsx:41`: global `scrollIntoView`/`scrollTo` mocks never
+      restored; address hard-coded instead of read from `company.ts`. Fix: `vi.spyOn` + restore in
+      `afterEach`, assert against the config value.
+
 - **Launch feedback (built 2026-11-06, merged to `main` and `calculator-report` deployed as v10 on 2026-11-07)**:
   final feedback round before launch, all six items: homepage, booking, emails. Plan and
   decisions: [`docs/plans/launch-feedback.md`](docs/plans/launch-feedback.md). Still to do: Paul checks
