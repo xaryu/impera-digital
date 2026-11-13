@@ -8,6 +8,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { z } from "zod";
 import { company } from "@/config/company";
+import { services } from "@/config/services";
 
 // Error messages are dictionary keys, translated when shown.
 const contactSchema = z.object({
@@ -133,10 +134,11 @@ const Contact = () => {
                       </label>
                       <select id="contact-service" name="service" value={formData.service} onChange={handleChange} className="w-full px-4 py-3 bg-background border border-border font-body text-sm text-foreground focus:border-gold focus:outline-none transition-colors appearance-none">
                         <option value="">{t("contactPage.serviceDefault")}</option>
-                        <option value="brand">{t("contactPage.serviceBrand")}</option>
-                        <option value="web">{t("contactPage.serviceWeb")}</option>
-                        <option value="marketing">{t("contactPage.serviceMarketing")}</option>
-                        <option value="strategy">{t("contactPage.serviceStrategy")}</option>
+                        {services.map((service) => (
+                          <option key={service.id} value={service.id}>
+                            {t(`servicesPage.${service.titleKey}`)}
+                          </option>
+                        ))}
                         <option value="multiple">{t("contactPage.serviceMultiple")}</option>
                       </select>
                     </div>
